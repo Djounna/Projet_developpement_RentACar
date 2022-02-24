@@ -7,14 +7,11 @@
 <h1>AffichePays</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-controller="Loueur" asp-action="CreatePays">Create New</a>
 </p>
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Idpays)
-            </th>
             <th>
                 @Html.DisplayNameFor(model => model.ReferencePrix)
             </th>
@@ -26,18 +23,14 @@
     </thead>
     <tbody>
 @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Idpays)
-            </td>
+        <tr>        
             <td>
                 @Html.DisplayFor(modelItem => item.ReferencePrix)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Nom)
             </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            <td>               
                 @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
                 @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
             </td>

@@ -1,10 +1,12 @@
 ﻿
+using Microsoft.AspNetCore.Http;
 using Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace DataAccessLayer
 {
@@ -29,5 +31,30 @@ namespace DataAccessLayer
 
             return queryResult;
         }
+
+        public async void CreatePays(Pays pays)
+        {
+            
+            try
+            {
+                ProjetSGDBContext dbcontext = new ProjetSGDBContext();
+                dbcontext.Update(pays);
+                var oResponse = await dbcontext.SaveChangesAsync();
+                
+
+            }
+            catch (Exception ex)
+            {
+
+
+                throw ex;
+            }
+
+          
+        }
+
+
+
     }
 }
+

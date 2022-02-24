@@ -15,5 +15,14 @@ namespace BusinessLayer
         }
 
 
+        public void CreatePays(Pays pays)
+        {
+            
+            DALPays dalPays = new DALPays();
+            dalPays.CreatePays(pays);
+            
+        }
+
+
     }
 }
