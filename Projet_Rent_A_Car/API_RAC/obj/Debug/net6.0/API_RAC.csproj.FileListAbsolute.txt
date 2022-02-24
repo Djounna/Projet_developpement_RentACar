@@ -65,3 +65,14 @@ C:\Users\Hallet Antoine\OneDrive\Documents\EPHEC\3ème\SGDB\ProjetRAC\Projet_dev
 C:\Users\Hallet Antoine\OneDrive\Documents\EPHEC\3ème\SGDB\ProjetRAC\Projet_developpement_RentACar\Projet_Rent_A_Car\API_RAC\bin\Debug\net6.0\BusinessLayer.pdb
 C:\Users\Hallet Antoine\OneDrive\Documents\EPHEC\3ème\SGDB\ProjetRAC\Projet_developpement_RentACar\Projet_Rent_A_Car\API_RAC\bin\Debug\net6.0\Models.pdb
 C:\Users\Hallet Antoine\OneDrive\Documents\EPHEC\3ème\SGDB\ProjetRAC\Projet_developpement_RentACar\Projet_Rent_A_Car\API_RAC\bin\Debug\net6.0\DataAccessLayer.pdb
+C:\Users\Hallet Antoine\OneDrive\Documents\EPHEC\3ème\SGDB\ProjetRAC\Projet_developpement_RentACar\Projet_Rent_A_Car\API_RAC\bin\Debug\net6.0\FluentValidation.dll
+C:\Users\Hallet Antoine\OneDrive\Documents\EPHEC\3ème\SGDB\ProjetRAC\Projet_developpement_RentACar\Projet_Rent_A_Car\API_RAC\bin\Debug\net6.0\FluentValidation.AspNetCore.dll
+C:\Users\Hallet Antoine\OneDrive\Documents\EPHEC\3ème\SGDB\ProjetRAC\Projet_developpement_RentACar\Projet_Rent_A_Car\API_RAC\bin\Debug\net6.0\FluentValidation.DependencyInjectionExtensions.dll
+C:\Users\Hallet Antoine\OneDrive\Documents\EPHEC\3ème\SGDB\ProjetRAC\Projet_developpement_RentACar\Projet_Rent_A_Car\API_RAC\bin\Debug\net6.0\System.Web.Mvc.dll
+C:\Users\Hallet Antoine\OneDrive\Documents\EPHEC\3ème\SGDB\ProjetRAC\Projet_developpement_RentACar\Projet_Rent_A_Car\API_RAC\bin\Debug\net6.0\System.Web.Razor.dll
+C:\Users\Hallet Antoine\OneDrive\Documents\EPHEC\3ème\SGDB\ProjetRAC\Projet_developpement_RentACar\Projet_Rent_A_Car\API_RAC\bin\Debug\net6.0\System.Web.Helpers.dll
+C:\Users\Hallet Antoine\OneDrive\Documents\EPHEC\3ème\SGDB\ProjetRAC\Projet_developpement_RentACar\Projet_Rent_A_Car\API_RAC\bin\Debug\net6.0\System.Web.WebPages.Deployment.dll
+C:\Users\Hallet Antoine\OneDrive\Documents\EPHEC\3ème\SGDB\ProjetRAC\Projet_developpement_RentACar\Projet_Rent_A_Car\API_RAC\bin\Debug\net6.0\System.Web.WebPages.Razor.dll
+C:\Users\Hallet Antoine\OneDrive\Documents\EPHEC\3ème\SGDB\ProjetRAC\Projet_developpement_RentACar\Projet_Rent_A_Car\API_RAC\bin\Debug\net6.0\System.Web.WebPages.dll
+C:\Users\Hallet Antoine\OneDrive\Documents\EPHEC\3ème\SGDB\ProjetRAC\Projet_developpement_RentACar\Projet_Rent_A_Car\API_RAC\bin\Debug\net6.0\Microsoft.Web.Infrastructure.dll
+C:\Users\Hallet Antoine\OneDrive\Documents\EPHEC\3ème\SGDB\ProjetRAC\Projet_developpement_RentACar\Projet_Rent_A_Car\API_RAC\bin\Debug\net6.0\Newtonsoft.Json.dll
