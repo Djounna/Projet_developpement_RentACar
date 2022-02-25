@@ -31,8 +31,7 @@ namespace DataAccessLayer
         {
             if (!optionsBuilder.IsConfigured)
             {
-
-                optionsBuilder.UseSqlServer(DALConnexion.Connexion);
+                optionsBuilder.UseSqlServer(DataAccessLayer.DALConnexion.Connexion);
             }
         }
 
@@ -73,7 +72,7 @@ namespace DataAccessLayer
             {
                 entity.HasKey(e => e.Idforfait);
 
-                entity.HasIndex(e => e.Idforfait, "U_IDForfait_Prix_DateDebut")
+                entity.HasIndex(e => new { e.Prix, e.DateDebut }, "UK_Prix_DateDebut")
                     .IsUnique();
 
                 entity.Property(e => e.Idforfait)
@@ -97,11 +96,13 @@ namespace DataAccessLayer
                 entity.HasOne(d => d.Iddepot1Navigation)
                     .WithMany(p => p.ForfaitIddepot1Navigation)
                     .HasForeignKey(d => d.Iddepot1)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Forfait_Depot_1");
 
                 entity.HasOne(d => d.Iddepot2Navigation)
                     .WithMany(p => p.ForfaitIddepot2Navigation)
                     .HasForeignKey(d => d.Iddepot2)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Forfait_Depot_2");
             });
 
@@ -199,6 +200,11 @@ namespace DataAccessLayer
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Reservation_DepotR");
 
+                entity.HasOne(d => d.IdforfaitNavigation)
+                    .WithMany(p => p.Reservation)
+                    .HasForeignKey(d => d.Idforfait)
+                    .HasConstraintName("FK_Reservation_Forfait");
+
                 entity.HasOne(d => d.IdvoitureNavigation)
                     .WithMany(p => p.Reservation)
                     .HasForeignKey(d => d.Idvoiture)
@@ -241,6 +247,12 @@ namespace DataAccessLayer
                     .IsFixedLength();
 
                 entity.Property(e => e.Marque).HasMaxLength(50);
+
+                entity.HasOne(d => d.IddepotNavigation)
+                    .WithMany(p => p.Voiture)
+                    .HasForeignKey(d => d.Iddepot)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Voiture_Depot");
 
                 entity.HasOne(d => d.IdnotorieteNavigation)
                     .WithMany(p => p.Voiture)

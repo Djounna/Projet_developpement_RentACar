@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 namespace FrontEnd_MVC.Models
-{ 
+{
     public partial class Pays
     {
         public Pays()
@@ -11,8 +11,8 @@ namespace FrontEnd_MVC.Models
         }
 
         public int Idpays { get; set; }
-        public int ReferencePrix { get; set; }
         public string Nom { get; set; } = null!;
+        public int ReferencePrix { get; set; }
 
         public virtual ICollection<Ville> Ville { get; set; }
     }

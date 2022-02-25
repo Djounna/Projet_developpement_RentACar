@@ -12,11 +12,12 @@ namespace FrontEnd_MVC.Models
 
         public int Idvoiture { get; set; }
         public int Idnotoriete { get; set; }
-        public int? Iddepot { get; set; }
+        public int Iddepot { get; set; }
         public string Immatriculation { get; set; } = null!;
         public string? Marque { get; set; }
         public bool? Inactif { get; set; }
 
+        public virtual Depot IddepotNavigation { get; set; } = null!;
         public virtual Notoriete IdnotorieteNavigation { get; set; } = null!;
         public virtual ICollection<Reservation> Reservation { get; set; }
     }

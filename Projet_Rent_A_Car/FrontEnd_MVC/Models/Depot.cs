@@ -11,6 +11,7 @@ namespace FrontEnd_MVC.Models
             ForfaitIddepot2Navigation = new HashSet<Forfait>();
             ReservationIddepotDepartNavigation = new HashSet<Reservation>();
             ReservationIddepotRetourNavigation = new HashSet<Reservation>();
+            Voiture = new HashSet<Voiture>();
         }
 
         public int Iddepot { get; set; }
@@ -22,5 +23,6 @@ namespace FrontEnd_MVC.Models
         public virtual ICollection<Forfait> ForfaitIddepot2Navigation { get; set; }
         public virtual ICollection<Reservation> ReservationIddepotDepartNavigation { get; set; }
         public virtual ICollection<Reservation> ReservationIddepotRetourNavigation { get; set; }
+        public virtual ICollection<Voiture> Voiture { get; set; }
     }
 }

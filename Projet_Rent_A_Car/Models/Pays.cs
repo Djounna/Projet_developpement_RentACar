@@ -11,8 +11,8 @@ namespace Models
         }
 
         public int Idpays { get; set; }
-        public int ReferencePrix { get; set; }
         public string Nom { get; set; } = null!;
+        public int ReferencePrix { get; set; }
 
         public virtual ICollection<Ville> Ville { get; set; }
     }

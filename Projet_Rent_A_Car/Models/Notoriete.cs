@@ -11,7 +11,7 @@ namespace Models
         }
 
         public int Idnotoriete { get; set; }
-        public string Libelle { get; set; }
+        public string Libelle { get; set; } = null!;
         public decimal CoefficientMultiplicateur { get; set; }
         public bool? Inactif { get; set; }
 
