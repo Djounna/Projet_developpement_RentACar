@@ -25,37 +25,34 @@ namespace API_RAC.Controllers
 
         }
 
-       
-        /*[Route("GetPaysById/")]
-        [HttpGet("id")]
+        [Route("GetPaysByID/{id}")]
+        [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<Pays>> GetPaysById(int id)
+        public async Task<ActionResult<Pays>> GetPaysByID(int id)
         {
 
             BLPays lstPays = new BLPays();
-            List<Pays> pays = new List<Pays>();
-            pays = lstPays.GetAllPays();
-
+            Pays pays = new Pays();
+            pays = lstPays.GetPaysByID(id);
             return Ok(pays);
 
         }
-
+        
+        
         [Route("UptadePays/")]
-        [HttpPut("id")]
+        [HttpPut]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<Pays>> UptadePays(int id, Pays pays)
+        public  ActionResult UptadePays(Pays pays)
         {
 
-            BLPays lstPays = new BLPays();
-            
+            BLPays blPays = new BLPays();
+            blPays.UptadePays(pays);
+            return Ok();
 
-            return Ok(pays);
-
-        }*/
-
+        }
+        
 
         [Route("PostPays/")]
         [HttpPost]
@@ -71,20 +68,18 @@ namespace API_RAC.Controllers
 
         }
 
-       /* [Route("DeletePays/")]
-        [HttpDelete("id")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<List<Pays>>> DeletePays(int id)
+        [Route("DeletePays/{id}")]
+        [HttpDelete]
+        public ActionResult DeletePays(int id)
         {
 
-            BLPays lstPays = new BLPays();
-            List<Pays> pays = new List<Pays>();
-            pays = lstPays.GetAllPays();
+            BLPays blPays = new BLPays();
+            blPays.DeletePays(id);
+            return Ok();
 
-            return Ok(pays);
 
-        }*/
+        }
+
 
 
     }

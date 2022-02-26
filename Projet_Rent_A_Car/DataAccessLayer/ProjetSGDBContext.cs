@@ -120,9 +120,9 @@ namespace DataAccessLayer
 
             modelBuilder.Entity<Pays>(entity =>
             {
-                entity.HasKey(e => e.Idpays);
+                entity.HasKey(e => e.IDPays);
 
-                entity.Property(e => e.Idpays).HasColumnName("IDPays");
+                entity.Property(e => e.IDPays).HasColumnName("IDPays");
 
                 entity.Property(e => e.Nom).HasMaxLength(50);
 
