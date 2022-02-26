@@ -10,6 +10,14 @@ namespace FrontEnd_MVC.Controllers
 {
     public class LoueurController : Controller
     {
+
+        public IActionResult HomeLoueur()
+        {
+            return View();
+        }
+
+
+
         [HttpGet]
         public async Task<IActionResult> AffichePays()
         {
