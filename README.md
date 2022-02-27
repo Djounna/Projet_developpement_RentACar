@@ -20,3 +20,10 @@ Planning futur
 Règles business dans la BL
 Gestion d'erreurs
 Implémenter les use cases j(Check List)
+
+
+
+Problème to resolve ou to improve:
+
+Cacher l'ID lors d'un PUT ou empêcher la modification
+Le type Decimal ne prend pas la , ou le . comme séparateur 
