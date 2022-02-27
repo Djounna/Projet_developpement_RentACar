@@ -1,20 +1,19 @@
 ﻿@model IEnumerable<FrontEnd_MVC.Models.Notoriete>
 
 @{
-    ViewData["Title"] = "AfficheNotoriete";
+    ViewData["Title"] = "AfficheNotorieteInactive";
 }
 
-<h1>AfficheNotoriete</h1>
+<h1>AfficheNotorieteInactive</h1>
 
 <p>
-    <a asp-action="CreateNotoriete">Create New</a> 
-    </p>
-    <p><a asp-action="AfficheNotorieteActive">Voir toutes les Notoriétés actives</a></p>
-
+    <a asp-action="AfficheNotorieteActive">Voir toutes les Notoriétés actives</a></p>
+<p>    <a asp-action="AfficheNotoriete">Voir toutes les Notoriétés</a>
+</p>
 <table class="table">
     <thead>
         <tr>
-           
+            
             <th>
                 @Html.DisplayNameFor(model => model.Libelle)
             </th>
@@ -41,7 +40,7 @@
                 @Html.DisplayFor(modelItem => item.Inactif)
             </td>
             <td>
-                <a asp-action="EditNotoriete" asp-route-id="@item.Idnotoriete">Edit</a>
+               <a asp-action="EditNotoriete" asp-route-id="@item.Idnotoriete">Edit</a>
                 <a asp-action="deleteNotoriete" asp-route-id="@item.Idnotoriete">Delete</a>
             </td>
         </tr>

@@ -25,6 +25,30 @@ namespace API_RAC.Controllers
 
         }
 
+        [Route("GetNotorieteActif/")]
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<List<Notoriete>>> GetNotorieteActif()
+        {
+
+            BLNotoriete lstNotoriete = new BLNotoriete();
+            List<Notoriete> notoriete = lstNotoriete.GetAllNotorieteActif();
+            return Ok(notoriete);
+
+        }
+
+        [Route("GetNotorieteInactif/")]
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<List<Notoriete>>> GetNotorieteInactif()
+        {
+
+            BLNotoriete lstNotoriete = new BLNotoriete();         
+            List<Notoriete>  notoriete = lstNotoriete.GetAllNotorieteInactif();
+            return Ok(notoriete);
+
+        }
+
         [Route("GetNotorieteByID/{id}")]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -44,7 +68,7 @@ namespace API_RAC.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult UptadePays(Notoriete notoriete)
+        public ActionResult UptadeNotoriete(Notoriete notoriete)
         {
 
             BLNotoriete blNotoriete= new BLNotoriete();
@@ -58,7 +82,7 @@ namespace API_RAC.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
 
-        public ActionResult PostPays(Notoriete notoriete)
+        public ActionResult PostNotoriete(Notoriete notoriete)
         {
 
             BLNotoriete blNotoriete = new BLNotoriete();
@@ -79,8 +103,6 @@ namespace API_RAC.Controllers
 
 
         }
-
-
 
         [Route("GetPays/")]
         [HttpGet]

@@ -34,6 +34,42 @@ namespace FrontEnd_MVC.Controllers
             return View(lst);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> AfficheNotorieteActive()
+        {
+            var lst = new List<Notoriete>();
+
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await (httpClient.GetAsync("https://localhost:7204/api/Loueur/GetNotorieteActif/")))
+                {
+
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    lst = JsonConvert.DeserializeObject<List<Notoriete>>(apiResponse);
+                }
+            }
+
+            return View(lst);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> AfficheNotorieteInactive()
+        {
+            var lst = new List<Notoriete>();
+
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await (httpClient.GetAsync("https://localhost:7204/api/Loueur/GetNotorieteInactif/")))
+                {
+
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    lst = JsonConvert.DeserializeObject<List<Notoriete>>(apiResponse);
+                }
+            }
+
+            return View(lst);
+        }
+
         public IActionResult CreateNotoriete()
         {
             return View();
@@ -55,7 +91,7 @@ namespace FrontEnd_MVC.Controllers
                         if (response.IsSuccessStatusCode)
                         {
 
-                            return RedirectToAction(nameof(AfficheNotoriete));
+                            return RedirectToAction(nameof(AfficheNotorieteActive));
 
                         }
 
@@ -108,7 +144,7 @@ namespace FrontEnd_MVC.Controllers
                     if (response.IsSuccessStatusCode)
                     {
 
-                        return RedirectToAction(nameof(AfficheNotoriete));
+                        return RedirectToAction(nameof(AfficheNotorieteActive));
 
                     }
 
@@ -116,7 +152,7 @@ namespace FrontEnd_MVC.Controllers
                 }
 
             }
-            return RedirectToAction(nameof(AfficheNotoriete));
+            return RedirectToAction(nameof(AfficheNotorieteActive));
         }
 
         public async Task<IActionResult> deleteNotoriete(int? id)
@@ -156,12 +192,12 @@ namespace FrontEnd_MVC.Controllers
                     if (response.IsSuccessStatusCode)
                     {
 
-                        return RedirectToAction(nameof(AfficheNotoriete));
+                        return RedirectToAction(nameof(AfficheNotorieteActive));
                     }
                 }
 
             }
-            return RedirectToAction(nameof(AfficheNotoriete));
+            return RedirectToAction(nameof(AfficheNotorieteActive));
         }
 
         [HttpGet]
