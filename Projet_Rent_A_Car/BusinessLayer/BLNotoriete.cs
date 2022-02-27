@@ -1,4 +1,5 @@
-﻿using Models;
+﻿using DataAccessLayer;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,32 +14,32 @@ namespace BusinessLayer
         {
             List<Notoriete> lstNotoriete;
             DALNotoriete notoriete = new DALNotoriete();
-            lstNotoriete = notoriete.SelectAllPays();
+            lstNotoriete = notoriete.SelectAllNotoriete();
             return lstNotoriete;
         }
 
 
-        public void CreatePays(Notoriete notoriete)
+        public void CreateNotoriete(Notoriete notoriete)
         {
 
             DALNotoriete dalNotoriete = new DALNotoriete();
-            dalNotoriete.CreatePays(notoriete);
+            dalNotoriete.CreateNotoriete(notoriete);
 
         }
 
-        public Pays GetNotorieteByID(int id)
+        public Notoriete GetNotorieteByID(int id)
         {
             Notoriete notoriete;
             DALNotoriete dalNotoriete = new DALNotoriete();
             notoriete = dalNotoriete.SelectByID(id);
-            return pays;
+            return notoriete;
         }
 
         public void UptadeNotoriete(Notoriete notoriete)
         {
 
             DALNotoriete dalNotoriete = new DALNotoriete();
-            dalNotoriete.UptadePays(notoriete);
+            dalNotoriete.UptadeNotoriete(notoriete);
 
         }
 

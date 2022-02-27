@@ -33,7 +33,7 @@ namespace API_RAC.Controllers
 
             BLNotoriete lstNotoriete = new BLNotoriete();
             Notoriete notoriete = new Notoriete();
-            notoriete = lstNotoriete.GetPaysByID(id);
+            notoriete = lstNotoriete.GetNotorieteByID(id);
             return Ok(notoriete);
 
         }
@@ -61,8 +61,8 @@ namespace API_RAC.Controllers
         public ActionResult PostPays(Notoriete notoriete)
         {
 
-            BLNotoriete notoriete = new BLNotoriete();
-            blNotoriete.CreatePays(notoriete);
+            BLNotoriete blNotoriete = new BLNotoriete();
+            blNotoriete.CreateNotoriete(notoriete);
             return Ok();
 
 

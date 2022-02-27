@@ -40,7 +40,7 @@ namespace FrontEnd_MVC.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostNotoriete([Bind("ReferencePrix,Nom")] Pays pays)
+        public async Task<IActionResult> PostNotoriete([Bind("Libelle,CoefficientMultiplicateur")] Notoriete notoriete)
         {
 
             if (ModelState.IsValid)
@@ -48,14 +48,14 @@ namespace FrontEnd_MVC.Controllers
                 using (var httpClient = new HttpClient())
                 {
 
-                    using (var response = await httpClient.PostAsJsonAsync("https://localhost:7204/api/Loueur/PostPays/", pays))
+                    using (var response = await httpClient.PostAsJsonAsync("https://localhost:7204/api/Loueur/PostNotoriete/", notoriete))
                     {
 
 
                         if (response.IsSuccessStatusCode)
                         {
 
-                            return RedirectToAction(nameof(AffichePays));
+                            return RedirectToAction(nameof(AfficheNotoriete));
 
                         }
 
@@ -64,7 +64,7 @@ namespace FrontEnd_MVC.Controllers
 
                 }
             }
-            return View(pays);
+            return View(notoriete);
         }
 
         public async Task<IActionResult> EditNotoriete(int? id)
@@ -76,7 +76,7 @@ namespace FrontEnd_MVC.Controllers
             using (var httpClient = new HttpClient())
             {
 
-                using (var response = await httpClient.GetAsync("https://localhost:7204/api/Loueur/GetPaysByID/" + id))
+                using (var response = await httpClient.GetAsync("https://localhost:7204/api/Loueur/GetNotorieteByID/" + id))
                 {
 
 
@@ -84,7 +84,7 @@ namespace FrontEnd_MVC.Controllers
                     {
 
                         string apiResponse = await response.Content.ReadAsStringAsync();
-                        Pays lst = JsonConvert.DeserializeObject<Pays>(apiResponse);
+                        Notoriete lst = JsonConvert.DeserializeObject<Notoriete>(apiResponse);
                         return View(lst);
                     }
 
@@ -95,20 +95,20 @@ namespace FrontEnd_MVC.Controllers
             return RedirectToAction(nameof(AffichePays));
         }
 
-        public async Task<IActionResult> UptadeNotoriete([Bind("IDPays,ReferencePrix,Nom")] Pays pays)
+        public async Task<IActionResult> UptadeNotoriete([Bind("Idnotoriete,Libelle,CoefficientMultiplicateur,Inactif")] Notoriete notoriete)
         {
 
             using (var httpClient = new HttpClient())
             {
-                Pays lst = new Pays();
-                using (var response = await httpClient.PutAsJsonAsync("https://localhost:7204/api/Loueur/UptadePays/", pays))
+                
+                using (var response = await httpClient.PutAsJsonAsync("https://localhost:7204/api/Loueur/UptadeNotoriete/", notoriete))
                 {
 
 
                     if (response.IsSuccessStatusCode)
                     {
 
-                        return RedirectToAction(nameof(AffichePays));
+                        return RedirectToAction(nameof(AfficheNotoriete));
 
                     }
 
@@ -116,7 +116,7 @@ namespace FrontEnd_MVC.Controllers
                 }
 
             }
-            return RedirectToAction(nameof(AffichePays));
+            return RedirectToAction(nameof(AfficheNotoriete));
         }
 
         public async Task<IActionResult> deleteNotoriete(int? id)
@@ -127,24 +127,20 @@ namespace FrontEnd_MVC.Controllers
             }
             using (var httpClient = new HttpClient())
             {
-                Pays lst = new Pays();
-                using (var response = await httpClient.GetAsync("https://localhost:7204/api/Loueur/GetPaysByID/" + id))
+                
+                using (var response = await httpClient.GetAsync("https://localhost:7204/api/Loueur/GetNotorieteByID/" + id))
                 {
-
-
                     if (response.IsSuccessStatusCode)
                     {
 
                         string apiResponse = await response.Content.ReadAsStringAsync();
-                        lst = JsonConvert.DeserializeObject<Pays>(apiResponse);
+                        Notoriete lst = JsonConvert.DeserializeObject<Notoriete>(apiResponse);
                         return View(lst);
                     }
-
-
                 }
 
             }
-            return RedirectToAction(nameof(AffichePays));
+            return RedirectToAction(nameof(AfficheNotoriete));
         }
 
         [HttpPost, ActionName("deleteNotoriete")]
@@ -154,22 +150,18 @@ namespace FrontEnd_MVC.Controllers
 
             using (var httpClient = new HttpClient())
             {
-
-                using (var response = await httpClient.DeleteAsync("https://localhost:7204/api/Loueur/DeletePays/" + id))
+                using (var response = await httpClient.DeleteAsync("https://localhost:7204/api/Loueur/DeleteNotoriete/" + id))
                 {
-
 
                     if (response.IsSuccessStatusCode)
                     {
 
-                        return RedirectToAction(nameof(AffichePays));
+                        return RedirectToAction(nameof(AfficheNotoriete));
                     }
-
-
                 }
 
             }
-            return RedirectToAction(nameof(AffichePays));
+            return RedirectToAction(nameof(AfficheNotoriete));
         }
 
         [HttpGet]
