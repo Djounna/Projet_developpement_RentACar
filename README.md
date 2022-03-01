@@ -15,7 +15,7 @@ Fonctionnement FluentValidation pour l'API
 Fonctionnement DataAnnotation pour MVC
 
 Corentin
-Reprendre le code de Antoine et simplifier/changer (voir Linq)
+Reprendre le code de Antoine et simplifier/changer (voir Linq) + Renommer selon la Nomenclature
 
 
 
@@ -30,3 +30,17 @@ Problème to resolve ou to improve:
 
 Cacher l'ID lors d'un PUT ou empêcher la modification
 Le type Decimal ne prend pas la , ou le . comme séparateur
+
+Nomenclature des méthodes :
+
+MVC : Get = Show/
+      Getbyid =  ShowById/
+      Post =    Create/
+      Put =    Update/
+      Delete =    Erase
+            ex: CreateVille
+
+API : Get/GetById/Post/Put/Delete
+
+BL : Get/GetById/Post/Put/Delete
+DAL : Get/...
