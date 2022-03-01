@@ -12,6 +12,8 @@ namespace API_RAC.Controllers
     public class LoueurController : ControllerBase
     {
 
+    // *********************************************************************** Notoriete *************************************************************************
+
         [Route("GetNotoriete/")]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -104,6 +106,9 @@ namespace API_RAC.Controllers
 
         }
 
+
+        // *********************************************************************** Pays *************************************************************************
+
         [Route("GetPays/")]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -172,7 +177,72 @@ namespace API_RAC.Controllers
 
         }
 
+        // *********************************************************************** Ville *************************************************************************
+        [Route("GetVille/")]
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<List<Ville>>> GetVille()
+        {
+
+            BLVille lstVille = new BLVille();
+            List<Ville> ville = new List<Ville>();
+            ville = lstVille.GetAllVille();
+            return Ok(ville);
+
+        }
+
+        [Route("GetVilleByID/{id}")]
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<Pays>> GetVilleByID(int id)
+        {
+
+            BLVille lstVille = new BLVille();
+            Ville ville = new Ville();
+            ville = lstVille.GetVilleByID(id);
+            return Ok(ville);
+
+        }
 
 
+        [Route("UptadeVille/")]
+        [HttpPut]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult UptadePays(Ville ville)
+        {
+            BLVille lstVille = new BLVille();           
+            lstVille.UptadeVille(ville);
+            return Ok();
+
+        }
+
+
+        [Route("PostVille/")]
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+
+        public ActionResult PostVille(Ville ville)
+        {
+
+            BLVille lstVille = new BLVille();
+            lstVille.CreateVille(ville);
+            return Ok();
+
+
+        }
+
+        [Route("DeleteVille/{id}")]
+        [HttpDelete]
+        public ActionResult DeleteVille(int id)
+        {
+
+            BLVille lstVille = new BLVille();            
+            lstVille.DeleteVille(id);
+            return Ok();
+
+
+        }
     }
 }

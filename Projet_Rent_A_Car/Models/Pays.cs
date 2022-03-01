@@ -10,7 +10,6 @@ namespace Models
         {
             Ville = new HashSet<Ville>();
         }
-
         public int IDPays { get; set; }
       
         public int ReferencePrix { get; set; }
@@ -18,5 +17,6 @@ namespace Models
         public string Nom { get; set; } = null!;
 
         public virtual ICollection<Ville> Ville { get; set; }
+
     }
 }

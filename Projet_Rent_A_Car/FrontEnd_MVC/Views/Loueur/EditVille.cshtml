@@ -1,0 +1,43 @@
+﻿@model FrontEnd_MVC.Models.Ville
+
+@{
+    ViewData["Title"] = "EditVille";
+}
+
+<h1>EditVille</h1>
+
+<h4>Ville</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="UptadeVille">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Idville" class="control-label"></label>
+                <input asp-for="Idville" class="form-control" />
+                <span asp-validation-for="Idville" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IDPays" class="control-label"></label>
+                <input asp-for="IDPays" class="form-control" />
+                <span asp-validation-for="IDPays" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Nom" class="control-label"></label>
+                <input asp-for="Nom" class="form-control" />
+                <span asp-validation-for="Nom" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="AfficheVille">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

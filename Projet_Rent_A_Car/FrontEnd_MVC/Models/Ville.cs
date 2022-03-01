@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FrontEnd_MVC.Models
 {
@@ -11,7 +13,9 @@ namespace FrontEnd_MVC.Models
         }
 
         public int Idville { get; set; }
-        public int Idpays { get; set; }
+
+        [Display(Name = "Nom Pays")]
+        public int IDPays { get; set; }
         public string Nom { get; set; } = null!;
 
         public virtual Pays IdpaysNavigation { get; set; } = null!;

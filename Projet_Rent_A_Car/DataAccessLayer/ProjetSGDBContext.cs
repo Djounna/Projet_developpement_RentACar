@@ -61,13 +61,14 @@ namespace DataAccessLayer
                 entity.Property(e => e.Iddepot).HasColumnName("IDDepot");
 
                 entity.Property(e => e.Idville).HasColumnName("IDVille");
-
                 entity.HasOne(d => d.IdvilleNavigation)
-                    .WithMany(p => p.Depot)
-                    .HasForeignKey(d => d.Idville)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Depot_Ville");
-            });
+                .WithMany(p => p.Depot)
+                .HasForeignKey(d => d.Idville)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Depot_Ville");
+          
+
+                 });
 
             modelBuilder.Entity<Forfait>(entity =>
             {
@@ -212,15 +213,16 @@ namespace DataAccessLayer
 
                 entity.Property(e => e.Idville).HasColumnName("IDVille");
 
-                entity.Property(e => e.Idpays).HasColumnName("IDPays");
+                entity.Property(e => e.IDPays).HasColumnName("IDPays");
 
                 entity.Property(e => e.Nom).HasMaxLength(50);
 
                 entity.HasOne(d => d.IdpaysNavigation)
-                    .WithMany(p => p.Ville)
-                    .HasForeignKey(d => d.Idpays)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Pays_Ville");
+                .WithMany(p => p.Ville)
+                .HasForeignKey(d => d.IDPays)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Pays_Ville");
+
             });
 
             modelBuilder.Entity<Voiture>(entity =>

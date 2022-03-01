@@ -22,5 +22,7 @@ namespace FrontEnd_MVC.Models
         public string Nom { get; set; } = null!;
 
         public virtual ICollection<Ville> Ville { get; set; }
-    }
+    
+
+}
 }

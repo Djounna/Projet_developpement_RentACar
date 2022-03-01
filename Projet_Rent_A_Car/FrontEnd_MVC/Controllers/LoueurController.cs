@@ -1,5 +1,6 @@
 ﻿using FrontEnd_MVC.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Newtonsoft.Json;
 using ServiceStack;
 using ServiceStack.Text;
@@ -16,6 +17,7 @@ namespace FrontEnd_MVC.Controllers
             return View();
         }
 
+        // ******************************************************** Notoriete**************************************************************************************
         [HttpGet]
         public async Task<IActionResult> AfficheNotoriete()
         {
@@ -200,6 +202,9 @@ namespace FrontEnd_MVC.Controllers
             return RedirectToAction(nameof(AfficheNotorieteActive));
         }
 
+
+
+        // ******************************************************** PAYS ****************************************************************************************
         [HttpGet]
         public async Task<IActionResult> AffichePays()
         {
@@ -251,6 +256,28 @@ namespace FrontEnd_MVC.Controllers
             return View(pays);
         }
 
+        public async Task<Pays> GetPaysById(int id)
+        {
+            using (var httpClient = new HttpClient())
+            {
+                Pays pays = new Pays();
+                using (var response = await httpClient.GetAsync("https://localhost:7204/api/Loueur/GetPaysByID/" + id))
+                {
+
+
+                    if (response.IsSuccessStatusCode)
+                    {
+
+                        string apiResponse = await response.Content.ReadAsStringAsync();
+                        Pays lst = JsonConvert.DeserializeObject<Pays>(apiResponse);
+                        return lst;
+                    }
+
+
+                }
+                return pays;
+            }
+        }
         public async Task<IActionResult> EditPays(int? id)
         {
             if (id == null)
@@ -355,6 +382,169 @@ namespace FrontEnd_MVC.Controllers
             }
             return RedirectToAction(nameof(AffichePays));
         }
-        
+
+        // ******************************************************** Ville ****************************************************************************************
+        [HttpGet]
+        public async Task<IActionResult> AfficheVille()
+        {
+            var lst = new List<Ville>();
+
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await (httpClient.GetAsync("https://localhost:7204/api/Loueur/GetVille/")))
+                {
+
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    lst = JsonConvert.DeserializeObject<List<Ville>>(apiResponse);
+                }
+            }
+
+            return View(lst);
+        }
+
+        public IActionResult CreateVille()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> PostVille([Bind("IDPays,Nom")] Ville ville)
+        {
+
+
+
+            ville.IdpaysNavigation = await GetPaysById(ville.IDPays);
+            ModelState.Remove("IdpaysNavigation");
+            if (ModelState.IsValid)
+            {
+                using (var httpClient = new HttpClient())
+                {
+
+                    using (var response = await httpClient.PostAsJsonAsync("https://localhost:7204/api/Loueur/PostVille/", ville))
+                    {
+
+
+                        if (response.IsSuccessStatusCode)
+                        {
+
+                            return RedirectToAction(nameof(AfficheVille));
+
+                        }
+
+
+                    }
+
+                }
+            }
+
+            var errors = ModelState.Values.SelectMany(v => v.Errors);
+            
+            return View(ville);
+        }
+
+        public async Task<IActionResult> EditVille(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            using (var httpClient = new HttpClient())
+            {
+
+                using (var response = await httpClient.GetAsync("https://localhost:7204/api/Loueur/GetVilleByID/" + id))
+                {
+
+
+                    if (response.IsSuccessStatusCode)
+                    {
+
+                        string apiResponse = await response.Content.ReadAsStringAsync();
+                        Ville lst = JsonConvert.DeserializeObject<Ville>(apiResponse);
+                        return View(lst);
+                    }
+
+
+                }
+
+            }
+            return RedirectToAction(nameof(AfficheVille));
+        }
+
+        public async Task<IActionResult> UptadeVille([Bind("Idville, IDPays, Nom")] Ville ville)
+        {
+
+            using (var httpClient = new HttpClient())
+            {
+               
+                using (var response = await httpClient.PutAsJsonAsync("https://localhost:7204/api/Loueur/UptadeVille/", ville))
+                {
+
+
+                    if (response.IsSuccessStatusCode)
+                    {
+
+                        return RedirectToAction(nameof(AfficheVille));
+
+                    }
+
+
+                }
+
+            }
+            return RedirectToAction(nameof(AfficheVille));
+        }
+
+        public async Task<IActionResult> deleteVille(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            using (var httpClient = new HttpClient())
+            {
+                
+                using (var response = await httpClient.GetAsync("https://localhost:7204/api/Loueur/GetVilleByID/" + id))
+                {
+
+
+                    if (response.IsSuccessStatusCode)
+                    {
+
+                        string apiResponse = await response.Content.ReadAsStringAsync();
+                        Ville lst = JsonConvert.DeserializeObject<Ville>(apiResponse);
+                        return View(lst);
+                    }
+
+
+                }
+
+            }
+            return RedirectToAction(nameof(AfficheVille));
+        }
+
+        [HttpPost, ActionName("deleteVille")]
+        public async Task<ActionResult> removeVille(int id)
+        {
+
+
+            using (var httpClient = new HttpClient())
+            {
+
+                using (var response = await httpClient.DeleteAsync("https://localhost:7204/api/Loueur/DeleteVille/" + id))
+                {
+
+
+                    if (response.IsSuccessStatusCode)
+                    {
+
+                        return RedirectToAction(nameof(AfficheVille));
+                    }
+
+
+                }
+
+            }
+            return RedirectToAction(nameof(AfficheVille));
+        }
     }
 }
