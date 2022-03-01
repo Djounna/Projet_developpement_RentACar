@@ -31,6 +31,7 @@ Problème to resolve ou to improve:
 Cacher l'ID lors d'un PUT ou empêcher la modification
 Le type Decimal ne prend pas la , ou le . comme séparateur
 
+
 Nomenclature des méthodes :
 
 MVC : Get = Show/
