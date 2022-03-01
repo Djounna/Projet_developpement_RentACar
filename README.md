@@ -9,10 +9,13 @@ Fait
 
 Planning
 03/03/2021
-Contraintes fonctionnelles/fonctionnelles/Use Case.
 Fonctionnement Code : Post/Get/Delete/Update : exemple
+Contraintes fonctionnelles/fonctionnelles/Use Case.
 Fonctionnement FluentValidation pour l'API
 Fonctionnement DataAnnotation pour MVC
+
+Corentin
+Reprendre le code de Antoine et simplifier/changer (voir Linq)
 
 
 
@@ -26,4 +29,4 @@ Implémenter les use cases j(Check List)
 Problème to resolve ou to improve:
 
 Cacher l'ID lors d'un PUT ou empêcher la modification
-Le type Decimal ne prend pas la , ou le . comme séparateur 
+Le type Decimal ne prend pas la , ou le . comme séparateur
