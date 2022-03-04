@@ -1,6 +1,7 @@
 ﻿using BusinessLayer;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Models;
 using Newtonsoft.Json;
 
@@ -134,8 +135,18 @@ namespace API_RAC.Controllers
             return Ok(pays);
 
         }
-        
-        
+
+        [Route("GetAllPaysInList")]
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public IEnumerable<SelectListItem> GetAllPaysInList()
+        {
+            BLPays lstPays = new BLPays();
+            IEnumerable<SelectListItem> pays = lstPays.GetAllPaysInList();
+            return pays;
+        }
+
+
         [Route("UptadePays/")]
         [HttpPut]
         [ProducesResponseType(StatusCodes.Status200OK)]

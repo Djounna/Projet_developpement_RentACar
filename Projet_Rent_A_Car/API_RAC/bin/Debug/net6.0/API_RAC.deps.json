@@ -587,7 +587,9 @@
       "BusinessLayer/1.0.0": {
         "dependencies": {
           "DataAccessLayer": "1.0.0",
-          "Models": "1.0.0"
+          "Microsoft.EntityFrameworkCore": "6.0.2",
+          "Models": "1.0.0",
+          "Swashbuckle.AspNetCore": "6.2.3"
         },
         "runtime": {
           "BusinessLayer.dll": {}
@@ -598,7 +600,8 @@
           "Microsoft.AspNet.Mvc": "5.2.7",
           "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.2",
-          "Models": "1.0.0"
+          "Models": "1.0.0",
+          "Swashbuckle.AspNetCore": "6.2.3"
         },
         "runtime": {
           "DataAccessLayer.dll": {}
