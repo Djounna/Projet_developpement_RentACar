@@ -1,5 +1,6 @@
 ﻿using Models;
 using DataAccessLayer;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace BusinessLayer
 {
@@ -14,6 +15,13 @@ namespace BusinessLayer
             return lstPays;
         }
 
+        public IEnumerable<SelectListItem> GetAllPaysInList()
+        {
+            
+            DALPays pays = new DALPays();
+            IEnumerable<SelectListItem> lstPays = pays.GetAllPaysInList();
+            return lstPays;
+        }
 
         public void CreatePays(Pays pays)
         {
@@ -23,6 +31,29 @@ namespace BusinessLayer
             
         }
 
+        public Pays GetPaysByID(int id)
+        {
+            Pays pays;
+            DALPays dalPays = new DALPays();
+            pays = dalPays.SelectByID(id);
+            return pays;
+        }
+
+        public void UptadePays(Pays pays)
+        {
+
+            DALPays dalPays = new DALPays();
+            dalPays.UptadePays(pays);
+
+        }
+
+        public void DeletePays(int id)
+        {
+
+            DALPays dalPays = new DALPays();
+            dalPays.DeletePays(id);
+
+        }
 
     }
 }

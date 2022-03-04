@@ -1,0 +1,41 @@
+﻿@model FrontEnd_MVC.Models.Ville
+
+@{
+    ViewData["Title"] = "CreateVille";
+}
+
+<h1>CreateVille</h1>
+
+<h4>Ville</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="PostVille">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>                     
+            <div class="form-group">
+             @Html.LabelFor(x => Model.IDPays, htmlAttributes: new { @class = "control-label col-md-15" })
+             <div class="col-md-35">
+                @Html.DropDownListFor(x => Model.IDPays, new SelectList(Model.ListPays, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "IDPays"})
+                @Html.ValidationMessageFor(x => x.IDPays, "", new { @class = "text-danger" })
+             </div>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="Nom" class="control-label"></label>
+                <input asp-for="Nom" class="form-control" />
+                <span asp-validation-for="Nom" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="AfficheVille">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

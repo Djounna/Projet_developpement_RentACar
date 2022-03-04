@@ -1,0 +1,49 @@
+﻿@model IEnumerable<FrontEnd_MVC.Models.Notoriete>
+
+@{
+    ViewData["Title"] = "AfficheNotorieteInactive";
+}
+
+<h1>AfficheNotorieteInactive</h1>
+
+<p>
+    <a asp-action="AfficheNotorieteActive">Voir toutes les Notoriétés actives</a></p>
+<p>    <a asp-action="AfficheNotoriete">Voir toutes les Notoriétés</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.Libelle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CoefficientMultiplicateur)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Inactif)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.Libelle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CoefficientMultiplicateur)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Inactif)
+            </td>
+            <td>
+               <a asp-action="EditNotoriete" asp-route-id="@item.Idnotoriete">Edit</a>
+                <a asp-action="deleteNotoriete" asp-route-id="@item.Idnotoriete">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
