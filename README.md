@@ -15,9 +15,12 @@ Fonctionnement FluentValidation pour l'API
 Fonctionnement DataAnnotation pour MVC
 
 Corentin
+Relire le code + améliorer la partie Edit de ville ( afficher le Pays en read only + réussir à passer les parametre à la fonction uptade)
+Vérifier si on peut mettre plusieurs modéle.
+Avance sur les Use Case
+
+Antoine
 Reprendre le code de Antoine et simplifier/changer (voir Linq) + Renommer selon la Nomenclature
-
-
 
 Planning futur
 Règles business dans la BL
@@ -39,9 +42,7 @@ MVC : Get = Show/
       Post =    Create/
       Put =    Update/
       Delete =    Erase
-            ex: CreateVille
+      ex: CreateVille a definir plus tard
 
-API : Get/GetById/Post/Put/Delete
+API/BL/DAL : SelectAll.../SelectById/Create/Uptade/Delete
 
-BL : Get/GetById/Post/Put/Delete
-DAL : Get/...
