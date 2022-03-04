@@ -518,7 +518,7 @@ namespace FrontEnd_MVC.Controllers
             return RedirectToAction(nameof(AfficheVille));
         }
 
-        public async Task<IActionResult> UptadeVille([Bind("Idville, IdpaysNavigation, Nom")] Ville ville)
+        public async Task<IActionResult> UptadeVille([Bind("Idville, IDPays, Nom")] Ville ville)
         {
 
             using (var httpClient = new HttpClient())

@@ -11,9 +11,6 @@ namespace FrontEnd_MVC.Models
             Ville = new HashSet<Ville>();
         }
 
-<<<<<<< HEAD
-        public int Idpays { get; set; }
-=======
         public int IDPays { get; set; }
 
         [Required(ErrorMessage = "This field is mandatory")]
@@ -22,9 +19,7 @@ namespace FrontEnd_MVC.Models
 
         [Required(ErrorMessage = "This field is mandatory")]
         [MaxLength(50, ErrorMessage = "this field shouldn'thave more than 50 character")]
->>>>>>> Antoine
         public string Nom { get; set; } = null!;
-        public int ReferencePrix { get; set; }
 
         public virtual ICollection<Ville> Ville { get; set; }
     
