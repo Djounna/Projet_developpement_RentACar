@@ -10,23 +10,15 @@ namespace BusinessLayer
 {
     public class BLNotoriete
     {
-
-        public List<Notoriete> GetAllNotoriete()
-        {
-            List<Notoriete> lstNotoriete;
-            DALNotoriete notoriete = new DALNotoriete();
-            lstNotoriete = notoriete.SelectAllNotoriete();           
-
-            return lstNotoriete;
+        DALNotoriete dalNotoriete = new();
+        public List<Notoriete> SelectAllNotoriete()//ok Antoine
+        {            
+            return dalNotoriete.SelectAllNotoriete();
         }
-
-        public List<Notoriete> GetAllNotorieteInactif()
-        {
-            List<Notoriete> lstNotoriete;
+        public List<Notoriete> SelectAllNotorieteInactif() //ok Antoine
+        {          
             List<Notoriete> lstInactif = new List<Notoriete>();
-            DALNotoriete notoriete = new DALNotoriete();
-            lstNotoriete = notoriete.SelectAllNotoriete();
-
+            List<Notoriete> lstNotoriete = dalNotoriete.SelectAllNotoriete();
             foreach (Notoriete not in lstNotoriete)
             {
                 if (not.Inactif ==true)
@@ -34,16 +26,12 @@ namespace BusinessLayer
                     lstInactif.Add(not);
                 }
             }
-
             return lstInactif;
         }
-        public List<Notoriete> GetAllNotorieteActif()
-        {
-            List<Notoriete> lstNotoriete;
+        public List<Notoriete> SelectAllNotorieteActif()//ok Antoine
+        {           
             List<Notoriete> lstActif = new List<Notoriete>();
-            DALNotoriete notoriete = new DALNotoriete();
-            lstNotoriete = notoriete.SelectAllNotoriete();    
-            
+            List<Notoriete> lstNotoriete = dalNotoriete.SelectAllNotoriete();              
             foreach (Notoriete not in lstNotoriete)
             {
                 if (not.Inactif == null || not.Inactif == false)
@@ -51,41 +39,23 @@ namespace BusinessLayer
                     lstActif.Add(not);
                 }
             }
-
             return lstActif;
         }
-
-
-        public void CreateNotoriete(Notoriete notoriete)
+        public void CreateNotoriete(Notoriete notoriete)//ok Antoine
         {
-
-            DALNotoriete dalNotoriete = new DALNotoriete();
             dalNotoriete.CreateNotoriete(notoriete);
-
         }
-
-        public Notoriete GetNotorieteByID(int id)
+        public Notoriete GetNotorieteByID(int id)//ok Antoine
         {
-            Notoriete notoriete;
-            DALNotoriete dalNotoriete = new DALNotoriete();
-            notoriete = dalNotoriete.SelectByID(id);
-            return notoriete;
+            return dalNotoriete.SelectByID(id);
         }
-
-        public void UptadeNotoriete(Notoriete notoriete)
+        public void UptadeNotoriete(Notoriete notoriete)//ok Antoine
         {
-
-            DALNotoriete dalNotoriete = new DALNotoriete();
             dalNotoriete.UptadeNotoriete(notoriete);
-
         }
-
-        public void DeleteNotoriete(int id)
+        public void DeleteNotoriete(int id)//ok Antoine
         {
-
-            DALNotoriete dalNotoriete = new DALNotoriete();
             dalNotoriete.DeleteNotoriete(id);
-
         }
     }
 }

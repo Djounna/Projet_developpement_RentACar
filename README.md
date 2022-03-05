@@ -44,5 +44,5 @@ MVC : Get = Show/
       Delete =    Erase
       ex: CreateVille a definir plus tard
 
-API/BL/DAL : SelectAll.../SelectById/Create/Uptade/Delete
+API/BL/DAL : SelectAll.../SelectByID/Create.../Uptade.../Delete...
 

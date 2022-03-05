@@ -10,45 +10,26 @@ namespace BusinessLayer
 {
     public class BLVille
     {
-        public List<Ville> GetAllVille()
-        {
-            List<Ville> lstVille;
-            DALVille dalville = new DALVille();
-            lstVille = dalville.SelectAllVille();
-            return lstVille;
+        private DALVille dalville = new();
+        public List<Ville> SelectAllVille()//OK Antoine
+        {           
+            return dalville.SelectAllVille();
         }
-
-
-        public void CreateVille(Ville ville)
+        public void CreateVille(Ville ville)//OK Antoine
         {
-
-            DALVille dalville = new DALVille();
             dalville.CreateVille(ville);
-
         }
-
-        public Ville GetVilleByID(int id)
-        {
-            
-            DALVille dalville = new DALVille();
-            Ville ville = dalville.SelectByID(id);
-            return ville;
+        public Ville SelectVilleByID(int id)//OK Antoine
+        {            
+            return dalville.SelectByID(id);
         }
-
-        public void UptadeVille(Ville ville)
+        public void UptadeVille(Ville ville)//OK Antoine
         {
-
-            DALVille dalville = new DALVille();
             dalville.UptadeVille(ville);
-
         }
-
-        public void DeleteVille(int id)
+        public void DeleteVille(int id)//OK Antoine
         {
-
-            DALVille dalville = new DALVille();
             dalville.DeleteVille(id);
-
         }
     }
 }

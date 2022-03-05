@@ -11,7 +11,7 @@ namespace FrontEnd_MVC.Models
             Ville = new HashSet<Ville>();
         }
 
-        public int IDPays { get; set; }
+        public int Idpays { get; set; }
 
         [Required(ErrorMessage = "This field is mandatory")]
         [Range(0, 150, ErrorMessage = "This field should have an integer between 0 and 150")]

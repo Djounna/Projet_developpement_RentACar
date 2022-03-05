@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using DataAccessLayer;
 using Models;
 
 namespace DataAccessLayer
@@ -31,7 +32,8 @@ namespace DataAccessLayer
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(DataAccessLayer.DALConnexion.Connexion);
+
+                optionsBuilder.UseSqlServer(DALConnexion.Connexion);
             }
         }
 
@@ -60,14 +62,13 @@ namespace DataAccessLayer
                 entity.Property(e => e.Iddepot).HasColumnName("IDDepot");
 
                 entity.Property(e => e.Idville).HasColumnName("IDVille");
-                entity.HasOne(d => d.IdvilleNavigation)
-                .WithMany(p => p.Depot)
-                .HasForeignKey(d => d.Idville)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Depot_Ville");
-          
 
-                 });
+                entity.HasOne(d => d.IdvilleNavigation)
+                    .WithMany(p => p.Depot)
+                    .HasForeignKey(d => d.Idville)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Depot_Ville");
+            });
 
             modelBuilder.Entity<Forfait>(entity =>
             {
@@ -122,21 +123,21 @@ namespace DataAccessLayer
 
             modelBuilder.Entity<Pays>(entity =>
             {
-                entity.HasKey(e => e.IDPays);
+                entity.HasKey(e => e.Idpays);
 
-                entity.Property(e => e.IDPays).HasColumnName("IDPays");
+                entity.Property(e => e.Idpays).HasColumnName("IDPays");
 
                 entity.Property(e => e.Nom).HasMaxLength(50);
-
-                entity.Property(e => e.ReferencePrix).HasColumnName("Reference_Prix");
             });
 
             modelBuilder.Entity<Prix>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e => e.Idprix);
 
-                entity.HasIndex(e => new { e.ReferencePrix, e.PrixKm, e.DateDebut }, "IX_IDPrix_Prix_DateDebut")
+                entity.HasIndex(e => new { e.ReferencePrix, e.Idpays, e.DateDebut }, "UK_ReferencePrix_IDPays_Date_Debut")
                     .IsUnique();
+
+                entity.Property(e => e.Idprix).HasColumnName("IDPrix");
 
                 entity.Property(e => e.DateDebut)
                     .HasColumnType("datetime")
@@ -146,11 +147,11 @@ namespace DataAccessLayer
                     .HasColumnType("datetime")
                     .HasColumnName("Date_Fin");
 
+                entity.Property(e => e.Idpays).HasColumnName("IDPays");
+
                 entity.Property(e => e.PrixKm)
                     .HasColumnType("decimal(8, 2)")
                     .HasColumnName("Prix_Km");
-
-                entity.Property(e => e.ReferencePrix).HasColumnName("Reference_Prix");
             });
 
             modelBuilder.Entity<Reservation>(entity =>
@@ -219,16 +220,15 @@ namespace DataAccessLayer
 
                 entity.Property(e => e.Idville).HasColumnName("IDVille");
 
-                entity.Property(e => e.IDPays).HasColumnName("IDPays");
+                entity.Property(e => e.Idpays).HasColumnName("IDPays");
 
                 entity.Property(e => e.Nom).HasMaxLength(50);
 
                 entity.HasOne(d => d.IdpaysNavigation)
-                .WithMany(p => p.Ville)
-                .HasForeignKey(d => d.IDPays)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Pays_Ville");
-
+                    .WithMany(p => p.Ville)
+                    .HasForeignKey(d => d.Idpays)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Pays_Ville");
             });
 
             modelBuilder.Entity<Voiture>(entity =>

@@ -13,130 +13,90 @@ namespace DataAccessLayer
 {
     public class DALPays
     {
-        public List<Pays> SelectAllPays()
+        private ProjetSGDBContext dbcontext = new();
+        public List<Pays> SelectAllPays() //Ok Antoine 
         {
             List<Pays> queryResult = new List<Pays>();
             try
-            {
-                ProjetSGDBContext dbcontext = new ProjetSGDBContext();
-                var listPays = from Pays in dbcontext.Pays select Pays;
-                queryResult.AddRange(listPays);
-
+            {                            
+                queryResult.AddRange(dbcontext.Pays);
             }
             catch (Exception ex)
             {
-
-
                 throw ex;
             }
-
             return queryResult;
         }
 
-        public async void CreatePays(Pays pays)
-        {
-            
+        public async void CreatePays(Pays pays)//Ok Antoine
+        {           
             try
-            {
-                ProjetSGDBContext dbcontext = new ProjetSGDBContext();
+            {               
                 dbcontext.Update(pays);
-                var oResponse = await dbcontext.SaveChangesAsync();
-                
-
+                var oResponse = await dbcontext.SaveChangesAsync();            
             }
             catch (Exception ex)
             {
-
-
                 throw ex;
             }
-
-          
         }
-        public Pays SelectByID(int id)
-        {
-            
-            List<Pays> queryResult = new List<Pays>();
+        public Pays SelectByID(int id) //Ok Antoine
+        {                     
             try
             {
-                ProjetSGDBContext dbcontext = new ProjetSGDBContext();
-                var result = from Pays in dbcontext.Pays where Pays.IDPays==id select Pays;
-                queryResult.AddRange(result);
-                return queryResult[0];
+                return dbcontext.Pays.Find(id);
             }
             catch (Exception ex)
             {
-
-
                 throw ex;
-            }
-
-           
+            }          
         }
 
-        public IEnumerable<SelectListItem> GetAllPaysInList()
+        public IEnumerable<SelectListItem> SelectAllPaysInList()//Ok Antoine
         {
-            using (var context = new ProjetSGDBContext())
+            using (dbcontext)
             {
-                List<SelectListItem> lstpays = context.Pays
+                List<SelectListItem> lstpays = dbcontext.Pays
                    .OrderBy(n => n.Nom)
-                       .Select(n =>
+                   .Select(n =>
                        new SelectListItem
                        {
-                           Value = n.IDPays.ToString(),
+                           Value = n.Idpays.ToString(),
                            Text = n.Nom,
                        }).ToList();
-                var paystip = new SelectListItem()
-                {
-                    Value = null,
-                    Text = "--- select pays ---"
-                };
-                lstpays.Insert(0, paystip);
+                var paysIntro= new SelectListItem()
+                        {
+                            Value = null,
+                            Text = "--- select pays ---"
+                        };
+                lstpays.Insert(0, paysIntro);
                 return new SelectList(lstpays, "Value", "Text");
             }
         }
-        public async void UptadePays(Pays pays)
+        public async void UptadePays(Pays pays) //Ok Antoine
         {
-
             try
             {
-                ProjetSGDBContext dbcontext = new ProjetSGDBContext();
                 dbcontext.Update(pays);
                 var oResponse = await dbcontext.SaveChangesAsync();
-
-
             }
             catch (Exception ex)
             {
-
-
                 throw ex;
             }
-
-
         }
 
-        public async void DeletePays(int id)
+        public async void DeletePays(int id) //Ok Antoine
         {
-
             try
-            {
-                
-                ProjetSGDBContext dbcontext = new ProjetSGDBContext();              
-                Pays pays = dbcontext.Pays.Find(id);
-                dbcontext.Remove(pays);
+            {             
+                dbcontext.Remove(dbcontext.Pays.Find(id));
                 var oResponse = await dbcontext.SaveChangesAsync();
-
-
             }
             catch (Exception ex)
             {
-
-
                 throw ex;
             }
-
-
         }
     }
 }

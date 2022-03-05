@@ -12,128 +12,111 @@ namespace FrontEnd_MVC.Controllers
 {
     public class LoueurController : Controller
     {
+      
+        private async Task<ViewResult> GetRequest<T>(string chemin)
+        {
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await(httpClient.GetAsync(chemin)))
+                {
 
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    var lst = JsonConvert.DeserializeObject<List<T>>(apiResponse);
+                    return View(lst);
+                }
+            }
+        }
+        private async Task<ViewResult> GetRequestUnique<T>(string chemin)
+        {
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await (httpClient.GetAsync(chemin)))
+                {
+
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    var lst = JsonConvert.DeserializeObject<T>(apiResponse);
+                    return View(lst);
+                }
+            }
+        }
+        private async Task<ActionResult> PostRequest<T>(string chemin, T postObject,ViewResult view)
+        {
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.PostAsJsonAsync("https://localhost:7204/api/Loueur/PostNotoriete/", postObject))
+                {
+                    if (response.IsSuccessStatusCode)
+                    {
+                        return RedirectToAction(nameof(view));
+                    }
+                }
+                return RedirectToAction(nameof(view));
+            }
+        }
         public IActionResult HomeLoueur()
         {
             return View();
-        }
+        }     
 
         // ******************************************************** Notoriete**************************************************************************************
         [HttpGet]
-        public async Task<IActionResult> AfficheNotoriete()
+        public async Task<ViewResult> AfficheNotoriete() //OK Antoine
         {
-            var lst = new List<Notoriete>();
-
-            using (var httpClient = new HttpClient())
+            try
             {
-                using (var response = await (httpClient.GetAsync("https://localhost:7204/api/Loueur/GetNotoriete/")))
-                {
-
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-                    lst = JsonConvert.DeserializeObject<List<Notoriete>>(apiResponse);
-                }
+                return await GetRequest<Notoriete>("https://localhost:7204/api/Loueur/GetNotoriete/");                 
             }
-
-            return View(lst);
+            catch (Exception ex)
+            {
+                throw ex;
+            }           
         }
-
         [HttpGet]
-        public async Task<IActionResult> AfficheNotorieteActive()
+        public async Task<ViewResult> AfficheNotorieteActive()//OK Antoine
         {
-            var lst = new List<Notoriete>();
-
-            using (var httpClient = new HttpClient())
+            try
             {
-                using (var response = await (httpClient.GetAsync("https://localhost:7204/api/Loueur/GetNotorieteActif/")))
-                {
-
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-                    lst = JsonConvert.DeserializeObject<List<Notoriete>>(apiResponse);
-                }
+                return await GetRequest<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteActif/");
             }
-
-            return View(lst);
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
-
         [HttpGet]
-        public async Task<IActionResult> AfficheNotorieteInactive()
+        public async Task<ViewResult> AfficheNotorieteInactive()//OK Antoine
         {
-            var lst = new List<Notoriete>();
-
-            using (var httpClient = new HttpClient())
+            try
             {
-                using (var response = await (httpClient.GetAsync("https://localhost:7204/api/Loueur/GetNotorieteInactif/")))
-                {
-
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-                    lst = JsonConvert.DeserializeObject<List<Notoriete>>(apiResponse);
-                }
+                return await GetRequest<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteInactif/");
             }
-
-            return View(lst);
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
-
-        public IActionResult CreateNotoriete()
+        public IActionResult CreateNotoriete()//OK Antoine
         {
             return View();
         }
-
         [HttpPost]
-        public async Task<IActionResult> PostNotoriete([Bind("Libelle,CoefficientMultiplicateur")] Notoriete notoriete)
+        public async Task<IActionResult> PostNotoriete([Bind("Libelle,CoefficientMultiplicateur")] Notoriete notoriete)//OK Antoine
         {
-
             if (ModelState.IsValid)
             {
-                using (var httpClient = new HttpClient())
-                {
-
-                    using (var response = await httpClient.PostAsJsonAsync("https://localhost:7204/api/Loueur/PostNotoriete/", notoriete))
-                    {
-
-
-                        if (response.IsSuccessStatusCode)
-                        {
-
-                            return RedirectToAction(nameof(AfficheNotorieteActive));
-
-                        }
-
-
-                    }
-
-                }
+                await PostRequest("https://localhost:7204/api/Loueur/PostNotoriete/", notoriete, await AfficheNotorieteActive() );
             }
-            return View(notoriete);
-        }
+            return RedirectToAction(nameof(AfficheNotorieteActive));
 
-        public async Task<IActionResult> EditNotoriete(int? id)
+        }
+        public async Task<IActionResult> EditNotoriete(int? id)//OK Antoine
         {
             if (id == null)
             {
                 return NotFound();
             }
-            using (var httpClient = new HttpClient())
-            {
-
-                using (var response = await httpClient.GetAsync("https://localhost:7204/api/Loueur/GetNotorieteByID/" + id))
-                {
-
-
-                    if (response.IsSuccessStatusCode)
-                    {
-
-                        string apiResponse = await response.Content.ReadAsStringAsync();
-                        Notoriete lst = JsonConvert.DeserializeObject<Notoriete>(apiResponse);
-                        return View(lst);
-                    }
-
-
-                }
-
-            }
-            return RedirectToAction(nameof(AffichePays));
+            return await GetRequestUnique<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteByID/" + id);         
         }
-
         public async Task<IActionResult> UptadeNotoriete([Bind("Idnotoriete,Libelle,CoefficientMultiplicateur,Inactif")] Notoriete notoriete)
         {
 
@@ -157,7 +140,6 @@ namespace FrontEnd_MVC.Controllers
             }
             return RedirectToAction(nameof(AfficheNotorieteActive));
         }
-
         public async Task<IActionResult> deleteNotoriete(int? id)
         {
             if (id == null)
@@ -203,11 +185,8 @@ namespace FrontEnd_MVC.Controllers
             return RedirectToAction(nameof(AfficheNotorieteActive));
         }
 
-
-
         // ******************************************************** PAYS ****************************************************************************************
         [HttpGet]
-
         public async Task<List<Pays>> GetAllPays()
         {
             List<Pays> lst = new List<Pays>();
@@ -225,30 +204,23 @@ namespace FrontEnd_MVC.Controllers
 
             return lst;
         }
-        public async Task<IActionResult> AffichePays()
+        public async Task<ViewResult> AffichePays()//Ok Antoine
         {
-            var lst = new List<Pays>();
-
-            using (var httpClient = new HttpClient())
+            try
             {
-                using (var response = await(httpClient.GetAsync("https://localhost:7204/api/Loueur/GetPays/")))
-                {
-
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-                    lst = JsonConvert.DeserializeObject<List<Pays>>(apiResponse);
-                }
+                return await GetRequest<Pays>("https://localhost:7204/api/Loueur/GetPays/");
             }
-
-            return View(lst);
-        }  
-
+           catch(Exception ex)
+            {
+                throw ex;
+            }          
+        }   
         public IActionResult CreatePays()
         {
             return View();
         }
-
         [HttpPost]
-        public async Task<IActionResult> PostPays([Bind("ReferencePrix,Nom")] Pays pays)
+        public async Task<IActionResult> PostPays([Bind("Nom")] Pays pays)
         {            
             
             if (ModelState.IsValid)
@@ -274,7 +246,6 @@ namespace FrontEnd_MVC.Controllers
             }
             return View(pays);
         }
-
         public async Task<Pays> GetPaysById(int id)
         {
             using (var httpClient = new HttpClient())
@@ -323,12 +294,10 @@ namespace FrontEnd_MVC.Controllers
 
             }
             return RedirectToAction(nameof(AffichePays));
-        }
-       
-        public async Task<IActionResult> UptadePays([Bind("IDPays,ReferencePrix,Nom")] Pays pays)
-        {
-            
-            using (var httpClient = new HttpClient())
+        }     
+        public async Task<IActionResult> UptadePays([Bind("Idpays,Nom")] Pays pays)
+        {            
+           using (var httpClient = new HttpClient())
             {
                 Pays lst = new Pays();
                 using (var response = await httpClient.PutAsJsonAsync("https://localhost:7204/api/Loueur/UptadePays/", pays))
@@ -347,8 +316,7 @@ namespace FrontEnd_MVC.Controllers
 
             }
             return RedirectToAction(nameof(AffichePays));
-        }
-        
+        }       
         public async Task<IActionResult> deletePays(int? id)
         {
             if (id == null)
@@ -376,7 +344,6 @@ namespace FrontEnd_MVC.Controllers
             }
             return RedirectToAction(nameof(AffichePays));
         }
-
         [HttpPost, ActionName("deletePays")]
         public async Task<ActionResult> removePays(int id)
         {
@@ -420,12 +387,11 @@ namespace FrontEnd_MVC.Controllers
             
             foreach (var item in lst)
             {
-                item.IdpaysNavigation = await GetPaysById(item.IDPays);
+                item.IdpaysNavigation = await GetPaysById(item.Idpays);
                 
             }
             return View(lst);
         }
-
         public async Task<IEnumerable<SelectListItem>> GetAllPaysInList()
         {
             IEnumerable<SelectListItem> lst = null;
@@ -442,8 +408,7 @@ namespace FrontEnd_MVC.Controllers
             }
 
             return lst;
-        }    
-        
+        }          
         public async Task<IActionResult> CreateVille()
         {
            
@@ -452,14 +417,13 @@ namespace FrontEnd_MVC.Controllers
 
             return View(ville);
         }
-
         [HttpPost]
-        public async Task<IActionResult> PostVille([Bind("IDPays,Nom")] Ville ville)
+        public async Task<IActionResult> PostVille([Bind("Idpays,Nom")] Ville ville)
         {
 
 
 
-            ville.IdpaysNavigation = await GetPaysById(ville.IDPays);
+            ville.IdpaysNavigation = await GetPaysById(ville.Idpays);
             ModelState.Remove("IdpaysNavigation");
             ModelState.Remove("ListPays");
             if (ModelState.IsValid)
@@ -488,7 +452,6 @@ namespace FrontEnd_MVC.Controllers
             
             return View(ville);
         }
-
         public async Task<IActionResult> EditVille(int? id)
         {
             if (id == null)
@@ -507,7 +470,7 @@ namespace FrontEnd_MVC.Controllers
 
                         string apiResponse = await response.Content.ReadAsStringAsync();
                         Ville lst = JsonConvert.DeserializeObject<Ville>(apiResponse);
-                        lst.IdpaysNavigation = await GetPaysById(lst.IDPays);
+                        lst.IdpaysNavigation = await GetPaysById(lst.Idpays);
                         return View(lst);
                     }
 
@@ -517,13 +480,12 @@ namespace FrontEnd_MVC.Controllers
             }
             return RedirectToAction(nameof(AfficheVille));
         }
-
-        public async Task<IActionResult> UptadeVille([Bind("Idville, IDPays, Nom")] Ville ville)
+        public async Task<IActionResult> UptadeVille([Bind("Idville, Idpays, Nom")] Ville ville)
         {
 
             using (var httpClient = new HttpClient())
             {
-                ville.IdpaysNavigation = await GetPaysById(ville.IDPays);
+                ville.IdpaysNavigation = await GetPaysById(ville.Idpays);
                 ModelState.Remove("IdpaysNavigation");
                 ModelState.Remove("ListPays");
                 using (var response = await httpClient.PutAsJsonAsync("https://localhost:7204/api/Loueur/UptadeVille/", ville))
@@ -545,7 +507,6 @@ namespace FrontEnd_MVC.Controllers
             }
             return RedirectToAction(nameof(AfficheVille));
         }
-
         public async Task<IActionResult> deleteVille(int? id)
         {
             if (id == null)
@@ -573,7 +534,6 @@ namespace FrontEnd_MVC.Controllers
             }
             return RedirectToAction(nameof(AfficheVille));
         }
-
         [HttpPost, ActionName("deleteVille")]
         public async Task<ActionResult> removeVille(int id)
         {

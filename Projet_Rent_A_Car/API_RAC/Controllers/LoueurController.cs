@@ -12,99 +12,70 @@ namespace API_RAC.Controllers
     [ApiController]
     public class LoueurController : ControllerBase
     {
+        private BLNotoriete blNotoriete = new();
+        private BLPays blpays = new();
+        private BLVille blville = new();
 
-    // *********************************************************************** Notoriete *************************************************************************
-
+        // *********************************************************************** Notoriete *************************************************************************
         [Route("GetNotoriete/")]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<List<Notoriete>>> GetNotoriete()
+        public async Task<ActionResult<List<Notoriete>>> GetNotoriete() //OK Antoine
         {
-
-            BLNotoriete lstNotoriete = new BLNotoriete();
-            List<Notoriete> notoriete = new List<Notoriete>();
-            notoriete = lstNotoriete.GetAllNotoriete();
-            return Ok(notoriete);
-
+            return Ok(blNotoriete.SelectAllNotoriete());
         }
 
         [Route("GetNotorieteActif/")]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<List<Notoriete>>> GetNotorieteActif()
+        public async Task<ActionResult<List<Notoriete>>> GetNotorieteActif() //OK Antoine
         {
-
-            BLNotoriete lstNotoriete = new BLNotoriete();
-            List<Notoriete> notoriete = lstNotoriete.GetAllNotorieteActif();
-            return Ok(notoriete);
-
+            return Ok(blNotoriete.SelectAllNotorieteActif());
         }
 
         [Route("GetNotorieteInactif/")]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<List<Notoriete>>> GetNotorieteInactif()
+        public async Task<ActionResult<List<Notoriete>>> GetNotorieteInactif() //OK Antoine
         {
-
-            BLNotoriete lstNotoriete = new BLNotoriete();         
-            List<Notoriete>  notoriete = lstNotoriete.GetAllNotorieteInactif();
-            return Ok(notoriete);
-
+            return Ok(blNotoriete.SelectAllNotorieteInactif());
         }
 
         [Route("GetNotorieteByID/{id}")]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<Notoriete>> GetNotorieteByID(int id)
+        public async Task<ActionResult<Notoriete>> GetNotorieteByID(int id)//OK Antoine
         {
-
-            BLNotoriete lstNotoriete = new BLNotoriete();
-            Notoriete notoriete = new Notoriete();
-            notoriete = lstNotoriete.GetNotorieteByID(id);
-            return Ok(notoriete);
-
+            return Ok(blNotoriete.GetNotorieteByID(id));
         }
-
 
         [Route("UptadeNotoriete/")]
         [HttpPut]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult UptadeNotoriete(Notoriete notoriete)
+        public ActionResult UptadeNotoriete(Notoriete notoriete) //OK Antoine
         {
-
-            BLNotoriete blNotoriete= new BLNotoriete();
             blNotoriete.UptadeNotoriete(notoriete);
             return Ok();
-
         }
-
 
         [Route("PostNotoriete/")]
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
 
-        public ActionResult PostNotoriete(Notoriete notoriete)
+        public ActionResult PostNotoriete(Notoriete notoriete)//OK Antoine
         {
-
-            BLNotoriete blNotoriete = new BLNotoriete();
             blNotoriete.CreateNotoriete(notoriete);
             return Ok();
-
-
         }
 
         [Route("DeleteNotoriete/{id}")]
         [HttpDelete]
-        public ActionResult DeleteNotoriete(int id)
+        public ActionResult DeleteNotoriete(int id)//OK Antoine
         {
-
-            BLNotoriete blNotoriete = new BLNotoriete();
             blNotoriete.DeleteNotoriete(id);
             return Ok();
-
-
         }
 
 
@@ -113,14 +84,9 @@ namespace API_RAC.Controllers
         [Route("GetPays/")]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<List<Pays>>> GetPays()
+        public async Task<ActionResult<List<Pays>>> GetPays()//OK Antoine
         {
-
-            BLPays lstPays = new BLPays();
-            List<Pays> pays = new List<Pays>();
-            pays = lstPays.GetAllPays();
-            return Ok(pays);
-
+            return Ok(blpays.SelectAllPays());
         }
 
         [Route("GetPaysByID/{id}")]
@@ -128,132 +94,90 @@ namespace API_RAC.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<Pays>> GetPaysByID(int id)
         {
-
-            BLPays lstPays = new BLPays();
-            Pays pays = new Pays();
-            pays = lstPays.GetPaysByID(id);
-            return Ok(pays);
-
-        }
+            return Ok(blpays.SelectPaysByID(id));
+        }//OK Antoine
 
         [Route("GetAllPaysInList")]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public IEnumerable<SelectListItem> GetAllPaysInList()
+        public IEnumerable<SelectListItem> GetAllPaysInList()//OK Antoine
         {
-            BLPays lstPays = new BLPays();
-            IEnumerable<SelectListItem> pays = lstPays.GetAllPaysInList();
-            return pays;
+            return blpays.SelectAllPaysInList();
         }
-
 
         [Route("UptadePays/")]
         [HttpPut]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public  ActionResult UptadePays(Pays pays)
+        public  ActionResult UptadePays(Pays pays) //Ok Antoine
         {
-
-            BLPays blPays = new BLPays();
-            blPays.UptadePays(pays);
+            blpays.UptadePays(pays);
             return Ok();
-
         }
-        
-
+       
         [Route("PostPays/")]
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
    
-        public ActionResult PostPays(Pays pays)
-        {
-           
-            BLPays blPays = new BLPays();
-            blPays.CreatePays(pays);
-            return Ok();
-           
-
+        public ActionResult PostPays(Pays pays)//OK Antoine
+        {         
+            blpays.CreatePays(pays);
+            return Ok();         
         }
 
         [Route("DeletePays/{id}")]
         [HttpDelete]
-        public ActionResult DeletePays(int id)
+        public ActionResult DeletePays(int id) //OK Antoine
         {
-
-            BLPays blPays = new BLPays();
-            blPays.DeletePays(id);
+            blpays.DeletePays(id);
             return Ok();
-
-
         }
 
         // *********************************************************************** Ville *************************************************************************
         [Route("GetVille/")]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<List<Ville>>> GetVille()
+        public async Task<ActionResult<List<Ville>>> GetVille()//OK Antoine
         {
-
-            BLVille lstVille = new BLVille();
-            List<Ville> ville = new List<Ville>();
-            ville = lstVille.GetAllVille();
-            return Ok(ville);
-
+            return Ok(blville.SelectAllVille());
         }
 
         [Route("GetVilleByID/{id}")]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<Pays>> GetVilleByID(int id)
+        public async Task<ActionResult<Pays>> GetVilleByID(int id)//OK Antoine
         {
-
-            BLVille lstVille = new BLVille();
-            Ville ville = new Ville();
-            ville = lstVille.GetVilleByID(id);
-            return Ok(ville);
-
+            return Ok(blville.SelectVilleByID(id));
         }
-
 
         [Route("UptadeVille/")]
         [HttpPut]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult UptadePays(Ville ville)
-        {
-            BLVille lstVille = new BLVille();           
-            lstVille.UptadeVille(ville);
+        public ActionResult UptadePays(Ville ville)//OK Antoine
+        {     
+            blville.UptadeVille(ville);
             return Ok();
-
         }
-
 
         [Route("PostVille/")]
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
 
-        public ActionResult PostVille(Ville ville)
+        public ActionResult PostVille(Ville ville)//OK Antoine
         {
-
-            BLVille lstVille = new BLVille();
-            lstVille.CreateVille(ville);
+            blville.CreateVille(ville);
             return Ok();
-
-
         }
 
         [Route("DeleteVille/{id}")]
         [HttpDelete]
-        public ActionResult DeleteVille(int id)
-        {
-
-            BLVille lstVille = new BLVille();            
-            lstVille.DeleteVille(id);
+        public ActionResult DeleteVille(int id)//OK Antoine
+        {      
+            blville.DeleteVille(id);
             return Ok();
-
-
         }
     }
 }

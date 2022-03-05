@@ -17,7 +17,7 @@ namespace FrontEnd_MVC.Models
         public int Idville { get; set; }
 
         [Display(Name = "Nom du pays")] 
-        public int IDPays { get; set; }
+        public int Idpays { get; set; }
         public IEnumerable<SelectListItem> ListPays { get; set; }
 
         [Display(Name = "Nom de la ville")]

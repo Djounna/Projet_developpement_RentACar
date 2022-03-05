@@ -9,109 +9,69 @@ namespace DataAccessLayer
 {
     public class DALVille
     {
-        public List<Ville> SelectAllVille()
+        private ProjetSGDBContext dbcontext = new();
+        public List<Ville> SelectAllVille() //Ok Antoine
         {
-            List<Ville> queryResult = new List<Ville>();
+            List<Ville> queryResult = new();
             try
-            {
-                ProjetSGDBContext dbcontext = new ProjetSGDBContext();
-                var ville = dbcontext.Ville;
-                queryResult.AddRange(ville);
-
+            {                              
+                queryResult.AddRange(dbcontext.Ville);
             }
             catch (Exception ex)
             {
-
-
                 throw ex;
             }
-
             return queryResult;
-        }
+        }  
 
-        public async void CreateVille(Ville ville)
+        public async void CreateVille(Ville ville)  //Ok Antoine
         {
-
             try
-            {
-                ProjetSGDBContext dbcontext = new ProjetSGDBContext();
+            {              
                 dbcontext.Update(ville);
                 var oResponse = await dbcontext.SaveChangesAsync();
-
-
             }
             catch (Exception ex)
             {
-
-
                 throw ex;
             }
-
-
         }
-        public Ville SelectByID(int id)
-        {
-
-            List<Ville> queryResult = new List<Ville>();
+        public Ville SelectByID(int id) //Ok Antoine
+        {            
             try
-            {
-                ProjetSGDBContext dbcontext = new ProjetSGDBContext();
-                var result = from Ville in dbcontext.Ville where Ville.Idville == id select Ville;
-                queryResult.AddRange(result);
-                return queryResult[0];
+            {                 
+                return dbcontext.Ville.Find(id);
             }
             catch (Exception ex)
             {
-
-
                 throw ex;
             }
-
-
         }
 
-        public async void UptadeVille(Ville ville)
+        public async void UptadeVille(Ville ville) //Ok Antoine
         {
-
             try
-            {
-                ProjetSGDBContext dbcontext = new ProjetSGDBContext();
+            {               
                 dbcontext.Update(ville);
                 var oResponse = await dbcontext.SaveChangesAsync();
-
-
             }
             catch (Exception ex)
             {
-
-
                 throw ex;
             }
-
-
         }
 
-        public async void DeleteVille(int id)
+        public async void DeleteVille(int id) //Ok Antoine
         {
-
             try
-            {
-
-                ProjetSGDBContext dbcontext = new ProjetSGDBContext();
-                Ville ville = dbcontext.Ville.Find(id);
-                dbcontext.Remove(ville);
+            {              
+                dbcontext.Remove(dbcontext.Ville.Find(id));
                 var oResponse = await dbcontext.SaveChangesAsync();
-
-
             }
             catch (Exception ex)
             {
-
-
                 throw ex;
             }
-
-
         }
     }
 }

@@ -1,59 +1,35 @@
-﻿using Models;
-using DataAccessLayer;
+﻿using DataAccessLayer;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Models;
 
 namespace BusinessLayer
 {
     public class BLPays
     {
-
-        public List<Pays> GetAllPays()
+        private DALPays dalpays = new();
+        public List<Pays> SelectAllPays() //Ok Antoine
         {
-            List<Pays> lstPays;
-            DALPays pays = new DALPays();
-            lstPays = pays.SelectAllPays();
-            return lstPays;
+            return dalpays.SelectAllPays();
         }
-
-        public IEnumerable<SelectListItem> GetAllPaysInList()
+        public IEnumerable<SelectListItem> SelectAllPaysInList()//Ok Antoine
+        {          
+            return dalpays.SelectAllPaysInList();
+        }
+        public void CreatePays(Pays pays)//Ok Antoine
+        {           
+            dalpays.CreatePays(pays);           
+        }
+        public Pays SelectPaysByID(int id)//Ok Antoine
+        {          
+            return dalpays.SelectByID(id);
+        }
+        public void UptadePays(Pays pays)//Ok Antoine
         {
-            
-            DALPays pays = new DALPays();
-            IEnumerable<SelectListItem> lstPays = pays.GetAllPaysInList();
-            return lstPays;
+            dalpays.UptadePays(pays);
         }
-
-        public void CreatePays(Pays pays)
+        public void DeletePays(int id)//Ok Antoine
         {
-            
-            DALPays dalPays = new DALPays();
-            dalPays.CreatePays(pays);
-            
+            dalpays.DeletePays(id);
         }
-
-        public Pays GetPaysByID(int id)
-        {
-            Pays pays;
-            DALPays dalPays = new DALPays();
-            pays = dalPays.SelectByID(id);
-            return pays;
-        }
-
-        public void UptadePays(Pays pays)
-        {
-
-            DALPays dalPays = new DALPays();
-            dalPays.UptadePays(pays);
-
-        }
-
-        public void DeletePays(int id)
-        {
-
-            DALPays dalPays = new DALPays();
-            dalPays.DeletePays(id);
-
-        }
-
     }
 }

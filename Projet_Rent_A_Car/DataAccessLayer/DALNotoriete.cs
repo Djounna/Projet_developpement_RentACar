@@ -9,109 +9,69 @@ namespace DataAccessLayer
 {
     public class DALNotoriete
     {
-        public List<Notoriete> SelectAllNotoriete()
+        private ProjetSGDBContext dbcontext = new ProjetSGDBContext();
+        public List<Notoriete> SelectAllNotoriete() //Ok Antoine
         {
-            List<Notoriete> queryResult = new List<Notoriete>();
+            List<Notoriete> queryResult = new();
             try
             {
-                ProjetSGDBContext dbcontext = new ProjetSGDBContext();
-                var listNotoriete = from Notoriete in dbcontext.Notoriete select Notoriete;
-                queryResult.AddRange(listNotoriete);
-
+                queryResult.AddRange(dbcontext.Notoriete);
             }
             catch (Exception ex)
             {
-
-
                 throw ex;
             }
-
             return queryResult;
         }
 
-        public async void CreateNotoriete(Notoriete notoriete)
+        public async void CreateNotoriete(Notoriete notoriete) //Ok Antoine
         {
-
             try
             {
-                ProjetSGDBContext dbcontext = new ProjetSGDBContext();
                 dbcontext.Update(notoriete);
                 var oResponse = await dbcontext.SaveChangesAsync();
-
-
             }
             catch (Exception ex)
             {
-
-
                 throw ex;
             }
-
-
         }
-        public Notoriete SelectByID(int id)
+        public Notoriete SelectByID(int id)//Ok Antoine
         {
-
-            List<Notoriete> queryResult = new List<Notoriete>();
             try
-            {
-                ProjetSGDBContext dbcontext = new ProjetSGDBContext();
-                var result = from Notoriete in dbcontext.Notoriete where Notoriete.Idnotoriete == id select Notoriete;
-                queryResult.AddRange(result);
-                return queryResult[0];
+            {               
+                return dbcontext.Notoriete.Find(id);
             }
             catch (Exception ex)
             {
-
-
                 throw ex;
             }
-
-
         }
 
-        public async void UptadeNotoriete(Notoriete notoriete)
+        public async void UptadeNotoriete(Notoriete notoriete)//Ok Antoine
         {
-
             try
             {
-                ProjetSGDBContext dbcontext = new ProjetSGDBContext();
                 dbcontext.Update(notoriete);
                 var oResponse = await dbcontext.SaveChangesAsync();
-
-
             }
             catch (Exception ex)
             {
-
-
                 throw ex;
             }
-
-
         }
 
-        public async void DeleteNotoriete(int id)
+        public async void DeleteNotoriete(int id)//Ok Antoine
         {
-
             try
             {
-
-                ProjetSGDBContext dbcontext = new ProjetSGDBContext();
-                Notoriete Notoriete = dbcontext.Notoriete.Find(id);
-                dbcontext.Remove(Notoriete);
+                dbcontext.Remove(dbcontext.Notoriete.Find(id));
                 var oResponse = await dbcontext.SaveChangesAsync();
-
-
             }
             catch (Exception ex)
             {
-
-
                 throw ex;
             }
-
-
         }
     }
 
