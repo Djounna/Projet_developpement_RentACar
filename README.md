@@ -8,12 +8,7 @@ Fait
 - structure du code : OK
 
 Planning
-03/03/2021
-Fonctionnement Code : Post/Get/Delete/Update : exemple
-Contraintes fonctionnelles/fonctionnelles/Use Case.
-Fonctionnement FluentValidation pour l'API
-Fonctionnement DataAnnotation pour MVC
-
+10/03
 Corentin
 Relire le code + améliorer la partie Edit de ville ( afficher le Pays en read only + réussir à passer les parametre à la fonction uptade)
 Vérifier si on peut mettre plusieurs modéle.
@@ -23,6 +18,9 @@ Antoine
 Reprendre le code de Antoine et simplifier/changer (voir Linq) + Renommer selon la Nomenclature
 
 Planning futur
+Contraintes fonctionnelles/fonctionnelles/Use Case.
+Fonctionnement FluentValidation pour l'API
+Fonctionnement DataAnnotation pour MVC
 Règles business dans la BL
 Gestion d'erreurs
 Implémenter les use cases j(Check List)
@@ -45,4 +43,3 @@ MVC : Get = Show/
       ex: CreateVille a definir plus tard
 
 API/BL/DAL : SelectAll.../SelectByID/Create.../Uptade.../Delete...
-
