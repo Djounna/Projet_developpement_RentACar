@@ -13,20 +13,18 @@ namespace FrontEnd_MVC.Controllers
     public class LoueurController : Controller
     {
       
-        private async Task<ViewResult> GetRequest<T>(string chemin)
+        private async Task<List<T>> GetRequest<T>(string chemin)
         {
             using (var httpClient = new HttpClient())
             {
                 using (var response = await(httpClient.GetAsync(chemin)))
                 {
-
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    var lst = JsonConvert.DeserializeObject<List<T>>(apiResponse);
-                    return View(lst);
+                    return JsonConvert.DeserializeObject<List<T>>(apiResponse);                  
                 }
             }
         }
-        private async Task<ViewResult> GetRequestUnique<T>(string chemin)
+        private async Task<T> GetRequestUnique<T>(string chemin)
         {
             using (var httpClient = new HttpClient())
             {
@@ -34,24 +32,52 @@ namespace FrontEnd_MVC.Controllers
                 {
 
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    var lst = JsonConvert.DeserializeObject<T>(apiResponse);
-                    return View(lst);
+                    return JsonConvert.DeserializeObject<T>(apiResponse);
+                   
                 }
             }
         }
-        private async Task<ActionResult> PostRequest<T>(string chemin, T postObject,ViewResult view)
+        private async Task<ActionResult> PostRequest<T>(string chemin, T postObject)
         {
             using (var httpClient = new HttpClient())
             {
-                using (var response = await httpClient.PostAsJsonAsync("https://localhost:7204/api/Loueur/PostNotoriete/", postObject))
+                using (var response = await httpClient.PostAsJsonAsync(chemin, postObject))
                 {
                     if (response.IsSuccessStatusCode)
                     {
-                        return RedirectToAction(nameof(view));
+                        return Ok();
+                    }
+                }             
+            }
+            return Ok();
+        }
+        private async Task<ActionResult> PutRequest<T>(string chemin, T putObject)
+        {
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.PutAsJsonAsync(chemin, putObject))
+                {
+                    if (response.IsSuccessStatusCode)
+                    {
+                        return Ok();
                     }
                 }
-                return RedirectToAction(nameof(view));
+                return Ok();
             }
+        }
+        private async Task<ActionResult> DeleteRequest(string chemin)
+        {
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.DeleteAsync(chemin))
+                {
+                    if (response.IsSuccessStatusCode)
+                    {
+                        return Ok();
+                    }
+                }
+            }
+            return Ok();
         }
         public IActionResult HomeLoueur()
         {
@@ -60,23 +86,23 @@ namespace FrontEnd_MVC.Controllers
 
         // ******************************************************** Notoriete**************************************************************************************
         [HttpGet]
-        public async Task<ViewResult> AfficheNotoriete() //OK Antoine
+        public async Task<ActionResult> AfficheNotoriete() //OK Antoine
         {
             try
             {
-                return await GetRequest<Notoriete>("https://localhost:7204/api/Loueur/GetNotoriete/");                 
+                return View(await GetRequest<Notoriete>("https://localhost:7204/api/Loueur/GetNotoriete/"));
             }
             catch (Exception ex)
             {
                 throw ex;
-            }           
+            }            
         }
         [HttpGet]
-        public async Task<ViewResult> AfficheNotorieteActive()//OK Antoine
+        public async Task<ActionResult> AfficheNotorieteActive()//OK Antoine
         {
             try
             {
-                return await GetRequest<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteActif/");
+                return View(await GetRequest<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteActif/"));
             }
             catch (Exception ex)
             {
@@ -84,11 +110,11 @@ namespace FrontEnd_MVC.Controllers
             }
         }
         [HttpGet]
-        public async Task<ViewResult> AfficheNotorieteInactive()//OK Antoine
+        public async Task<ActionResult> AfficheNotorieteInactive()//OK Antoine
         {
             try
             {
-                return await GetRequest<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteInactif/");
+                return View(await GetRequest<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteInactif/"));
             }
             catch (Exception ex)
             {
@@ -104,7 +130,7 @@ namespace FrontEnd_MVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                await PostRequest("https://localhost:7204/api/Loueur/PostNotoriete/", notoriete, await AfficheNotorieteActive() );
+                await PostRequest("https://localhost:7204/api/Loueur/PostNotoriete/", notoriete);
             }
             return RedirectToAction(nameof(AfficheNotorieteActive));
 
@@ -115,100 +141,50 @@ namespace FrontEnd_MVC.Controllers
             {
                 return NotFound();
             }
-            return await GetRequestUnique<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteByID/" + id);         
+            return View(await GetRequestUnique<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteByID/" + id));         
         }
-        public async Task<IActionResult> UptadeNotoriete([Bind("Idnotoriete,Libelle,CoefficientMultiplicateur,Inactif")] Notoriete notoriete)
+        public async Task<IActionResult> UptadeNotoriete([Bind("Idnotoriete,Libelle,CoefficientMultiplicateur,Inactif")] Notoriete notoriete)//OK Antoine
         {
-
-            using (var httpClient = new HttpClient())
+            if (ModelState.IsValid)
             {
-                
-                using (var response = await httpClient.PutAsJsonAsync("https://localhost:7204/api/Loueur/UptadeNotoriete/", notoriete))
-                {
-
-
-                    if (response.IsSuccessStatusCode)
-                    {
-
-                        return RedirectToAction(nameof(AfficheNotorieteActive));
-
-                    }
-
-
-                }
-
+                await PutRequest("https://localhost:7204/api/Loueur/UptadeNotoriete/", notoriete);
             }
             return RedirectToAction(nameof(AfficheNotorieteActive));
         }
-        public async Task<IActionResult> deleteNotoriete(int? id)
+        public async Task<IActionResult> deleteNotoriete(int? id)//OK Antoine
         {
             if (id == null)
             {
                 return NotFound();
-            }
-            using (var httpClient = new HttpClient())
-            {
-                
-                using (var response = await httpClient.GetAsync("https://localhost:7204/api/Loueur/GetNotorieteByID/" + id))
-                {
-                    if (response.IsSuccessStatusCode)
-                    {
-
-                        string apiResponse = await response.Content.ReadAsStringAsync();
-                        Notoriete lst = JsonConvert.DeserializeObject<Notoriete>(apiResponse);
-                        return View(lst);
-                    }
-                }
-
-            }
-            return RedirectToAction(nameof(AfficheNotoriete));
+            }         
+                return View(await GetRequestUnique<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteByID/" + id));             
         }
 
         [HttpPost, ActionName("deleteNotoriete")]
-        public async Task<ActionResult> removeNotoriete(int id)
+        public async Task<ActionResult> removeNotoriete(int id)//OK Antoine
         {
-
-
-            using (var httpClient = new HttpClient())
-            {
-                using (var response = await httpClient.DeleteAsync("https://localhost:7204/api/Loueur/DeleteNotoriete/" + id))
-                {
-
-                    if (response.IsSuccessStatusCode)
-                    {
-
-                        return RedirectToAction(nameof(AfficheNotorieteActive));
-                    }
-                }
-
-            }
-            return RedirectToAction(nameof(AfficheNotorieteActive));
+                 await DeleteRequest("https://localhost:7204/api/Loueur/DeleteNotoriete/" + id);
+                 return RedirectToAction(nameof(AfficheNotorieteActive));
         }
 
         // ******************************************************** PAYS ****************************************************************************************
         [HttpGet]
-        public async Task<List<Pays>> GetAllPays()
-        {
-            List<Pays> lst = new List<Pays>();
-
-            using (var httpClient = new HttpClient())
-            {
-                using (var response = await (httpClient.GetAsync("https://localhost:7204/api/Loueur/GetPays/")))
-                {
-
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-                    lst = JsonConvert.DeserializeObject<List<Pays>>(apiResponse);
-                    return lst;
-                }
-            }
-
-            return lst;
-        }
-        public async Task<ViewResult> AffichePays()//Ok Antoine
+        public async Task<List<Pays>> GetAllPays()//Ok Antoine
         {
             try
             {
                 return await GetRequest<Pays>("https://localhost:7204/api/Loueur/GetPays/");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public async Task<ActionResult> AffichePays()//Ok Antoine
+        {
+            try
+            {
+                return View(await GetRequest<Pays>("https://localhost:7204/api/Loueur/GetPays/"));
             }
            catch(Exception ex)
             {
