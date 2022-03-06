@@ -90,7 +90,7 @@ namespace FrontEnd_MVC.Controllers
             return View();
         }
 
-        public async Task<IActionResult> CreateClient()//OK Antoin
+        public async Task<IActionResult> CreateClient()//OK Antoine
         {
             return View();
         }
@@ -99,14 +99,16 @@ namespace FrontEnd_MVC.Controllers
             if (ModelState.IsValid)
             {
                 await PostRequest("https://localhost:7204/api/Client/PostClient/", client);
+                return await CheckLogin(client);
             }
+            else
             return RedirectToAction(nameof(HomeClient));
         }
-        public async Task<IActionResult> ClientConnection()//OK Antoin
+        public async Task<IActionResult> ClientConnection()//OK Antoine
         {
             return View();
         }
-        public async Task<IActionResult> CheckLogin([Bind("Mail")] Client client)//OK Antoin
+        public async Task<IActionResult> CheckLogin([Bind("Mail")] Client client)//OK Antoine
         {
             try
             { 
