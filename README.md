@@ -11,6 +11,7 @@ Planning
 10/03
 Corentin
 Relire le code + améliorer la partie Edit de ville ( afficher le Pays en read only + réussir à passer les parametre à la fonction uptade)
+Mettre au max les fonctions de la DAL en commun.
 Vérifier si on peut mettre plusieurs modéle.
 Avance sur les Use Case
 
