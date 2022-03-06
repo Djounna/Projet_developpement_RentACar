@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Hallet Antoine\\OneDrive\\Documents\\EPHEC\\3ème\\SGDB\\ProjetRAC\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\API_RAC\\API_RAC.csproj": {}
+    "C:\\Users\\Corentin\\Documents\\EPHEC\\Projet SGBD\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\API_RAC\\API_RAC.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Hallet Antoine\\OneDrive\\Documents\\EPHEC\\3ème\\SGDB\\ProjetRAC\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\API_RAC\\API_RAC.csproj": {
+    "C:\\Users\\Corentin\\Documents\\EPHEC\\Projet SGBD\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\API_RAC\\API_RAC.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Hallet Antoine\\OneDrive\\Documents\\EPHEC\\3ème\\SGDB\\ProjetRAC\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\API_RAC\\API_RAC.csproj",
+        "projectUniqueName": "C:\\Users\\Corentin\\Documents\\EPHEC\\Projet SGBD\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\API_RAC\\API_RAC.csproj",
         "projectName": "API_RAC",
-        "projectPath": "C:\\Users\\Hallet Antoine\\OneDrive\\Documents\\EPHEC\\3ème\\SGDB\\ProjetRAC\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\API_RAC\\API_RAC.csproj",
-        "packagesPath": "C:\\Users\\Hallet Antoine\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Hallet Antoine\\OneDrive\\Documents\\EPHEC\\3ème\\SGDB\\ProjetRAC\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\API_RAC\\obj\\",
+        "projectPath": "C:\\Users\\Corentin\\Documents\\EPHEC\\Projet SGBD\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\API_RAC\\API_RAC.csproj",
+        "packagesPath": "C:\\Users\\Corentin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Corentin\\Documents\\EPHEC\\Projet SGBD\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\API_RAC\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Hallet Antoine\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Corentin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,11 +32,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Hallet Antoine\\OneDrive\\Documents\\EPHEC\\3ème\\SGDB\\ProjetRAC\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\BusinessLayer\\BusinessLayer.csproj": {
-                "projectPath": "C:\\Users\\Hallet Antoine\\OneDrive\\Documents\\EPHEC\\3ème\\SGDB\\ProjetRAC\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\BusinessLayer\\BusinessLayer.csproj"
+              "C:\\Users\\Corentin\\Documents\\EPHEC\\Projet SGBD\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\BusinessLayer\\BusinessLayer.csproj": {
+                "projectPath": "C:\\Users\\Corentin\\Documents\\EPHEC\\Projet SGBD\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\BusinessLayer\\BusinessLayer.csproj"
               },
-              "C:\\Users\\Hallet Antoine\\OneDrive\\Documents\\EPHEC\\3ème\\SGDB\\ProjetRAC\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\Models\\Models.csproj": {
-                "projectPath": "C:\\Users\\Hallet Antoine\\OneDrive\\Documents\\EPHEC\\3ème\\SGDB\\ProjetRAC\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\Models\\Models.csproj"
+              "C:\\Users\\Corentin\\Documents\\EPHEC\\Projet SGBD\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\Models\\Models.csproj": {
+                "projectPath": "C:\\Users\\Corentin\\Documents\\EPHEC\\Projet SGBD\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\Models\\Models.csproj"
               }
             }
           }
@@ -96,17 +100,21 @@
         }
       }
     },
-    "C:\\Users\\Hallet Antoine\\OneDrive\\Documents\\EPHEC\\3ème\\SGDB\\ProjetRAC\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\BusinessLayer\\BusinessLayer.csproj": {
+    "C:\\Users\\Corentin\\Documents\\EPHEC\\Projet SGBD\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\BusinessLayer\\BusinessLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Hallet Antoine\\OneDrive\\Documents\\EPHEC\\3ème\\SGDB\\ProjetRAC\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\BusinessLayer\\BusinessLayer.csproj",
+        "projectUniqueName": "C:\\Users\\Corentin\\Documents\\EPHEC\\Projet SGBD\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\BusinessLayer\\BusinessLayer.csproj",
         "projectName": "BusinessLayer",
-        "projectPath": "C:\\Users\\Hallet Antoine\\OneDrive\\Documents\\EPHEC\\3ème\\SGDB\\ProjetRAC\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\BusinessLayer\\BusinessLayer.csproj",
-        "packagesPath": "C:\\Users\\Hallet Antoine\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Hallet Antoine\\OneDrive\\Documents\\EPHEC\\3ème\\SGDB\\ProjetRAC\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\BusinessLayer\\obj\\",
+        "projectPath": "C:\\Users\\Corentin\\Documents\\EPHEC\\Projet SGBD\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\BusinessLayer\\BusinessLayer.csproj",
+        "packagesPath": "C:\\Users\\Corentin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Corentin\\Documents\\EPHEC\\Projet SGBD\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\BusinessLayer\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Hallet Antoine\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Corentin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -120,11 +128,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Hallet Antoine\\OneDrive\\Documents\\EPHEC\\3ème\\SGDB\\ProjetRAC\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\DataAccessLayer\\DataAccessLayer.csproj": {
-                "projectPath": "C:\\Users\\Hallet Antoine\\OneDrive\\Documents\\EPHEC\\3ème\\SGDB\\ProjetRAC\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\DataAccessLayer\\DataAccessLayer.csproj"
+              "C:\\Users\\Corentin\\Documents\\EPHEC\\Projet SGBD\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\DataAccessLayer\\DataAccessLayer.csproj": {
+                "projectPath": "C:\\Users\\Corentin\\Documents\\EPHEC\\Projet SGBD\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\DataAccessLayer\\DataAccessLayer.csproj"
               },
-              "C:\\Users\\Hallet Antoine\\OneDrive\\Documents\\EPHEC\\3ème\\SGDB\\ProjetRAC\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\Models\\Models.csproj": {
-                "projectPath": "C:\\Users\\Hallet Antoine\\OneDrive\\Documents\\EPHEC\\3ème\\SGDB\\ProjetRAC\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\Models\\Models.csproj"
+              "C:\\Users\\Corentin\\Documents\\EPHEC\\Projet SGBD\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\Models\\Models.csproj": {
+                "projectPath": "C:\\Users\\Corentin\\Documents\\EPHEC\\Projet SGBD\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\Models\\Models.csproj"
               }
             }
           }
@@ -167,17 +175,21 @@
         }
       }
     },
-    "C:\\Users\\Hallet Antoine\\OneDrive\\Documents\\EPHEC\\3ème\\SGDB\\ProjetRAC\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\DataAccessLayer\\DataAccessLayer.csproj": {
+    "C:\\Users\\Corentin\\Documents\\EPHEC\\Projet SGBD\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\DataAccessLayer\\DataAccessLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Hallet Antoine\\OneDrive\\Documents\\EPHEC\\3ème\\SGDB\\ProjetRAC\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\DataAccessLayer\\DataAccessLayer.csproj",
+        "projectUniqueName": "C:\\Users\\Corentin\\Documents\\EPHEC\\Projet SGBD\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\DataAccessLayer\\DataAccessLayer.csproj",
         "projectName": "DataAccessLayer",
-        "projectPath": "C:\\Users\\Hallet Antoine\\OneDrive\\Documents\\EPHEC\\3ème\\SGDB\\ProjetRAC\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\DataAccessLayer\\DataAccessLayer.csproj",
-        "packagesPath": "C:\\Users\\Hallet Antoine\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Hallet Antoine\\OneDrive\\Documents\\EPHEC\\3ème\\SGDB\\ProjetRAC\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\DataAccessLayer\\obj\\",
+        "projectPath": "C:\\Users\\Corentin\\Documents\\EPHEC\\Projet SGBD\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\DataAccessLayer\\DataAccessLayer.csproj",
+        "packagesPath": "C:\\Users\\Corentin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Corentin\\Documents\\EPHEC\\Projet SGBD\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\DataAccessLayer\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Hallet Antoine\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Corentin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -191,8 +203,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Hallet Antoine\\OneDrive\\Documents\\EPHEC\\3ème\\SGDB\\ProjetRAC\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\Models\\Models.csproj": {
-                "projectPath": "C:\\Users\\Hallet Antoine\\OneDrive\\Documents\\EPHEC\\3ème\\SGDB\\ProjetRAC\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\Models\\Models.csproj"
+              "C:\\Users\\Corentin\\Documents\\EPHEC\\Projet SGBD\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\Models\\Models.csproj": {
+                "projectPath": "C:\\Users\\Corentin\\Documents\\EPHEC\\Projet SGBD\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\Models\\Models.csproj"
               }
             }
           }
@@ -249,17 +261,21 @@
         }
       }
     },
-    "C:\\Users\\Hallet Antoine\\OneDrive\\Documents\\EPHEC\\3ème\\SGDB\\ProjetRAC\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\Models\\Models.csproj": {
+    "C:\\Users\\Corentin\\Documents\\EPHEC\\Projet SGBD\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\Models\\Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Hallet Antoine\\OneDrive\\Documents\\EPHEC\\3ème\\SGDB\\ProjetRAC\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\Models\\Models.csproj",
+        "projectUniqueName": "C:\\Users\\Corentin\\Documents\\EPHEC\\Projet SGBD\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\Models\\Models.csproj",
         "projectName": "Models",
-        "projectPath": "C:\\Users\\Hallet Antoine\\OneDrive\\Documents\\EPHEC\\3ème\\SGDB\\ProjetRAC\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\Models\\Models.csproj",
-        "packagesPath": "C:\\Users\\Hallet Antoine\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Hallet Antoine\\OneDrive\\Documents\\EPHEC\\3ème\\SGDB\\ProjetRAC\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\Models\\obj\\",
+        "projectPath": "C:\\Users\\Corentin\\Documents\\EPHEC\\Projet SGBD\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\Models\\Models.csproj",
+        "packagesPath": "C:\\Users\\Corentin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Corentin\\Documents\\EPHEC\\Projet SGBD\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\Models\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Hallet Antoine\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Corentin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

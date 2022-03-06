@@ -100,8 +100,8 @@ namespace FrontEnd_MVC.Controllers
             {
                 await PostRequest("https://localhost:7204/api/Client/PostClient/", client);               
             }
-            
-            return View();
+
+            return View("CheckLogin",client);
         }
         public async Task<IActionResult> ClientConnection()//OK Antoine
         {
