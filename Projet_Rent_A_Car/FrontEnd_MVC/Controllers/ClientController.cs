@@ -98,11 +98,10 @@ namespace FrontEnd_MVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                await PostRequest("https://localhost:7204/api/Client/PostClient/", client);
-                return await CheckLogin(client);
+                await PostRequest("https://localhost:7204/api/Client/PostClient/", client);               
             }
-            else
-            return RedirectToAction(nameof(HomeClient));
+            
+            return View();
         }
         public async Task<IActionResult> ClientConnection()//OK Antoine
         {

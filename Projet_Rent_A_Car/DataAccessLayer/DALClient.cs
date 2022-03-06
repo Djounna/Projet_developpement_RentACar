@@ -10,15 +10,14 @@ namespace DataAccessLayer
     public class DALClient
     {
         private ProjetSGDBContext dbcontext = new ProjetSGDBContext();
-
         public Client SelectClientByMail(string mail)//OK Antoine
         {
             List<Client> c = new();
            
             try
             {
-                c.AddRange(dbcontext.Client.Where(x => x.Mail == mail));
-                return c[0];                
+               return dbcontext.Client.Where(x => x.Mail == mail).FirstOrDefault();
+                          
             }
             catch (Exception ex)
             {
