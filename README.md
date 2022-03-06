@@ -12,7 +12,7 @@ Planning
 Corentin
 Relire le code + améliorer la partie Edit de ville ( afficher le Pays en read only + réussir à passer les parametre à la fonction uptade)
 Vérifier si on peut mettre plusieurs modéle.
-Avance sur les Use Case
+Avancer sur les Use Case
 
 Antoine
 Reprendre le code de Antoine et simplifier/changer (voir Linq) + Renommer selon la Nomenclature
@@ -29,7 +29,7 @@ Implémenter les use cases j(Check List)
 
 Problème to resolve ou to improve:
 
-Cacher l'ID lors d'un PUT ou empêcher la modification
+Cacher l'ID lors d'un PUT ou empêcher la modification (ok : readonly tag)
 Le type Decimal ne prend pas la , ou le . comme séparateur
 
 
