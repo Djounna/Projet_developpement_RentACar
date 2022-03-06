@@ -2,7 +2,7 @@
 {
     public class DALConnexion
     {
-        private static string sConnection = @"Server=DESKTOP-FK2QPRH\SQLDB2022; Database=ProjetSGDB; User Id=sa; Password=SQLDB2022";
+        private static string sConnection = @"Server=LAPTOP-R3GDQJIT; Database=ProjetSGDB; Trusted_Connection=True";
         public static string Connexion { get { return sConnection; } }
     }
 }
