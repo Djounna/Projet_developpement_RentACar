@@ -15,6 +15,18 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\Hallet Antoine\OneDrive\Documents\EPHEC\3ème\SGDB\ProjetRAC\Projet_developpement_RentACar\Projet_Rent_A_Car\FrontEnd_MVC
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Client/CheckLogin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XENoZWNrTG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Client/ClientConnection.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XENsaWVudENvbm5lY3Rpb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Client/CreateClient.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XENyZWF0ZUNsaWVudC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Client/HomeCLient.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XEhvbWVDTGllbnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -85,6 +97,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/HomeLoueur.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXEhvbWVMb3VldXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/PostPays.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXFBvc3RQYXlzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Shared/Error.cshtml]

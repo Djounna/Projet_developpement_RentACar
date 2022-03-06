@@ -27,7 +27,6 @@ namespace DataAccessLayer
             }
             return queryResult;
         }
-
         public async void CreatePays(Pays pays)//Ok Antoine
         {           
             try
@@ -51,7 +50,6 @@ namespace DataAccessLayer
                 throw ex;
             }          
         }
-
         public IEnumerable<SelectListItem> SelectAllPaysInList()//Ok Antoine
         {
             using (dbcontext)
@@ -85,7 +83,6 @@ namespace DataAccessLayer
                 throw ex;
             }
         }
-
         public async void DeletePays(int id) //Ok Antoine
         {
             try

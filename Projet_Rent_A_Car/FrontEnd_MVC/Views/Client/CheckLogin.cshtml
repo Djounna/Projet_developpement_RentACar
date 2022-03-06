@@ -1,0 +1,9 @@
+﻿@model FrontEnd_MVC.Models.Client
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Bienvenue @Html.DisplayFor(modelItem => modelItem.Nom) </h1><h1 class="display-4">@Html.DisplayFor(modelItem => modelItem.Prenom) </h1>
+</div>
+
