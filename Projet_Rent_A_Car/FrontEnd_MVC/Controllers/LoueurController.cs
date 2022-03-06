@@ -12,7 +12,7 @@ namespace FrontEnd_MVC.Controllers
 {
     public class LoueurController : Controller
     {
-      
+        //var errors = ModelState.Values.SelectMany(v => v.Errors); 
         private async Task<List<T>> GetRequest<T>(string chemin)
         {
             using (var httpClient = new HttpClient())
@@ -79,6 +79,19 @@ namespace FrontEnd_MVC.Controllers
             }
             return Ok();
         }
+        private async Task<IEnumerable<SelectListItem>> GetEnumerableList(string chemin)
+        {
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await (httpClient.GetAsync(chemin)))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    IEnumerable<SelectListItem> lst = JsonConvert.DeserializeObject<IEnumerable<SelectListItem>>(apiResponse);
+                    return lst;
+                }
+            }
+        }
+
         public IActionResult HomeLoueur()
         {
             return View();
@@ -191,347 +204,112 @@ namespace FrontEnd_MVC.Controllers
                 throw ex;
             }          
         }   
-        public IActionResult CreatePays()
+        public IActionResult CreatePays()//Ok Antoine
         {
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> PostPays([Bind("Nom")] Pays pays)
-        {            
-            
+        public async Task<IActionResult> PostPays([Bind("Nom")] Pays pays)//Ok Antoine
+        {
             if (ModelState.IsValid)
             {
-                using (var httpClient = new HttpClient())
-                {
-
-                    using (var response = await httpClient.PostAsJsonAsync("https://localhost:7204/api/Loueur/PostPays/", pays))
-                    {
-
-
-                        if (response.IsSuccessStatusCode)
-                        {
-
-                            return RedirectToAction(nameof(AffichePays));
-
-                        }
-
-
-                    }
-                    
-                }
+                await PostRequest("https://localhost:7204/api/Loueur/PostPays/", pays);
             }
-            return View(pays);
+            return RedirectToAction(nameof(AffichePays));
         }
-        public async Task<Pays> GetPaysById(int id)
-        {
-            using (var httpClient = new HttpClient())
-            {
-                Pays pays = new Pays();
-                using (var response = await httpClient.GetAsync("https://localhost:7204/api/Loueur/GetPaysByID/" + id))
-                {
-
-
-                    if (response.IsSuccessStatusCode)
-                    {
-
-                        string apiResponse = await response.Content.ReadAsStringAsync();
-                        Pays lst = JsonConvert.DeserializeObject<Pays>(apiResponse);
-                        return lst;
-                    }
-
-
-                }
-                return pays;
-            }
-        }
-        public async Task<IActionResult> EditPays(int? id)
+        public async Task<IActionResult> EditPays(int? id)//Ok Antoine
         {
             if (id == null)
             {
                 return NotFound();
             }
-            using (var httpClient = new HttpClient())
-            {
-                
-                using (var response = await httpClient.GetAsync("https://localhost:7204/api/Loueur/GetPaysByID/" + id))
-                {
-
-
-                    if (response.IsSuccessStatusCode)
-                    {
-
-                        string apiResponse = await response.Content.ReadAsStringAsync();
-                        Pays lst = JsonConvert.DeserializeObject<Pays>(apiResponse);
-                        return View(lst);
-                    }
-
-
-                }
-
-            }
-            return RedirectToAction(nameof(AffichePays));
+            return View(await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + id));
         }     
-        public async Task<IActionResult> UptadePays([Bind("Idpays,Nom")] Pays pays)
-        {            
-           using (var httpClient = new HttpClient())
+        public async Task<IActionResult> UptadePays([Bind("Idpays,Nom")] Pays pays)//OK Antoine
+        {
             {
-                Pays lst = new Pays();
-                using (var response = await httpClient.PutAsJsonAsync("https://localhost:7204/api/Loueur/UptadePays/", pays))
+                if (ModelState.IsValid)
                 {
-
-
-                    if (response.IsSuccessStatusCode)
-                    {
-
-                        return RedirectToAction(nameof(AffichePays));
-
-                    }
-
-
+                    await PutRequest("https://localhost:7204/api/Loueur/UptadePays/", pays);
                 }
-
+                return RedirectToAction(nameof(AffichePays));
             }
-            return RedirectToAction(nameof(AffichePays));
         }       
-        public async Task<IActionResult> deletePays(int? id)
+        public async Task<IActionResult> deletePays(int? id)//Ok Antoine
         {
             if (id == null)
             {
                 return NotFound();
             }
-            using (var httpClient = new HttpClient())
-            {
-                Pays lst = new Pays();
-                using (var response = await httpClient.GetAsync("https://localhost:7204/api/Loueur/GetPaysByID/" + id))
-                {
-
-
-                    if (response.IsSuccessStatusCode)
-                    {
-
-                        string apiResponse = await response.Content.ReadAsStringAsync();
-                        lst = JsonConvert.DeserializeObject<Pays>(apiResponse);
-                        return View(lst);
-                    }
-
-
-                }
-
-            }
-            return RedirectToAction(nameof(AffichePays));
+            return View(await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + id));
         }
         [HttpPost, ActionName("deletePays")]
-        public async Task<ActionResult> removePays(int id)
+        public async Task<ActionResult> removePays(int id)//Ok Antoine
         {
-
-           
-            using (var httpClient = new HttpClient())
-            {
-                
-                using (var response = await httpClient.DeleteAsync("https://localhost:7204/api/Loueur/DeletePays/" + id))
-                {
-
-
-                    if (response.IsSuccessStatusCode)
-                    {
-
-                        return RedirectToAction(nameof(AffichePays));
-                    }
-
-
-                }
-
-            }
+            await DeleteRequest("https://localhost:7204/api/Loueur/DeletePays/" + id);
             return RedirectToAction(nameof(AffichePays));
         }
 
         // ******************************************************** Ville ****************************************************************************************
         [HttpGet]
-        public async Task<IActionResult> AfficheVille()
-        {
-            var lst = new List<Ville>();
-
-            using (var httpClient = new HttpClient())
-            {
-                using (var response = await (httpClient.GetAsync("https://localhost:7204/api/Loueur/GetVille/")))
-                {
-
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-                    lst = JsonConvert.DeserializeObject<List<Ville>>(apiResponse);
-                }
-            }
-            
+        public async Task<IActionResult> AfficheVille()//Ok Antoine
+        {            
+            List<Ville> lst = await GetRequest<Ville>("https://localhost:7204/api/Loueur/GetVille/");       
             foreach (var item in lst)
             {
-                item.IdpaysNavigation = await GetPaysById(item.Idpays);
-                
+                item.IdpaysNavigation = await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + item.Idpays);               
             }
             return View(lst);
-        }
-        public async Task<IEnumerable<SelectListItem>> GetAllPaysInList()
+        }    
+        public async Task<IActionResult> CreateVille()//OK Antoine
         {
-            IEnumerable<SelectListItem> lst = null;
-
-            using (var httpClient = new HttpClient())
-            {
-                using (var response = await(httpClient.GetAsync("https://localhost:7204/api/Loueur/GetAllPaysInList/")))
-                {
-
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-                    lst = JsonConvert.DeserializeObject<IEnumerable<SelectListItem>>(apiResponse);
-                    return lst;
-                }
-            }
-
-            return lst;
-        }          
-        public async Task<IActionResult> CreateVille()
-        {
-           
-           Ville ville = new Ville();
-           ville.ListPays = await GetAllPaysInList();
-
-            return View(ville);
+           Ville ville = new(); 
+           ville.ListPays = await GetEnumerableList("https://localhost:7204/api/Loueur/GetAllPaysInList/");
+           return View(ville);
         }
         [HttpPost]
-        public async Task<IActionResult> PostVille([Bind("Idpays,Nom")] Ville ville)
+        public async Task<IActionResult> PostVille([Bind("Idpays,Nom")] Ville ville)//OK Antoine
         {
-
-
-
-            ville.IdpaysNavigation = await GetPaysById(ville.Idpays);
+            ville.IdpaysNavigation = await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + ville.Idpays);
             ModelState.Remove("IdpaysNavigation");
             ModelState.Remove("ListPays");
             if (ModelState.IsValid)
             {
-                using (var httpClient = new HttpClient())
-                {
-
-                    using (var response = await httpClient.PostAsJsonAsync("https://localhost:7204/api/Loueur/PostVille/", ville))
-                    {
-
-
-                        if (response.IsSuccessStatusCode)
-                        {
-
-                            return RedirectToAction(nameof(AfficheVille));
-
-                        }
-
-
-                    }
-
-                }
+                await PostRequest("https://localhost:7204/api/Loueur/PostVille/", ville);
             }
-
-            var errors = ModelState.Values.SelectMany(v => v.Errors);
-            
-            return View(ville);
+            return RedirectToAction(nameof(AfficheVille));         
         }
-        public async Task<IActionResult> EditVille(int? id)
+        public async Task<IActionResult> EditVille(int? id)//OK Antoine
         {
             if (id == null)
             {
                 return NotFound();
             }
-            using (var httpClient = new HttpClient())
-            {
-
-                using (var response = await httpClient.GetAsync("https://localhost:7204/api/Loueur/GetVilleByID/" + id))
-                {
-
-
-                    if (response.IsSuccessStatusCode)
-                    {
-
-                        string apiResponse = await response.Content.ReadAsStringAsync();
-                        Ville lst = JsonConvert.DeserializeObject<Ville>(apiResponse);
-                        lst.IdpaysNavigation = await GetPaysById(lst.Idpays);
-                        return View(lst);
-                    }
-
-
-                }
-
-            }
-            return RedirectToAction(nameof(AfficheVille));
+            return View(await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + id));
         }
-        public async Task<IActionResult> UptadeVille([Bind("Idville, Idpays, Nom")] Ville ville)
+        public async Task<IActionResult> UptadeVille([Bind("Idville, Idpays, Nom")] Ville ville)//OK Antoine
         {
-
-            using (var httpClient = new HttpClient())
-            {
-                ville.IdpaysNavigation = await GetPaysById(ville.Idpays);
-                ModelState.Remove("IdpaysNavigation");
-                ModelState.Remove("ListPays");
-                using (var response = await httpClient.PutAsJsonAsync("https://localhost:7204/api/Loueur/UptadeVille/", ville))
-                {
-
-
-                    if (response.IsSuccessStatusCode)
-                    {
-
-                        return RedirectToAction(nameof(AfficheVille));
-
-                    }
-
-
-                }
-                var errors = ModelState.Values.SelectMany(v => v.Errors);
-
-
-            }
-            return RedirectToAction(nameof(AfficheVille));
+             ville.IdpaysNavigation = await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + ville.Idpays);
+             ModelState.Remove("IdpaysNavigation");
+             ModelState.Remove("ListPays");
+             if (ModelState.IsValid)
+             {
+                await PutRequest("https://localhost:7204/api/Loueur/UptadeVille/", ville);
+             }
+             return RedirectToAction(nameof(AfficheVille));            
         }
-        public async Task<IActionResult> deleteVille(int? id)
+        public async Task<IActionResult> deleteVille(int? id)//OK Ville
         {
             if (id == null)
             {
                 return NotFound();
             }
-            using (var httpClient = new HttpClient())
-            {
-                
-                using (var response = await httpClient.GetAsync("https://localhost:7204/api/Loueur/GetVilleByID/" + id))
-                {
-
-
-                    if (response.IsSuccessStatusCode)
-                    {
-
-                        string apiResponse = await response.Content.ReadAsStringAsync();
-                        Ville lst = JsonConvert.DeserializeObject<Ville>(apiResponse);
-                        return View(lst);
-                    }
-
-
-                }
-
-            }
-            return RedirectToAction(nameof(AfficheVille));
+            return View(await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + id));
         }
         [HttpPost, ActionName("deleteVille")]
         public async Task<ActionResult> removeVille(int id)
         {
-
-
-            using (var httpClient = new HttpClient())
-            {
-
-                using (var response = await httpClient.DeleteAsync("https://localhost:7204/api/Loueur/DeleteVille/" + id))
-                {
-
-
-                    if (response.IsSuccessStatusCode)
-                    {
-
-                        return RedirectToAction(nameof(AfficheVille));
-                    }
-
-
-                }
-
-            }
+            await DeleteRequest("https://localhost:7204/api/Loueur/DeleteVille/" + id);
             return RedirectToAction(nameof(AfficheVille));
         }
     }
