@@ -43,4 +43,4 @@ MVC : Get = Show/
       Delete =    Erase
       ex: CreateVille a definir plus tard
 
-API/BL/DAL : SelectAll.../SelectByID/Create.../Uptade.../Delete...
+API/BL/DAL : SelectAll.../SelectByID/Insert.../Uptade.../Delete... => Je Propose Insert à la place de Create car ça évite de confondre avec les view "Create" du MVC et ça colle au vocabulaire SQL.

@@ -15,18 +15,24 @@ namespace BusinessLayer
         {           
             return dalville.SelectAllVille();
         }
-        public void CreateVille(Ville ville)//OK Antoine
-        {
-            dalville.CreateVille(ville);
-        }
+        
         public Ville SelectVilleByID(int id)//OK Antoine
         {            
             return dalville.SelectByID(id);
         }
+
+        public void InsertOrUpdateVille(Ville ville)//OK Antoine
+        {
+            dalville.InsertOrUpdateVille(ville);
+        }
+
+        /* // A retirer, doublon
         public void UptadeVille(Ville ville)//OK Antoine
         {
-            dalville.UptadeVille(ville);
+            dalville.InsertOrUpdateVille(ville);
         }
+        */
+
         public void DeleteVille(int id)//OK Antoine
         {
             dalville.DeleteVille(id);

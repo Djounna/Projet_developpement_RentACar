@@ -56,7 +56,7 @@ namespace API_RAC.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult UptadeNotoriete(Notoriete notoriete) //OK Antoine
         {
-            blNotoriete.UptadeNotoriete(notoriete);
+            blNotoriete.InsertOrUpdateNotoriete(notoriete);
             return Ok();
         }
 
@@ -66,15 +66,24 @@ namespace API_RAC.Controllers
 
         public ActionResult PostNotoriete(Notoriete notoriete)//OK Antoine
         {
-            blNotoriete.CreateNotoriete(notoriete);
+            blNotoriete.InsertOrUpdateNotoriete(notoriete);
             return Ok();
         }
 
+        /* // A remplacer.
         [Route("DeleteNotoriete/{id}")]
         [HttpDelete]
         public ActionResult DeleteNotoriete(int id)//OK Antoine
         {
             blNotoriete.DeleteNotoriete(id);
+            return Ok();
+        }
+        */
+         [Route("DeleteNotoriete/{id}")]
+        [HttpDelete]
+        public ActionResult DeleteNotoriete(int id)//OK Corentin, à valider par Antoine
+        {
+            blNotoriete.DeleteNotoriete(blNotoriete.GetNotorieteByID(id));
             return Ok();
         }
 
@@ -112,7 +121,7 @@ namespace API_RAC.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public  ActionResult UptadePays(Pays pays) //Ok Antoine
         {
-            blpays.UptadePays(pays);
+            blpays.InsertOrUpdatePays(pays);
             return Ok();
         }
        
@@ -122,7 +131,7 @@ namespace API_RAC.Controllers
    
         public ActionResult PostPays(Pays pays)//OK Antoine
         {         
-            blpays.CreatePays(pays);
+            blpays.InsertOrUpdatePays(pays);
             return Ok();         
         }
 
@@ -158,7 +167,7 @@ namespace API_RAC.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult UptadePays(Ville ville)//OK Antoine
         {     
-            blville.UptadeVille(ville);
+            blville.InsertOrUpdateVille(ville);
             return Ok();
         }
 
@@ -168,7 +177,7 @@ namespace API_RAC.Controllers
 
         public ActionResult PostVille(Ville ville)//OK Antoine
         {
-            blville.CreateVille(ville);
+            blville.InsertOrUpdateVille(ville);
             return Ok();
         }
 

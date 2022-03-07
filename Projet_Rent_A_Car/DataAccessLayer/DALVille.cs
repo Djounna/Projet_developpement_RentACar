@@ -9,13 +9,14 @@ namespace DataAccessLayer
 {
     public class DALVille
     {
-        private ProjetSGDBContext dbcontext = new();
+        // private ProjetSGDBContext dbcontext = new();
+        private DalCommun dal = new DalCommun();
         public List<Ville> SelectAllVille() //Ok Antoine
         {
             List<Ville> queryResult = new();
             try
             {                              
-                queryResult.AddRange(dbcontext.Ville);
+                queryResult.AddRange(dal.dbcontext.Ville);
             }
             catch (Exception ex)
             {
@@ -24,10 +25,25 @@ namespace DataAccessLayer
             return queryResult;
         }  
 
+        
+        public Ville SelectByID(int id) //Ok Antoine
+        {            
+            try
+            {                 
+                return dal.dbcontext.Ville.Find(id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        /* // A remplacer
         public async void CreateVille(Ville ville)  //Ok Antoine
         {
             try
-            {              
+            {
                 dbcontext.Update(ville);
                 var oResponse = await dbcontext.SaveChangesAsync();
             }
@@ -36,18 +52,6 @@ namespace DataAccessLayer
                 throw ex;
             }
         }
-        public Ville SelectByID(int id) //Ok Antoine
-        {            
-            try
-            {                 
-                return dbcontext.Ville.Find(id);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
         public async void UptadeVille(Ville ville) //Ok Antoine
         {
             try
@@ -60,13 +64,26 @@ namespace DataAccessLayer
                 throw ex;
             }
         }
+        */
+
+        public async void InsertOrUpdateVille(Ville ville) //Ok Corentin, à valider par Antoine
+        {
+            try
+            {
+                dal.InsertOrUpdate(ville);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         public async void DeleteVille(int id) //Ok Antoine
         {
             try
             {              
-                dbcontext.Remove(dbcontext.Ville.Find(id));
-                var oResponse = await dbcontext.SaveChangesAsync();
+                dal.dbcontext.Remove(dal.dbcontext.Ville.Find(id));
+                var oResponse = await dal.dbcontext.SaveChangesAsync();
             }
             catch (Exception ex)
             {

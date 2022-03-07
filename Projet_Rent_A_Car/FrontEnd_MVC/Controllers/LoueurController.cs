@@ -65,6 +65,7 @@ namespace FrontEnd_MVC.Controllers
                 return Ok();
             }
         }
+        /* // En attente
         private async Task<ActionResult> DeleteRequest(string chemin)
         {
             using (var httpClient = new HttpClient())
@@ -79,6 +80,25 @@ namespace FrontEnd_MVC.Controllers
             }
             return Ok();
         }
+        */
+        private async Task<ActionResult> DeleteRequest(string chemin) // Corentin en cours, Delete avec un objet et non un ID
+        {
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.DeleteAsync(chemin))
+                {
+                    if (response.IsSuccessStatusCode)
+                    {
+                        return Ok();
+                    }
+                }
+            }
+            return Ok();
+        }
+
+
+
+
         private async Task<IEnumerable<SelectListItem>> GetEnumerableList(string chemin)
         {
             using (var httpClient = new HttpClient())
@@ -172,13 +192,22 @@ namespace FrontEnd_MVC.Controllers
             }         
                 return View(await GetRequestUnique<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteByID/" + id));             
         }
-
+        /* En attente
         [HttpPost, ActionName("deleteNotoriete")]
         public async Task<ActionResult> removeNotoriete(int id)//OK Antoine
         {
                  await DeleteRequest("https://localhost:7204/api/Loueur/DeleteNotoriete/" + id);
                  return RedirectToAction(nameof(AfficheNotorieteActive));
         }
+        */
+        [HttpPost, ActionName("deleteNotoriete")]  // Corentin, en cours
+        public async Task<ActionResult> removeNotoriete(int id)//OK Antoine
+        {
+            await DeleteRequest("https://localhost:7204/api/Loueur/DeleteNotoriete/" + id);
+            return RedirectToAction(nameof(AfficheNotorieteActive));
+        }
+
+
 
         // ******************************************************** PAYS ****************************************************************************************
         [HttpGet]

@@ -41,21 +41,34 @@ namespace BusinessLayer
             }
             return lstActif;
         }
-        public void CreateNotoriete(Notoriete notoriete)//ok Antoine
-        {
-            dalNotoriete.CreateNotoriete(notoriete);
-        }
+
         public Notoriete GetNotorieteByID(int id)//ok Antoine
         {
             return dalNotoriete.SelectByID(id);
         }
+
+        public void InsertOrUpdateNotoriete(Notoriete notoriete)//ok Antoine
+        {
+            dalNotoriete.InsertOrUpdateNotoriete(notoriete);
+        }
+
+        /* // Doublon
         public void UptadeNotoriete(Notoriete notoriete)//ok Antoine
         {
-            dalNotoriete.UptadeNotoriete(notoriete);
+            dalNotoriete.InsertOrUpdateNotoriete(notoriete);
         }
+        */
+
+        /* // En attente
         public void DeleteNotoriete(int id)//ok Antoine
         {
             dalNotoriete.DeleteNotoriete(id);
+        }
+        */
+
+        public void DeleteNotoriete(Notoriete notoriete)//ok Corentin, à valider par Antoine
+        {
+            dalNotoriete.DeleteNotoriete(notoriete);
         }
     }
 }

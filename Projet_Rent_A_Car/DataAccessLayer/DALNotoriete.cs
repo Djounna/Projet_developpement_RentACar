@@ -9,13 +9,13 @@ namespace DataAccessLayer
 {
     public class DALNotoriete
     {
-        private ProjetSGDBContext dbcontext = new ProjetSGDBContext();
+        private DalCommun dal = new DalCommun();
         public List<Notoriete> SelectAllNotoriete() //Ok Antoine
         {
             List<Notoriete> queryResult = new();
             try
             {
-                queryResult.AddRange(dbcontext.Notoriete);
+                queryResult.AddRange(dal.dbcontext.Notoriete);
             }
             catch (Exception ex)
             {
@@ -24,23 +24,12 @@ namespace DataAccessLayer
             return queryResult;
         }
 
-        public async void CreateNotoriete(Notoriete notoriete) //Ok Antoine
-        {
-            try
-            {
-                dbcontext.Update(notoriete);
-                var oResponse = await dbcontext.SaveChangesAsync();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+        
         public Notoriete SelectByID(int id)//Ok Antoine
         {
             try
             {               
-                return dbcontext.Notoriete.Find(id);
+                return dal.dbcontext.Notoriete.Find(id);
             }
             catch (Exception ex)
             {
@@ -48,7 +37,32 @@ namespace DataAccessLayer
             }
         }
 
-        public async void UptadeNotoriete(Notoriete notoriete)//Ok Antoine
+        public async void InsertOrUpdateNotoriete(Notoriete notoriete) //Ok Corentin
+        {
+            try
+            {
+                dal.InsertOrUpdate(notoriete);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+            /* // A remplacer
+            public async void CreateNotoriete(Notoriete notoriete) //Ok Antoine
+            {
+                try
+                {
+                    dbcontext.Update(notoriete);
+                    var oResponse = await dbcontext.SaveChangesAsync();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+            public async void UptadeNotoriete(Notoriete notoriete)//Ok Antoine
         {
             try
             {
@@ -60,19 +74,35 @@ namespace DataAccessLayer
                 throw ex;
             }
         }
+            */
 
+
+            /* EN attente, voir pour remplacer
         public async void DeleteNotoriete(int id)//Ok Antoine
         {
             try
             {
-                dbcontext.Remove(dbcontext.Notoriete.Find(id));
-                var oResponse = await dbcontext.SaveChangesAsync();
+                dal.dbcontext.Remove(dal.dbcontext.Notoriete.Find(id));
+                var oResponse = await dal.dbcontext.SaveChangesAsync();
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
+        */
+        public async void DeleteNotoriete(Notoriete notoriete)//Ok Corentin, à valider par Antoine
+        {
+            try
+            {
+                dal.Delete(notoriete);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
     }
 
 }
