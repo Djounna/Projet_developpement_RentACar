@@ -21,7 +21,7 @@ namespace BusinessLayer
             return dalpays.SelectByID(id);
         }
 
-        public void InsertOrUpdatePays(Pays pays)//Ok Antoine
+        public void InsertOrUpdatePays(Pays pays)//Ok Corentin, à valider par Antoine
         {
             dalpays.InsertOrUpdatePays(pays);
         }

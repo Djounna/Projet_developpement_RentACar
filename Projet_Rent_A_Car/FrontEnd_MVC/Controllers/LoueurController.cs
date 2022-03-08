@@ -200,7 +200,7 @@ namespace FrontEnd_MVC.Controllers
                  return RedirectToAction(nameof(AfficheNotorieteActive));
         }
         */
-        [HttpPost, ActionName("deleteNotoriete")]  // Corentin, en cours
+        [HttpPost, ActionName("deleteNotoriete")]  // Corentin, en cours, à voir avec ANtoine
         public async Task<ActionResult> removeNotoriete(int id)//OK Antoine
         {
             await DeleteRequest("https://localhost:7204/api/Loueur/DeleteNotoriete/" + id);

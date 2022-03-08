@@ -47,7 +47,7 @@ namespace BusinessLayer
             return dalNotoriete.SelectByID(id);
         }
 
-        public void InsertOrUpdateNotoriete(Notoriete notoriete)//ok Antoine
+        public void InsertOrUpdateNotoriete(Notoriete notoriete)//ok Corentin, à valider par Antoine
         {
             dalNotoriete.InsertOrUpdateNotoriete(notoriete);
         }
