@@ -29,16 +29,8 @@ namespace FrontEnd_MVC.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        /* EN cours Corentin, test multiples views
-        public ActionResult IndexViewModel()
-        {
-            ViewBag.Message = "Welcome to my demo!";
-            ViewModel mymodel = new ViewModel();
-            mymodel.Notoriete = GetTeachers();
-            mymodel.Pays = GetAllPays();
-            return View(mymodel);
-        }
-        */
+     
+        
 
     }
 }
