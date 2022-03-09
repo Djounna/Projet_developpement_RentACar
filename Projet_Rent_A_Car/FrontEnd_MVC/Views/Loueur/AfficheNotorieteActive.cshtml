@@ -20,10 +20,7 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.CoefficientMultiplicateur)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Inactif)
-            </th>
+            </th>       
             <th></th>
         </tr>
     </thead>
@@ -38,9 +35,7 @@
                 @Html.DisplayFor(modelItem => item.CoefficientMultiplicateur)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Inactif)
-            </td>
-            <td>
+                <a asp-action="DesactiverNotoriete" asp-route-id="@item.Idnotoriete">Désactiver</a>
                 <a asp-action="EditNotoriete" asp-route-id="@item.Idnotoriete">Edit</a>
                 <a asp-action="deleteNotoriete" asp-route-id="@item.Idnotoriete">Delete</a>
             </td>

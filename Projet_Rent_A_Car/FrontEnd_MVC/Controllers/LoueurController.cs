@@ -17,10 +17,10 @@ namespace FrontEnd_MVC.Controllers
         {
             using (var httpClient = new HttpClient())
             {
-                using (var response = await(httpClient.GetAsync(chemin)))
+                using (var response = await (httpClient.GetAsync(chemin)))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    return JsonConvert.DeserializeObject<List<T>>(apiResponse);                  
+                    return JsonConvert.DeserializeObject<List<T>>(apiResponse);
                 }
             }
         }
@@ -33,7 +33,7 @@ namespace FrontEnd_MVC.Controllers
 
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     return JsonConvert.DeserializeObject<T>(apiResponse);
-                   
+
                 }
             }
         }
@@ -47,7 +47,7 @@ namespace FrontEnd_MVC.Controllers
                     {
                         return Ok();
                     }
-                }             
+                }
             }
             return Ok();
         }
@@ -115,7 +115,7 @@ namespace FrontEnd_MVC.Controllers
         public IActionResult HomeLoueur()
         {
             return View();
-        }     
+        }
 
         // ******************************************************** Notoriete**************************************************************************************
         [HttpGet]
@@ -128,7 +128,7 @@ namespace FrontEnd_MVC.Controllers
             catch (Exception ex)
             {
                 throw ex;
-            }            
+            }
         }
         [HttpGet]
         public async Task<ActionResult> AfficheNotorieteActive()//OK Antoine
@@ -174,7 +174,7 @@ namespace FrontEnd_MVC.Controllers
             {
                 return NotFound();
             }
-            return View(await GetRequestUnique<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteByID/" + id));         
+            return View(await GetRequestUnique<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteByID/" + id));
         }
         public async Task<IActionResult> UptadeNotoriete([Bind("Idnotoriete,Libelle,CoefficientMultiplicateur,Inactif")] Notoriete notoriete)//OK Antoine
         {
@@ -182,6 +182,13 @@ namespace FrontEnd_MVC.Controllers
             {
                 await PutRequest("https://localhost:7204/api/Loueur/UptadeNotoriete/", notoriete);
             }
+            return RedirectToAction(nameof(AfficheNotorieteActive));
+        }
+
+        public async Task<IActionResult> DesactiverNotoriete([Bind("Idnotoriete,Libelle,CoefficientMultiplicateur,Inactif")] Notoriete notoriete)
+        {
+            notoriete.Inactif = true;
+            UptadeNotoriete(notoriete);
             return RedirectToAction(nameof(AfficheNotorieteActive));
         }
         public async Task<IActionResult> deleteNotoriete(int? id)//OK Antoine
