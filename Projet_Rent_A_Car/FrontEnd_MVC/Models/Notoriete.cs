@@ -12,8 +12,6 @@ namespace FrontEnd_MVC.Models
 
         public int Idnotoriete { get; set; }
         public string? Libelle { get; set; }
-
-        
         public decimal? CoefficientMultiplicateur { get; set; }
         public bool? Inactif { get; set; }
 

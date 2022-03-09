@@ -185,10 +185,13 @@ namespace FrontEnd_MVC.Controllers
             return RedirectToAction(nameof(AfficheNotorieteActive));
         }
 
-        public async Task<IActionResult> DesactiverNotoriete([Bind("Idnotoriete,Libelle,CoefficientMultiplicateur,Inactif")] Notoriete notoriete)
+        [HttpPost, ActionName("Disable")]
+        public async Task<ActionResult> DesactiverNotoriete(int id)
         {
-            notoriete.Inactif = true;
-            UptadeNotoriete(notoriete);
+            Notoriete not = await GetRequestUnique<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteByID/" + id);
+            not.Inactif = true;
+
+            await UptadeNotoriete(not);
             return RedirectToAction(nameof(AfficheNotorieteActive));
         }
         public async Task<IActionResult> deleteNotoriete(int? id)//OK Antoine
@@ -198,6 +201,12 @@ namespace FrontEnd_MVC.Controllers
                 return NotFound();
             }         
                 return View(await GetRequestUnique<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteByID/" + id));             
+        }
+        // GET
+        public async Task<IActionResult> Disable(int? id)
+        { 
+            var notoriety = await GetRequestUnique<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteByID/" + id);
+            return View(notoriety);
         }
         /* En attente
         [HttpPost, ActionName("deleteNotoriete")]
@@ -313,7 +322,8 @@ namespace FrontEnd_MVC.Controllers
             {
                 await PostRequest("https://localhost:7204/api/Loueur/PostVille/", ville);
             }
-            return RedirectToAction(nameof(AfficheVille));         
+            Thread.Sleep(5000);
+            return RedirectToAction(nameof(AfficheVille));     
         }
         public async Task<IActionResult> EditVille(int? id)//OK Antoine
         {
@@ -332,6 +342,7 @@ namespace FrontEnd_MVC.Controllers
              {
                 await PutRequest("https://localhost:7204/api/Loueur/UptadeVille/", ville);
              }
+            
              return RedirectToAction(nameof(AfficheVille));            
         }
         public async Task<IActionResult> deleteVille(int? id)//OK Ville

@@ -4,12 +4,14 @@
     ViewData["Title"] = "AffichePays";
 }
 
+<link href="~/lib/datatables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+
 <h1>AffichePays</h1>
 
 <p>
-    <a asp-controller="Loueur" asp-action="CreatePays">Create New</a> <a asp-action="HomeLoueur">Back to main Menu</a>
+    <a class=" btn btn-primary" asp-controller="Loueur" asp-action="CreatePays">Create New</a> <a class="btn btn-success" asp-action="HomeLoueur">Back to main Menu</a>
 </p>
-<table class="table">
+<table id="datatable" class="table">
     <thead>
         <tr>
             <th>
@@ -38,5 +40,15 @@
 }
     </tbody>
 </table>
+
+
+
+@section Scripts
+{
+<script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
+<script src="~/lib/datatables/js/dataTables.bootstrap4.min.js"></script>
+<script src="~/js/datatable.js"></script>
+}
+
 
 
