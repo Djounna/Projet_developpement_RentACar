@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Objects.DataClasses;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,38 @@ namespace DataAccessLayer
         {
             dbcontext = new ProjetSGDBContext();
         }
-        public async void InsertOrUpdate(object o)   // En cours Corentin, ok actuellement, à valider par Antoine
+
+        public List<T> SelectAll<T>() where T : class // OK Corentin, à valider par Antoine
+        {
+            List<T> queryResult = new List<T>();
+            try
+            {
+                queryResult = dbcontext.Set<T>().ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return queryResult;
+        }
+
+        public T SelectById<T>(int id) where T : class   // OK Corentin, à valider par Antoine
+        {
+
+            T queryResult;
+             try
+            {
+                queryResult = dbcontext.Set<T>().Find(id);
+             }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        return queryResult;
+
+        }  
+
+        public async void InsertOrUpdate(object o)   // Ok Corentin à valider par Antoine
         {
             try
             {
@@ -26,7 +58,7 @@ namespace DataAccessLayer
             }
         }
         
-        public async void Delete(object o) // En cours Corentin,o ok actuellement, à valider par ANtoine
+        public async void Delete(object o) // Ok Corentin, à valider par Antoine
         {
             try
             {
@@ -38,8 +70,5 @@ namespace DataAccessLayer
                 throw ex;
             }
         }
-        
-
-
     }
 }

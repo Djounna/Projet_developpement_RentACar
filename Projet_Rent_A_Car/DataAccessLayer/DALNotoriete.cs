@@ -10,32 +10,66 @@ namespace DataAccessLayer
     public class DALNotoriete
     {
         private DalCommun dal = new DalCommun();
-        public List<Notoriete> SelectAllNotoriete() //Ok Antoine
+
+        
+        //public List<Notoriete> SelectAllNotoriete() //Ok Antoine
+        //{
+        //    List<Notoriete> queryResult = new();
+        //    try
+        //    {
+        //        queryResult.AddRange(dal.dbcontext.Notoriete);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //    return queryResult;
+        //}
+        
+        
+        public List<Notoriete> SelectAllNotoriete() 
         {
             List<Notoriete> queryResult = new();
             try
             {
-                queryResult.AddRange(dal.dbcontext.Notoriete);
+                queryResult = dal.SelectAll<Notoriete>();
             }
             catch (Exception ex)
             {
                 throw ex;
             }
             return queryResult;
-        }
 
+        }
         
-        public Notoriete SelectByID(int id)//Ok Antoine
+
+        //public Notoriete SelectByID(int id)//Ok Antoine
+        //{
+        //    try
+        //    {               
+        //        return dal.dbcontext.Notoriete.Find(id);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
+
+
+
+        public Notoriete SelectById(int id)
         {
             try
-            {               
-                return dal.dbcontext.Notoriete.Find(id);
+            {
+                return dal.SelectById<Notoriete>(id);
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 throw ex;
             }
+            
         }
+
 
         public async void InsertOrUpdateNotoriete(Notoriete notoriete) //Ok Corentin
         {

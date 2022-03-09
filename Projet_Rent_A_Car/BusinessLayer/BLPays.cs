@@ -7,10 +7,18 @@ namespace BusinessLayer
     public class BLPays
     {
         private DALPays dalpays = new();
-        public List<Pays> SelectAllPays() //Ok Antoine
+        //public List<Pays> SelectAllPays() //Ok Antoine
+        //{
+        //    return dalpays.SelectAllPays();
+        //}
+
+        private DalCommun dal = new();
+        public List<Pays> SelectAllPays() // Corentin
         {
-            return dalpays.SelectAllPays();
+            return dal.SelectAll<Pays>();
         }
+
+
         public IEnumerable<SelectListItem> SelectAllPaysInList()//Ok Antoine
         {          
             return dalpays.SelectAllPaysInList();

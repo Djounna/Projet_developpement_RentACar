@@ -11,10 +11,44 @@ namespace BusinessLayer
     public class BLNotoriete
     {
         DALNotoriete dalNotoriete = new();
-        public List<Notoriete> SelectAllNotoriete()//ok Antoine
-        {            
-            return dalNotoriete.SelectAllNotoriete();
+        //public List<Notoriete> SelectAllNotoriete()//ok Antoine
+        //{            
+        //    return dalNotoriete.SelectAllNotoriete();
+        //}
+
+        //public Notoriete GetNotorieteByID(int id)//ok Antoine
+        //{
+        //    return dalNotoriete.SelectById(id);
+        //}
+
+        //public void InsertOrUpdateNotoriete(Notoriete notoriete)//ok  Antoine
+        //{
+        //    dalNotoriete.InsertOrUpdateNotoriete(notoriete);
+        //}
+
+        //public void DeleteNotoriete(Notoriete notoriete)//ok  Antoine
+        //{
+        //    dalNotoriete.DeleteNotoriete(notoriete);
+        //}
+
+        DalCommun dal = new();
+        public List<Notoriete> SelectAllNotoriete()// Ok Corentin, à valider par Antoine
+        {
+            return dal.SelectAll<Notoriete>();
         }
+        public Notoriete GetNotorieteByID(int id)//Ok Corentin, à valider par Antoine
+        {
+            return dal.SelectById<Notoriete>(id);
+        }
+        public void InsertOrUpdateNotoriete(Notoriete notoriete)//ok Corentin, à valider par Antoine
+        {
+            dal.InsertOrUpdate(notoriete);
+        }
+        public void DeleteNotoriete(Notoriete notoriete)//ok Corentin, à valider par Antoine
+        {
+            dal.Delete(notoriete);
+        }
+
         public List<Notoriete> SelectAllNotorieteInactif() //ok Antoine
         {          
             List<Notoriete> lstInactif = new List<Notoriete>();
@@ -42,15 +76,9 @@ namespace BusinessLayer
             return lstActif;
         }
 
-        public Notoriete GetNotorieteByID(int id)//ok Antoine
-        {
-            return dalNotoriete.SelectByID(id);
-        }
+        
 
-        public void InsertOrUpdateNotoriete(Notoriete notoriete)//ok Corentin, à valider par Antoine
-        {
-            dalNotoriete.InsertOrUpdateNotoriete(notoriete);
-        }
+        
 
         /* // Doublon
         public void UptadeNotoriete(Notoriete notoriete)//ok Antoine
@@ -66,9 +94,6 @@ namespace BusinessLayer
         }
         */
 
-        public void DeleteNotoriete(Notoriete notoriete)//ok Corentin, à valider par Antoine
-        {
-            dalNotoriete.DeleteNotoriete(notoriete);
-        }
+        
     }
 }
