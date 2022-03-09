@@ -8,7 +8,7 @@ namespace DataAccessLayer
 {
     public class DalCommun
     {
-        public ProjetSGDBContext dbcontext = new ProjetSGDBContext();
+        public ProjetSGDBContext dbcontext; // mettre en private et faire un get ? Antoine ?
         public DalCommun()
         {
             dbcontext = new ProjetSGDBContext();
@@ -26,7 +26,7 @@ namespace DataAccessLayer
             }
         }
         
-        public async void Delete(object o) // En cours Corentin, ...
+        public async void Delete(object o) // En cours Corentin,o ok actuellement, à valider par ANtoine
         {
             try
             {
