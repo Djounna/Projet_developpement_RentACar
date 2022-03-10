@@ -4,13 +4,13 @@
 @{
     ViewData["Title"] = "AfficheVille";
 }
-
-<h1>AfficheVille</h1>
+<link href="~/lib/datatables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+<h1>Ensemble des villes</h1>
 
 <p>
-    <a asp-action="CreateVille">Create New</a>
+    <a class="btn btn-primary" asp-action="CreateVille">Create New</a>
 </p>
-<table class="table">
+<table id="datatable" class="table">
     <thead>
         <tr>
            
@@ -20,7 +20,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Nom)
             </th>
-            <th></th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
@@ -41,3 +41,10 @@
 }
     </tbody>
 </table>
+
+@section Scripts
+{
+<script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
+<script src="~/lib/datatables/js/dataTables.bootstrap4.min.js"></script>
+<script src="~/js/datatable.js"></script>
+}

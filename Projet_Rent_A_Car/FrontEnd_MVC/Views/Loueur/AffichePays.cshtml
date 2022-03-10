@@ -20,7 +20,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.Nom)
             </th>
-            <th></th>
+            <th>
+                Nombre de Villes dans le pays
+            </th>
+            <th>
+                Action
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -32,6 +37,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Nom)
             </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ville.Count)
+            </td>
             <td>               
                 <a asp-action="EditPays" asp-route-id="@item.Idpays">Edit</a>
                 <a asp-action="deletePays" asp-route-id="@item.Idpays">Delete</a>
@@ -42,13 +50,13 @@
 </table>
 
 
-
 @section Scripts
 {
 <script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
 <script src="~/lib/datatables/js/dataTables.bootstrap4.min.js"></script>
 <script src="~/js/datatable.js"></script>
 }
+
 
 
 

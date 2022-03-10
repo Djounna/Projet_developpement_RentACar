@@ -46,28 +46,31 @@ namespace API_RAC.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<Notoriete>> GetNotorieteByID(int id)//OK Antoine
         {
-            return Ok(blNotoriete.GetNotorieteByID(id));
+            return Ok(blNotoriete.SelectNotorieteByID(id));
         }
 
-        [Route("UptadeNotoriete/")]
+        [Route("UpdateNotoriete/")]
         [HttpPut]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult UptadeNotoriete(Notoriete notoriete) //OK Antoine
+        public ActionResult UpdateNotoriete(Notoriete notoriete) //OK Antoine
         {
-            blNotoriete.InsertOrUpdateNotoriete(notoriete);
-            return Ok();
+            if (blNotoriete.InsertOrUpdateNotoriete(notoriete))
+                return Ok();
+            return BadRequest();
         }
 
         [Route("PostNotoriete/")]
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
         public ActionResult PostNotoriete(Notoriete notoriete)//OK Antoine
         {
-            blNotoriete.InsertOrUpdateNotoriete(notoriete);
-            return Ok();
+            if (blNotoriete.InsertOrUpdateNotoriete(notoriete))
+                return Ok();
+            return BadRequest();
         }
 
         /* // A remplacer.
@@ -83,7 +86,7 @@ namespace API_RAC.Controllers
         [HttpDelete]
         public ActionResult DeleteNotoriete(int id)//OK Corentin, à valider par Antoine
         {
-            blNotoriete.DeleteNotoriete(blNotoriete.GetNotorieteByID(id));
+            blNotoriete.DeleteNotoriete(id);
             return Ok();
         }
 
@@ -104,7 +107,7 @@ namespace API_RAC.Controllers
         public async Task<ActionResult<Pays>> GetPaysByID(int id)
         {
             return Ok(blpays.SelectPaysByID(id));
-        }//OK Antoine
+        }
 
         [Route("GetAllPaysInList")]
         [HttpGet]
@@ -137,11 +140,32 @@ namespace API_RAC.Controllers
 
         [Route("DeletePays/{id}")]
         [HttpDelete]
-        public ActionResult DeletePays(int id) //OK Antoine
+        public ActionResult DeletePays(int id)
         {
-            blpays.DeletePays(id);
-            return Ok();
+            bool estLie=false;
+            List<Ville> ville = blville.SelectAllVille();
+            foreach ( Ville v in ville)
+            {
+                if (v.Idpays == id) 
+                    estLie = true;
+            }
+
+            if (estLie == false) { 
+                blpays.DeletePays(id);
+                return Ok();
+            }
+            return BadRequest();
         }
+
+        [Route("GetAllVilleByPays/{id}")]
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+
+        public ActionResult<List<Ville>> GetAllVilleByPays(int id)//OK Antoine
+        {
+            return Ok(blpays.SelectVilleByPays(id));
+        }
+
 
         // *********************************************************************** Ville *************************************************************************
         [Route("GetVille/")]
@@ -184,7 +208,7 @@ namespace API_RAC.Controllers
         [Route("DeleteVille/{id}")]
         [HttpDelete]
         public ActionResult DeleteVille(int id)//OK Antoine
-        {      
+        {     
             blville.DeleteVille(id);
             return Ok();
         }

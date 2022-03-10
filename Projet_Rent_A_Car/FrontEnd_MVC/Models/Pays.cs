@@ -14,10 +14,6 @@ namespace FrontEnd_MVC.Models
         public int Idpays { get; set; }
 
         [Required(ErrorMessage = "This field is mandatory")]
-        [Range(0, 150, ErrorMessage = "This field should have an integer between 0 and 150")]
-        public int ReferencePrix { get; set; }
-
-        [Required(ErrorMessage = "This field is mandatory")]
         [MaxLength(50, ErrorMessage = "this field shouldn'thave more than 50 character")]
         public string Nom { get; set; } = null!;
 

@@ -3,15 +3,16 @@
 @{
     ViewData["Title"] = "AfficheNotorieteActive";
 }
+<link href="~/lib/datatables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
 
-<h1>AfficheNotorieteActive</h1>
+<h1>Notoriétés Actives</h1>
 
-<p>
-    <a asp-action="CreateNotoriete">Create New</a></p>
- <p>   <a asp-action="AfficheNotorieteInactive">Voir toutes les Notoriétés inactives</a></p>
-  <p>  <a asp-action="AfficheNotoriete">Voir toutes les Notoriétés</a></p>
 
-<table class="table">
+    <a class=" btn btn-primary" asp-action="CreateNotoriete">Create New</a>
+   <a class="btn btn-warning" asp-action="AfficheNotorieteInactive">Voir toutes les Notoriétés inactives</a>
+    <a class="btn btn-success" asp-action="AfficheNotoriete">Voir toutes les Notoriétés</a>
+
+<table id="datatable" class="table">
     <thead>
         <tr>
           
@@ -21,7 +22,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.CoefficientMultiplicateur)
             </th>       
-            <th></th>
+           <th>
+               Action
+           </th>
         </tr>
     </thead>
     <tbody>
@@ -34,12 +37,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.CoefficientMultiplicateur)
             </td>
-             <td>
-                @Html.DisplayFor(modelItem => item.Idnotoriete)
-            </td>
             <td>
-
-
                <a asp-action="Disable" asp-route-id="@item.Idnotoriete">Désactiver</a>
                 <a asp-action="EditNotoriete" asp-route-id="@item.Idnotoriete">Edit</a>
                 <a asp-action="deleteNotoriete" asp-route-id="@item.Idnotoriete">Delete</a>
@@ -48,3 +46,11 @@
 }
     </tbody>
 </table>
+
+
+@section Scripts
+{
+<script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
+<script src="~/lib/datatables/js/dataTables.bootstrap4.min.js"></script>
+<script src="~/js/datatable.js"></script>
+}

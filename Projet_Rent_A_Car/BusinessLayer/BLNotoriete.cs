@@ -9,50 +9,42 @@ using System.Threading.Tasks;
 namespace BusinessLayer
 {
     public class BLNotoriete
-    {
-        DALNotoriete dalNotoriete = new();
-        //public List<Notoriete> SelectAllNotoriete()//ok Antoine
-        //{            
-        //    return dalNotoriete.SelectAllNotoriete();
-        //}
-
-        //public Notoriete GetNotorieteByID(int id)//ok Antoine
-        //{
-        //    return dalNotoriete.SelectById(id);
-        //}
-
-        //public void InsertOrUpdateNotoriete(Notoriete notoriete)//ok  Antoine
-        //{
-        //    dalNotoriete.InsertOrUpdateNotoriete(notoriete);
-        //}
-
-        //public void DeleteNotoriete(Notoriete notoriete)//ok  Antoine
-        //{
-        //    dalNotoriete.DeleteNotoriete(notoriete);
-        //}
-
+    {     
         DalCommun dal = new();
-        public List<Notoriete> SelectAllNotoriete()// Ok Corentin, à valider par Antoine
+        DALNotoriete dalNotoriete = new();
+
+        private bool AlreadyExist(string nom,int id)
+        {
+            var notoriete = dal.dbcontext.Notoriete.SingleOrDefault(p => p.Libelle==nom && p.Idnotoriete != id);
+            return (notoriete != null);
+        }
+        public List<Notoriete> SelectAllNotoriete()
         {
             return dal.SelectAll<Notoriete>();
         }
-        public Notoriete GetNotorieteByID(int id)//Ok Corentin, à valider par Antoine
+
+        public Notoriete SelectNotorieteByID(int id)
         {
             return dal.SelectById<Notoriete>(id);
         }
-        public void InsertOrUpdateNotoriete(Notoriete notoriete)//ok Corentin, à valider par Antoine
+        public bool InsertOrUpdateNotoriete(Notoriete notoriete)
         {
-            dal.InsertOrUpdate(notoriete);
-        }
-        public void DeleteNotoriete(Notoriete notoriete)//ok Corentin, à valider par Antoine
-        {
-            dal.Delete(notoriete);
+            if (!AlreadyExist(notoriete.Libelle,notoriete.Idnotoriete))
+            {
+                dal.InsertOrUpdate(notoriete);
+                return true;
+            }
+            return false;          
         }
 
-        public List<Notoriete> SelectAllNotorieteInactif() //ok Antoine
+        public void DeleteNotoriete(int id)
+        {
+            dal.Delete(SelectNotorieteByID(id));
+        }
+        public List<Notoriete> SelectAllNotorieteInactif()
         {          
             List<Notoriete> lstInactif = new List<Notoriete>();
-            List<Notoriete> lstNotoriete = dalNotoriete.SelectAllNotoriete();
+            List<Notoriete> lstNotoriete = dal.SelectAll<Notoriete>();
             foreach (Notoriete not in lstNotoriete)
             {
                 if (not.Inactif ==true)
@@ -62,10 +54,10 @@ namespace BusinessLayer
             }
             return lstInactif;
         }
-        public List<Notoriete> SelectAllNotorieteActif()//ok Antoine
+        public List<Notoriete> SelectAllNotorieteActif()
         {           
             List<Notoriete> lstActif = new List<Notoriete>();
-            List<Notoriete> lstNotoriete = dalNotoriete.SelectAllNotoriete();              
+            List<Notoriete> lstNotoriete = dal.SelectAll<Notoriete>();
             foreach (Notoriete not in lstNotoriete)
             {
                 if (not.Inactif == null || not.Inactif == false)
@@ -74,26 +66,6 @@ namespace BusinessLayer
                 }
             }
             return lstActif;
-        }
-
-        
-
-        
-
-        /* // Doublon
-        public void UptadeNotoriete(Notoriete notoriete)//ok Antoine
-        {
-            dalNotoriete.InsertOrUpdateNotoriete(notoriete);
-        }
-        */
-
-        /* // En attente
-        public void DeleteNotoriete(int id)//ok Antoine
-        {
-            dalNotoriete.DeleteNotoriete(id);
-        }
-        */
-
-        
+        }        
     }
 }

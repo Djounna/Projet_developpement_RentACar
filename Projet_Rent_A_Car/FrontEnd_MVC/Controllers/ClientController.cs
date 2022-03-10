@@ -90,7 +90,7 @@ namespace FrontEnd_MVC.Controllers
             return View();
         }
 
-        public async Task<IActionResult> CreateClient()//OK Antoine
+        public IActionResult CreateClient()//OK Antoine
         {
             return View();
         }
@@ -103,7 +103,7 @@ namespace FrontEnd_MVC.Controllers
 
             return View("CheckLogin",client);
         }
-        public async Task<IActionResult> ClientConnection()//OK Antoine
+        public IActionResult ClientConnection()//OK Antoine
         {
             return View();
         }

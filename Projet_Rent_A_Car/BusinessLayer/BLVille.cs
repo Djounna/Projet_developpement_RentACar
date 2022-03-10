@@ -11,33 +11,22 @@ namespace BusinessLayer
     public class BLVille
     {
         private DALVille dalville = new();
-        public List<Ville> SelectAllVille()//OK Antoine
+        private DalCommun dal = new();
+        public List<Ville> SelectAllVille()
         {           
-            return dalville.SelectAllVille();
-        }
-
-
-        
-        public Ville SelectVilleByID(int id)//OK Antoine
+            return dal.SelectAll<Ville>();
+        }        
+        public Ville SelectVilleByID(int id)
         {            
-            return dalville.SelectByID(id);
+            return dal.SelectById<Ville>(id);
         }
-
-        public void InsertOrUpdateVille(Ville ville)//OK Antoine
+        public void InsertOrUpdateVille(Ville ville)
         {
-            dalville.InsertOrUpdateVille(ville);
+            dal.InsertOrUpdate(ville);
         }
-
-        /* // A retirer, doublon
-        public void UptadeVille(Ville ville)//OK Antoine
+        public void DeleteVille(int id)
         {
-            dalville.InsertOrUpdateVille(ville);
-        }
-        */
-
-        public void DeleteVille(int id)//OK Antoine
-        {
-            dalville.DeleteVille(id);
+            dal.Delete(SelectVilleByID(id));
         }
     }
 }

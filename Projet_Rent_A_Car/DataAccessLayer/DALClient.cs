@@ -9,27 +9,13 @@ namespace DataAccessLayer
 {
     public class DALClient
     {
-        private ProjetSGDBContext dbcontext = new ProjetSGDBContext();
-        public Client SelectClientByMail(string mail)//OK Antoine
-        {
-            List<Client> c = new();
-           
+        private DalCommun dal = new();
+        public Client SelectClientByMail(string mail)
+        {          
             try
             {
-               return dbcontext.Client.Where(x => x.Mail == mail).FirstOrDefault();
+               return dal.dbcontext.Client.Where(x => x.Mail == mail).FirstOrDefault();
                           
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-        public async void CreateClient(Client client)//Ok Antoine
-        {
-            try
-            {
-                dbcontext.Update(client);
-                var oResponse = await dbcontext.SaveChangesAsync();
             }
             catch (Exception ex)
             {

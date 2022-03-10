@@ -3,15 +3,16 @@
 @{
     ViewData["Title"] = "AfficheNotoriete";
 }
+<link href="~/lib/datatables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
 
 <h1>AfficheNotoriete</h1>
 
-<p>
-    <a asp-action="CreateNotoriete">Create New</a> 
-    </p>
-    <p><a asp-action="AfficheNotorieteActive">Voir toutes les Notoriétés actives</a></p>
 
-<table class="table">
+    <a class="btn btn-primary" asp-action="CreateNotoriete">Create New</a>    
+    <a class="btn btn-success" asp-action="AfficheNotorieteActive">Voir toutes les Notoriétés actives</a>
+     <a class="btn btn-warning" asp-action="AfficheNotorieteInactive">Voir toutes les Notoriétés inactives</a>
+
+<table id="datatable" class="table">
     <thead>
         <tr>
            
@@ -21,7 +22,10 @@
             <th>
                 @Html.DisplayNameFor(model => model.CoefficientMultiplicateur)
             </th>         
-            <th></th>
+            <th>@Html.DisplayNameFor(model => model.Inactif)</th>
+            <th>
+               Action
+           </th>
         </tr>
     </thead>
     <tbody>
@@ -34,9 +38,12 @@
             <td>
                 @Html.DisplayFor(modelItem => item.CoefficientMultiplicateur)
             </td>
-
             <td>
-                <a asp-action="DesactiverNotoriete" asp-route-id="@item.Idnotoriete">Désactiver</a>
+                @Html.DisplayFor(modelItem => item.Inactif)
+            </td>
+            <td>
+                <a asp-action="Activate" asp-route-id="@item.Idnotoriete">Activer</a>
+                <a asp-action="Disable" asp-route-id="@item.Idnotoriete">Désactiver</a>
                 <a asp-action="EditNotoriete" asp-route-id="@item.Idnotoriete">Edit</a>
                 <a asp-action="deleteNotoriete" asp-route-id="@item.Idnotoriete">Delete</a>
             </td>
@@ -44,3 +51,11 @@
 }
     </tbody>
 </table>
+
+
+@section Scripts
+{
+<script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
+<script src="~/lib/datatables/js/dataTables.bootstrap4.min.js"></script>
+<script src="~/js/datatable.js"></script>
+}

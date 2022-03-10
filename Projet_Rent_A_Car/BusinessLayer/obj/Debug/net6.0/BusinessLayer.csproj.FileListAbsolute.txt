@@ -34,3 +34,5 @@ C:\Users\Corentin\Documents\EPHEC\Projet SGBD\Projet_developpement_RentACar\Proj
 C:\Users\Corentin\Documents\EPHEC\Projet SGBD\Projet_developpement_RentACar\Projet_Rent_A_Car\BusinessLayer\obj\Debug\net6.0\ref\BusinessLayer.dll
 C:\Users\Corentin\Documents\EPHEC\Projet SGBD\Projet_developpement_RentACar\Projet_Rent_A_Car\BusinessLayer\bin\Debug\net6.0\BusinessLayer.runtimeconfig.json
 C:\Users\Corentin\Documents\EPHEC\Projet SGBD\Projet_developpement_RentACar\Projet_Rent_A_Car\BusinessLayer\obj\Debug\net6.0\BusinessLayer.genruntimeconfig.cache
+C:\Users\Hallet Antoine\OneDrive\Documents\EPHEC\3ème\SGDB\ProjetRAC\Projet_developpement_RentACar\Projet_Rent_A_Car\BusinessLayer\bin\Debug\net6.0\BusinessLayer.runtimeconfig.json
+C:\Users\Hallet Antoine\OneDrive\Documents\EPHEC\3ème\SGDB\ProjetRAC\Projet_developpement_RentACar\Projet_Rent_A_Car\BusinessLayer\obj\Debug\net6.0\BusinessLayer.genruntimeconfig.cache

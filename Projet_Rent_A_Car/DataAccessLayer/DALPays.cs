@@ -13,35 +13,8 @@ namespace DataAccessLayer
 {
     public class DALPays
     {
-        // private ProjetSGDBContext dbcontext = new(); // A remplacer
-        private DalCommun dal = new DalCommun();
-        public List<Pays> SelectAllPays() //Ok Antoine 
-        {
-            List<Pays> queryResult = new List<Pays>();
-            try
-            {                            
-                queryResult.AddRange(dal.dbcontext.Pays);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            return queryResult;
-        }
-
-        
-        public Pays SelectByID(int id) //Ok Antoine
-        {                     
-            try
-            {
-                return dal.dbcontext.Pays.Find(id);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }          
-        }
-        public IEnumerable<SelectListItem> SelectAllPaysInList()//Ok Antoine
+        private DalCommun dal = new();
+        public IEnumerable<SelectListItem> SelectAllPaysInList()
         {
             using (dal.dbcontext)
             {
@@ -62,64 +35,6 @@ namespace DataAccessLayer
                 return new SelectList(lstpays, "Value", "Text");
             }
         }
-
-        public async void InsertOrUpdatePays(Pays pays) //Ok Corentin
-        {
-            try
-            {
-                dal.InsertOrUpdate(pays);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        /* // A remplacer
-        public async void CreatePays(Pays pays)//Ok Antoine
-        {
-            try
-            {
-                dal.dbcontext.Update(pays);
-                var oResponse = await dal.dbcontext.SaveChangesAsync();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-        public async void UptadePays(Pays pays) //Ok Antoine
-        {
-            try
-            {
-                dal.dbcontext.Update(pays);
-                var oResponse = await dal.dbcontext.SaveChangesAsync();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-        */
-
-
-
-        public async void DeletePays(int id) //Ok Antoine
-        {
-            try
-            {             
-                dal.dbcontext.Remove(dal.dbcontext.Pays.Find(id));
-                var oResponse = await dal.dbcontext.SaveChangesAsync();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-
-
-
 
     }
 }

@@ -11,15 +11,14 @@ namespace BusinessLayer
     public class BLClient
     {
         DALClient dalclient= new();
-
-        public Client SelectClientByMail(string mail)//OK Antoine
+        DalCommun dal = new();
+        public Client SelectClientByMail(string mail)
         {
             return dalclient.SelectClientByMail(mail);
         }
-
-        public void CreateClient(Client client)//Ok Antoine
+        public void CreateClient(Client client)
         {
-            dalclient.CreateClient(client);
+            dal.InsertOrUpdate(client);
         }
     }
 }

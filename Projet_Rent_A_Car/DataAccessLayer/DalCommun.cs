@@ -17,32 +17,26 @@ namespace DataAccessLayer
 
         public List<T> SelectAll<T>() where T : class // OK Corentin, à valider par Antoine
         {
-            List<T> queryResult = new List<T>();
             try
             {
-                queryResult = dbcontext.Set<T>().ToList();
+                return dbcontext.Set<T>().ToList();
             }
             catch (Exception ex)
             {
                 throw ex;
-            }
-            return queryResult;
+            }        
         }
 
         public T SelectById<T>(int id) where T : class   // OK Corentin, à valider par Antoine
-        {
-
-            T queryResult;
+        {        
              try
             {
-                queryResult = dbcontext.Set<T>().Find(id);
+                return dbcontext.Set<T>().Find(id);
              }
             catch (Exception ex)
             {
                 throw ex;
             }
-        return queryResult;
-
         }  
 
         public async void InsertOrUpdate(object o)   // Ok Corentin à valider par Antoine
@@ -50,7 +44,7 @@ namespace DataAccessLayer
             try
             {
                 dbcontext.Update(o);
-                var oResponse = await dbcontext.SaveChangesAsync();
+                await dbcontext.SaveChangesAsync();
             }
             catch (Exception ex)
             {
@@ -63,7 +57,7 @@ namespace DataAccessLayer
             try
             {
                 dbcontext.Remove(o);
-                var oResponse = await dbcontext.SaveChangesAsync();
+                await dbcontext.SaveChangesAsync();
             }
             catch (Exception ex)
             {

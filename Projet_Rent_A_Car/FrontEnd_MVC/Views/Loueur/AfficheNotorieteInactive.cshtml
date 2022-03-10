@@ -3,14 +3,15 @@
 @{
     ViewData["Title"] = "AfficheNotorieteInactive";
 }
+<link href="~/lib/datatables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
 
 <h1>AfficheNotorieteInactive</h1>
 
-<p>
-    <a asp-action="AfficheNotorieteActive">Voir toutes les Notoriétés actives</a></p>
-<p>    <a asp-action="AfficheNotoriete">Voir toutes les Notoriétés</a>
-</p>
-<table class="table">
+
+    <a class="btn btn-success" asp-action="AfficheNotorieteActive">Voir toutes les Notoriétés actives</a>
+    <a class="btn btn-success" asp-action="AfficheNotoriete">Voir toutes les Notoriétés</a>
+
+<table id="datatable" class="table">
     <thead>
         <tr>
             
@@ -20,7 +21,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.CoefficientMultiplicateur)
             </th>
-            <th></th>
+          <th>
+               Action
+           </th>
         </tr>
     </thead>
     <tbody>
@@ -34,7 +37,7 @@
                 @Html.DisplayFor(modelItem => item.CoefficientMultiplicateur)
             </td>
             <td>
-                <a asp-action="ActiverNotoriete" asp-route-id="@item.Idnotoriete">Activer</a>
+                <a asp-action="Activate" asp-route-id="@item.Idnotoriete">Activer</a>
                <a asp-action="EditNotoriete" asp-route-id="@item.Idnotoriete">Edit</a>
                 <a asp-action="deleteNotoriete" asp-route-id="@item.Idnotoriete">Delete</a>
             </td>
@@ -42,3 +45,11 @@
 }
     </tbody>
 </table>
+
+
+@section Scripts
+{
+<script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
+<script src="~/lib/datatables/js/dataTables.bootstrap4.min.js"></script>
+<script src="~/js/datatable.js"></script>
+}
