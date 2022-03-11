@@ -1,0 +1,45 @@
+﻿@model FrontEnd_MVC.Models.Depot
+
+@{
+    ViewData["Title"] = "CreateDepot";
+}
+
+<h1>CreateDepot</h1>
+
+<h4>Depot</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="PostDepot">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div Hidden="hidden" class="form-group">
+                <label asp-for="Iddepot" class="control-label"></label>
+                <input asp-for="Iddepot" class="form-control" />
+                <span asp-validation-for="Iddepot" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(x => Model.Idville, htmlAttributes: new { @class = "control-label col-md-15" })
+                    <div class="col-md-35">
+                    @Html.DropDownListFor(x => Model.Idville, new SelectList(Model.ListVille, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "IDPays"})
+                    @Html.ValidationMessageFor(x => x.Idville, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            <div Hidden="hidden" class="form-group">
+                <label asp-for="Inactif" class="control-label"></label>
+                <input asp-for="Inactif" class="form-control" />
+                <span asp-validation-for="Inactif" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="AfficheDepotActive">Back to List</a>
+</div>
+

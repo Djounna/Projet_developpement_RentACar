@@ -13,14 +13,14 @@ namespace FrontEnd_MVC.Models
             Depot = new HashSet<Depot>();
         }
 
-        [Display(Name = "Référence de la ville")]
+        [Display(Name = "Numéro de la ville")]
         public int Idville { get; set; }
 
-        [Display(Name = "Nom du pays")] 
+        [Display(Name = "Libellé du pays")] 
         public int Idpays { get; set; }
         public IEnumerable<SelectListItem> ListPays { get; set; }
 
-        [Display(Name = "Nom de la ville")]
+        [Display(Name = "Libellé de la ville")]
         public string Nom { get; set; } = null!;
 
         public virtual Pays IdpaysNavigation { get; set; } = null!;

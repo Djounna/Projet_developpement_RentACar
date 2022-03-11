@@ -6,7 +6,7 @@
 
 <link href="~/lib/datatables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
 
-<h1>AffichePays</h1>
+<h1>Liste des Pays</h1>
 
 <p>
     <a class=" btn btn-primary" asp-controller="Loueur" asp-action="CreatePays">Create New</a> <a class="btn btn-success" asp-action="HomeLoueur">Back to main Menu</a>
@@ -40,10 +40,18 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Ville.Count)
             </td>
-            <td>               
+            @if (item.Ville.Count == 0)
+                { 
+            <td>                         
                 <a asp-action="EditPays" asp-route-id="@item.Idpays">Edit</a>
-                <a asp-action="deletePays" asp-route-id="@item.Idpays">Delete</a>
+                <a asp-action="deletePays" asp-route-id="@item.Idpays">Delete</a>           
             </td>
+            } 
+            else
+            { 
+            <td>Can't modify or delete a country with towns</td>
+            }
+           
         </tr>
 }
     </tbody>

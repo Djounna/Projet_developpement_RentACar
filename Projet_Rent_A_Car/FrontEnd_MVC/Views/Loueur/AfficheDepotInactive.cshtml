@@ -1,0 +1,55 @@
+﻿@model IEnumerable<FrontEnd_MVC.Models.Depot>
+
+@{
+    ViewData["Title"] = "AfficheDepotInactive";
+}
+<link href="~/lib/datatables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+
+<h1>Liste des dépots inactifs</h1>
+
+<p>
+    <a class="btn btn-success" asp-action="AfficheDepotActive">Voir tous les dépôts actifs</a>
+    <a class="btn btn-success" asp-action="AfficheDepot">Voir tous les dépôts</a>
+</p>
+<table id="datatable" class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Iddepot)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Idville)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Inactif)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Iddepot)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdvilleNavigation.Nom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Inactif)
+            </td>
+            <td>
+                <a asp-action="ActivateDepot" asp-route-id="@item.Iddepot">Activer</a>
+                <a asp-action="deleteDepot" asp-route-id="@item.Iddepot">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+@section Scripts
+{
+<script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
+<script src="~/lib/datatables/js/dataTables.bootstrap4.min.js"></script>
+<script src="~/js/datatable.js"></script>
+}

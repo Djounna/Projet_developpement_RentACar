@@ -4,18 +4,18 @@
     ViewData["Title"] = "EditPays";
 }
 
-<h1>EditPays</h1>
+<h1>Modifier un Pays</h1>
 
 <h4>Pays</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="UptadePays">
+        <form asp-action="UpdatePays">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>     
-            <div class="form-group">
-                <label asp-for="Idpays" class="control-label"></label>
+            <div  class="form-group" hidden="hidden">
+                <label asp-for="Idpays" class="control-label"  ></label>
                 <input asp-for="Idpays" class="form-control" />
-                
+                </div>
             <div class="form-group">
                 <label asp-for="Nom" class="control-label"></label>
                 <input asp-for="Nom" class="form-control" />

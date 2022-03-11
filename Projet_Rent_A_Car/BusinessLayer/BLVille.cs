@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace BusinessLayer
 {
@@ -15,7 +16,12 @@ namespace BusinessLayer
         public List<Ville> SelectAllVille()
         {           
             return dal.SelectAll<Ville>();
-        }        
+        }
+
+        public IEnumerable<SelectListItem> SelectAllVilleInList()
+        {
+            return dalville.SelectAllVilleInList();
+        }
         public Ville SelectVilleByID(int id)
         {            
             return dal.SelectById<Ville>(id);
