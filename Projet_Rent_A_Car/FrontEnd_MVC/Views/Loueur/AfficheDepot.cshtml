@@ -8,8 +8,10 @@
 <h1>Liste des dépôts</h1>
     
     <a class="btn btn-primary" asp-action="CreateDepot">Create New</a>    
-    <a class="btn btn-success" asp-action="AfficheDepotActive">Voir toutes les dépots actifs</a>
+    <a class="btn btn-info" asp-action="AfficheDepotActive">Voir tous les dépots actifs</a>
      <a class="btn btn-warning" asp-action="AfficheDepotInactive">Voir tous les dépôts inactifs</a>
+     <a class="btn btn-success" asp-action="HomeLoueur">Back to main Menu</a>
+
 <table id="datatable" class="table">
     <thead>
         <tr>
@@ -22,7 +24,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Inactif)
             </th>
-            <th></th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
@@ -34,9 +36,14 @@
             <td>
                 @Html.DisplayFor(modelItem => item.IdvilleNavigation.Nom)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Inactif)
-            </td>
+                @if (item.Inactif == true)
+                {
+                    <td>@Html.CheckBox("isChecked",true,new { @disabled = "disabled" })</td>
+                }
+                else
+                {
+                     <td>@Html.CheckBox("isUnchecked",new { @disabled = "disabled" })</td>
+                }
             <td>
                 <a asp-action="ActivateDepot" asp-route-id="@item.Iddepot">Activer</a>
                 <a asp-action="DisableDepot" asp-route-id="@item.Iddepot">Désactiver</a>

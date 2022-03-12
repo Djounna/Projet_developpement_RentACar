@@ -5,12 +5,13 @@
 }
 <link href="~/lib/datatables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
 
-<h1>Liste des dépôts Actifs</h1>
+<h1>Liste des dépôts actifs</h1>
 
 <p>
     <a class=" btn btn-primary" asp-action="CreateDepot">Create New</a>
    <a class="btn btn-warning" asp-action="AfficheDepotInactive">Voir tous les dépôts inactifs</a>
-    <a class="btn btn-success" asp-action="AfficheDepot">Voir tous les dépôts</a>
+    <a class="btn btn-info" asp-action="AfficheDepot">Voir tous les dépôts</a>
+    <a class="btn btn-success" asp-action="HomeLoueur">Back to main Menu</a>
 </p>
 <table id="datatable" class="table">
     <thead>
@@ -21,10 +22,8 @@
             <th>
                 @Html.DisplayNameFor(model => model.Idville)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Inactif)
-            </th>
-            <th></th>
+
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
@@ -35,9 +34,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.IdvilleNavigation.Nom)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Inactif)
             </td>
             <td>
                <a asp-action="DisableDepot" asp-route-id="@item.Iddepot">Désactiver</a>

@@ -24,7 +24,13 @@ namespace DataAccessLayer
         {
             using (dal.dbcontext)
             {
+                List<int> lst = (from ville in dal.dbcontext.Ville select ville.Idville).ToList();
+                List<int> lst2 = (from depot in dal.dbcontext.Depot select depot.Idville).ToList();
+
+                var lst3 = (from id in lst select id).Except(lst2).ToList();
+
                 List<SelectListItem> lstville = dal.dbcontext.Ville
+                   .Where(x=> lst3.Contains(x.Idville))
                    .OrderBy(n => n.Nom)
                    .Select(n =>
                        new SelectListItem

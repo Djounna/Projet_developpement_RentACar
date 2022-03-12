@@ -8,8 +8,9 @@
 <h1>Liste des dépots inactifs</h1>
 
 <p>
-    <a class="btn btn-success" asp-action="AfficheDepotActive">Voir tous les dépôts actifs</a>
-    <a class="btn btn-success" asp-action="AfficheDepot">Voir tous les dépôts</a>
+    <a class="btn btn-info" asp-action="AfficheDepotActive">Voir tous les dépôts actifs</a>
+    <a class="btn btn-info" asp-action="AfficheDepot">Voir tous les dépôts</a>
+    <a class="btn btn-success" asp-action="HomeLoueur">Back to main Menu</a>
 </p>
 <table id="datatable" class="table">
     <thead>
@@ -20,10 +21,8 @@
             <th>
                 @Html.DisplayNameFor(model => model.Idville)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Inactif)
-            </th>
-            <th></th>
+
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
@@ -35,9 +34,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.IdvilleNavigation.Nom)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Inactif)
-            </td>
+
             <td>
                 <a asp-action="ActivateDepot" asp-route-id="@item.Iddepot">Activer</a>
                 <a asp-action="deleteDepot" asp-route-id="@item.Iddepot">Delete</a>

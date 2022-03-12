@@ -83,7 +83,7 @@ namespace API_RAC.Controllers
             return Ok();
         }
         */
-         [Route("DeleteNotoriete/{id}")]
+        [Route("DeleteNotoriete/{id}")]
         [HttpDelete]
         public ActionResult DeleteNotoriete(int id)//OK Corentin, à valider par Antoine
         {
@@ -123,7 +123,7 @@ namespace API_RAC.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public  ActionResult UpdatePays(Pays pays) //Ok Antoine
+        public ActionResult UpdatePays(Pays pays) //Ok Antoine
         {
             bool estLie = false;
             List<Ville> ville = blville.SelectAllVille();
@@ -139,46 +139,39 @@ namespace API_RAC.Controllers
                 return Ok();
             }
             return BadRequest();
-            
+
         }
-       
+
         [Route("PostPays/")]
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
-   
+
         public ActionResult PostPays(Pays pays)//OK Antoine
-        {         
+        {
             blpays.InsertOrUpdatePays(pays);
-            return Ok();         
+            return Ok();
         }
 
         [Route("DeletePays/{id}")]
         [HttpDelete]
         public ActionResult DeletePays(int id)
         {
-            bool estLie=false;
+            bool estLie = false;
             List<Ville> ville = blville.SelectAllVille();
-            foreach ( Ville v in ville)
+            foreach (Ville v in ville)
             {
-                if (v.Idpays == id) 
+                if (v.Idpays == id)
                     estLie = true;
             }
 
-            if (estLie == false) { 
+            if (estLie == false) {
                 blpays.DeletePays(id);
                 return Ok();
             }
             return BadRequest();
         }
 
-        [Route("GetAllVilleByPays/{id}")]
-        [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-
-        public ActionResult<List<Ville>> GetAllVilleByPays(int id)//OK Antoine
-        {
-            return Ok(blpays.SelectVilleByPays(id));
-        }
+     
 
 
         // *********************************************************************** Ville *************************************************************************
@@ -193,7 +186,7 @@ namespace API_RAC.Controllers
         [Route("GetVilleByID/{id}")]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<Pays>> GetVilleByID(int id)//OK Antoine
+        public async Task<ActionResult<Ville>> GetVilleByID(int id)//OK Antoine
         {
             return Ok(blville.SelectVilleByID(id));
         }
@@ -204,6 +197,15 @@ namespace API_RAC.Controllers
         public IEnumerable<SelectListItem> GetAllVilleInList()//OK Antoine
         {
             return blville.SelectAllVilleInList();
+        }
+
+        [Route("GetAllVilleByPays/{id}")]
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+
+        public ActionResult<List<Ville>> GetAllVilleByPays(int id)//OK Antoine
+        {
+            return Ok(blpays.SelectVilleByPays(id));
         }
 
         [Route("UpdateVille/")]
@@ -227,7 +229,7 @@ namespace API_RAC.Controllers
                 return Ok();
             }
             return BadRequest();
-            
+
         }
 
         [Route("PostVille/")]
@@ -258,7 +260,7 @@ namespace API_RAC.Controllers
                 return Ok();
             }
             return BadRequest();
-            
+
         }
 
         // *********************************************************************** Depot *************************************************************************
@@ -273,7 +275,7 @@ namespace API_RAC.Controllers
         [Route("GetDepotByID/{id}")]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<Pays>> GetDepotByID(int id)//OK Antoine
+        public async Task<ActionResult<Depot>> GetDepotByID(int id)//OK Antoine
         {
             return Ok(bldepot.SelectDepotByID(id));
         }
@@ -281,7 +283,7 @@ namespace API_RAC.Controllers
         [Route("GetDepotActif/")]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<List<Notoriete>>> GetDepotActif() //OK Antoine
+        public async Task<ActionResult<List<Depot>>> GetDepotActif() //OK Antoine
         {
             return Ok(bldepot.SelectAllDepotActif());
         }
@@ -289,19 +291,28 @@ namespace API_RAC.Controllers
         [Route("GetDepotInactif/")]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<List<Notoriete>>> GetDepotInactif() //OK Antoine
+        public async Task<ActionResult<List<Depot>>> GetDepotInactif() //OK Antoine
         {
             return Ok(bldepot.SelectAllDepotInactif());
         }
+
+        [Route("GetDepotByIDVille/{id}")]
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<Depot>> GetDepotByIDVille(int id) //OK Antoine
+        {
+            return Ok(bldepot.SelectDepotByIDVille(id));
+        }
+
 
         [Route("UpdateDepot/")]
         [HttpPut]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult UptadePays(Depot Depot)//OK Antoine
-        {
-            bldepot.InsertOrUpdateDepot(Depot);
+        public ActionResult UpdateDepot(Depot depot)//OK Antoine
+        {          
+            bldepot.InsertOrUpdateDepot(depot);
             return Ok();
         }
 

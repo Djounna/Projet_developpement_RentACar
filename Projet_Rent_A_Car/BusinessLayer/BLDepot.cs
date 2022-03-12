@@ -54,5 +54,10 @@ namespace BusinessLayer
             }
             return lstActif;
         }
+
+        public Depot SelectDepotByIDVille(int id)
+        {
+            return dalDepot.SelectByIdVille(id);
+        }
     }
 }

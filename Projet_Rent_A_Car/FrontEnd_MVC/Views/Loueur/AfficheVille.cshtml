@@ -20,6 +20,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Nom)
             </th>
+            <th>A un dépôt</th>
             <th>Action</th>
         </tr>
     </thead>
@@ -33,6 +34,14 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Nom)
             </td>
+                @if (item.Depot.Contains(null))
+                {
+                  <td>@Html.CheckBox("isUnchecked",new { @disabled = "disabled" })</td>
+                }
+                else
+                {
+                   <td> @Html.CheckBox("isChecked",true,new { @disabled = "disabled" })</td>
+                }
             <td>
                 <a asp-action="EditVille" asp-route-id="@item.Idville">Edit</a>
                 <a asp-action="deleteVille" asp-route-id="@item.Idville">Delete</a>
