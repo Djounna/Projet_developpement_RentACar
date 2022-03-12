@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core.Objects.DataClasses;
 using System.Linq;
@@ -9,13 +10,13 @@ namespace DataAccessLayer
 {
     public class DalCommun
     {
-        public ProjetSGDBContext dbcontext; // mettre en private et faire un get ? Antoine ?
+        public ProjetSGDBContext dbcontext; // mettre en private et faire un get ? 
         public DalCommun()
         {
             dbcontext = new ProjetSGDBContext();
         }
 
-        public List<T> SelectAll<T>() where T : class // OK Corentin, à valider par Antoine
+        public List<T> SelectAll<T>() where T : class // OK // Mettre des using ?
         {
             try
             {
@@ -27,7 +28,33 @@ namespace DataAccessLayer
             }        
         }
 
-        public T SelectById<T>(int id) where T : class   // OK Corentin, à valider par Antoine
+        //private static bool isActif(EntityObject o)  // Test Corentin
+        //{
+        //    return (o.Inactif == false);
+        //}
+
+        //public List<T> SelectAllActif<T>() where T : Class // Test Corentin, ne fonctionne pas actuellement
+        //{
+        //    List<T> lstAll = SelectAll<T>();
+        //    List<T> lstActif = new List<T>();
+        //    foreach (T element in lstAll)
+        //    {
+        //        if (element.Inactif == null || element.Inactif == false)
+        //        {
+        //            lstActif.Add(element);
+        //        }
+        //    }
+        //    return lstActif;
+        //}
+
+        //public List<T> SelectAllActif<T>() where T : EntityObject // Test Corentin
+        //{
+        //    List<T> lstActif = dbcontext.Set<T>().Where(o => o.Inactif == true).ToList<T>();
+        //    return lstActif;
+        //}
+    
+
+        public T SelectById<T>(int id) where T : class   // OK 
         {        
              try
             {
@@ -39,7 +66,7 @@ namespace DataAccessLayer
             }
         }  
 
-        public async void InsertOrUpdate(object o)   // Ok Corentin à valider par Antoine
+        public async void InsertOrUpdate(object o)   // Ok 
         {
             try
             {
@@ -52,7 +79,7 @@ namespace DataAccessLayer
             }
         }
         
-        public async void Delete(object o) // Ok Corentin, à valider par Antoine
+        public async void Delete(object o) // Ok 
         {
             try
             {
