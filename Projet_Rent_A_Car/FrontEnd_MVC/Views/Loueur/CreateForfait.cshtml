@@ -9,7 +9,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="CreateForfait">
+        <form asp-action="PostForfait">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div hidden="hidden" class="form-group">
                 <label asp-for="Idforfait" class="control-label"></label>
@@ -20,15 +20,15 @@
              <div class="form-group">
                     @Html.LabelFor(x => Model.Iddepot1, htmlAttributes: new { @class = "control-label col-md-15" })
                     <div class="col-md-35">
-                    @Html.DropDownListFor(x => Model.Iddepot1Navigation.Idville, new SelectList(Model.Iddepot1Navigation.ListVille, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "IDPays"})
-                    @Html.ValidationMessageFor(x => x.Iddepot1Navigation.Idville, "", new { @class = "text-danger" })
+                    @Html.DropDownListFor(x => Model.Iddepot1, new SelectList(Model.ListDepot, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "IDPays"})
+                    @Html.ValidationMessageFor(x => x.Iddepot1, "", new { @class = "text-danger" })
                     </div>
                 </div>
              <div class="form-group">
                     @Html.LabelFor(x => Model.Iddepot2, htmlAttributes: new { @class = "control-label col-md-15" })
                     <div class="col-md-35">
-                    @Html.DropDownListFor(x => Model.Iddepot2Navigation.Idville, new SelectList(Model.Iddepot2Navigation.ListVille, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "IDPays"})
-                    @Html.ValidationMessageFor(x => x.Iddepot2Navigation.Idville, "", new { @class = "text-danger" })
+                    @Html.DropDownListFor(x => Model.Iddepot2, new SelectList(Model.ListDepot, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "IDPays"})
+                    @Html.ValidationMessageFor(x => x.Iddepot2, "", new { @class = "text-danger" })
                     </div>
                 </div>
            
@@ -46,6 +46,6 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="AfficheForfait">Back to List</a>
 </div>
 

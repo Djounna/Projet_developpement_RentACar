@@ -17,6 +17,7 @@ namespace API_RAC.Controllers
         private BLVille blville = new();
         private BLDepot bldepot = new();
         private BLVoiture blVoiture = new();
+        private BLForfait blforfait = new();
 
         // *********************************************************************** Notoriete *************************************************************************
         [Route("GetNotoriete/")]
@@ -355,6 +356,14 @@ namespace API_RAC.Controllers
             return Ok(bldepot.SelectDepotByIDVille(id));
         }
 
+        [Route("GetAllDepotInList")]
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public IEnumerable<SelectListItem> GetAllDepotInList()
+        {
+            return bldepot.SelectAllDepotInList();
+        }
+
 
         [Route("UpdateDepot/")]
         [HttpPut]
@@ -384,5 +393,46 @@ namespace API_RAC.Controllers
             bldepot.DeleteDepot(id);
             return Ok();
         }
+
+
+
+        // *********************************************************************** Forfait *************************************************************************
+        [Route("GetForfait/")]
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<List<Depot>>> GetForfait()
+        {
+            return Ok(blforfait.SelectAllForfait());
+        }
+
+        [Route("GetForfaitByID/{id}")]
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<Forfait>> GetForfaitByID(int id)
+        {
+            return Ok(blforfait.SelectForfaitByID(id));
+        }
+
+        [Route("UpdateForfait/")]
+        [HttpPut]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult UpdateForfait(Forfait forfait)
+        {
+            blforfait.InsertOrUpdateForfait(forfait);
+            return Ok();
+        }
+
+        [Route("PostForfait/")]
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+
+        public ActionResult PostForfait(Forfait forfait)
+        {
+            blforfait.InsertOrUpdateForfait(forfait);
+            return Ok();
+        }
+
     }
 }

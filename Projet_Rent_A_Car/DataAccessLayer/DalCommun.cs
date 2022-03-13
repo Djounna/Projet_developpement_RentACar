@@ -20,6 +20,7 @@ namespace DataAccessLayer
         {
             try
             {
+
                 return dbcontext.Set<T>().ToList();
             }
             catch (Exception ex)
