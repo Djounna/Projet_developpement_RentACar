@@ -78,7 +78,6 @@ namespace DataAccessLayer
                     .IsUnique();
 
                 entity.Property(e => e.Idforfait)
-                    .ValueGeneratedNever()
                     .HasColumnName("IDForfait");
 
                 entity.Property(e => e.DateDebut)

@@ -1,4 +1,5 @@
 ﻿using DataAccessLayer;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Models;
 using System;
 using System.Collections.Generic;
@@ -40,5 +41,11 @@ namespace BusinessLayer
         {
             return dalDepot.SelectByIdVille(id);
         }
+
+        public IEnumerable<SelectListItem> SelectAllDepotInList()
+        {
+            return dalDepot.SelectAllDepotInList();
+        }
+
     }
 }

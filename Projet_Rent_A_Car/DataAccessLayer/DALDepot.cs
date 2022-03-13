@@ -1,4 +1,5 @@
-﻿using Models;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,6 +43,35 @@ namespace DataAccessLayer
             catch (Exception ex)
             {
                 throw ex;
+            }
+        }
+
+        public IEnumerable<SelectListItem> SelectAllDepotInList()
+        {
+            using (dal.dbcontext)
+            {
+
+                List<SelectListItem> lstDepot = dal.dbcontext.Depot
+                    .Join(dal.dbcontext.Ville,
+                    dep => dep.Idville,
+                    vil => vil.Idville,                   
+                    (dep, vil) =>                  
+                       new SelectListItem
+                       {
+                           Value = dep.Iddepot.ToString(),
+                           Text = vil.Nom,
+                       }).OrderBy(x => x.Text)
+                    .ToList();
+                
+                var depotIntro = new SelectListItem()
+                {
+                    Value = null,
+                    Text = "--- select Depot ---"
+                };
+                lstDepot.Insert(0, depotIntro);
+              
+                return new SelectList(lstDepot, "Value", "Text");
+
             }
         }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -24,6 +25,7 @@ namespace FrontEnd_MVC.Models
         public decimal Prix { get; set; }
         public DateTime DateDebut { get; set; }
         public DateTime? DateFin { get; set; }
+        public IEnumerable<SelectListItem> ListDepot { get; set; }
 
         public virtual Depot Iddepot1Navigation { get; set; } = null!;
         public virtual Depot Iddepot2Navigation { get; set; } = null!;
