@@ -28,43 +28,16 @@ namespace BusinessLayer
         {
             dal.Delete(SelectDepotByID(id));
         }
-        //public List<Depot> SelectAllDepotInactif()
-        //{
-        //    List<Depot> lstInactif = new List<Depot>();
-        //    List<Depot> lstDep = dal.SelectAll<Depot>();
-        //    foreach (Depot dep in lstDep)
-        //    {
-        //        if (dep.Inactif == true)
-        //        {
-        //            lstInactif.Add(dep);
-        //        }
-        //    }
-        //    return lstInactif;
-        //}
-
-        public List<Depot> SelectAllDepotInactif() // Test Corentin, code plus court avec Linq, Ok, à valider par Antoine
+        public List<Depot> SelectAllDepotInactif() 
         {
-            List<Depot> lstInactif = dal.dbcontext.Depot.Where(Depot => Depot.Inactif == true).ToList<Depot>();
+            List<Depot> lstInactif = dal.dbcontext.Depot.Where(Depot => Depot.Inactif == true).ToList();
             return lstInactif;
         }
 
-        //public List<Depot> SelectAllDepotActif()
-        //{
-        //    List<Depot> lstActif = new List<Depot>();
-        //    List<Depot> lstDep = dal.SelectAll<Depot>();
-        //    foreach (Depot dep in lstDep)
-        //    {
-        //        if (dep.Inactif == null || dep.Inactif == false)
-        //        {
-        //            lstActif.Add(dep);
-        //        }
-        //    }
-        //    return lstActif;
-        //}
-
-        public List<Depot> SelectAllDepotActif() // Test Corentin, code plus court avec Linq, Ok, à valider par Antoine
+        public List<Depot> SelectAllDepotActif() 
         {
-            List<Depot> lstActif = dal.dbcontext.Depot.Where(Depot => Depot.Inactif == false || Depot.Inactif == null).ToList<Depot>();
+            List<Depot> lstActif = dal.dbcontext.Depot.Where(Depot => Depot.Inactif !=true).ToList(); 
+           
             return lstActif;
         }
 

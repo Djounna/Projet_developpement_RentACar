@@ -37,15 +37,17 @@
                 @if (item.Depot.Contains(null))
                 {
                   <td>@Html.CheckBox("isUnchecked",new { @disabled = "disabled" })</td>
+                    <td>                         
+                    <a asp-action="EditVille" asp-route-id="@item.Idville">Edit</a>
+                    <a asp-action="deleteVille" asp-route-id="@item.Idville">Delete</a>          
+                     </td>
                 }
                 else
                 {
                    <td> @Html.CheckBox("isChecked",true,new { @disabled = "disabled" })</td>
-                }
-            <td>
-                <a asp-action="EditVille" asp-route-id="@item.Idville">Edit</a>
-                <a asp-action="deleteVille" asp-route-id="@item.Idville">Delete</a>
-            </td>
+                   <td><i>Can't modify or delete a town with deposit</i></td>                 
+                } 
+            
         </tr>
 }
     </tbody>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace FrontEnd_MVC.Models
 {
@@ -10,9 +11,16 @@ namespace FrontEnd_MVC.Models
             Reservation = new HashSet<Reservation>();
         }
 
+        [Display(Name = "Numéro du forfait")]
         public int Idforfait { get; set; }
+
+        [Display(Name = "Ville du 1er dépôt")]
         public int Iddepot1 { get; set; }
+
+        [Display(Name = "Ville du 2ème dépôt")]
         public int Iddepot2 { get; set; }
+
+        [Display(Name = "Prix du forfait")]
         public decimal Prix { get; set; }
         public DateTime DateDebut { get; set; }
         public DateTime? DateFin { get; set; }

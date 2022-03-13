@@ -1,0 +1,59 @@
+﻿@model FrontEnd_MVC.Models.Forfait
+
+@{
+    ViewData["Title"] = "EditForfait";
+}
+
+<h1>EditForfait</h1>
+
+<h4>Forfait</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditForfait">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Idforfait" class="control-label"></label>
+                <input asp-for="Idforfait" class="form-control" />
+                <span asp-validation-for="Idforfait" class="text-danger"></span>
+            </div>
+           <div class="form-group">
+                    @Html.LabelFor(x => Model.Iddepot1, htmlAttributes: new { @class = "control-label col-md-15" })
+                    <div class="col-md-35">
+                    @Html.DropDownListFor(x => Model.Iddepot1Navigation.Idville, new SelectList(Model.Iddepot1Navigation.ListVille, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "IDPays"})
+                    @Html.ValidationMessageFor(x => x.Iddepot1Navigation.Idville, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+             <div class="form-group">
+                    @Html.LabelFor(x => Model.Iddepot2, htmlAttributes: new { @class = "control-label col-md-15" })
+                    <div class="col-md-35">
+                    @Html.DropDownListFor(x => Model.Iddepot2Navigation.Idville, new SelectList(Model.Iddepot2Navigation.ListVille, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "IDPays"})
+                    @Html.ValidationMessageFor(x => x.Iddepot2Navigation.Idville, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            <div class="form-group">
+                <label asp-for="Prix" class="control-label"></label>
+                <input asp-for="Prix" class="form-control" />
+                <span asp-validation-for="Prix" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateDebut" class="control-label"></label>
+                <input asp-for="DateDebut" class="form-control" />
+                <span asp-validation-for="DateDebut" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateFin" class="control-label"></label>
+                <input asp-for="DateFin" class="form-control" />
+                <span asp-validation-for="DateFin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

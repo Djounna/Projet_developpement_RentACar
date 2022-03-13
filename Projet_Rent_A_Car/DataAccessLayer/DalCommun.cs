@@ -16,7 +16,7 @@ namespace DataAccessLayer
             dbcontext = new ProjetSGDBContext();
         }
 
-        public List<T> SelectAll<T>() where T : class // OK // Mettre des using ?
+        public List<T> SelectAll <T>() where T : class // OK // Mettre des using ?
         {
             try
             {

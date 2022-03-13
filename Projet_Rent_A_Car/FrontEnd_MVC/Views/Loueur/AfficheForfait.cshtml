@@ -1,0 +1,63 @@
+﻿@model IEnumerable<FrontEnd_MVC.Models.Forfait>
+
+@{
+    ViewData["Title"] = "AfficheForfait";
+}
+
+<link href="~/lib/datatables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+
+<h1>Liste des forfaits</h1>
+
+ <a class="btn btn-primary" asp-action="CreateForfait">Create New</a>    
+ <a class="btn btn-success" asp-action="HomeLoueur">Back to main Menu</a>
+
+<table id="datatable" class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Idforfait)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Iddepot1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Iddepot2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Prix)
+            </th>         
+            <th>
+                Action
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Idforfait)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Iddepot1Navigation.IdvilleNavigation.Nom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Iddepot2Navigation.IdvilleNavigation.Nom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prix)
+            </td>           
+            <td>
+               <a asp-action="EditForfait" asp-route-id="@item.Idforfait">Edit</a>
+               <a asp-action="deleteForfait" asp-route-id="@item.Idforfait">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+@section Scripts
+{
+<script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
+<script src="~/lib/datatables/js/dataTables.bootstrap4.min.js"></script>
+<script src="~/js/datatable.js"></script>
+}

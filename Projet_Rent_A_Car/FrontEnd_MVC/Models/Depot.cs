@@ -23,6 +23,8 @@ namespace FrontEnd_MVC.Models
         public int Idville { get; set; }
         
         public IEnumerable<SelectListItem> ListVille { get; set; }
+
+        [Display(Name = "Est Inactif")]
         public bool? Inactif { get; set; }
 
         public virtual Ville IdvilleNavigation { get; set; } = null!;
