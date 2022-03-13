@@ -28,19 +28,14 @@ namespace BusinessLayer
         {
             dal.Delete(SelectDepotByID(id));
         }
-        public List<Depot> SelectAllDepotInactif() 
+        public List<Depot> SelectAllDepotInactif()  // OK Corentin
         {
-            List<Depot> lstInactif = dal.dbcontext.Depot.Where(Depot => Depot.Inactif == true).ToList();
-            return lstInactif;
+            return dalDepot.SelectAllDepotInactif();
         }
-
-        public List<Depot> SelectAllDepotActif() 
+        public List<Depot> SelectAllDepotActif()  // OK Corentin
         {
-            List<Depot> lstActif = dal.dbcontext.Depot.Where(Depot => Depot.Inactif !=true).ToList(); 
-           
-            return lstActif;
+           return dalDepot.SelectAllDepotActif();
         }
-
         public Depot SelectDepotByIDVille(int id)
         {
             return dalDepot.SelectByIdVille(id);

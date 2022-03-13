@@ -13,6 +13,8 @@ namespace FrontEnd_MVC.Controllers
     public class LoueurController : Controller
     {
         //var errors = ModelState.Values.SelectMany(v => v.Errors); 
+
+        // ******************************************************** Generics ****************************************************
         private async Task<List<T>> GetRequest<T>(string chemin)
         {
             using (var httpClient = new HttpClient())
@@ -65,7 +67,7 @@ namespace FrontEnd_MVC.Controllers
                 return Ok();
             }
         }
-        /* // En attente
+        /* // En attente Test Corentin
         private async Task<ActionResult> DeleteRequest(string chemin)
         {
             using (var httpClient = new HttpClient())
@@ -113,31 +115,31 @@ namespace FrontEnd_MVC.Controllers
         }
 
         // EN cours Corentin, test multiples views        
-        public ActionResult IndexViewBag()
-        {
-            ViewBag.Message = "Welcome to my demo!";
-            ViewBag.Teachers = GetTeachers();
-            ViewBag.Students = GetStudents();
-            return View();
-        }
-        private List<Teacher> GetTeachers()
-        {
-            List<Teacher> teachers = new List<Teacher>();
-            teachers.Add(new Teacher { TeacherId = 1, Code = "TT", Name = "Tejas Trivedi" });
-            teachers.Add(new Teacher { TeacherId = 2, Code = "JT", Name = "Jignesh Trivedi" });
-            teachers.Add(new Teacher { TeacherId = 3, Code = "RT", Name = "Rakesh Trivedi" });
-            return teachers;
-        }
-        public List<Student> GetStudents()
-        {
-            List<Student> students = new List<Student>();
-            students.Add(new Student { StudentId = 1, Code = "L0001", Name = "Amit Gupta", EnrollmentNo = "201404150001" });
-            students.Add(new Student { StudentId = 2, Code = "L0002", Name = "Chetan Gujjar", EnrollmentNo = "201404150002" });
-            students.Add(new Student { StudentId = 3, Code = "L0003", Name = "Bhavin Patel", EnrollmentNo = "201404150003" });
-            return students;
-        }
+        //public ActionResult IndexViewBag()
+        //{
+        //    ViewBag.Message = "Welcome to my demo!";
+        //    ViewBag.Teachers = GetTeachers();
+        //    ViewBag.Students = GetStudents();
+        //    return View();
+        //}
+        //private List<Teacher> GetTeachers()
+        //{
+        //    List<Teacher> teachers = new List<Teacher>();
+        //    teachers.Add(new Teacher { TeacherId = 1, Code = "TT", Name = "Tejas Trivedi" });
+        //    teachers.Add(new Teacher { TeacherId = 2, Code = "JT", Name = "Jignesh Trivedi" });
+        //    teachers.Add(new Teacher { TeacherId = 3, Code = "RT", Name = "Rakesh Trivedi" });
+        //    return teachers;
+        //}
+        //public List<Student> GetStudents()
+        //{
+        //    List<Student> students = new List<Student>();
+        //    students.Add(new Student { StudentId = 1, Code = "L0001", Name = "Amit Gupta", EnrollmentNo = "201404150001" });
+        //    students.Add(new Student { StudentId = 2, Code = "L0002", Name = "Chetan Gujjar", EnrollmentNo = "201404150002" });
+        //    students.Add(new Student { StudentId = 3, Code = "L0003", Name = "Bhavin Patel", EnrollmentNo = "201404150003" });
+        //    return students;
+        //}
 
-        // ******************************************************** Notoriete**************************************************************************************
+        // ******************************************************** Notoriete **************************************************************************************
         [HttpGet]
         public async Task<ActionResult> AfficheNotoriete() 
         {
@@ -213,7 +215,6 @@ namespace FrontEnd_MVC.Controllers
             return View(await GetRequestUnique<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteByID/" + id));
         }
         // GET
-
         [HttpPost, ActionName("Disable")]
         public async Task<ActionResult> DesactiverNotoriete(int id)
         {
@@ -223,7 +224,6 @@ namespace FrontEnd_MVC.Controllers
             await UpdateNotoriete(not);
             return RedirectToAction(nameof(AfficheNotorieteActive));
         }
-
         [HttpPost, ActionName("Activate")]
         public async Task<ActionResult> ActiverNotoriete(int id)
         {
@@ -233,8 +233,6 @@ namespace FrontEnd_MVC.Controllers
             await UpdateNotoriete(not);
             return RedirectToAction(nameof(AfficheNotorieteActive));
         }
-
-      
         public async Task<IActionResult> Disable(int? id)
         { 
             var notoriety = await GetRequestUnique<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteByID/" + id);
@@ -260,6 +258,126 @@ namespace FrontEnd_MVC.Controllers
             return RedirectToAction(nameof(AfficheNotorieteActive));
         }
 
+        // ******************************************************** Voiture ***************************************************************************
+        [HttpGet]
+        public async Task<ActionResult> AfficheVoiture() // Corentin ok
+        {
+            try
+            {
+                return View(await GetRequest<Voiture>("https://localhost:7204/api/Loueur/GetVoiture/"));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        [HttpGet]
+        public async Task<ActionResult> AfficheVoitureActive() // Corentin Ok
+        {
+            try
+            {
+                return View(await GetRequest<Voiture>("https://localhost:7204/api/Loueur/GetVoitureActif/"));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        [HttpGet]
+        public async Task<ActionResult> AfficheVoitureInactive() // Corentin Ok
+        {
+            try
+            {
+                return View(await GetRequest<Voiture>("https://localhost:7204/api/Loueur/GetVoitureInactif/"));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public IActionResult CreateVoiture() // Corentin OK
+        {
+            return View();
+        }
+        [HttpPost] // Corentin En cours
+        public async Task<IActionResult> PostVoiture([Bind("Idnotoriete,Iddepot,Immatriculation,Marque,Inactif")] Voiture Voiture)
+        {
+            //if (ModelState.IsValid)
+            //{
+                await PostRequest("https://localhost:7204/api/Loueur/PostVoiture/", Voiture);
+            //}
+            return RedirectToAction(nameof(AfficheVoitureActive));
+
+        }
+        public async Task<IActionResult> EditVoiture(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            return View(await GetRequestUnique<Voiture>("https://localhost:7204/api/Loueur/GetVoitureByID/" + id));
+        }
+        public async Task<IActionResult> UpdateVoiture([Bind()] Voiture Voiture)
+        {
+            if (ModelState.IsValid)
+            {
+                await PutRequest("https://localhost:7204/api/Loueur/UpdateVoiture/", Voiture);
+            }
+            return RedirectToAction(nameof(AfficheVoitureActive));
+        }
+        public async Task<IActionResult> deleteVoiture(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            return View(await GetRequestUnique<Voiture>("https://localhost:7204/api/Loueur/GetVoitureByID/" + id));
+        }
+        // GET
+        [HttpPost, ActionName("Disable")]
+        public async Task<ActionResult> DesactiverVoiture(int id)
+        {
+            Voiture voit = await GetRequestUnique<Voiture>("https://localhost:7204/api/Loueur/GetVoitureByID/" + id);
+            voit.Inactif = true;
+
+            await UpdateVoiture(voit);
+            return RedirectToAction(nameof(AfficheVoitureActive));
+        }
+        [HttpPost, ActionName("Activate")]
+        public async Task<ActionResult> ActiverVoiture(int id)
+        {
+            Voiture voit = await GetRequestUnique<Voiture>("https://localhost:7204/api/Loueur/GetVoitureByID/" + id);
+            voit.Inactif = false;
+
+            await UpdateVoiture(voit);
+            return RedirectToAction(nameof(AfficheVoitureActive));
+        }
+        /*
+        public async Task<IActionResult> Disable(int? id)
+        {
+            var notoriety = await GetRequestUnique<Voiture>("https://localhost:7204/api/Loueur/GetVoitureByID/" + id);
+            return View(notoriety);
+        }
+        public async Task<IActionResult> Activate(int? id)
+        {
+            var notoriety = await GetRequestUnique<Voiture>("https://localhost:7204/api/Loueur/GetVoitureByID/" + id);
+            return View(notoriety);
+        }
+        */
+        /* En attente
+        [HttpPost, ActionName("deleteVoiture")]
+        public async Task<ActionResult> removeVoiture(int id)
+        {
+                 await DeleteRequest("https://localhost:7204/api/Loueur/DeleteVoiture/" + id);
+                 return RedirectToAction(nameof(AfficheVoitureActive));
+        }
+        */
+        [HttpPost, ActionName("deleteVoiture")]  // Corentin, en cours, à voir avec ANtoine
+        public async Task<ActionResult> removeVoiture(int id)
+        {
+            await DeleteRequest("https://localhost:7204/api/Loueur/DeleteVoiture/" + id);
+            return RedirectToAction(nameof(AfficheVoitureActive));
+        }
 
 
         // ******************************************************** PAYS ****************************************************************************************

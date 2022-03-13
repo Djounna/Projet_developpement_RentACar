@@ -16,6 +16,7 @@ namespace API_RAC.Controllers
         private BLPays blpays = new();
         private BLVille blville = new();
         private BLDepot bldepot = new();
+        private BLVoiture blVoiture = new();
 
         // *********************************************************************** Notoriete *************************************************************************
         [Route("GetNotoriete/")]
@@ -81,7 +82,67 @@ namespace API_RAC.Controllers
             return Ok();
         }
 
+        // *********************************************************************** Voiture *************************************************************************
+        [Route("GetVoiture/")]
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<List<Voiture>>> GetVoiture()
+        {
+            return Ok(blVoiture.SelectAllVoiture());
+        }
 
+        [Route("GetVoitureActif/")]
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<List<Voiture>>> GetVoitureActif()
+        {
+            return Ok(blVoiture.SelectAllVoitureActif());
+        }
+
+        [Route("GetVoitureInactif/")]
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<List<Voiture>>> GetVoitureInactif()
+        {
+            return Ok(blVoiture.SelectAllVoitureInactif());
+        }
+
+        [Route("GetVoitureByID/{id}")]
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<Voiture>> GetVoitureByID(int id)
+        {
+            return Ok(blVoiture.SelectVoitureByID(id));
+        }
+
+        [Route("UpdateVoiture/")]
+        [HttpPut]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult UpdateVoiture(Voiture Voiture)
+        {
+            blVoiture.InsertOrUpdateVoiture(Voiture);
+            return Ok();     
+        }
+
+        [Route("PostVoiture/")]
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+
+        public ActionResult PostVoiture(Voiture Voiture)
+        {
+            blVoiture.InsertOrUpdateVoiture(Voiture);
+            return Ok();
+        }
+        [Route("DeleteVoiture/{id}")]
+        [HttpDelete]
+        public ActionResult DeleteVoiture(int id)
+        {
+            blVoiture.DeleteVoiture(id);
+            return Ok();
+        }
         // *********************************************************************** Pays *************************************************************************
 
         [Route("GetPays/")]

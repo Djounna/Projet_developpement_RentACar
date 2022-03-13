@@ -1,0 +1,76 @@
+﻿@model IEnumerable<FrontEnd_MVC.Models.Voiture>
+
+@{
+    ViewData["Title"] = "AfficheVoiture";
+}
+
+<link href="~/lib/datatables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+
+<h1>Liste des véhicules</h1>
+    
+    <a class="btn btn-primary" asp-action="CreateVoiture">Create New</a>    
+    <a class="btn btn-info" asp-action="AfficheVoitureActive">Voir tous les véhicules actifs</a>
+     <a class="btn btn-warning" asp-action="AfficheVoitureInactive">Voir tous les véhicules inactifs</a>
+     <a class="btn btn-success" asp-action="HomeLoueur">Back to main Menu</a>
+
+<table id="datatable" class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Idvoiture)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Idnotoriete)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Iddepot)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Immatriculation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Marque)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Inactif)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Idvoiture)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Idnotoriete)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Iddepot)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Immatriculation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Marque)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Inactif)
+            </td>
+            <td>
+                <a asp-action="ActivateVoiture" asp-route-id="@item.Idvoiture">Activer</a>
+                <a asp-action="DisableVoiture" asp-route-id="@item.Idvoiture">Désactiver</a>
+                <a asp-action="deleteVoiture" asp-route-id="@item.Idvoiture">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+@section Scripts
+{
+<script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
+<script src="~/lib/datatables/js/dataTables.bootstrap4.min.js"></script>
+<script src="~/js/datatable.js"></script>
+}
