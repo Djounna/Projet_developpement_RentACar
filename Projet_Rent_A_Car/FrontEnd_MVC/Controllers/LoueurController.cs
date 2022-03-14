@@ -299,13 +299,20 @@ namespace FrontEnd_MVC.Controllers
         {
             return View();
         }
-        [HttpPost] // Corentin En cours
-        public async Task<IActionResult> PostVoiture([Bind("Idnotoriete,Iddepot,Immatriculation,Marque,Inactif")] Voiture Voiture)
+        [HttpPost] // Corentin OK
+        public async Task<IActionResult> PostVoiture([Bind("Idnotoriete,Iddepot,Immatriculation,Marque")] Voiture voiture)
         {
-            //if (ModelState.IsValid)
-            //{
-                await PostRequest("https://localhost:7204/api/Loueur/PostVoiture/", Voiture);
-            //}
+            voiture.IddepotNavigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + voiture.Iddepot);
+            voiture.IdnotorieteNavigation = await GetRequestUnique<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteByID/" + voiture.Idnotoriete);
+            voiture.IddepotNavigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + voiture.IddepotNavigation.Idville);
+            voiture.IddepotNavigation.IdvilleNavigation.IdpaysNavigation = await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + voiture.IddepotNavigation.IdvilleNavigation.Idpays);
+            ModelState.Remove("IddepotNavigation");
+            ModelState.Remove("IdnotorieteNavigation");
+
+            if (ModelState.IsValid)
+            {
+                await PostRequest("https://localhost:7204/api/Loueur/PostVoiture/", voiture);
+            }
             return RedirectToAction(nameof(AfficheVoitureActive));
 
         }
@@ -317,11 +324,17 @@ namespace FrontEnd_MVC.Controllers
             }
             return View(await GetRequestUnique<Voiture>("https://localhost:7204/api/Loueur/GetVoitureByID/" + id));
         }
-        public async Task<IActionResult> UpdateVoiture([Bind()] Voiture Voiture)
+        public async Task<IActionResult> UpdateVoiture([Bind("Idvoiture,Idnotoriete,Iddepot,Immatriculation,Marque")] Voiture voiture)
         {
+            voiture.IddepotNavigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + voiture.Iddepot);
+            voiture.IdnotorieteNavigation = await GetRequestUnique<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteByID/" + voiture.Idnotoriete);
+            voiture.IddepotNavigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + voiture.IddepotNavigation.Idville);
+            voiture.IddepotNavigation.IdvilleNavigation.IdpaysNavigation = await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + voiture.IddepotNavigation.IdvilleNavigation.Idpays);
+            ModelState.Remove("IddepotNavigation");
+            ModelState.Remove("IdnotorieteNavigation");
             if (ModelState.IsValid)
             {
-                await PutRequest("https://localhost:7204/api/Loueur/UpdateVoiture/", Voiture);
+                await PutRequest("https://localhost:7204/api/Loueur/UpdateVoiture/", voiture);
             }
             return RedirectToAction(nameof(AfficheVoitureActive));
         }
@@ -334,7 +347,7 @@ namespace FrontEnd_MVC.Controllers
             return View(await GetRequestUnique<Voiture>("https://localhost:7204/api/Loueur/GetVoitureByID/" + id));
         }
         // GET
-        [HttpPost, ActionName("Disable")]
+        [HttpPost, ActionName("DisableVoiture")]
         public async Task<ActionResult> DesactiverVoiture(int id)
         {
             Voiture voit = await GetRequestUnique<Voiture>("https://localhost:7204/api/Loueur/GetVoitureByID/" + id);
@@ -343,7 +356,7 @@ namespace FrontEnd_MVC.Controllers
             await UpdateVoiture(voit);
             return RedirectToAction(nameof(AfficheVoitureActive));
         }
-        [HttpPost, ActionName("Activate")]
+        [HttpPost, ActionName("ActivateVoiture")]
         public async Task<ActionResult> ActiverVoiture(int id)
         {
             Voiture voit = await GetRequestUnique<Voiture>("https://localhost:7204/api/Loueur/GetVoitureByID/" + id);
@@ -352,18 +365,18 @@ namespace FrontEnd_MVC.Controllers
             await UpdateVoiture(voit);
             return RedirectToAction(nameof(AfficheVoitureActive));
         }
-        /*
-        public async Task<IActionResult> Disable(int? id)
+
+        public async Task<IActionResult> DisableVoiture(int? id)
         {
-            var notoriety = await GetRequestUnique<Voiture>("https://localhost:7204/api/Loueur/GetVoitureByID/" + id);
-            return View(notoriety);
+            var voiture = await GetRequestUnique<Voiture>("https://localhost:7204/api/Loueur/GetVoitureByID/" + id);
+            return View(voiture);
         }
-        public async Task<IActionResult> Activate(int? id)
+        public async Task<IActionResult> ActivateVoiture(int? id)
         {
-            var notoriety = await GetRequestUnique<Voiture>("https://localhost:7204/api/Loueur/GetVoitureByID/" + id);
-            return View(notoriety);
+            var voiture = await GetRequestUnique<Voiture>("https://localhost:7204/api/Loueur/GetVoitureByID/" + id);
+            return View(voiture);
         }
-        */
+
         /* En attente
         [HttpPost, ActionName("deleteVoiture")]
         public async Task<ActionResult> removeVoiture(int id)

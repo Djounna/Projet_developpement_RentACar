@@ -1,0 +1,56 @@
+﻿@model FrontEnd_MVC.Models.Voiture
+
+@{
+    ViewData["Title"] = "DisableVoiture";
+}
+
+<h1>Désactiver une voiture</h1>
+
+<h3>Etes vous sûre de vouloir désactiver ceci ?</h3>
+<div>
+    
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Idvoiture)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Idvoiture)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Idnotoriete)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Idnotoriete)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Iddepot)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Iddepot)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Immatriculation)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Immatriculation)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Marque)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Marque)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Inactif)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Inactif)
+        </dd>
+    </dl>
+    
+    <form asp-action="DisableVoiture">
+        <input type="submit" value="Désactiver" class="btn btn-danger" /> |
+        <a asp-action="AfficeVoitureActive">Back to List</a>
+    </form>
+</div>
