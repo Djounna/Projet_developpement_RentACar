@@ -10,3 +10,8 @@ C:\Users\Hallet Antoine\OneDrive\Documents\EPHEC\3ème\SGDB\ProjetRAC\Projet_dev
 C:\Users\Hallet Antoine\OneDrive\Documents\EPHEC\3ème\SGDB\ProjetRAC\Projet_developpement_RentACar\Projet_Rent_A_Car\ErrorManagement\obj\Debug\net6.0\refint\ErrorManagement.dll
 C:\Users\Hallet Antoine\OneDrive\Documents\EPHEC\3ème\SGDB\ProjetRAC\Projet_developpement_RentACar\Projet_Rent_A_Car\ErrorManagement\obj\Debug\net6.0\ErrorManagement.pdb
 C:\Users\Hallet Antoine\OneDrive\Documents\EPHEC\3ème\SGDB\ProjetRAC\Projet_developpement_RentACar\Projet_Rent_A_Car\ErrorManagement\obj\Debug\net6.0\ref\ErrorManagement.dll
+C:\Users\Hallet Antoine\OneDrive\Documents\EPHEC\3ème\SGDB\ProjetRAC\Projet_developpement_RentACar\Projet_Rent_A_Car\ErrorManagement\bin\Debug\net6.0\ErrorManagement.runtimeconfig.json
+C:\Users\Hallet Antoine\OneDrive\Documents\EPHEC\3ème\SGDB\ProjetRAC\Projet_developpement_RentACar\Projet_Rent_A_Car\ErrorManagement\bin\Debug\net6.0\Models.dll
+C:\Users\Hallet Antoine\OneDrive\Documents\EPHEC\3ème\SGDB\ProjetRAC\Projet_developpement_RentACar\Projet_Rent_A_Car\ErrorManagement\bin\Debug\net6.0\Models.pdb
+C:\Users\Hallet Antoine\OneDrive\Documents\EPHEC\3ème\SGDB\ProjetRAC\Projet_developpement_RentACar\Projet_Rent_A_Car\ErrorManagement\obj\Debug\net6.0\ErrorManagement.csproj.CopyComplete
+C:\Users\Hallet Antoine\OneDrive\Documents\EPHEC\3ème\SGDB\ProjetRAC\Projet_developpement_RentACar\Projet_Rent_A_Car\ErrorManagement\obj\Debug\net6.0\ErrorManagement.genruntimeconfig.cache

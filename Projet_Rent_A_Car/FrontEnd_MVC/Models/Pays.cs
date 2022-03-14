@@ -11,17 +11,18 @@ namespace FrontEnd_MVC.Models
             Ville = new HashSet<Ville>();
         }
 
-        [Display(Name ="Numéro du pays")]
+        [Display(Name = "Numéro du pays")]
         public int Idpays { get; set; }
 
         [Required(ErrorMessage = "This field is mandatory")]
         [MaxLength(50, ErrorMessage = "this field shouldn'thave more than 50 character")]
 
-        [Display(Name ="Libellé du pays")]
+        [Display(Name = "Libellé du pays")]
         public string Nom { get; set; } = null!;
 
         public virtual ICollection<Ville> Ville { get; set; }
-    
 
-}
+        public virtual Prix Price { get; set; }
+      
+    }
 }

@@ -35,11 +35,20 @@
             <td>
                 @Html.DisplayFor(modelItem => item.IdvilleNavigation.Nom)
             </td>
+            @if(item.ForfaitIddepot1Navigation.Contains(null))
+            {
             <td>
                <a asp-action="DisableDepot" asp-route-id="@item.Iddepot">Désactiver</a>
                 <a asp-action="deleteDepot" asp-route-id="@item.Iddepot">Delete</a>
-            </td>
-        </tr>
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        <i>Can't delete or disable a deposit which his use in a forfait</i>
+                    </td>
+                }
+            </tr>
 }
     </tbody>
 </table>

@@ -23,10 +23,14 @@ namespace DataAccessLayer
         {
             return dal.dbcontext.Forfait.Where(forfait => forfait.Idforfait == id && forfait.DateFin==null).SingleOrDefault();
         }
-
-        public void InsertOrUpdate(Forfait forfait)
+        public Forfait SelectForfaitByIDDepot(int id)
         {
-            string sql = "InsertOrUptadeForfait";
+            return dal.dbcontext.Forfait.Where(forfait => forfait.Iddepot1 == id || forfait.Iddepot2 == id).FirstOrDefault();
+        }
+
+        public void Insert(Forfait forfait)
+        {
+            string sql = "InsertForfait";
             using (SqlConnection oCon = new SqlConnection(DALConnexion.Connexion))
             {
                 using (SqlCommand oCmd = new SqlCommand(sql, oCon))
@@ -40,6 +44,7 @@ namespace DataAccessLayer
                         oCmd.Parameters.Add(new SqlParameter("@IdDep2", forfait.Iddepot2));
                         oCmd.Parameters.Add(new SqlParameter("@prix", forfait.Prix));
                         oCmd.Parameters.Add(new SqlParameter("@DateDeb", forfait.DateDebut));
+                       
 
                         int result = oCmd.ExecuteNonQuery();
                     }
@@ -51,5 +56,36 @@ namespace DataAccessLayer
                 }
             }
         }
+
+        public void Update(Forfait forfait)
+        {
+            string sql = "UpdateForfait";
+            using (SqlConnection oCon = new SqlConnection(DALConnexion.Connexion))
+            {
+                using (SqlCommand oCmd = new SqlCommand(sql, oCon))
+                {
+                    try
+                    {
+                        oCon.Open();
+                        oCmd.Connection = oCon;
+                        oCmd.CommandType = CommandType.StoredProcedure;
+                        oCmd.Parameters.Add(new SqlParameter("@dep1", forfait.Iddepot1));
+                        oCmd.Parameters.Add(new SqlParameter("@dep2", forfait.Iddepot2));
+                        oCmd.Parameters.Add(new SqlParameter("@prix", forfait.Prix));
+                        oCmd.Parameters.Add(new SqlParameter("@dateDeb", forfait.DateDebut));
+                        oCmd.Parameters.Add(new SqlParameter("@DateFin", forfait.DateFin));
+                        oCmd.Parameters.Add(new SqlParameter("@id", forfait.Idforfait));
+
+                        int result = oCmd.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception(ex.Message);
+                    }
+
+                }
+            }
+        }
+
     }
 }

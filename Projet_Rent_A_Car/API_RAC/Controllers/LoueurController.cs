@@ -18,6 +18,7 @@ namespace API_RAC.Controllers
         private BLDepot bldepot = new();
         private BLVoiture blVoiture = new();
         private BLForfait blforfait = new();
+        private BLPrix blPrix = new();
 
         // *********************************************************************** Notoriete *************************************************************************
         [Route("GetNotoriete/")]
@@ -170,6 +171,15 @@ namespace API_RAC.Controllers
             return blpays.SelectAllPaysInList();
         }
 
+        [Route("GetPriceByPays/{id}")]
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public Prix GetPriceByPays(int id)
+        {
+            return blPrix.SelectPrixByPays(id);
+
+        }
+
         [Route("UpdatePays/")]
         [HttpPut]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -222,8 +232,53 @@ namespace API_RAC.Controllers
             }
             return BadRequest();
         }
+        // *********************************************************************** Prix *************************************************************************
+        [Route("GetPrix/")]
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<List<Prix>>> GetPrix()
+        {
+            return Ok(blPrix.SelectAllPrix());
+        }
 
-     
+        [Route("GetPrixByID/{id}")]
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<Prix>> GetPrixByID(int id)
+        {
+            return Ok(blPrix.SelectPrixByID(id));
+        }
+
+        [Route("GetAllPrixByPays/{id}")]
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+
+
+
+        [Route("UpdatePrix/")]
+        [HttpPut]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult UpdatePrix(Prix prix)
+        {
+           blPrix.UpdatePrix(prix);
+           return Ok();                      
+
+        }
+
+        [Route("PostPrix/")]
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+
+        public ActionResult PostPrix(Prix Prix)
+        {
+            blPrix.InsertOrUpdatePrix(Prix);
+            return Ok();
+        }
+
+  
+
 
 
         // *********************************************************************** Ville *************************************************************************
@@ -362,7 +417,7 @@ namespace API_RAC.Controllers
         public IEnumerable<SelectListItem> GetAllDepotInList()
         {
             return bldepot.SelectAllDepotInList();
-        }
+        }       
 
 
         [Route("UpdateDepot/")]
@@ -413,6 +468,14 @@ namespace API_RAC.Controllers
             return Ok(blforfait.SelectForfaitByID(id));
         }
 
+        [Route("GetForfaitByIDDepot/{id}")]
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<Forfait>> GetForfaitByIDDepot(int id)
+        {
+            return Ok(blforfait.SelectForfaitByIDDepot(id));
+        }
+
         [Route("UpdateForfait/")]
         [HttpPut]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -420,7 +483,7 @@ namespace API_RAC.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult UpdateForfait(Forfait forfait)
         {
-            blforfait.InsertOrUpdateForfait(forfait);
+            blforfait.Update(forfait);
             return Ok();
         }
 
@@ -430,7 +493,7 @@ namespace API_RAC.Controllers
 
         public ActionResult PostForfait(Forfait forfait)
         {
-            blforfait.InsertOrUpdateForfait(forfait);
+            blforfait.Insert(forfait);
             return Ok();
         }
 

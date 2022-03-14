@@ -14,9 +14,7 @@
 <table id="datatable" class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Idforfait)
-            </th>
+
             <th>
                 @Html.DisplayNameFor(model => model.Iddepot1)
             </th>
@@ -34,9 +32,7 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Idforfait)
-            </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.Iddepot1Navigation.IdvilleNavigation.Nom)
             </td>

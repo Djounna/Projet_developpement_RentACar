@@ -1,0 +1,49 @@
+﻿@model IEnumerable<FrontEnd_MVC.Models.Prix>
+
+@{
+    ViewData["Title"] = "AffichePrix";
+}
+<link href="~/lib/datatables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+<h1>Liste des prix</h1>
+
+<p>
+      <a class="btn btn-primary" asp-action="CreatePrix">Create New</a><a class="btn btn-success" asp-action="HomeLoueur">Back to main Menu</a>
+</p>
+<table id="datatable" class="table">
+    <thead>
+        <tr>          
+            <th>
+                @Html.DisplayNameFor(model => model.Idpays)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrixKm)
+            </th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdpaysNavigation.Nom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrixKm)
+            </td>
+            <td>
+               <a asp-action="EditPrix" asp-route-id="@item.Idprix">Edit</a>
+               <a asp-action="deletePrix" asp-route-id="@item.Idprix">Delete</a>   
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+@section Scripts
+{
+<script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
+<script src="~/lib/datatables/js/dataTables.bootstrap4.min.js"></script>
+<script src="~/js/datatable.js"></script>
+}
+
+

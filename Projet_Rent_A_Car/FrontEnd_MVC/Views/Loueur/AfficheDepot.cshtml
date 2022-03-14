@@ -24,7 +24,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Inactif)
             </th>
-            <th>Action</th>
+            
         </tr>
     </thead>
     <tbody>
@@ -44,11 +44,7 @@
                 {
                      <td>@Html.CheckBox("isUnchecked",new { @disabled = "disabled" })</td>
                 }
-            <td>
-                <a asp-action="ActivateDepot" asp-route-id="@item.Iddepot">Activer</a>
-                <a asp-action="DisableDepot" asp-route-id="@item.Iddepot">Désactiver</a>
-                <a asp-action="deleteDepot" asp-route-id="@item.Iddepot">Delete</a>
-            </td>
+         
         </tr>
 }
     </tbody>

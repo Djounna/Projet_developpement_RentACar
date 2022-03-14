@@ -1,0 +1,49 @@
+﻿@model FrontEnd_MVC.Models.Prix
+
+@{
+    ViewData["Title"] = "EditPrix";
+}
+
+<h1>Modifier un prix</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="UpdatePrix">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div hidden="hidden" class="form-group">
+                <label asp-for="Idprix" class="control-label"></label>
+                <input asp-for="Idprix" class="form-control" />
+                <span asp-validation-for="Idprix" class="text-danger"></span>
+            </div>
+            <div hidden="hidden" class="form-group">
+                <label asp-for="Idpays" class="control-label"></label>
+                <input asp-for="Idpays" class="form-control" />
+                <span asp-validation-for="Idpays" class="text-danger"></span>
+            </div>
+            <div  hidden="hidden" class="form-group">
+                <label asp-for="DateDebut" class="control-label"></label>
+                <input asp-for="DateDebut" class="form-control" />
+                <span asp-validation-for="DateDebut" class="text-danger"></span>
+            </div>
+            <div hidden="hidden" class="form-group">
+                <label asp-for="DateFin" class="control-label"></label>
+                <input asp-for="DateFin" class="form-control" />
+                <span asp-validation-for="DateFin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PrixKm" class="control-label"></label>
+                <input asp-for="PrixKm" class="form-control" />
+                <span asp-validation-for="PrixKm" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

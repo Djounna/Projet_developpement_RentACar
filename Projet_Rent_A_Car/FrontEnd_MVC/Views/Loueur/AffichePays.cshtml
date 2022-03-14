@@ -24,6 +24,9 @@
                 Nombre de Villes dans le pays
             </th>
             <th>
+               Prix au kilométre
+            </th>
+            <th>
                 Action
             </th>
         </tr>
@@ -39,6 +42,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Ville.Count)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price.PrixKm)
             </td>
             @if (item.Ville.Count == 0)
                 { 

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using DataAccessLayer;
 using Models;
 
 namespace DataAccessLayer
@@ -32,7 +31,6 @@ namespace DataAccessLayer
         {
             if (!optionsBuilder.IsConfigured)
             {
-
                 optionsBuilder.UseSqlServer(DALConnexion.Connexion);
             }
         }
@@ -74,11 +72,10 @@ namespace DataAccessLayer
             {
                 entity.HasKey(e => e.Idforfait);
 
-                entity.HasIndex(e => new { e.Prix, e.DateDebut }, "UK_Prix_DateDebut")
+                entity.HasIndex(e => new { e.Prix, e.DateDebut, e.DateFin }, "UK_Prix_DateDebut_DateFin")
                     .IsUnique();
 
-                entity.Property(e => e.Idforfait)
-                    .HasColumnName("IDForfait");
+                entity.Property(e => e.Idforfait).HasColumnName("IDForfait");
 
                 entity.Property(e => e.DateDebut)
                     .HasColumnType("datetime")
@@ -133,9 +130,6 @@ namespace DataAccessLayer
             {
                 entity.HasKey(e => e.Idprix);
 
-                entity.HasIndex(e => new { e.ReferencePrix, e.Idpays, e.DateDebut }, "UK_ReferencePrix_IDPays_Date_Debut")
-                    .IsUnique();
-
                 entity.Property(e => e.Idprix).HasColumnName("IDPrix");
 
                 entity.Property(e => e.DateDebut)
@@ -151,6 +145,12 @@ namespace DataAccessLayer
                 entity.Property(e => e.PrixKm)
                     .HasColumnType("decimal(8, 2)")
                     .HasColumnName("Prix_Km");
+
+                entity.HasOne(d => d.IdpaysNavigation)
+                    .WithMany(p => p.Prix)
+                    .HasForeignKey(d => d.Idpays)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Prix_Pays");
             });
 
             modelBuilder.Entity<Reservation>(entity =>
