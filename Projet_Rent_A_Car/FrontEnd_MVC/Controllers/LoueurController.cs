@@ -14,7 +14,8 @@ namespace FrontEnd_MVC.Controllers
     {
         //var errors = ModelState.Values.SelectMany(v => v.Errors); 
 
-        // ******************************************************** Generics ****************************************************
+        // ******************************************************** Generics ************************************************************************
+        #region Generics
         private async Task<List<T>> GetRequest<T>(string chemin)
         {
             using (var httpClient = new HttpClient())
@@ -138,8 +139,9 @@ namespace FrontEnd_MVC.Controllers
         //    students.Add(new Student { StudentId = 3, Code = "L0003", Name = "Bhavin Patel", EnrollmentNo = "201404150003" });
         //    return students;
         //}
-
-        // ******************************************************** Notoriete **************************************************************************************
+        #endregion
+        // ******************************************************** Notoriete ***********************************************************************
+        #region Notoriete
         [HttpGet]
         public async Task<ActionResult> AfficheNotoriete() 
         {
@@ -257,8 +259,9 @@ namespace FrontEnd_MVC.Controllers
             await DeleteRequest("https://localhost:7204/api/Loueur/DeleteNotoriete/" + id);
             return RedirectToAction(nameof(AfficheNotorieteActive));
         }
-
-        // ******************************************************** Voiture ***************************************************************************
+        #endregion
+        // ******************************************************** Voiture *************************************************************************
+        #region Voiture
         [HttpGet]
         public async Task<ActionResult> AfficheVoiture() // Corentin ok
         {
@@ -392,8 +395,9 @@ namespace FrontEnd_MVC.Controllers
             return RedirectToAction(nameof(AfficheVoitureActive));
         }
 
-
-        // ******************************************************** Pays ****************************************************************************************
+        #endregion
+        // ******************************************************** Pays ****************************************************************************
+        #region Pays
         [HttpGet]
         public async Task<List<Pays>> GetAllPays()
         {
@@ -470,8 +474,9 @@ namespace FrontEnd_MVC.Controllers
              return RedirectToAction(nameof(AffichePays));
             //return View("DeletePays",await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + id));
         }
-
-        // ******************************************************** Prix ****************************************************************************************
+        #endregion
+        // ******************************************************** Prix ****************************************************************************
+        #region Prix
         [HttpGet]
         public async Task<IActionResult> AffichePrix()
         {
@@ -550,8 +555,9 @@ namespace FrontEnd_MVC.Controllers
 
             return RedirectToAction(nameof(AffichePrix));
         }
-
-        // ******************************************************** Ville ****************************************************************************************
+        #endregion
+        // ******************************************************** Ville ***************************************************************************
+        #region Ville
         [HttpGet]
         public async Task<IActionResult> AfficheVille()
         {            
@@ -618,8 +624,9 @@ namespace FrontEnd_MVC.Controllers
             await DeleteRequest("https://localhost:7204/api/Loueur/DeleteVille/" + id);
             return RedirectToAction(nameof(AfficheVille));
         }
-
-        // ******************************************************** Dépôt ****************************************************************************************
+        #endregion
+        // ******************************************************** Dépôt ***************************************************************************
+        #region Depot
         [HttpGet]
         public async Task<IActionResult> AfficheDepot()
         {
@@ -762,8 +769,9 @@ namespace FrontEnd_MVC.Controllers
             dep.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + dep.Idville);
             return View(dep);
         }
-
-        // ******************************************************** Forfait ****************************************************************************************
+        #endregion
+        // ******************************************************** Forfait *************************************************************************
+        #region Forfait
         [HttpGet]
         public async Task<IActionResult> AfficheForfait()
         {
@@ -884,5 +892,17 @@ namespace FrontEnd_MVC.Controllers
             await UpdateForfait(forfait);
             return RedirectToAction(nameof(AfficheForfait));
         }
+        #endregion
+        // ******************************************************** Réservation *********************************************************************
+        #region Reservatoin
+
+
+
+
+
+
+
+        #endregion
+
     }
 }
