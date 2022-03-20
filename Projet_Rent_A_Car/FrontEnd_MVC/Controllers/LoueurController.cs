@@ -68,22 +68,7 @@ namespace FrontEnd_MVC.Controllers
                 return Ok();
             }
         }
-        /* // En attente Test Corentin
-        private async Task<ActionResult> DeleteRequest(string chemin)
-        {
-            using (var httpClient = new HttpClient())
-            {
-                using (var response = await httpClient.DeleteAsync(chemin))
-                {
-                    if (response.IsSuccessStatusCode)
-                    {
-                        return Ok();
-                    }
-                }
-            }
-            return Ok();
-        }
-        */
+        
         private async Task<ActionResult> DeleteRequest(string chemin)
         {
             using (var httpClient = new HttpClient())
@@ -115,30 +100,7 @@ namespace FrontEnd_MVC.Controllers
             return View();
         }
 
-        // EN cours Corentin, test multiples views        
-        //public ActionResult IndexViewBag()
-        //{
-        //    ViewBag.Message = "Welcome to my demo!";
-        //    ViewBag.Teachers = GetTeachers();
-        //    ViewBag.Students = GetStudents();
-        //    return View();
-        //}
-        //private List<Teacher> GetTeachers()
-        //{
-        //    List<Teacher> teachers = new List<Teacher>();
-        //    teachers.Add(new Teacher { TeacherId = 1, Code = "TT", Name = "Tejas Trivedi" });
-        //    teachers.Add(new Teacher { TeacherId = 2, Code = "JT", Name = "Jignesh Trivedi" });
-        //    teachers.Add(new Teacher { TeacherId = 3, Code = "RT", Name = "Rakesh Trivedi" });
-        //    return teachers;
-        //}
-        //public List<Student> GetStudents()
-        //{
-        //    List<Student> students = new List<Student>();
-        //    students.Add(new Student { StudentId = 1, Code = "L0001", Name = "Amit Gupta", EnrollmentNo = "201404150001" });
-        //    students.Add(new Student { StudentId = 2, Code = "L0002", Name = "Chetan Gujjar", EnrollmentNo = "201404150002" });
-        //    students.Add(new Student { StudentId = 3, Code = "L0003", Name = "Bhavin Patel", EnrollmentNo = "201404150003" });
-        //    return students;
-        //}
+        
         #endregion
         // ******************************************************** Notoriete ***********************************************************************
         #region Notoriete
@@ -434,6 +396,7 @@ namespace FrontEnd_MVC.Controllers
         [HttpPost]
         public async Task<IActionResult> PostPays([Bind("Nom")] Pays pays)
         {
+            ModelState.Remove("Price");
             if (ModelState.IsValid)
             {
                 await PostRequest("https://localhost:7204/api/Loueur/PostPays/", pays);
