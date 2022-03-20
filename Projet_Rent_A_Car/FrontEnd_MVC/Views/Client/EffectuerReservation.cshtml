@@ -1,0 +1,72 @@
+﻿@model FrontEnd_MVC.Models.Reservation
+
+@{
+    ViewData["Title"] = "EffectuerReservation";
+}
+
+<h1>EffectuerReservation</h1>
+
+<h4>Reservation</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="PostReservation">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <div class="form-group">
+                <label asp-for="Idclient" class="control-label"></label>
+                <input asp-for="Idclient" type="hidden"  value="@ViewBag.Idclient" class="form-control" />
+                <span asp-validation-for="Idclient" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Idvoiture" class="control-label"></label>
+                <input asp-for="Idvoiture" class="form-control" />
+                <span asp-validation-for="Idvoiture" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="IddepotDepart" class="control-label"></label>
+                <input asp-for="IddepotDepart" class="form-control" />
+                <span asp-validation-for="IddepotDepart" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IddepotRetour" class="control-label"></label>
+                <input asp-for="IddepotRetour" class="form-control" />
+                <span asp-validation-for="IddepotRetour" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Idforfait" class="control-label"></label>
+                <input asp-for="Idforfait" class="form-control" />
+                <span asp-validation-for="Idforfait" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateReservation" class="control-label"></label>
+                <input asp-for="DateReservation" class="form-control" />
+                <span asp-validation-for="DateReservation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateDepart" class="control-label"></label>
+                <input asp-for="DateDepart" class="form-control" />
+                <span asp-validation-for="DateDepart" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateRetour" class="control-label"></label>
+                <input asp-for="DateRetour" class="form-control" />
+                <span asp-validation-for="DateRetour" class="text-danger"></span>
+            </div>
+           
+            <div class="form-group">
+                <label asp-for="CoefficientMultiplicateur" class="control-label"></label>
+                <input asp-for="CoefficientMultiplicateur" class="form-control" />
+                <span asp-validation-for="CoefficientMultiplicateur" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+

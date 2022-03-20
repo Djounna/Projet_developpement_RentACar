@@ -12,6 +12,14 @@ namespace BusinessLayer
     {
         DALClient dalclient= new();
         DalCommun dal = new();
+
+        public Client SelectClientById(int id)
+        {
+            {
+                return dal.SelectById<Client>(id);
+            }
+        }
+
         public Client SelectClientByMail(string mail)
         {
             return dalclient.SelectClientByMail(mail);

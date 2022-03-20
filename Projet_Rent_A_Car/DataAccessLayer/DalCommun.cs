@@ -29,12 +29,12 @@ namespace DataAccessLayer
             }        
         }
 
-        //private static bool isActif(EntityObject o)  // Test Corentin
+        //private static bool isActif(EntityObject o)  // Test Corentin, ne fonctionne pas actuellement. Problème avec la propriété qui n'est pas généralisable
         //{
         //    return (o.Inactif == false);
         //}
 
-        //public List<T> SelectAllActif<T>() where T : Class // Test Corentin, ne fonctionne pas actuellement
+        //public List<T> SelectAllActif<T>() where T : Class // Test Corentin, ne fonctionne pas actuellement. voir ci-dessus
         //{
         //    List<T> lstAll = SelectAll<T>();
         //    List<T> lstActif = new List<T>();
@@ -48,7 +48,7 @@ namespace DataAccessLayer
         //    return lstActif;
         //}
 
-        //public List<T> SelectAllActif<T>() where T : EntityObject // Test Corentin
+        //public List<T> SelectAllActif<T>() where T : EntityObject // Test Corentin, ne fonctionne pas actuellement. Voir ci-dessus
         //{
         //    List<T> lstActif = dbcontext.Set<T>().Where(o => o.Inactif == true).ToList<T>();
         //    return lstActif;

@@ -27,13 +27,11 @@ namespace BusinessLayer
         }
     public void Insert(Forfait forfait)
         {
-
             dalForfait.Insert(forfait);
         }
 
         public void Update(Forfait forfait)
         {
-
             dalForfait.Update(forfait);
         }
 

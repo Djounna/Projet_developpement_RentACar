@@ -12,11 +12,20 @@
         <form asp-action="PostVoiture">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             
+            <!-- // Test Corentin
             <div class="form-group">
                 <label asp-for="Idnotoriete" class="control-label"></label>
                 <input asp-for="Idnotoriete" class="form-control" />
                 <span asp-validation-for="Idnotoriete" class="text-danger"></span>
+            </div>-->
+            <div class="form-group">
+             @Html.LabelFor(x => Model.Idnotoriete, htmlAttributes: new { @class = "control-label col-md-15" })
+             <div class="col-md-35">
+                @Html.DropDownListFor(x => Model.Idnotoriete, new SelectList(Model.ListNotoriete, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "IDNotoriete"})
+                @Html.ValidationMessageFor(x => x.Idnotoriete, "", new { @class = "text-danger" })
+                </div>
             </div>
+
             <div class="form-group">
                 <label asp-for="Iddepot" class="control-label"></label>
                 <input asp-for="Iddepot" class="form-control" />
@@ -32,7 +41,7 @@
                 <input asp-for="Marque" class="form-control" />
                 <span asp-validation-for="Marque" class="text-danger"></span>
             </div>
-            <div hiddent="hidden" class="form-group">
+            <div hidden="hidden" class="form-group">
                 <label asp-for="Inactif" class="control-label"></label>
                 <input asp-for="Inactif" class="form-control" />
                 <span asp-validation-for="Inactif" class="text-danger"></span>

@@ -29,11 +29,11 @@ namespace BusinessLayer
         {
             dal.Delete(SelectDepotByID(id));
         }
-        public List<Depot> SelectAllDepotInactif()  // OK Corentin
+        public List<Depot> SelectAllDepotInactif()  
         {
             return dalDepot.SelectAllDepotInactif();
         }
-        public List<Depot> SelectAllDepotActif()  // OK Corentin
+        public List<Depot> SelectAllDepotActif()  
         {
            return dalDepot.SelectAllDepotActif();
         }

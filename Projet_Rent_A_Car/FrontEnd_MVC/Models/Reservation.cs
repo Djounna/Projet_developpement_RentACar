@@ -1,15 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace FrontEnd_MVC.Models
 {
     public partial class Reservation
     {
         public int Idreservation { get; set; }
+
+        [Display (Name = "Voiture") ]
         public int Idvoiture { get; set; }
+
+        [Display(Name = "Mail du client")]
         public int Idclient { get; set; }
+
+        [Display(Name = "Ville de départ")]
         public int IddepotDepart { get; set; }
+
+        [Display(Name = "Ville de retour")]
         public int IddepotRetour { get; set; }
+
         public int? Idforfait { get; set; }
         public DateTime DateReservation { get; set; }
         public DateTime DateDepart { get; set; }
