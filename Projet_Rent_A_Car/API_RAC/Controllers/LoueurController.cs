@@ -20,7 +20,8 @@ namespace API_RAC.Controllers
         private BLForfait blforfait = new();
         private BLPrix blPrix = new();
 
-        // *********************************************************************** Notoriete *************************************************************************
+        // *********************************************************************** Notoriete ********************************************************************
+        # region Notoriete 
         [Route("GetNotoriete/")]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -83,8 +84,9 @@ namespace API_RAC.Controllers
             blNotoriete.DeleteNotoriete(id);
             return Ok();
         }
-
-        // *********************************************************************** Voiture *************************************************************************
+        #endregion
+        // *********************************************************************** Voiture **********************************************************************
+        #region Voiture
         [Route("GetVoiture/")]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -145,8 +147,9 @@ namespace API_RAC.Controllers
             blVoiture.DeleteVoiture(id);
             return Ok();
         }
+        #endregion
         // *********************************************************************** Pays *************************************************************************
-
+        #region Pays
         [Route("GetPays/")]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -232,7 +235,9 @@ namespace API_RAC.Controllers
             }
             return BadRequest();
         }
+        #endregion
         // *********************************************************************** Prix *************************************************************************
+        #region Prix
         [Route("GetPrix/")]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -276,12 +281,9 @@ namespace API_RAC.Controllers
             blPrix.InsertOrUpdatePrix(Prix);
             return Ok();
         }
-
-  
-
-
-
-        // *********************************************************************** Ville *************************************************************************
+        #endregion
+        // *********************************************************************** Ville ************************************************************************
+        #region Ville
         [Route("GetVille/")]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -369,8 +371,9 @@ namespace API_RAC.Controllers
             return BadRequest();
 
         }
-
-        // *********************************************************************** Depot *************************************************************************
+        #endregion
+        // *********************************************************************** Depot ************************************************************************
+        #region Depot
         [Route("GetDepot/")]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -448,10 +451,9 @@ namespace API_RAC.Controllers
             bldepot.DeleteDepot(id);
             return Ok();
         }
-
-
-
-        // *********************************************************************** Forfait *************************************************************************
+        #endregion
+        // *********************************************************************** Forfait **********************************************************************
+        #region Forfait
         [Route("GetForfait/")]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -496,6 +498,13 @@ namespace API_RAC.Controllers
             blforfait.Insert(forfait);
             return Ok();
         }
+        #endregion
+        // *********************************************************************** Reservation ******************************************************************
+        #region Reservation
+
+
+        #endregion
+
 
     }
 }

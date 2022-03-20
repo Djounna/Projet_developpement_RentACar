@@ -61,8 +61,9 @@
                 @Html.DisplayFor(modelItem => item.Inactif)
             </td>
             <td>
-                <a asp-action="ActivateVoiture" asp-route-id="@item.Idvoiture">Activer</a>
+                
                 <a asp-action="DisableVoiture" asp-route-id="@item.Idvoiture">Désactiver</a>
+                 <a asp-action="EditVoiture" asp-route-id="@item.Idvoiture">Edit</a>
                 <a asp-action="deleteVoiture" asp-route-id="@item.Idvoiture">Delete</a>
             </td>
         </tr>
