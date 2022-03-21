@@ -1,4 +1,5 @@
 ﻿using DataAccessLayer;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Models;
 using System;
 using System.Collections.Generic;
@@ -40,40 +41,20 @@ namespace BusinessLayer
         {
             dal.Delete(SelectNotorieteByID(id));
         }
-        public List<Notoriete> SelectAllNotorieteInactif() // OK Corentin, à valider
+        public List<Notoriete> SelectAllNotorieteInactif() // OK 
         {
             return dalNotoriete.SelectAllNotorieteInactif();
         }
-        public List<Notoriete> SelectAllNotorieteActif() // OK COrentin, à valider
+        public List<Notoriete> SelectAllNotorieteActif() // OK 
         {
             return dalNotoriete.SelectAllDNotorieteActif();
         }
-
-        //public List<Notoriete> SelectAllNotorieteInactif()
-        //{          
-        //    List<Notoriete> lstInactif = new List<Notoriete>();
-        //    List<Notoriete> lstNotoriete = dal.SelectAll<Notoriete>();
-        //    foreach (Notoriete not in lstNotoriete)
-        //    {
-        //        if (not.Inactif ==true)
-        //        {
-        //            lstInactif.Add(not);
-        //        }
-        //    }
-        //    return lstInactif;
-        //}
-        //public List<Notoriete> SelectAllNotorieteActif()
-        //{           
-        //    List<Notoriete> lstActif = new List<Notoriete>();
-        //    List<Notoriete> lstNotoriete = dal.SelectAll<Notoriete>();
-        //    foreach (Notoriete not in lstNotoriete)
-        //    {
-        //        if (not.Inactif == null || not.Inactif == false)
-        //        {
-        //            lstActif.Add(not);
-        //        }
-        //    }
-        //    return lstActif;
-        //}        
+        
+        public IEnumerable<SelectListItem> SelectAllNotorieteInList() // Corentin EN cours
+        {
+            return dalNotoriete.SelectAllNotorieteInList();
+        }
+        
+               
     }
 }

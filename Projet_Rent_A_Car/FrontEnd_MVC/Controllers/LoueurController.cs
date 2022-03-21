@@ -260,8 +260,14 @@ namespace FrontEnd_MVC.Controllers
                 throw ex;
             }
         }
-        public IActionResult CreateVoiture() // Corentin OK
+        public async Task<IActionResult> CreateVoiture() // Corentin OK
         {
+            //Corentin En cours
+            Voiture voiture = new();
+            voiture.ListNotoriete = await GetEnumerableList("https://localhost:7204/api/Loueur/GetAllNotorieteInList/");
+            voiture.ListDepot = await GetEnumerableList("https://localhost:7204/api/Loueur/GetAllDepotInList/");
+            
+            
             return View();
         }
         [HttpPost] // Corentin OK
@@ -273,6 +279,8 @@ namespace FrontEnd_MVC.Controllers
             voiture.IddepotNavigation.IdvilleNavigation.IdpaysNavigation = await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + voiture.IddepotNavigation.IdvilleNavigation.Idpays);
             ModelState.Remove("IddepotNavigation");
             ModelState.Remove("IdnotorieteNavigation");
+            // ModelState.Remove("ListDepot");
+            // ModelState.Remove("ListNotoriete");
 
             if (ModelState.IsValid)
             {
@@ -342,14 +350,7 @@ namespace FrontEnd_MVC.Controllers
             return View(voiture);
         }
 
-        /* En attente
-        [HttpPost, ActionName("deleteVoiture")]
-        public async Task<ActionResult> removeVoiture(int id)
-        {
-                 await DeleteRequest("https://localhost:7204/api/Loueur/DeleteVoiture/" + id);
-                 return RedirectToAction(nameof(AfficheVoitureActive));
-        }
-        */
+    
         [HttpPost, ActionName("deleteVoiture")]  // Corentin, en cours, à voir avec ANtoine
         public async Task<ActionResult> removeVoiture(int id)
         {
@@ -857,9 +858,117 @@ namespace FrontEnd_MVC.Controllers
         }
         #endregion
         // ******************************************************** Réservation *********************************************************************
-        #region Reservatoin
+        #region Reservation
+        [HttpGet]
+        public async Task<ActionResult> AfficheReservation() // Corentin ok
+        {
+            try
+            {
+                return View(await GetRequest<Reservation>("https://localhost:7204/api/Loueur/GetReservation/"));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
 
+        [HttpGet]
+        public async Task<ActionResult> AfficheReservationEnCours() // Corentin En cours
+        {
+            try
+            {
+                return View(await GetRequest<Reservation>("https://localhost:7204/api/Loueur/GetReservationActif/"));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        [HttpGet]
+        public async Task<ActionResult> AfficheReservationCloturees() // Corentin En cours
+        {
+            try
+            {
+                return View(await GetRequest<Reservation>("https://localhost:7204/api/Loueur/GetReservationInactif/"));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        
+
+        /*
+        public async Task<IActionResult> EditReservation(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            return View(await GetRequestUnique<Reservation>("https://localhost:7204/api/Loueur/GetReservationByID/" + id));
+        }
+        public async Task<IActionResult> UpdateReservation([Bind("IdReservation,Idnotoriete,Iddepot,Immatriculation,Marque")] Reservation Reservation)
+        {
+            Reservation.IddepotNavigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + Reservation.Iddepot);
+            Reservation.IdnotorieteNavigation = await GetRequestUnique<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteByID/" + Reservation.Idnotoriete);
+            Reservation.IddepotNavigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + Reservation.IddepotNavigation.Idville);
+            Reservation.IddepotNavigation.IdvilleNavigation.IdpaysNavigation = await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + Reservation.IddepotNavigation.IdvilleNavigation.Idpays);
+            ModelState.Remove("IddepotNavigation");
+            ModelState.Remove("IdnotorieteNavigation");
+            if (ModelState.IsValid)
+            {
+                await PutRequest("https://localhost:7204/api/Loueur/UpdateReservation/", Reservation);
+            }
+            return RedirectToAction(nameof(AfficheReservationActive));
+        }
+        public async Task<IActionResult> deleteReservation(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            return View(await GetRequestUnique<Reservation>("https://localhost:7204/api/Loueur/GetReservationByID/" + id));
+        }
+        // GET
+        [HttpPost, ActionName("DisableReservation")]
+        public async Task<ActionResult> DesactiverReservation(int id)
+        {
+            Reservation voit = await GetRequestUnique<Reservation>("https://localhost:7204/api/Loueur/GetReservationByID/" + id);
+            voit.Inactif = true;
+
+            await UpdateReservation(voit);
+            return RedirectToAction(nameof(AfficheReservationActive));
+        }
+        [HttpPost, ActionName("ActivateReservation")]
+        public async Task<ActionResult> ActiverReservation(int id)
+        {
+            Reservation voit = await GetRequestUnique<Reservation>("https://localhost:7204/api/Loueur/GetReservationByID/" + id);
+            voit.Inactif = false;
+
+            await UpdateReservation(voit);
+            return RedirectToAction(nameof(AfficheReservationActive));
+        }
+
+        public async Task<IActionResult> DisableReservation(int? id)
+        {
+            var Reservation = await GetRequestUnique<Reservation>("https://localhost:7204/api/Loueur/GetReservationByID/" + id);
+            return View(Reservation);
+        }
+        public async Task<IActionResult> ActivateReservation(int? id)
+        {
+            var Reservation = await GetRequestUnique<Reservation>("https://localhost:7204/api/Loueur/GetReservationByID/" + id);
+            return View(Reservation);
+        }
+        
+        
+        [HttpPost, ActionName("deleteReservation")]  // Corentin, en cours, à voir avec ANtoine
+        public async Task<ActionResult> removeReservation(int id)
+        {
+            await DeleteRequest("https://localhost:7204/api/Loueur/DeleteReservation/" + id);
+            return RedirectToAction(nameof(AfficheReservationActive));
+        }
+        */
 
 
 

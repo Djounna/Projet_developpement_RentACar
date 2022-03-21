@@ -19,6 +19,7 @@ namespace API_RAC.Controllers
         private BLVoiture blVoiture = new();
         private BLForfait blforfait = new();
         private BLPrix blPrix = new();
+        private BLReservation blReservation = new();
 
         // *********************************************************************** Notoriete ********************************************************************
         # region Notoriete 
@@ -54,6 +55,15 @@ namespace API_RAC.Controllers
             return Ok(blNotoriete.SelectNotorieteByID(id));
         }
 
+        
+        [Route("GetAllNotorieteInList")]
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public IEnumerable<SelectListItem> GetAllNotorieteInList()
+        {
+            return blNotoriete.SelectAllNotorieteInList();
+        }
+        
         [Route("UpdateNotoriete/")]
         [HttpPut]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -500,8 +510,70 @@ namespace API_RAC.Controllers
         }
         #endregion
         // *********************************************************************** Reservation ******************************************************************
-        #region Reservation
+        #region Reservation 
+        // Corentin En cous, voir ce qui est utile pour le vendeur
+        [Route("GetReservation/")]
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<List<Reservation>>> GetReservation()
+        {
+            return Ok(blReservation.SelectAllReservation());
+        }
+        /*
+        [Route("GetReservationEnCours/")]
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<List<Reservation>>> GetReservationEnCours()
+        {
+            return Ok(blReservation.SelectAllReservationEnCours());
+        }
+        
+        [Route("GetReservationCloturees/")]
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<List<Reservation>>> GetReservationCloturees()
+        {
+            return Ok(blReservation.SelectAllReservationCloturees());
+        }
 
+        */
+
+        [Route("GetReservationByID/{id}")]
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<Reservation>> GetReservationByID(int id)
+        {
+            return Ok(blReservation.SelectReservationByID(id));
+        }
+
+        [Route("UpdateReservation/")]
+        [HttpPut]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult UpdateReservation(Reservation Reservation)
+        {
+            blReservation.InsertOrUpdateReservation(Reservation);
+            return Ok();
+        }
+
+        [Route("PostReservation/")]
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+
+        public ActionResult PostReservation(Reservation Reservation)
+        {
+            blReservation.InsertOrUpdateReservation(Reservation);
+            return Ok();
+        }
+        [Route("DeleteReservation/{id}")]
+        [HttpDelete]
+        public ActionResult DeleteReservation(int id)
+        {
+            blReservation.DeleteReservation(id);
+            return Ok();
+        }
 
         #endregion
 

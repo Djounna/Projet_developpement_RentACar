@@ -11,7 +11,7 @@ namespace DataAccessLayer
     public class DALDepot
     {
         private DalCommun dal = new();
-        public List<Depot> SelectAllDepotInactif() // OK Corentin, à valider
+        public List<Depot> SelectAllDepotInactif() //OK
         {
             try
             {
@@ -22,7 +22,7 @@ namespace DataAccessLayer
                 throw ex;
             }
         }
-        public List<Depot> SelectAllDepotActif() // Corentin, à valider
+        public List<Depot> SelectAllDepotActif() //OK
         {
             try
             {
@@ -66,7 +66,7 @@ namespace DataAccessLayer
                 var depotIntro = new SelectListItem()
                 {
                     Value = null,
-                    Text = "--- select Depot ---"
+                    Text = "--- select Notoriete ---"
                 };
                 lstDepot.Insert(0, depotIntro);
               

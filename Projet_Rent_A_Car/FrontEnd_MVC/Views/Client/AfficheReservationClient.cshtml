@@ -1,0 +1,103 @@
+﻿@model IEnumerable<FrontEnd_MVC.Models.Reservation>
+
+@{
+    ViewData["Title"] = "AfficheReservationClient";
+}
+
+<!-- Vue de test, à recommencer pour les vues du client -->
+
+<h1>AfficheReservationClient</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Idreservation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Idvoiture)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Idclient)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IddepotDepart)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IddepotRetour)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Idforfait)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateReservation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateDepart)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateRetour)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KilometrageDepart)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KilometrageRetour)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CoefficientMultiplicateur)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Idreservation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Idvoiture)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Idclient)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IddepotDepart)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IddepotRetour)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Idforfait)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateReservation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateDepart)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateRetour)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KilometrageDepart)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KilometrageRetour)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CoefficientMultiplicateur)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

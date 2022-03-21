@@ -15,6 +15,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\Corentin\Documents\Ecole\EPHEC\Projet SGBD\Projet_developpement_RentACar\Projet_Rent_A_Car\FrontEnd_MVC
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Client/AfficheReservationClient.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XEFmZmljaGVSZXNlcnZhdGlvbkNsaWVudC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Client/CheckLogin.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XENoZWNrTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -25,6 +29,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Client/CreateClient.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XENyZWF0ZUNsaWVudC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Client/EffectuerReservation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XEVmZmVjdHVlclJlc2VydmF0aW9uLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Client/HomeCLient.cshtml]
@@ -85,6 +93,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/AffichePrix.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXEFmZmljaGVQcml4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/AfficheReservation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXEFmZmljaGVSZXNlcnZhdGlvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/AfficheVille.cshtml]

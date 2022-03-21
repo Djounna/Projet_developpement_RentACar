@@ -5,5 +5,56 @@
 
 <div class="text-center">
     <h1 class="display-4">Bienvenue @Html.DisplayFor(modelItem => modelItem.Nom) </h1><h1 class="display-4">@Html.DisplayFor(modelItem => modelItem.Prenom) </h1>
-</div>
 
+
+<table  class="table">
+<thead>
+        <tr>
+            <th>
+                <p>Action</p>                
+            </th>
+            <th>
+                <p>Description</p>                
+            </th>
+
+        </tr>
+         <tr>           
+            <th>
+                <p>Historique de mes réservation</p>                
+            </th>
+            <th>
+                <p>Dans ce menu, vous pourrez afficher l'historique de vos réservations</p>
+               
+            </th>
+            <th>
+                <a asp-controller="Client" asp-action="AfficherReservationClient">Mon historique</a>               
+            </th>
+        <tr>           
+            <th>
+                <p>Nouvelle réservation</p>                
+            </th>
+            <th>
+                <p>Dans ce menu, vous pourrez effectuer une nouvelle réservation</p>
+               
+            </th>
+            <th>
+                <form asp-action="EffectuerReservation">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Idclient" class="control-label"></label>
+                <input asp-for="Idclient" value=@Model.Idclient class="form-control" /> <!-- Passage de l'Idclient à la vue effectuerReservation -->
+                <span asp-validation-for="Nom" class="text-danger"></span>
+                <div class="form-group">
+                <input type="submit" value="Effectuer une réservation" class="btn btn-primary" />
+            </div>
+            </div>
+            </form>
+                <a asp-controller="Client" asp-action="EffectuerReservation">Effectuer une réservation</a>               
+            </th>
+
+            
+
+        </tr>       
+    </thead>
+    </table>
+    </div>
