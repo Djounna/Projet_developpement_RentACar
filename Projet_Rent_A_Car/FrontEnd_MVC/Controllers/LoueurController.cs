@@ -268,7 +268,7 @@ namespace FrontEnd_MVC.Controllers
             voiture.ListDepot = await GetEnumerableList("https://localhost:7204/api/Loueur/GetAllDepotInList/");
             
             
-            return View();
+            return View(voiture);
         }
         [HttpPost] // Corentin OK
         public async Task<IActionResult> PostVoiture([Bind("Idnotoriete,Iddepot,Immatriculation,Marque")] Voiture voiture)
@@ -279,8 +279,8 @@ namespace FrontEnd_MVC.Controllers
             voiture.IddepotNavigation.IdvilleNavigation.IdpaysNavigation = await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + voiture.IddepotNavigation.IdvilleNavigation.Idpays);
             ModelState.Remove("IddepotNavigation");
             ModelState.Remove("IdnotorieteNavigation");
-            // ModelState.Remove("ListDepot");
-            // ModelState.Remove("ListNotoriete");
+            ModelState.Remove("ListDepot");
+            ModelState.Remove("ListNotoriete");
 
             if (ModelState.IsValid)
             {
@@ -305,6 +305,8 @@ namespace FrontEnd_MVC.Controllers
             voiture.IddepotNavigation.IdvilleNavigation.IdpaysNavigation = await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + voiture.IddepotNavigation.IdvilleNavigation.Idpays);
             ModelState.Remove("IddepotNavigation");
             ModelState.Remove("IdnotorieteNavigation");
+            ModelState.Remove("ListDepot");
+            ModelState.Remove("ListNotoriete");
             if (ModelState.IsValid)
             {
                 await PutRequest("https://localhost:7204/api/Loueur/UpdateVoiture/", voiture);

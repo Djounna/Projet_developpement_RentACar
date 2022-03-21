@@ -66,7 +66,7 @@ namespace DataAccessLayer
                 var depotIntro = new SelectListItem()
                 {
                     Value = null,
-                    Text = "--- select Notoriete ---"
+                    Text = "--- select Dépot ---"
                 };
                 lstDepot.Insert(0, depotIntro);
               

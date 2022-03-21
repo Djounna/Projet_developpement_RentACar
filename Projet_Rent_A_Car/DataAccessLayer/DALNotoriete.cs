@@ -47,7 +47,7 @@ namespace DataAccessLayer
             {
 
                 List<SelectListItem> lstNotoriete = dal.dbcontext.Notoriete
-                    .Select
+                    .Where(n=> n.Inactif != true).Select
                     (n =>
                        new SelectListItem
                        {
