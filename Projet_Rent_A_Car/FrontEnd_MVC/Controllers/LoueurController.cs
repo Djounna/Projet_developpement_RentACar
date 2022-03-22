@@ -22,10 +22,13 @@ namespace FrontEnd_MVC.Controllers
             {
                 using (var response = await (httpClient.GetAsync(chemin)))
                 {
+                    List<T> lst = new();
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     return JsonConvert.DeserializeObject<List<T>>(apiResponse);
                 }
             }
+
+            
         }
         private async Task<T> GetRequestUnique<T>(string chemin)
         {
@@ -90,8 +93,7 @@ namespace FrontEnd_MVC.Controllers
                 using (var response = await (httpClient.GetAsync(chemin)))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    IEnumerable<SelectListItem> lst = JsonConvert.DeserializeObject<IEnumerable<SelectListItem>>(apiResponse);
-                    return lst;
+                    return JsonConvert.DeserializeObject<IEnumerable<SelectListItem>>(apiResponse);                    
                 }
             }
         }
@@ -99,17 +101,16 @@ namespace FrontEnd_MVC.Controllers
         {
             return View();
         }
-
         
         #endregion
         // ******************************************************** Notoriete ***********************************************************************
         #region Notoriete
         [HttpGet]
-        public async Task<ActionResult> AfficheNotoriete() 
+        public ActionResult AfficheNotoriete() 
         {
             try
             {
-                return View(await GetRequest<Notoriete>("https://localhost:7204/api/Loueur/GetNotoriete/"));
+                return View(GetRequest<Notoriete>("https://localhost:7204/api/Loueur/GetNotoriete/"));
             }
             catch (Exception ex)
             {
@@ -117,11 +118,11 @@ namespace FrontEnd_MVC.Controllers
             }
         }
         [HttpGet]
-        public async Task<ActionResult> AfficheNotorieteActive()
+        public ActionResult AfficheNotorieteActive()
         {
             try
             {
-                return View(await GetRequest<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteActif/"));
+                return View(GetRequest<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteActif/"));
             }
             catch (Exception ex)
             {
@@ -129,11 +130,11 @@ namespace FrontEnd_MVC.Controllers
             }
         }
         [HttpGet]
-        public async Task<ActionResult> AfficheNotorieteInactive()
+        public ActionResult AfficheNotorieteInactive()
         {
             try
             {
-                return View(await GetRequest<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteInactif/"));
+                return View(GetRequest<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteInactif/"));
             }
             catch (Exception ex)
             {
@@ -145,47 +146,46 @@ namespace FrontEnd_MVC.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> PostNotoriete([Bind("Libelle,CoefficientMultiplicateur")] Notoriete notoriete)
+        public IActionResult PostNotoriete([Bind("Libelle,CoefficientMultiplicateur")] Notoriete notoriete)
         {
             if (ModelState.IsValid)
             {
-               await PostRequest("https://localhost:7204/api/Loueur/PostNotoriete/", notoriete);                                     
+              PostRequest("https://localhost:7204/api/Loueur/PostNotoriete/", notoriete);                                     
             }
             return RedirectToAction(nameof(AfficheNotorieteActive));
 
         }
-        public async Task<IActionResult> EditNotoriete(int? id)
+        public IActionResult EditNotoriete(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-            return View(await GetRequestUnique<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteByID/" + id));
+            return View(GetRequestUnique<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteByID/" + id));
         }
-        public async Task<IActionResult> UpdateNotoriete([Bind("Idnotoriete,Libelle,CoefficientMultiplicateur,Inactif")] Notoriete notoriete)
+        public IActionResult UpdateNotoriete([Bind("Idnotoriete,Libelle,CoefficientMultiplicateur,Inactif")] Notoriete notoriete)
         {
             if (ModelState.IsValid)
             {
-                await PutRequest("https://localhost:7204/api/Loueur/UpdateNotoriete/", notoriete);              
+                PutRequest("https://localhost:7204/api/Loueur/UpdateNotoriete/", notoriete);              
             }
             return RedirectToAction(nameof(AfficheNotorieteActive));
         }
-        public async Task<IActionResult> deleteNotoriete(int? id)
+        public IActionResult deleteNotoriete(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-            return View(await GetRequestUnique<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteByID/" + id));
+            return View(GetRequestUnique<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteByID/" + id));
         }
-        // GET
         [HttpPost, ActionName("Disable")]
         public async Task<ActionResult> DesactiverNotoriete(int id)
         {
             Notoriete not = await GetRequestUnique<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteByID/" + id);
             not.Inactif = true;
 
-            await UpdateNotoriete(not);
+            UpdateNotoriete(not);
             return RedirectToAction(nameof(AfficheNotorieteActive));
         }
         [HttpPost, ActionName("Activate")]
@@ -194,31 +194,24 @@ namespace FrontEnd_MVC.Controllers
             Notoriete not = await GetRequestUnique<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteByID/" + id);
             not.Inactif = false;
 
-            await UpdateNotoriete(not);
+            UpdateNotoriete(not);
             return RedirectToAction(nameof(AfficheNotorieteActive));
         }
-        public async Task<IActionResult> Disable(int? id)
+        public IActionResult Disable(int? id)
         { 
-            var notoriety = await GetRequestUnique<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteByID/" + id);
+            var notoriety = GetRequestUnique<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteByID/" + id);
             return View(notoriety);
         }
-        public async Task<IActionResult> Activate(int? id)
+        public IActionResult Activate(int? id)
         {
-            var notoriety = await GetRequestUnique<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteByID/" + id);
+            var notoriety = GetRequestUnique<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteByID/" + id);
             return View(notoriety);
         }
-        /* En attente
-        [HttpPost, ActionName("deleteNotoriete")]
-        public async Task<ActionResult> removeNotoriete(int id)
+
+        [HttpPost, ActionName("deleteNotoriete")]  
+        public ActionResult removeNotoriete(int id)
         {
-                 await DeleteRequest("https://localhost:7204/api/Loueur/DeleteNotoriete/" + id);
-                 return RedirectToAction(nameof(AfficheNotorieteActive));
-        }
-        */
-        [HttpPost, ActionName("deleteNotoriete")]  // Corentin, en cours, à voir avec ANtoine
-        public async Task<ActionResult> removeNotoriete(int id)
-        {
-            await DeleteRequest("https://localhost:7204/api/Loueur/DeleteNotoriete/" + id);
+            DeleteRequest("https://localhost:7204/api/Loueur/DeleteNotoriete/" + id);
             return RedirectToAction(nameof(AfficheNotorieteActive));
         }
         #endregion

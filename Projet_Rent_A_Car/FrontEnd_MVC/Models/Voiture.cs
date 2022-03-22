@@ -19,8 +19,13 @@ namespace FrontEnd_MVC.Models
 
         [Display(Name = "Ville du dépot")]
         public int Iddepot { get; set; }
+
+        [MaxLength(8, ErrorMessage = "this field shouldn'thave more than 8 character")]
+        [Required(ErrorMessage = "This field is mandatory")]
         public string Immatriculation { get; set; } = null!;
-        public string? Marque { get; set; }
+        [MaxLength(50, ErrorMessage = "this field shouldn'thave more than 50 character")]
+        [Required(ErrorMessage = "This field is mandatory")]
+        public string Marque { get; set; }
         public bool? Inactif { get; set; }
 
         public IEnumerable<SelectListItem> ListDepot { get; set; }

@@ -21,6 +21,7 @@ namespace FrontEnd_MVC.Models
         public IEnumerable<SelectListItem> ListPays { get; set; }
 
         [Display(Name = "Libellé de la ville")]
+        [MaxLength(50, ErrorMessage = "this field shouldn'thave more than 50 character")]
         public string Nom { get; set; } = null!;
 
         public virtual Pays IdpaysNavigation { get; set; } = null!;
