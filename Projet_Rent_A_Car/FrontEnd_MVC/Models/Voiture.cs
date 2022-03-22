@@ -20,7 +20,8 @@ namespace FrontEnd_MVC.Models
         [Display(Name = "Ville du dépot")]
         public int Iddepot { get; set; }
 
-        [MaxLength(8, ErrorMessage = "this field shouldn'thave more than 8 character")]
+        [MaxLength(8, ErrorMessage = "this field shouldn't have more than 8 character")]
+        [MinLength(8, ErrorMessage = "this field shouldn't have less than 8 character")]
         [Required(ErrorMessage = "This field is mandatory")]
         public string Immatriculation { get; set; } = null!;
         [MaxLength(50, ErrorMessage = "this field shouldn'thave more than 50 character")]

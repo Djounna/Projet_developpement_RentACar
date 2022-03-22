@@ -144,7 +144,7 @@ namespace FrontEnd_MVC.Controllers
         [HttpPost] // Cette view est un Httppost afin de pouvoir récupérer l'IdClient via un formulaire. Ok Corentin
         public IActionResult EffectuerReservation([Bind("Idclient")] Client client)
         {
-            ViewBag.Idclient = client.Idclient; // Essai avec viewbag. Je passe l'idclient à la vue via le viewbag. Ok Corentin..semble fonctionner
+            ViewBag.Idclient = client.Idclient; // Essai avec viewbag. Je passe l'idclient à la vue via le viewbag. Ok Corentin
             return View();
         }
 

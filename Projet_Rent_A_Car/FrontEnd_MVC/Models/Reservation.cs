@@ -8,9 +8,11 @@ namespace FrontEnd_MVC.Models
     {
         public int Idreservation { get; set; }
 
-        [Display (Name = "Voiture") ]
-       
         public int Idclient { get; set; }
+
+        [Display (Name = "Voiture") ]
+        public int Idvoiture { get; set; }
+        
 
         [Display(Name = "Ville de départ")]
         [Required(ErrorMessage = "This field is mandatory")]
