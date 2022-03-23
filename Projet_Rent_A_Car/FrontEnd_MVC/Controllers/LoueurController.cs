@@ -222,7 +222,15 @@ namespace FrontEnd_MVC.Controllers
         {
             try
             {
-                return View(await GetRequest<Voiture>("https://localhost:7204/api/Loueur/GetVoiture/"));
+                List<Voiture> lst = await GetRequest<Voiture>("https://localhost:7204/api/Loueur/GetVoiture/");
+                foreach (var item in lst)
+                {
+                    item.IdnotorieteNavigation = await GetRequestUnique<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteByID/" + item.Idnotoriete);
+                    item.IddepotNavigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + item.Iddepot);
+                    item.IddepotNavigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + item.IddepotNavigation.Idville);
+                }
+
+                return View(lst);
             }
             catch (Exception ex)
             {
@@ -234,7 +242,15 @@ namespace FrontEnd_MVC.Controllers
         {
             try
             {
-                return View(await GetRequest<Voiture>("https://localhost:7204/api/Loueur/GetVoitureActif/"));
+                List<Voiture> lst = await GetRequest<Voiture>("https://localhost:7204/api/Loueur/GetVoitureActif/");
+                foreach (var item in lst)
+                {
+                    item.IdnotorieteNavigation = await GetRequestUnique<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteByID/" + item.Idnotoriete);
+                    item.IddepotNavigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + item.Iddepot);
+                    item.IddepotNavigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + item.IddepotNavigation.Idville);
+                }
+
+                return View(lst);
             }
             catch (Exception ex)
             {
@@ -246,7 +262,16 @@ namespace FrontEnd_MVC.Controllers
         {
             try
             {
-                return View(await GetRequest<Voiture>("https://localhost:7204/api/Loueur/GetVoitureInactif/"));
+                List<Voiture> lst = await GetRequest<Voiture>("https://localhost:7204/api/Loueur/GetVoitureInactif/");
+
+                     foreach (var item in lst)
+                {
+                    item.IdnotorieteNavigation = await GetRequestUnique<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteByID/" + item.Idnotoriete);
+                    item.IddepotNavigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + item.Iddepot);
+                    item.IddepotNavigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + item.IddepotNavigation.Idville);
+                }
+
+                return View(lst);
             }
             catch (Exception ex)
             {
@@ -255,7 +280,7 @@ namespace FrontEnd_MVC.Controllers
         }
         public async Task<IActionResult> CreateVoiture() // Corentin OK
         {
-            //Corentin En cours
+            
             Voiture voiture = new();
             voiture.ListNotoriete = await GetEnumerableList("https://localhost:7204/api/Loueur/GetAllNotorieteInList/");
             voiture.ListDepot = await GetEnumerableList("https://localhost:7204/api/Loueur/GetAllDepotInList/");
@@ -284,11 +309,16 @@ namespace FrontEnd_MVC.Controllers
         }
         public async Task<IActionResult> EditVoiture(int? id)
         {
+            Voiture voiture = new();
+            voiture = await GetRequestUnique<Voiture>("https://localhost:7204/api/Loueur/GetVoitureByID/" + id);
+            voiture.ListNotoriete = await GetEnumerableList("https://localhost:7204/api/Loueur/GetAllNotorieteInList/");
+            voiture.ListDepot = await GetEnumerableList("https://localhost:7204/api/Loueur/GetAllDepotInList/"); 
+
             if (id == null)
             {
                 return NotFound();
             }
-            return View(await GetRequestUnique<Voiture>("https://localhost:7204/api/Loueur/GetVoitureByID/" + id));
+            return View(voiture);
         }
         public async Task<IActionResult> UpdateVoiture([Bind("Idvoiture,Idnotoriete,Iddepot,Immatriculation,Marque")] Voiture voiture)
         {

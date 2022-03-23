@@ -27,6 +27,8 @@ namespace FrontEnd_MVC.Models
         [MaxLength(50, ErrorMessage = "this field shouldn'thave more than 50 character")]
         [Required(ErrorMessage = "This field is mandatory")]
         public string Marque { get; set; }
+
+        [Display(Name = "Est Inactif")]
         public bool? Inactif { get; set; }
 
         public IEnumerable<SelectListItem> ListDepot { get; set; }

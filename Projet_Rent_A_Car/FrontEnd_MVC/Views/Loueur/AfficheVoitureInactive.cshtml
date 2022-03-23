@@ -33,9 +33,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Marque)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Inactif)
-            </th>
+            
             <th></th>
         </tr>
     </thead>
@@ -46,10 +44,10 @@
                 @Html.DisplayFor(modelItem => item.Idvoiture)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Idnotoriete)
+                @Html.DisplayFor(modelItem => item.IdnotorieteNavigation.Libelle)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Iddepot)
+                @Html.DisplayFor(modelItem => item.IddepotNavigation.IdvilleNavigation.Nom)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Immatriculation)
@@ -57,12 +55,10 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Marque)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Inactif)
-            </td>
+           
             <td>
                 <a asp-action="ActivateVoiture" asp-route-id="@item.Idvoiture">Activer</a>
-                <a asp-action="DisableVoiture" asp-route-id="@item.Idvoiture">Désactiver</a>
+                <a asp-action="EditNotoriete" asp-route-id="@item.Idvoiture">Edit</a>
                 <a asp-action="deleteVoiture" asp-route-id="@item.Idvoiture">Delete</a>
             </td>
         </tr>
