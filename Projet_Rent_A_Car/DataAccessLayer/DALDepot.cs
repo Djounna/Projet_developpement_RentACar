@@ -75,5 +75,65 @@ namespace DataAccessLayer
             }
         }
 
+        // Corentin En cours
+        /*
+        public IEnumerable<SelectListItem> SelectAllDepotByPaysInList(Pays pays)
+        {
+            using (dal.dbcontext)
+            {
+
+                List<SelectListItem> lstDepot = dal.dbcontext.Depot
+                    .Join(dal.dbcontext.Ville,
+                    dep => dep.Idville,
+                    vil => vil.Idville,
+                    (dep, vil) =>
+                       new SelectListItem
+                       {
+                           Value = dep.Iddepot.ToString(),
+                           Text = vil.Nom,
+                       }).OrderBy(x => x.Text)
+                    .ToList();
+
+                var depotIntro = new SelectListItem()
+                {
+                    Value = null,
+                    Text = "--- select Dépot ---"
+                };
+                lstDepot.Insert(0, depotIntro);
+
+                return new SelectList(lstDepot, "Value", "Text");
+
+            }
+        }
+        public IEnumerable<SelectListItem> SelectAllDepotRetourInList(Depot depot)
+        {
+            using (dal.dbcontext)
+            {
+
+                List<SelectListItem> lstDepot = dal.dbcontext.Depot
+                    .Join(dal.dbcontext.Ville,
+                    dep => dep.Idville,
+                    vil => vil.Idville,
+                    (dep, vil) =>
+                       new SelectListItem
+                       {
+                           Value = dep.Iddepot.ToString(),
+                           Text = vil.Nom,
+                       }).OrderBy(x => x.Text)
+                    .ToList();
+
+                var depotIntro = new SelectListItem()
+                {
+                    Value = null,
+                    Text = "--- select Dépot ---"
+                };
+                lstDepot.Insert(0, depotIntro);
+
+                return new SelectList(lstDepot, "Value", "Text");
+
+            }
+        }
+        */
+
     }
 }

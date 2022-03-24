@@ -142,9 +142,16 @@ namespace FrontEnd_MVC.Controllers
             }
         }
         [HttpPost] // Cette view est un Httppost afin de pouvoir récupérer l'IdClient via un formulaire. Ok Corentin
-        public IActionResult EffectuerReservation([Bind("Idclient")] Client client)
+        public async Task<IActionResult> EffectuerReservation([Bind("Idclient")] Client client)
         {
             ViewBag.Idclient = client.Idclient; // Essai avec viewbag. Je passe l'idclient à la vue via le viewbag. Ok Corentin
+            
+            
+            Reservation reservation = new();
+            reservation.ListPays = await GetEnumerableList("https://localhost:7204/api/Loueur/GetAllPaysInList/"); 
+            
+
+
             return View();
         }
 

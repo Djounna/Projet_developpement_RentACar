@@ -34,7 +34,7 @@ namespace BusinessLayer
         }
         public List<Voiture> SelectAllVoitureActif()
         {
-            return dalVoiture.SelectAllDVoitureActif();
+            return dalVoiture.SelectAllVoitureActif();
         }
 
 

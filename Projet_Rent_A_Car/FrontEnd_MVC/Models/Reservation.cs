@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -28,6 +29,14 @@ namespace FrontEnd_MVC.Models
         public int? KilometrageDepart { get; set; }
         public int? KilometrageRetour { get; set; }
         public decimal CoefficientMultiplicateur { get; set; }
+
+        
+        public IEnumerable<SelectListItem> ListPays { get; set; }
+        public IEnumerable<SelectListItem> ListDepotInPays { get; set; }
+        public IEnumerable<SelectListItem> ListDepotForfait { get; set; }
+        public IEnumerable<SelectListItem> ListVoitureDisponible { get; set; }
+
+
 
         public virtual Client IdclientNavigation { get; set; } = null!;
         public virtual Depot IddepotDepartNavigation { get; set; } = null!;
