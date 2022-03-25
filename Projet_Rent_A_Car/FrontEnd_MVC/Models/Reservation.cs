@@ -26,13 +26,20 @@ namespace FrontEnd_MVC.Models
         public DateTime DateReservation { get; set; }
         public DateTime DateDepart { get; set; }
         public DateTime? DateRetour { get; set; }
+        [Display(Name = "Km au depart")]
         public int? KilometrageDepart { get; set; }
+        [Display(Name = "Km au retour")]
         public int? KilometrageRetour { get; set; }
         public decimal CoefficientMultiplicateur { get; set; }
 
+        // Test Corentin, nécessaire pour la dropdownlist conditionnelle ?
+        [Display(Name = "Pays de départ")]
+        public int IdpaysDepart { get; set; }
         
+        // En cours Corentin
         public IEnumerable<SelectListItem> ListPays { get; set; }
-        public IEnumerable<SelectListItem> ListDepotInPays { get; set; }
+        public IEnumerable<SelectListItem> ListDepotDepart { get; set; }
+        public IEnumerable<SelectListItem> ListDepotRetour { get; set; }
         public IEnumerable<SelectListItem> ListDepotForfait { get; set; }
         public IEnumerable<SelectListItem> ListVoitureDisponible { get; set; }
 

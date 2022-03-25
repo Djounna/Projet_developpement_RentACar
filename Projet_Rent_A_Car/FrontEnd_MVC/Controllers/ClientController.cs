@@ -94,11 +94,11 @@ namespace FrontEnd_MVC.Controllers
             return View();
         }
 
-        public IActionResult CreateClient()//OK Antoine
+        public IActionResult CreateClient()//OK 
         {
             return View();
         }
-        public async Task<IActionResult> PostClient([Bind("Nom,Prenom,Mail")] Client client)//OK Antoine
+        public async Task<IActionResult> PostClient([Bind("Nom,Prenom,Mail")] Client client)//OK 
         {
             if (ModelState.IsValid)
             {
@@ -107,11 +107,11 @@ namespace FrontEnd_MVC.Controllers
 
             return View("CheckLogin",client);
         }
-        public IActionResult ClientConnection()//OK Antoine
+        public IActionResult ClientConnection()//OK 
         {
             return View();
         }
-        public async Task<IActionResult> CheckLogin([Bind("Mail")] Client client)//OK Antoine
+        public async Task<IActionResult> CheckLogin([Bind("Mail")] Client client)//OK 
         {
             try
             { 
@@ -127,8 +127,6 @@ namespace FrontEnd_MVC.Controllers
 
         #region Reservation
 
-
-
         [HttpGet]
         public async Task<ActionResult> AfficheReservationClient() // Corentin En Cours
         {
@@ -141,26 +139,40 @@ namespace FrontEnd_MVC.Controllers
                 throw ex;
             }
         }
+
         [HttpPost] // Cette view est un Httppost afin de pouvoir récupérer l'IdClient via un formulaire. Ok Corentin
         public async Task<IActionResult> EffectuerReservation([Bind("Idclient")] Client client)
         {
+
             ViewBag.Idclient = client.Idclient; // Essai avec viewbag. Je passe l'idclient à la vue via le viewbag. Ok Corentin
-            
-            
+                 
             Reservation reservation = new();
             reservation.ListPays = await GetEnumerableList("https://localhost:7204/api/Loueur/GetAllPaysInList/"); 
+            reservation.ListDepotDepart = new List<SelectListItem>()
+            {
+                new SelectListItem
+                {
+                    Value = null,
+                    Text = " "
+                }  };
+            reservation.ListDepotRetour = new List<SelectListItem>()
+            {
+                new SelectListItem
+                {
+                    Value = null,
+                    Text = " "
+                }  };
+
+
+            return View(reservation);
             
-
-
-            return View();
         }
 
         [HttpPost]
         public async Task<IActionResult> PostReservation(Reservation Reservation)
         {
             Reservation.IdclientNavigation = await GetRequestUnique<Client>("https://localhost:7204/api/Client/GetClientByID/" + Reservation.Idclient);
-            // Le IdclientNavigation ne prends pas ?
-
+            
             Reservation.IddepotDepartNavigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + Reservation.IddepotDepart);
             Reservation.IddepotDepartNavigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + Reservation.IddepotDepartNavigation.Idville);
             Reservation.IddepotDepartNavigation.IdvilleNavigation.IdpaysNavigation = await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + Reservation.IddepotDepartNavigation.IdvilleNavigation.Idpays);
@@ -183,7 +195,6 @@ namespace FrontEnd_MVC.Controllers
             Reservation.IdforfaitNavigation.Iddepot1Navigation.IdvilleNavigation.IdpaysNavigation = await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + Reservation.IdforfaitNavigation.Iddepot1Navigation.IdvilleNavigation.Idpays);
             Reservation.IdforfaitNavigation.Iddepot2Navigation.IdvilleNavigation.IdpaysNavigation = await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + Reservation.IdforfaitNavigation.Iddepot2Navigation.IdvilleNavigation.Idpays);
 
-
             ModelState.Remove("IdclientNavigation");
             ModelState.Remove("IddepotDepartNavigation");
             ModelState.Remove("IddepotRetourNavigation");
@@ -197,6 +208,13 @@ namespace FrontEnd_MVC.Controllers
             return RedirectToAction(nameof(AfficheReservationClient));
 
         }
+       
+        [HttpGet]
+        public async Task<IEnumerable<SelectListItem>> GetAllDepotByPays(int idPays)
+        {
+            return await GetEnumerableList("https://localhost:7204/api/Loueur/GetAllDepotByPaysInList/"+idPays);
+        }
+        
         #endregion
 
     }

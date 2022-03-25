@@ -889,7 +889,21 @@ namespace FrontEnd_MVC.Controllers
         {
             try
             {
-                return View(await GetRequest<Reservation>("https://localhost:7204/api/Loueur/GetReservation/"));
+
+                List<Reservation> lst = await GetRequest<Reservation>("https://localhost:7204/api/Loueur/GetReservation/");
+                foreach (var item in lst)
+                {
+                    item.IdclientNavigation = await GetRequestUnique<Client>("https://localhost:7204/api/Loueur/GetClientByID/" + item.Idclient);
+                    item.IddepotDepartNavigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + item.IddepotDepart);
+                    item.IddepotRetourNavigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + item.IddepotRetour);
+                    item.IdvoitureNavigation = await GetRequestUnique<Voiture>("https://localhost:7204/api/Loueur/GetVoitureByID/" + item.Idvoiture);
+                    item.IddepotDepartNavigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + item.IddepotDepartNavigation.Idville);
+                    item.IddepotRetourNavigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + item.IddepotRetourNavigation.Idville);
+                }
+
+                return View(lst);
+
+               
             }
             catch (Exception ex)
             {
@@ -987,7 +1001,7 @@ namespace FrontEnd_MVC.Controllers
         }
         
         
-        [HttpPost, ActionName("deleteReservation")]  // Corentin, en cours, à voir avec ANtoine
+        [HttpPost, ActionName("deleteReservation")]  
         public async Task<ActionResult> removeReservation(int id)
         {
             await DeleteRequest("https://localhost:7204/api/Loueur/DeleteReservation/" + id);

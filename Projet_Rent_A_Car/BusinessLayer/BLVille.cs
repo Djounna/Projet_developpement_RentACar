@@ -34,5 +34,6 @@ namespace BusinessLayer
         {
             dal.Delete(SelectVilleByID(id));
         }
+        
     }
 }

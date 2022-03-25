@@ -1,6 +1,7 @@
 ﻿using BusinessLayer;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Models;
 
 namespace API_RAC.Controllers
@@ -13,6 +14,7 @@ namespace API_RAC.Controllers
         private BLPays blpays = new();
         private BLVille blville = new();
         private BLClient blclient = new();
+        private BLDepot bldepot = new();
         private BLReservation blReservation = new();
 
 
@@ -29,7 +31,7 @@ namespace API_RAC.Controllers
         [Route("GetClientByMail/{Mail}")]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<Client>> GetClientByMail(string mail)//OK Antoine
+        public async Task<ActionResult<Client>> GetClientByMail(string mail)//OK 
         {
             return Ok(blclient.SelectClientByMail(mail));
         }
@@ -38,7 +40,7 @@ namespace API_RAC.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
 
-        public ActionResult PostClient(Client client)//OK Antoine
+        public ActionResult PostClient(Client client)//OK 
         {
             blclient.CreateClient(client);
             return Ok();
@@ -46,7 +48,7 @@ namespace API_RAC.Controllers
 
 
         // Insert avec une méthode ADO de la DAL. A cause de l'erreur générée par EF sur le double accès dans les dépots.
-        [Route("PostReservation/")] // en cour Corentin
+        [Route("PostReservation/")] // OK
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -66,5 +68,12 @@ namespace API_RAC.Controllers
             return Ok();
         }
 
+        [Route("GetAllDepotByPaysInList/{id}")] // En cours Corentin
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public IEnumerable<SelectListItem> GetAllDepotByPaysInList(int idPays)
+        {
+            return bldepot.SelectAllDepotByPaysInList(idPays);
+        }
     }
 }

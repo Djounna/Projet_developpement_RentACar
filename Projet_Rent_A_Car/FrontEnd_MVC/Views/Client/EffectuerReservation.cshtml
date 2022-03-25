@@ -1,5 +1,5 @@
 ﻿@model FrontEnd_MVC.Models.Reservation
-
+@using System.Web.Optimization
 @{
     ViewData["Title"] = "EffectuerReservation";
 }
@@ -13,38 +13,62 @@
         <form asp-action="PostReservation">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             
-            <div class="form-group">
+            <div  hidden="hidden" class="form-group">
                 <label asp-for="Idclient" class="control-label"></label>
-                <input asp-for="Idclient" type="hidden"  value="@ViewBag.Idclient" class="form-control" />
+                <input asp-for="Idclient"  value="@ViewBag.Idclient" class="form-control" />
                 <span asp-validation-for="Idclient" class="text-danger"></span>
             </div>
 
-            <div class="form-group">
-                <label asp-for="Idvoiture" class="control-label"></label>
-                <input asp-for="Idvoiture" class="form-control" />
-                <span asp-validation-for="Idvoiture" class="text-danger"></span>
-            </div>
+            <!-- Test Corentin -->
             
             <div class="form-group">
+             @Html.LabelFor(x => Model.IdpaysDepart, htmlAttributes: new { @class = "control-label col-md-15" })
+             <div class="col-md-35">
+                @Html.DropDownListFor(x => Model.IdpaysDepart, new SelectList(Model.ListPays, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "IDPays"})
+                
+                </div>
+            </div>
+            <!--
+             <div class="form-group">
                 <label asp-for="IddepotDepart" class="control-label"></label>
                 <input asp-for="IddepotDepart" class="form-control" />
                 <span asp-validation-for="IddepotDepart" class="text-danger"></span>
+            </div>-->
+             <div class="form-group">
+             @Html.LabelFor(x => Model.IddepotDepart, htmlAttributes: new { @class = "control-label col-md-15" })
+             <div class="col-md-35">
+                @Html.DropDownListFor(x => Model.IddepotDepart, new SelectList(Model.ListDepotDepart, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "IDDepotDepart"})
+                @Html.ValidationMessageFor(x => x.IddepotDepart, "", new { @class = "text-danger" })
+                </div>
             </div>
+           
+            <!--
             <div class="form-group">
                 <label asp-for="IddepotRetour" class="control-label"></label>
                 <input asp-for="IddepotRetour" class="form-control" />
                 <span asp-validation-for="IddepotRetour" class="text-danger"></span>
-            </div>
+            </div>-->
             <div class="form-group">
+             @Html.LabelFor(x => Model.IddepotRetour, htmlAttributes: new { @class = "control-label col-md-15" })
+             <div class="col-md-35">
+                @Html.DropDownListFor(x => Model.IddepotRetour, new SelectList(Model.ListDepotRetour, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "IDDepotRetour"})
+                @Html.ValidationMessageFor(x => x.IddepotRetour, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div hidden="hidden" class="form-group">
                 <label asp-for="Idforfait" class="control-label"></label>
                 <input asp-for="Idforfait" class="form-control" />
                 <span asp-validation-for="Idforfait" class="text-danger"></span>
             </div>
-            <div class="form-group">
+
+            <!--
+            <div hidden="hidden" class="form-group">
                 <label asp-for="DateReservation" class="control-label"></label>
-                <input asp-for="DateReservation" class="form-control" />
+                <input asp-for="DateReservation" value="" class="form-control" />
                 <span asp-validation-for="DateReservation" class="text-danger"></span>
-            </div>
+            </div>-->
+
             <div class="form-group">
                 <label asp-for="DateDepart" class="control-label"></label>
                 <input asp-for="DateDepart" class="form-control" />
@@ -54,9 +78,9 @@
                 <label asp-for="DateRetour" class="control-label"></label>
                 <input asp-for="DateRetour" class="form-control" />
                 <span asp-validation-for="DateRetour" class="text-danger"></span>
-            </div>
-           
-            <div class="form-group">
+            </div>         
+
+            <div hidden="hidden"  class="form-group">
                 <label asp-for="CoefficientMultiplicateur" class="control-label"></label>
                 <input asp-for="CoefficientMultiplicateur" class="form-control" />
                 <span asp-validation-for="CoefficientMultiplicateur" class="text-danger"></span>
@@ -68,5 +92,32 @@
     </div>
 </div>
 
+@section Scripts {
+    
+    <script type="text/javascript">
+            $('#IDpays').change(function () {
+                var selectedCountry = $("#IDpays").val();
+                var depotDepartSelect = $('#IDDepotDepart');
+                depotDepartSelect.empty();
+                if (selectedCountry != null && selectedCountry != '') {
+                    $.getJSON('@Url.Action("GetAllDepotByPays")', { idPays: selectedCountry }, function (depots) {
+                        if (depots != null && !jQuery.isEmptyObject(depots))
+                        {
+                            depotDepartSelect.append($('<option/>', {
+                                value: null,
+                                text: "Select Depot Depart"
+                            }));
+                            $.each(depots, function (index, depot) {
+                                depotDepartSelect.append($('<option/>', {
+                                    value: depot.Value,
+                                    text: depot.Text
 
+                                }));
+                            });
+                        };
+                    });
+                }
+            });
+    </script>
+}
 

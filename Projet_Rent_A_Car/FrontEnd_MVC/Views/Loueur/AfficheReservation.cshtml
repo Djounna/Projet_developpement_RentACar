@@ -3,13 +3,13 @@
 @{
     ViewData["Title"] = "AfficheReservation";
 }
+<link href="~/lib/datatables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
 
-<h1>AfficheReservation</h1>
+<h1>Liste des réservation</h1>
+    
+     <a class="btn btn-success" asp-action="HomeLoueur">Back to main Menu</a>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
+<table id="datatable" class="table">
     <thead>
         <tr>
             <th>
@@ -45,9 +45,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.KilometrageRetour)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CoefficientMultiplicateur)
-            </th>
+            
             <th></th>
         </tr>
     </thead>
@@ -58,16 +56,16 @@
                 @Html.DisplayFor(modelItem => item.Idreservation)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Idvoiture)
+                @Html.DisplayFor(modelItem => item.IdvoitureNavigation.Immatriculation)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Idclient)
+                @Html.DisplayFor(modelItem => item.IdclientNavigation.Nom) 
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IddepotDepart)
+                @Html.DisplayFor(modelItem => item.IddepotDepartNavigation.IdvilleNavigation.Nom)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IddepotRetour)
+                @Html.DisplayFor(modelItem => item.IddepotRetourNavigation.IdvilleNavigation.Nom)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Idforfait)
@@ -87,15 +85,19 @@
             <td>
                 @Html.DisplayFor(modelItem => item.KilometrageRetour)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CoefficientMultiplicateur)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+           
+            <td>     
+                 <a asp-action="DemarrerLocation" asp-route-id="@item.Idreservation">Demarrer la location</a>
+                <a asp-action="CloturerLocation" asp-route-id="@item.Idreservation">Cloturer la location</a>
             </td>
         </tr>
 }
     </tbody>
 </table>
+
+@section Scripts
+{
+<script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
+<script src="~/lib/datatables/js/dataTables.bootstrap4.min.js"></script>
+<script src="~/js/datatable.js"></script>
+}

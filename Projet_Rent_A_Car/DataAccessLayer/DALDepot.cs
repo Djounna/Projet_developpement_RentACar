@@ -76,14 +76,16 @@ namespace DataAccessLayer
         }
 
         // Corentin En cours
-        /*
-        public IEnumerable<SelectListItem> SelectAllDepotByPaysInList(Pays pays)
+        
+        public IEnumerable<SelectListItem> SelectAllDepotByPaysInList(int idPays)
         {
             using (dal.dbcontext)
             {
 
+                var lstville = from ville in dal.dbcontext.Ville where ville.Idpays == idPays select ville ;
+
                 List<SelectListItem> lstDepot = dal.dbcontext.Depot
-                    .Join(dal.dbcontext.Ville,
+                    .Join(lstville,
                     dep => dep.Idville,
                     vil => vil.Idville,
                     (dep, vil) =>
@@ -97,7 +99,7 @@ namespace DataAccessLayer
                 var depotIntro = new SelectListItem()
                 {
                     Value = null,
-                    Text = "--- select Dépot ---"
+                    Text = "--- select Dépot Départ ---"
                 };
                 lstDepot.Insert(0, depotIntro);
 
@@ -105,6 +107,7 @@ namespace DataAccessLayer
 
             }
         }
+        /*
         public IEnumerable<SelectListItem> SelectAllDepotRetourInList(Depot depot)
         {
             using (dal.dbcontext)
