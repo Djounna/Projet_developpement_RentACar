@@ -23,19 +23,26 @@ namespace BusinessLayer
         {
             return dal.SelectById<Reservation>(id);
         }
+
+        // A supprimer, pas utilisée.
         public void InsertOrUpdateReservation(Reservation Reservation)
         {
             dal.InsertOrUpdate(Reservation);
         }
-        public void DeleteReservation(int id)
+
+
+        public void DeleteReservation(int id) // Pas validée
         {
             dal.Delete(SelectReservationByID(id));
         }
 
         // Passage par les méthodes DAL ADO
-
         public void Insert(Reservation reservation)
         {
+
+            // reservation.DateReservation = DateTime.Now;
+            
+
             dalReservation.Insert(reservation);
         }
         public void Update(Reservation reservation)

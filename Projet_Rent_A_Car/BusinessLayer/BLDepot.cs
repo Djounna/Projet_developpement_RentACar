@@ -53,13 +53,12 @@ namespace BusinessLayer
         }
 
 
-        // En cours Corentin
-        /*
+        
         public IEnumerable<SelectListItem> SelectAllDepotRetourByDepotDepartInList(int idDepotDepart)
         {
             return dalDepot.SelectAllDepotRetourByDepotDepartInList(idDepotDepart);
         }
-        */
+        
 
     }
 }

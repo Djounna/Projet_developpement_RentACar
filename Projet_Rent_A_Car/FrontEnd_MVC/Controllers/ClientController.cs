@@ -220,30 +220,28 @@ namespace FrontEnd_MVC.Controllers
        
 
         [HttpGet]
-        [Route("GetAllDepotByPays")]
-        public async Task<JsonResult> GetAllDepotByPays(int idPays)
+        public async Task<ActionResult> GetAllDepotByPays(int idPays)
         {
              
-            var list = await GetEnumerableList("https://localhost:7204/api/Client/GetAllDepotByPaysInList/"+idPays);
-            return Json(list, JsonRequestBehavior.AllowGet);
+            var depots = await GetEnumerableList("https://localhost:7204/api/Client/GetAllDepotByPaysInList/"+idPays);
+            return Json(depots);
         }
+
+        [HttpGet]
+        public async Task<ActionResult> GetAllDepotRetourByDepotDepartInList(int idDepotDepart)
+        {
+            var depots = await GetEnumerableList("https://localhost:7204/api/Client/GetAllDepotRetourByDepotDepartInList/" + idDepotDepart);
+            return Json(depots);
+        }
+
+
         #endregion
 
 
 
 
 
-        [HttpGet]
-        [Route("global/customers")]
-        public JsonResult GetCustomers()
-        {
-            var list = new List<string>();
 
-            list.Add("Nice");
-            list.Add("To");
-            list.Add("Have");
-            return Json(list);
-        }
 
     }
 }

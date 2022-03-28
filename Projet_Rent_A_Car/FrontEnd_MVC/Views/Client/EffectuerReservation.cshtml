@@ -21,10 +21,10 @@
 
             <!-- Test Corentin -->
             
-            <div class="form-group">
+            <div  class="form-group">
              @Html.LabelFor(x => Model.IdpaysDepart, htmlAttributes: new { @class = "control-label col-md-15" })
              <div class="col-md-35">
-                @Html.DropDownListFor(x => Model.IdpaysDepart, new SelectList(Model.ListPays, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "IDPays"})
+                @Html.DropDownListFor(x => Model.IdpaysDepart, new SelectList(Model.ListPays, "Value", "Text"), htmlAttributes: new { @class = "form-control", id="IDPays"})
                 
                 </div>
             </div>
@@ -37,7 +37,7 @@
              <div class="form-group">
              @Html.LabelFor(x => Model.IddepotDepart, htmlAttributes: new { @class = "control-label col-md-15" })
              <div class="col-md-35">
-                @Html.DropDownListFor(x => Model.IddepotDepart, new SelectList(Model.ListDepotDepart, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "IDDepotDepart"})
+                @Html.DropDownListFor(x => Model.IddepotDepart, new SelectList(Model.ListDepotDepart, "Value", "Text"), htmlAttributes: new { @class = "form-control", id="IDDepotDepart"})
                 @Html.ValidationMessageFor(x => x.IddepotDepart, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -95,9 +95,9 @@
 </div>
 
 @section Scripts{
-   @*  <script>
 
-       
+    @* 
+    <script>
    $(document).ready(function(){
 
            alert('test');
@@ -112,49 +112,95 @@
            });
         });
    </script>
-   
-    *@
+   *@
+    
     
     <script type="text/javascript">
-
-        console.log('test');
-        alert("test");
-       $(document).ready(function(){
-           $("#IDpays").change(function () {
-                var selectedCountry = $("#IDpays").val();
+       
+           $("#IDPays").change(function () {
+              
+                var selectedCountry = $("#IDPays").val();
                 var depotDepartSelect = $("#IDDepotDepart");
+                var depotRetourSelect = $("#IDDepotRetour");
                 depotDepartSelect.empty();
+                depotRetourSelect.empty();
 
                 if (selectedCountry != null && selectedCountry != '') {
-                     $.ajax({
-                        type: 'GET',
-                        dataType: 'json',
-                        url: '/GetAllDepotByPays',
-                        data: { idPays: selectedCountry },
-                        success: function(depots) {
-                         if (depots != null && !jQuery.isEmptyObject(depots))
+                    
+                     $.getJSON('@Url.Action("GetAllDepotByPays","Client")', { idPays: selectedCountry }, function(depots) {
+                         
+                         
+                         if (depots != null)
                          {
+                             
                             depotDepartSelect.append($('<option/>', {
                                 value: null,
-                                text: "Select Depot Depart"
+                                text: "--- Select Dépot Depart ---"
                             }));
-                            $.each(depots, function (index, depot) {
+                            
+                            $.each(depots, function (index,depot) {
+                                
+                                depotDepartSelect.append($('<option/>', {
+                                    value: depot.value,
+                                    text: depot.text
+                                                                   
+                                }));
+                               
+                            });
+                           
+                         }                    
+                       }                    
+                    );
+                }      
+            });
+       
+            $("#IDDepotDepart").change(function () {
+              
+                var selectedDepot = $("#IDDepotDepart").val();
+                var depotRetourSelect = $("#IDDepotRetour");
+                depotRetourSelect.empty();
+
+                if (selectedDepot != null && selectedDepot != '') {
+                    
+                     $.getJSON('@Url.Action("GetAllDepotRetourByDepotDepartInList","Client")', { idDepotDepart: selectedDepot }, function(deps) {
+                         
+                         if (deps != null)
+                         {
+                            depotRetourSelect.append($('<option/>', {
+                                value: null,
+                                text: "--- Select Dépot Retour ---"
+                            }));
+                            
+                            $.each(deps, function (index,dep) {                                
+                                depotRetourSelect.append($('<option/>', {
+                                    value: dep.value,
+                                    text: dep.text
+                                                                   
+                                }));
+                               
+                            });
+                           
+                         }                    
+                       }                    
+                    );
+                }      
+            });
+
+            
+
+    </script>
+   
+}@*
+         depotDepartSelect.append($('<option/>').val(depot.value).text(depot.Text));}
+    *@
+ 
+   
+     @*alert("test")
                                 depotDepartSelect.append($('<option/>', {
                                     value: depot.Value,
                                     text: depot.Text
+                                                                   
                                 }));
-                            });
-                         }                       
-                       }
-                    });
-                }      
-            });
-        });
-    </script>
-   
-}
- 
-   
-
+                                *@
 
 

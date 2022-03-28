@@ -36,12 +36,23 @@ namespace DataAccessLayer
         }
 
         // Corentin en cours
+
         /*
+        public List<Voiture> SelectAllVoitureByDepot(int IdDepot)
+        {
+
+        }
+        */
+        
+        /* // Corentin en cours
         public IEnumerable<SelectListItem> SelectAllVoitureDisponibleInList(Depot depot)
         {
 
         using (dal.dbcontext)
             {
+
+                var voit = SelectAllVoitureActif();
+
 
                 List<SelectListItem> lstVoiture= dal.dbcontext.Voiture
                     .Where(n=> ((n.Inactif != true)&&(n....)).Select
