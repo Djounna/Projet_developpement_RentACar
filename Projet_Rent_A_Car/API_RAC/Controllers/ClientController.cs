@@ -15,13 +15,14 @@ namespace API_RAC.Controllers
         private BLVille blville = new();
         private BLClient blclient = new();
         private BLDepot bldepot = new();
+        private BLForfait blforfait = new();
         private BLReservation blReservation = new();
 
 
         [Route("GetClientById/{Id}")]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<Client>> GetClientById(int Id)// Ok Corentin
+        public async Task<ActionResult<Client>> GetClientById(int Id)// Ok 
         {
             return Ok(blclient.SelectClientById(Id));
         }
@@ -59,21 +60,44 @@ namespace API_RAC.Controllers
             return Ok();
         }
 
-
-        [Route("DeleteReservation/{id}")] // En cours Corentin
+        /*
+        // En attente Corentin
+        [Route("DeleteReservation/{id}")] 
         [HttpDelete]
         public ActionResult DeleteReservation(int id)
         {
             blReservation.DeleteReservation(id);
             return Ok();
         }
+        */
 
-        [Route("GetAllDepotByPaysInList/{id}")] // En cours Corentin
+
+
+        [Route("GetAllDepotByPaysInList/{id}")] // OK, testé avec swagger
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public IEnumerable<SelectListItem> GetAllDepotByPaysInList(int idPays)
         {
             return bldepot.SelectAllDepotByPaysInList(idPays);
         }
+
+        /*
+        [Route("GetAllDepotRetourByDepotDepartInList/{id}")] // En cours Corentin, ne fonctionne pas actuellement, voir DalDepot
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public IEnumerable<SelectListItem> SelectAllDepotRetourByDepotDepartInList(int idDepotDepart)
+        {
+            return bldepot.SelectAllDepotRetourByDepotDepartInList(idDepotDepart);
+        }
+        */
+
+        [HttpGet]
+        [Route("GetForfaitReservation/{id1}/{id2}")]
+        public ActionResult<Forfait> SelectForfaitReservation(int idDepot1, int idDepot2)
+        {
+            return Ok(blforfait.SelectForfaitReservation(idDepot1, idDepot2));
+        }
+
+
     }
 }

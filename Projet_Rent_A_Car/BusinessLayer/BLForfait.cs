@@ -35,5 +35,13 @@ namespace BusinessLayer
             dalForfait.Update(forfait);
         }
 
+        // Test en cours, Corentin
+        public Forfait SelectForfaitReservation(int idDepot1, int idDepot2)
+        {
+            return dalForfait.SelectForfaitReservation(idDepot1, idDepot2);
+        }
+
+
+
     }
 }

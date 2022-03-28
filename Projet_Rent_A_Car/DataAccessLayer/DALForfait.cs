@@ -87,5 +87,23 @@ namespace DataAccessLayer
             }
         }
 
+
+        // Test en cours, Corentin // Résultat concluant sur Swagger
+        public Forfait SelectForfaitReservation(int idDepot1, int idDepot2)
+        {
+            Forfait forf = dal.dbcontext.Forfait.Where(forfait => forfait.Iddepot1 == idDepot1 && forfait.Iddepot2 == idDepot2).FirstOrDefault();
+            if (forf is null)
+            {
+                forf = dal.dbcontext.Forfait.Where(forfait => forfait.Iddepot2 == idDepot1 && forfait.Iddepot1 == idDepot2).FirstOrDefault();
+            }
+                
+              /* ne fonctionne pas car le cast ne fonctionne pas  
+              from forfait in dal.dbcontext.Forfait where((forfait.Iddepot1==idDepot1 && forfait.Iddepot2==idDepot2)|| 
+              (forfait.Iddepot2 == idDepot1 && forfait.Iddepot1 == idDepot2)) select forfait; */
+
+            return forf;
+        }
+
+
     }
 }

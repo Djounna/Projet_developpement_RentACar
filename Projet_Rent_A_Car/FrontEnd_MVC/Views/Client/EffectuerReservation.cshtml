@@ -62,6 +62,8 @@
                 <span asp-validation-for="Idforfait" class="text-danger"></span>
             </div>
 
+            <p id="customers"></p>
+
             <!--
             <div hidden="hidden" class="form-group">
                 <label asp-for="DateReservation" class="control-label"></label>
@@ -92,17 +94,46 @@
     </div>
 </div>
 
-@section Scripts {
+@section Scripts{
+   @*  <script>
+
+       
+   $(document).ready(function(){
+
+           alert('test');
+
+           $.ajax({
+               type: 'GET',
+               dataType: 'json',
+               url: '/global/customers',
+               success: function(data){
+                   $("#customers").append(data.length);
+               }
+           });
+        });
+   </script>
+   
+    *@
     
     <script type="text/javascript">
-            $('#IDpays').change(function () {
+
+        console.log('test');
+        alert("test");
+       $(document).ready(function(){
+           $("#IDpays").change(function () {
                 var selectedCountry = $("#IDpays").val();
-                var depotDepartSelect = $('#IDDepotDepart');
+                var depotDepartSelect = $("#IDDepotDepart");
                 depotDepartSelect.empty();
+
                 if (selectedCountry != null && selectedCountry != '') {
-                    $.getJSON('@Url.Action("GetAllDepotByPays")', { idPays: selectedCountry }, function (depots) {
-                        if (depots != null && !jQuery.isEmptyObject(depots))
-                        {
+                     $.ajax({
+                        type: 'GET',
+                        dataType: 'json',
+                        url: '/GetAllDepotByPays',
+                        data: { idPays: selectedCountry },
+                        success: function(depots) {
+                         if (depots != null && !jQuery.isEmptyObject(depots))
+                         {
                             depotDepartSelect.append($('<option/>', {
                                 value: null,
                                 text: "Select Depot Depart"
@@ -111,13 +142,19 @@
                                 depotDepartSelect.append($('<option/>', {
                                     value: depot.Value,
                                     text: depot.Text
-
                                 }));
                             });
-                        };
+                         }                       
+                       }
                     });
-                }
+                }      
             });
+        });
     </script>
+   
 }
+ 
+   
+
+
 

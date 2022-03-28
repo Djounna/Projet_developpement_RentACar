@@ -2,6 +2,15 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
+using System.Web.Mvc;
+using ActionResult = Microsoft.AspNetCore.Mvc.ActionResult;
+using BindAttribute = Microsoft.AspNetCore.Mvc.BindAttribute;
+using Controller = Microsoft.AspNetCore.Mvc.Controller;
+using HttpGetAttribute = Microsoft.AspNetCore.Mvc.HttpGetAttribute;
+using HttpPostAttribute = Microsoft.AspNetCore.Mvc.HttpPostAttribute;
+using JsonResult = Microsoft.AspNetCore.Mvc.JsonResult;
+using RouteAttribute = Microsoft.AspNetCore.Mvc.RouteAttribute;
+using SelectListItem = Microsoft.AspNetCore.Mvc.Rendering.SelectListItem;
 
 namespace FrontEnd_MVC.Controllers
 {
@@ -209,13 +218,32 @@ namespace FrontEnd_MVC.Controllers
 
         }
        
+
         [HttpGet]
-        public async Task<IEnumerable<SelectListItem>> GetAllDepotByPays(int idPays)
+        [Route("GetAllDepotByPays")]
+        public async Task<JsonResult> GetAllDepotByPays(int idPays)
         {
-            return await GetEnumerableList("https://localhost:7204/api/Loueur/GetAllDepotByPaysInList/"+idPays);
+             
+            var list = await GetEnumerableList("https://localhost:7204/api/Client/GetAllDepotByPaysInList/"+idPays);
+            return Json(list, JsonRequestBehavior.AllowGet);
         }
-        
         #endregion
+
+
+
+
+
+        [HttpGet]
+        [Route("global/customers")]
+        public JsonResult GetCustomers()
+        {
+            var list = new List<string>();
+
+            list.Add("Nice");
+            list.Add("To");
+            list.Add("Have");
+            return Json(list);
+        }
 
     }
 }

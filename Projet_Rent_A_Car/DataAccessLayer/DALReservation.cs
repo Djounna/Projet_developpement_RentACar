@@ -13,6 +13,7 @@ namespace DataAccessLayer
     {
         private DalCommun dal = new();
 
+
         // Méthodes ADO
         public void Insert(Reservation reservation)
         {
@@ -88,7 +89,7 @@ namespace DataAccessLayer
         {
             try
             {
-                var x = from Reservation in dal.dbcontext.Reservation where Reservation.KilometrageDepart  select Reservation; ;
+                var x = from Reservation in dal.dbcontext.Reservation where Reservation.KilometrageDepart is not null  select Reservation; ;
 
                 return x;
                     
@@ -106,12 +107,12 @@ namespace DataAccessLayer
         {
             try
             {
-                var x = from Reservation in dal.dbcontext.Reservation where Reservation.KilometrageDepart  select Reservation; ;
+                var x = from Reservation in dal.dbcontext.Reservation where Reservation.KilometrageRetour is not null  select Reservation; ;
 
                 return x;
                     
                     
-                    // dal.dbcontext.Reservation.Where(Reservation => Reservation.KilometrageDepart).ToList();
+                    // dal.dbcontext.Reservation.Where(Reservation => Reservation.KilometrageRetour).ToList();
             }
             catch (Exception ex)
             {

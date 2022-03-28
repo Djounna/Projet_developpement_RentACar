@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "IPOh28BDstLnfch3UTloZRTopCys6LwfM1mICn4p/Wo=",
+  "Hash": "5evPWCDUyJ6j/LuvDKRb4s/mJGBshbGLqUIY2+pcUgg=",
   "Source": "FrontEnd_MVC",
   "BasePath": "_content/FrontEnd_MVC",
   "Mode": "Default",
@@ -100,6 +100,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\datatable.js"
+    },
+    {
+      "Identity": "C:\\Users\\Corentin\\Documents\\Ecole\\EPHEC\\Projet SGBD\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\FrontEnd_MVC\\wwwroot\\js\\jquery-3.6.0.min.js",
+      "SourceId": "FrontEnd_MVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Corentin\\Documents\\Ecole\\EPHEC\\Projet SGBD\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\FrontEnd_MVC\\wwwroot\\",
+      "BasePath": "_content/FrontEnd_MVC",
+      "RelativePath": "js/jquery-3.6.0.min.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\jquery-3.6.0.min.js"
     },
     {
       "Identity": "C:\\Users\\Corentin\\Documents\\Ecole\\EPHEC\\Projet SGBD\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\FrontEnd_MVC\\wwwroot\\js\\site.js",

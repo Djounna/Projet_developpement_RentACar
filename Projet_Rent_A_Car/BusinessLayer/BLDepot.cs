@@ -47,10 +47,19 @@ namespace BusinessLayer
             return dalDepot.SelectAllDepotInList();
         }
 
-        public IEnumerable<SelectListItem> SelectAllDepotByPaysInList(int idPays)
+        public IEnumerable<SelectListItem> SelectAllDepotByPaysInList(int idPays) // Ok testé avec swagger
         {
             return dalDepot.SelectAllDepotByPaysInList(idPays);
         }
+
+
+        // En cours Corentin
+        /*
+        public IEnumerable<SelectListItem> SelectAllDepotRetourByDepotDepartInList(int idDepotDepart)
+        {
+            return dalDepot.SelectAllDepotRetourByDepotDepartInList(idDepotDepart);
+        }
+        */
 
     }
 }
