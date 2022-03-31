@@ -885,11 +885,10 @@ namespace FrontEnd_MVC.Controllers
         // ******************************************************** Réservation *********************************************************************
         #region Reservation
         [HttpGet]
-        public async Task<ActionResult> AfficheReservation() // Corentin ok
+        public async Task<ActionResult> AfficheReservation() // ok
         {
             try
             {
-
                 List<Reservation> lst = await GetRequest<Reservation>("https://localhost:7204/api/Loueur/GetReservation/");
                 foreach (var item in lst)
                 {
@@ -900,24 +899,29 @@ namespace FrontEnd_MVC.Controllers
                     item.IddepotDepartNavigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + item.IddepotDepartNavigation.Idville);
                     item.IddepotRetourNavigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + item.IddepotRetourNavigation.Idville);
                 }
-
-                return View(lst);
-
-               
+                return View(lst);              
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-
-
         [HttpGet]
-        public async Task<ActionResult> AfficheReservationEnCours() // Corentin En cours
+        public async Task<ActionResult> AfficheReservationNotYetStarted() // Corentin En cours
         {
             try
             {
-                return View(await GetRequest<Reservation>("https://localhost:7204/api/Loueur/GetReservationActif/"));
+                List<Reservation> lst = await GetRequest<Reservation>("https://localhost:7204/api/Loueur/GetAllReservationNotYetStarted/");
+                foreach (var item in lst)
+                {
+                    item.IdclientNavigation = await GetRequestUnique<Client>("https://localhost:7204/api/Loueur/GetClientByID/" + item.Idclient);
+                    item.IddepotDepartNavigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + item.IddepotDepart);
+                    item.IddepotRetourNavigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + item.IddepotRetour);
+                    item.IdvoitureNavigation = await GetRequestUnique<Voiture>("https://localhost:7204/api/Loueur/GetVoitureByID/" + item.Idvoiture);
+                    item.IddepotDepartNavigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + item.IddepotDepartNavigation.Idville);
+                    item.IddepotRetourNavigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + item.IddepotRetourNavigation.Idville);
+                }
+                return View(lst);
             }
             catch (Exception ex)
             {
@@ -929,14 +933,46 @@ namespace FrontEnd_MVC.Controllers
         {
             try
             {
-                return View(await GetRequest<Reservation>("https://localhost:7204/api/Loueur/GetReservationInactif/"));
+                List<Reservation> lst = await GetRequest<Reservation>("https://localhost:7204/api/Loueur/GetAllReservationCloturees/");
+                foreach (var item in lst)
+                {
+                    item.IdclientNavigation = await GetRequestUnique<Client>("https://localhost:7204/api/Loueur/GetClientByID/" + item.Idclient);
+                    item.IddepotDepartNavigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + item.IddepotDepart);
+                    item.IddepotRetourNavigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + item.IddepotRetour);
+                    item.IdvoitureNavigation = await GetRequestUnique<Voiture>("https://localhost:7204/api/Loueur/GetVoitureByID/" + item.Idvoiture);
+                    item.IddepotDepartNavigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + item.IddepotDepartNavigation.Idville);
+                    item.IddepotRetourNavigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + item.IddepotRetourNavigation.Idville);
+                }
+                return View(lst);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            } 
+        }
+        [HttpGet]
+        public async Task<ActionResult> AfficheLocationEnCours() // Corentin En cours
+        {
+            try
+            {
+                List<Reservation> lst = await GetRequest<Reservation>("https://localhost:7204/api/Loueur/GetAllLocationEnCours/");
+                foreach (var item in lst)
+                {
+                    item.IdclientNavigation = await GetRequestUnique<Client>("https://localhost:7204/api/Loueur/GetClientByID/" + item.Idclient);
+                    item.IddepotDepartNavigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + item.IddepotDepart);
+                    item.IddepotRetourNavigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + item.IddepotRetour);
+                    item.IdvoitureNavigation = await GetRequestUnique<Voiture>("https://localhost:7204/api/Loueur/GetVoitureByID/" + item.Idvoiture);
+                    item.IddepotDepartNavigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + item.IddepotDepartNavigation.Idville);
+                    item.IddepotRetourNavigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + item.IddepotRetourNavigation.Idville);
+                }
+                return View(lst);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-        
+
 
         /*
         public async Task<IActionResult> EditReservation(int? id)

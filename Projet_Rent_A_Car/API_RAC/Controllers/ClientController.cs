@@ -17,6 +17,7 @@ namespace API_RAC.Controllers
         private BLDepot bldepot = new();
         private BLForfait blforfait = new();
         private BLReservation blReservation = new();
+        private BLVoiture blvoiture = new();
 
         [Route("GetClientById/{Id}")]
         [HttpGet]
@@ -89,6 +90,12 @@ namespace API_RAC.Controllers
             return Ok(blforfait.SelectForfaitReservation(idDepot1, idDepot2));
         }
 
+        [HttpGet] // Corentin Test en cours
+        [Route("GetAllVoitureDisponible/{IdDepot}/{DateLocation}")]
+        public IEnumerable<SelectListItem> SelectAllVoitureDisponibleInList(int IdDepot, DateTime DateLocation)
+        {
+            return blvoiture.SelectAllVoitureDisponibleInList(IdDepot, DateLocation);
+        }
 
     }
 }

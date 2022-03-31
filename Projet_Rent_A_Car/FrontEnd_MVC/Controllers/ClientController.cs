@@ -111,10 +111,10 @@ namespace FrontEnd_MVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                await PostRequest("https://localhost:7204/api/Client/PostClient/", client);               
+                await PostRequest("https://localhost:7204/api/Client/PostClient/", client);
             }
 
-            return View("CheckLogin",client);
+            return View("CheckLogin", client);
         }
         public IActionResult ClientConnection()//OK 
         {
@@ -123,10 +123,10 @@ namespace FrontEnd_MVC.Controllers
         public async Task<IActionResult> CheckLogin([Bind("Mail")] Client client)//OK 
         {
             try
-            { 
-                return View(await GetRequestUnique<Client>("https://localhost:7204/api/Client/GetClientByMail/" + client.Mail));                
+            {
+                return View(await GetRequestUnique<Client>("https://localhost:7204/api/Client/GetClientByMail/" + client.Mail));
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -154,9 +154,9 @@ namespace FrontEnd_MVC.Controllers
         {
 
             ViewBag.Idclient = client.Idclient; // Essai avec viewbag. Je passe l'idclient à la vue via le viewbag. Ok Corentin
-                 
+
             Reservation reservation = new();
-            reservation.ListPays = await GetEnumerableList("https://localhost:7204/api/Loueur/GetAllPaysInList/"); 
+            reservation.ListPays = await GetEnumerableList("https://localhost:7204/api/Loueur/GetAllPaysInList/");
             reservation.ListDepotDepart = new List<SelectListItem>()
             {
                 new SelectListItem
@@ -174,14 +174,14 @@ namespace FrontEnd_MVC.Controllers
 
 
             return View(reservation);
-            
+
         }
 
         [HttpPost]
         public async Task<IActionResult> PostReservation(Reservation Reservation)
         {
             Reservation.IdclientNavigation = await GetRequestUnique<Client>("https://localhost:7204/api/Client/GetClientByID/" + Reservation.Idclient);
-            
+
             Reservation.IddepotDepartNavigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + Reservation.IddepotDepart);
             Reservation.IddepotDepartNavigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + Reservation.IddepotDepartNavigation.Idville);
             Reservation.IddepotDepartNavigation.IdvilleNavigation.IdpaysNavigation = await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + Reservation.IddepotDepartNavigation.IdvilleNavigation.Idpays);
@@ -194,7 +194,7 @@ namespace FrontEnd_MVC.Controllers
             Reservation.IdvoitureNavigation.IdnotorieteNavigation = await GetRequestUnique<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteByID/" + Reservation.IdvoitureNavigation.Idnotoriete);
             Reservation.IdvoitureNavigation.IddepotNavigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + Reservation.IdvoitureNavigation.Iddepot);
             Reservation.IdvoitureNavigation.IddepotNavigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + Reservation.IdvoitureNavigation.IddepotNavigation.Idville);
-            Reservation.IdvoitureNavigation.IddepotNavigation.IdvilleNavigation.IdpaysNavigation =  await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + Reservation.IdvoitureNavigation.IddepotNavigation.IdvilleNavigation.Idpays);
+            Reservation.IdvoitureNavigation.IddepotNavigation.IdvilleNavigation.IdpaysNavigation = await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + Reservation.IdvoitureNavigation.IddepotNavigation.IdvilleNavigation.Idpays);
 
             Reservation.IdforfaitNavigation = await GetRequestUnique<Forfait>("https://localhost:7204/api/Loueur/GetForfaitByID/" + Reservation.Idforfait);
             Reservation.IdforfaitNavigation.Iddepot1Navigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + Reservation.IdforfaitNavigation.Iddepot1);
@@ -217,13 +217,13 @@ namespace FrontEnd_MVC.Controllers
             return RedirectToAction(nameof(AfficheReservationClient));
 
         }
-       
+
 
         [HttpGet]
         public async Task<ActionResult> GetAllDepotByPays(int idPays)
         {
-             
-            var depots = await GetEnumerableList("https://localhost:7204/api/Client/GetAllDepotByPaysInList/"+idPays);
+
+            var depots = await GetEnumerableList("https://localhost:7204/api/Client/GetAllDepotByPaysInList/" + idPays);
             return Json(depots);
         }
 
@@ -234,6 +234,12 @@ namespace FrontEnd_MVC.Controllers
             return Json(depots);
         }
 
+        [HttpGet] // Corentin Test en cours
+        public async Task<ActionResult> GetAllVoitureDisponibleInList(int idDepot, DateTime DateLocation)
+        {
+            var voits = await GetEnumerableList("https://localhost:7204/api/Client/GetAllVoitureDisponibleInList/"+idDepot+"/"+DateLocation);
+            return Json(voits);
+        }
 
         #endregion
 

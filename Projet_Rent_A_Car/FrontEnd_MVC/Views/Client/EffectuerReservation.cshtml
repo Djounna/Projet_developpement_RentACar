@@ -124,6 +124,8 @@
                 var depotRetourSelect = $("#IDDepotRetour");
                 depotDepartSelect.empty();
                 depotRetourSelect.empty();
+                var voitureSelect = $("#IDVoiture");
+                voitureSelect.empty();
 
                 if (selectedCountry != null && selectedCountry != '') {
                     
@@ -159,6 +161,8 @@
                 var selectedDepot = $("#IDDepotDepart").val();
                 var depotRetourSelect = $("#IDDepotRetour");
                 depotRetourSelect.empty();
+                var voitureSelect = $("#IDVoiture");
+                voitureSelect.empty();
 
                 if (selectedDepot != null && selectedDepot != '') {
                     
@@ -186,6 +190,34 @@
                 }      
             });
 
+             $("#IDDateDepart").change(function () {
+                var selectedDepot = $("#IDDepotDepart").val();
+                var selectedDate = $("#IDDateDepart").val();
+                var voitureSelect = $("#IDVoiture");
+                voitureSelect.empty();
+
+                if (selectedDate != null && selectedDate != '') {
+                    
+                     $.getJSON('@Url.Action("GetAllVoitureDisponibleInList","Client")', { idDepot: selectedDepot, DateLocation: selectedDate }, function(voits) {
+                         
+                         if (voits != null)
+                         {
+                            voitureSelect.append($('<option/>', {
+                                value: null,
+                                text: "--- Select Voiture ---"
+                            }));
+                            
+                            $.each(voits, function (index,voit) {                                
+                                voitureSelect.append($('<option/>', {
+                                    value: voit.value,
+                                    text: voit.text                                                          
+                                }));                         
+                            });                     
+                         }                    
+                       }                    
+                    );
+                }      
+            });
             
 
     </script>

@@ -519,24 +519,7 @@ namespace API_RAC.Controllers
         {
             return Ok(blReservation.SelectAllReservation());
         }
-        /*
-        [Route("GetReservationEnCours/")]
-        [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<List<Reservation>>> GetReservationEnCours()
-        {
-            return Ok(blReservation.SelectAllReservationEnCours());
-        }
-        
-        [Route("GetReservationCloturees/")]
-        [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<List<Reservation>>> GetReservationCloturees()
-        {
-            return Ok(blReservation.SelectAllReservationCloturees());
-        }
-
-        */
+       
 
         [Route("GetReservationByID/{id}")]
         [HttpGet]
@@ -546,6 +529,54 @@ namespace API_RAC.Controllers
             return Ok(blReservation.SelectReservationByID(id));
         }
 
+    
+        [HttpGet] // Ok Works in swagger
+        [Route("GetAllReservationNotYetStarted/")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<List<Reservation>>> GetAllReservationNotYetStarted()
+        {
+            try
+            {
+                return Ok(blReservation.SelectAllReservationNotYetStarted());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        [HttpGet]// Ok Works in swagger
+        [Route("GetAllReservationCloturees/")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<List<Reservation>>> GetAllReservationCloturees()
+        {
+            try
+            {
+                return Ok(blReservation.SelectAllReservationCloturees());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        [HttpGet] // Ok Works in swagger
+        [Route("GetAllLocationEnCours/")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<List<Reservation>>> GetAllLocationEnCours()
+        {
+            try
+            {
+                return Ok(blReservation.SelectAllLocationEnCours());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        // A faire
+        /*
         [Route("UpdateReservation/")]
         [HttpPut]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -567,6 +598,8 @@ namespace API_RAC.Controllers
             blReservation.InsertOrUpdateReservation(Reservation);
             return Ok();
         }
+
+
         [Route("DeleteReservation/{id}")]
         [HttpDelete]
         public ActionResult DeleteReservation(int id)
@@ -574,6 +607,8 @@ namespace API_RAC.Controllers
             blReservation.DeleteReservation(id);
             return Ok();
         }
+        */
+
 
         #endregion
         

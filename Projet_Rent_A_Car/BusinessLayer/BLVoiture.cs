@@ -1,10 +1,12 @@
 ﻿using DataAccessLayer;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace BusinessLayer
 {
@@ -37,6 +39,10 @@ namespace BusinessLayer
             return dalVoiture.SelectAllVoitureActif();
         }
 
+        public IEnumerable<SelectListItem> SelectAllVoitureDisponibleInList(int IdDepot, DateTime DateLocation)
+        {
+           return dalVoiture.SelectAllVoitureDisponibleInList(IdDepot, DateLocation);
+        }
 
     }
 }

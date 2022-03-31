@@ -1,15 +1,15 @@
 ﻿@model IEnumerable<FrontEnd_MVC.Models.Reservation>
 
 @{
-    ViewData["Title"] = "AfficheReservation";
+    ViewData["Title"] = "AfficheReservationCloturees";
 }
+
 <link href="~/lib/datatables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
 
-<h1>Liste des réservations</h1>
+<h1>Liste des réservations cloturées</h1>
     
      <a class="btn btn-success" asp-action="HomeLoueur">Back to main Menu</a>
      <a class="btn btn-success" asp-action="AfficheReservationNotYetStarted">AfficherReservationNotYetStarted</a>
-     <a class="btn btn-success" asp-action="AfficheReservationCloturees">AfficherReservationCloturees</a>
      <a class="btn btn-success" asp-action="AfficheLocationEnCours">AfficherLocationEnCours</a>
 
 <table id="datatable" class="table">
@@ -19,10 +19,10 @@
                 @Html.DisplayNameFor(model => model.Idreservation)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Idvoiture)
+                @Html.DisplayNameFor(model => model.Idclient)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Idclient)
+                @Html.DisplayNameFor(model => model.Idvoiture)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.IddepotDepart)
@@ -47,9 +47,7 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.KilometrageRetour)
-            </th>
-            
-            <th></th>
+            </th>         
         </tr>
     </thead>
     <tbody>

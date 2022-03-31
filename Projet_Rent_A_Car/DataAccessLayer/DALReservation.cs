@@ -39,7 +39,6 @@ namespace DataAccessLayer
                         //oCmd.Parameters.Add(new SqlParameter("@KilometrageRetour", reservation.KilometrageRetour));
                         oCmd.Parameters.Add(new SqlParameter("@Coefficient_Multiplicateur", reservation.CoefficientMultiplicateur));
 
-
                         int result = oCmd.ExecuteNonQuery();
                     }
                     catch (Exception ex)
@@ -70,8 +69,8 @@ namespace DataAccessLayer
                         oCmd.Parameters.Add(new SqlParameter("@DateReservation", reservation.DateReservation));
                         oCmd.Parameters.Add(new SqlParameter("@DateDepart", reservation.DateDepart));
                         // oCmd.Parameters.Add(new SqlParameter("@DateRetour", reservation.DateRetour));
-                       // oCmd.Parameters.Add(new SqlParameter("@KilometrageDepart", reservation.KilometrageDepart));
-                       // oCmd.Parameters.Add(new SqlParameter("@KilometrageRetour", reservation.KilometrageRetour));
+                        // oCmd.Parameters.Add(new SqlParameter("@KilometrageDepart", reservation.KilometrageDepart));
+                        // oCmd.Parameters.Add(new SqlParameter("@KilometrageRetour", reservation.KilometrageRetour));
                         oCmd.Parameters.Add(new SqlParameter("@Coefficient_Multiplicateur", reservation.CoefficientMultiplicateur));
                         int result = oCmd.ExecuteNonQuery();
                     }
@@ -84,42 +83,46 @@ namespace DataAccessLayer
             }
         }
 
-        /*
-        public List<Reservation> SelectAllReservationEnCours()
+        public List<Reservation> SelectAllReservationNotYetStarted()
         {
             try
             {
-                var x = from Reservation in dal.dbcontext.Reservation where Reservation.KilometrageDepart is not null  select Reservation; ;
-
-                return x;
-                    
-                    
-                    // dal.dbcontext.Reservation.Where(Reservation => Reservation.KilometrageDepart).ToList();
+                List<Reservation> lst = dal.dbcontext.Reservation.Where(res => res.KilometrageDepart == null).ToList();
+                return lst;
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-
+        }
 
 
         public List<Reservation> SelectAllReservationCloturees()
         {
             try
             {
-                var x = from Reservation in dal.dbcontext.Reservation where Reservation.KilometrageRetour is not null  select Reservation; ;
-
-                return x;
-                    
-                    
-                    // dal.dbcontext.Reservation.Where(Reservation => Reservation.KilometrageRetour).ToList();
+                List<Reservation> lst = dal.dbcontext.Reservation.Where(res => res.KilometrageRetour != null).ToList();
+                return lst;
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-        */
+        }
 
+        public List<Reservation> SelectAllLocationEnCours()
+        {
+            try
+            {
+                List<Reservation> lst = dal.dbcontext.Reservation.Where(res=>res.KilometrageDepart != null && res.KilometrageRetour ==null ).ToList();        
+                   return lst;
 
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
     }
 }
