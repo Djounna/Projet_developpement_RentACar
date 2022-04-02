@@ -32,15 +32,15 @@ namespace FrontEnd_MVC.Models
         public int? KilometrageRetour { get; set; }
         public decimal CoefficientMultiplicateur { get; set; }
 
-        // Test Corentin, nécessaire pour la dropdownlist conditionnelle ?
-        [Display(Name = "Pays de départ")]
-        public int IdpaysDepart { get; set; }
         
-        // En cours Corentin
+        [Display(Name = "Pays de départ")] 
+        public int IdpaysDepart { get; set; }  // Nécessaire pour Effectuer Réservation
+
+        
         public IEnumerable<SelectListItem> ListPays { get; set; }
         public IEnumerable<SelectListItem> ListDepotDepart { get; set; }
         public IEnumerable<SelectListItem> ListDepotRetour { get; set; }
-        public IEnumerable<SelectListItem> ListDepotForfait { get; set; }
+        //public IEnumerable<SelectListItem> ListDepotForfait { get; set; }  // Pas nécessaire
         public IEnumerable<SelectListItem> ListVoitureDisponible { get; set; }
 
 

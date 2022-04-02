@@ -4,7 +4,7 @@
     ViewData["Title"] = "EffectuerReservation";
 }
 
-<h1>EffectuerReservation</h1>
+<h1>Effectuez votre reservation</h1>
 
 <h4>Reservation</h4>
 <hr />
@@ -19,7 +19,6 @@
                 <span asp-validation-for="Idclient" class="text-danger"></span>
             </div>
 
-            <!-- Test Corentin -->
             
             <div  class="form-group">
              @Html.LabelFor(x => Model.IdpaysDepart, htmlAttributes: new { @class = "control-label col-md-15" })
@@ -28,12 +27,7 @@
                 
                 </div>
             </div>
-            <!--
-             <div class="form-group">
-                <label asp-for="IddepotDepart" class="control-label"></label>
-                <input asp-for="IddepotDepart" class="form-control" />
-                <span asp-validation-for="IddepotDepart" class="text-danger"></span>
-            </div>-->
+          
              <div class="form-group">
              @Html.LabelFor(x => Model.IddepotDepart, htmlAttributes: new { @class = "control-label col-md-15" })
              <div class="col-md-35">
@@ -42,12 +36,6 @@
                 </div>
             </div>
            
-            <!--
-            <div class="form-group">
-                <label asp-for="IddepotRetour" class="control-label"></label>
-                <input asp-for="IddepotRetour" class="form-control" />
-                <span asp-validation-for="IddepotRetour" class="text-danger"></span>
-            </div>-->
             <div class="form-group">
              @Html.LabelFor(x => Model.IddepotRetour, htmlAttributes: new { @class = "control-label col-md-15" })
              <div class="col-md-35">
@@ -62,18 +50,19 @@
                 <span asp-validation-for="Idforfait" class="text-danger"></span>
             </div>
 
-            <p id="customers"></p>
-
+            
+            <!-- Test Corentin -->
             <!--
             <div hidden="hidden" class="form-group">
                 <label asp-for="DateReservation" class="control-label"></label>
                 <input asp-for="DateReservation" value="" class="form-control" />
                 <span asp-validation-for="DateReservation" class="text-danger"></span>
-            </div>-->
+            </div>
+            -->
 
             <div class="form-group">
                 <label asp-for="DateDepart" class="control-label"></label>
-                <input asp-for="DateDepart" class="form-control" />
+                <input asp-for="DateDepart" class="form-control" id="IDDateDepart"  />
                 <span asp-validation-for="DateDepart" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -82,11 +71,23 @@
                 <span asp-validation-for="DateRetour" class="text-danger"></span>
             </div>         
 
+            <div class="form-group">
+             @Html.LabelFor(x => Model.Idvoiture, htmlAttributes: new { @class = "control-label col-md-15" })
+             <div class="col-md-35">
+                @Html.DropDownListFor(x => Model.Idvoiture, new SelectList(Model.ListVoitureDisponible, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "IDVoiture"})
+                @Html.ValidationMessageFor(x => x.Idvoiture, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <!--
             <div hidden="hidden"  class="form-group">
                 <label asp-for="CoefficientMultiplicateur" class="control-label"></label>
                 <input asp-for="CoefficientMultiplicateur" class="form-control" />
                 <span asp-validation-for="CoefficientMultiplicateur" class="text-danger"></span>
-            </div>
+            </div> 
+            -->   
+
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
@@ -95,26 +96,7 @@
 </div>
 
 @section Scripts{
-
-    @* 
-    <script>
-   $(document).ready(function(){
-
-           alert('test');
-
-           $.ajax({
-               type: 'GET',
-               dataType: 'json',
-               url: '/global/customers',
-               success: function(data){
-                   $("#customers").append(data.length);
-               }
-           });
-        });
-   </script>
-   *@
-    
-    
+   
     <script type="text/javascript">
        
            $("#IDPays").change(function () {
@@ -218,21 +200,16 @@
                     );
                 }      
             });
-            
-
+  
     </script>
    
 }@*
-         depotDepartSelect.append($('<option/>').val(depot.value).text(depot.Text));}
-    *@
- 
-   
-     @*alert("test")
-                                depotDepartSelect.append($('<option/>', {
-                                    value: depot.Value,
-                                    text: depot.Text
-                                                                   
-                                }));
-                                *@
+    depotDepartSelect.append($('<option/>').val(depot.value).text(depot.Text));}
+*@  
+ @*
+     $( function() {
+                 $( "#IDDateDepart" ).datepicker();
+                } );
+ *@
 
 

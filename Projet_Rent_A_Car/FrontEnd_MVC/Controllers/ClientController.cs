@@ -16,7 +16,6 @@ namespace FrontEnd_MVC.Controllers
 {
     public class ClientController : Controller
     {
-
         #region Generics
         private async Task<List<T>> GetRequest<T>(string chemin)
         {
@@ -98,6 +97,7 @@ namespace FrontEnd_MVC.Controllers
         }
         #endregion
 
+        #region HomeClient
         public IActionResult HomeClient()
         {
             return View();
@@ -132,7 +132,7 @@ namespace FrontEnd_MVC.Controllers
             }
             return Ok();
         }
-
+        #endregion
 
         #region Reservation
 
@@ -153,7 +153,7 @@ namespace FrontEnd_MVC.Controllers
         public async Task<IActionResult> EffectuerReservation([Bind("Idclient")] Client client)
         {
 
-            ViewBag.Idclient = client.Idclient; // Essai avec viewbag. Je passe l'idclient à la vue via le viewbag. Ok Corentin
+            ViewBag.Idclient = client.Idclient; //  viewbag. Je passe l'idclient à la vue via le viewbag. Ok Corentin
 
             Reservation reservation = new();
             reservation.ListPays = await GetEnumerableList("https://localhost:7204/api/Loueur/GetAllPaysInList/");
@@ -171,6 +171,12 @@ namespace FrontEnd_MVC.Controllers
                     Value = null,
                     Text = " "
                 }  };
+            reservation.ListVoitureDisponible = new List<SelectListItem>() { 
+                 new SelectListItem
+                 {
+                     Value = null,
+                     Text = " "
+                 }  };
 
 
             return View(reservation);
@@ -209,7 +215,8 @@ namespace FrontEnd_MVC.Controllers
             ModelState.Remove("IddepotRetourNavigation");
             ModelState.Remove("IdforfaitNavigation");
             ModelState.Remove("IdvoitureNavigation");
-
+            ModelState.Remove("CoefficientMultiplicateur");
+           
             if (ModelState.IsValid)
             {
                 await PostRequest("https://localhost:7204/api/Client/PostReservation/", Reservation);
@@ -222,7 +229,6 @@ namespace FrontEnd_MVC.Controllers
         [HttpGet]
         public async Task<ActionResult> GetAllDepotByPays(int idPays)
         {
-
             var depots = await GetEnumerableList("https://localhost:7204/api/Client/GetAllDepotByPaysInList/" + idPays);
             return Json(depots);
         }
@@ -242,12 +248,6 @@ namespace FrontEnd_MVC.Controllers
         }
 
         #endregion
-
-
-
-
-
-
 
     }
 }

@@ -48,9 +48,8 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.KilometrageRetour)
-            </th>
-            
-            
+            </th>  
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -89,9 +88,8 @@
             <td>
                 @Html.DisplayFor(modelItem => item.KilometrageRetour)
             </td>
-           
             <td>     
-                 <a asp-action="DemarrerLocation" asp-route-id="@item.Idreservation">Demarrer la location</a>
+                 
                 <a asp-action="CloturerLocation" asp-route-id="@item.Idreservation">Cloturer la location</a>
             </td>
         </tr>
@@ -101,7 +99,7 @@
 
 @section Scripts
 {
-<script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
+<script src="~/lib/datatables/js/jquery.dataTables.min.js"></script> 
 <script src="~/lib/datatables/js/dataTables.bootstrap4.min.js"></script>
 <script src="~/js/datatable.js"></script>
 }

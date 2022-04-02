@@ -35,6 +35,16 @@ namespace BusinessLayer
         {
             dalReservation.Update(reservation);
         }
+        public void StartReservation(Reservation reservation)
+        {
+            dalReservation.StartReservation(reservation);
+        }
+        public void CloseReservation(Reservation reservation)
+        {
+            dalReservation.CloseReservation(reservation);
+        }
+
+
 
         public List<Reservation> SelectAllReservationNotYetStarted()// Ok
         {

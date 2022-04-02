@@ -47,8 +47,8 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.KilometrageRetour)
-            </th>         
-        </tr>
+            </th> 
+            
     </thead>
     <tbody>
 @foreach (var item in Model) {
@@ -85,12 +85,8 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.KilometrageRetour)
-            </td>
-           
-            <td>     
-                 <a asp-action="DemarrerLocation" asp-route-id="@item.Idreservation">Demarrer la location</a>
-                <a asp-action="CloturerLocation" asp-route-id="@item.Idreservation">Cloturer la location</a>
-            </td>
+            </td>        
+            
         </tr>
 }
     </tbody>

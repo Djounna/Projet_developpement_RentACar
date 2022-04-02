@@ -511,7 +511,7 @@ namespace API_RAC.Controllers
         #endregion
         // *********************************************************************** Reservation ******************************************************************
         #region Reservation 
-        // Corentin En cous, voir ce qui est utile pour le vendeur
+        
         [Route("GetReservation/")]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -530,7 +530,7 @@ namespace API_RAC.Controllers
         }
 
     
-        [HttpGet] // Ok Works in swagger
+        [HttpGet] // Ok 
         [Route("GetAllReservationNotYetStarted/")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<List<Reservation>>> GetAllReservationNotYetStarted()
@@ -545,7 +545,7 @@ namespace API_RAC.Controllers
             }
         }
 
-        [HttpGet]// Ok Works in swagger
+        [HttpGet]// Ok 
         [Route("GetAllReservationCloturees/")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<List<Reservation>>> GetAllReservationCloturees()
@@ -560,7 +560,7 @@ namespace API_RAC.Controllers
             }
         }
 
-        [HttpGet] // Ok Works in swagger
+        [HttpGet] // Ok
         [Route("GetAllLocationEnCours/")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<List<Reservation>>> GetAllLocationEnCours()
@@ -576,30 +576,43 @@ namespace API_RAC.Controllers
         }
 
         // A faire
-        /*
+        
         [Route("UpdateReservation/")]
         [HttpPut]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult UpdateReservation(Reservation Reservation)
+        public ActionResult UpdateReservation(Reservation reservation)
         {
-            blReservation.InsertOrUpdateReservation(Reservation);
+            blReservation.Update(reservation);
             return Ok();
         }
 
-        [Route("PostReservation/")]
-        [HttpPost]
-        [ProducesResponseType(StatusCodes.Status201Created)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-
-        public ActionResult PostReservation(Reservation Reservation)
+        [Route("StartReservation/")]
+        [HttpPut]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult StartReservation(Reservation reservation)
         {
-            blReservation.InsertOrUpdateReservation(Reservation);
+            blReservation.StartReservation(reservation);
+            return Ok();
+        }
+
+        [Route("CloseReservation/")]
+        [HttpPut]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult CloseReservation(Reservation reservation)
+        {
+            blReservation.CloseReservation(reservation);
             return Ok();
         }
 
 
+
+        /*
         [Route("DeleteReservation/{id}")]
         [HttpDelete]
         public ActionResult DeleteReservation(int id)
@@ -611,7 +624,7 @@ namespace API_RAC.Controllers
 
 
         #endregion
-        
+
 
     }
 }

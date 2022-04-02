@@ -91,7 +91,7 @@ namespace API_RAC.Controllers
         }
 
         [HttpGet] // Corentin Test en cours
-        [Route("GetAllVoitureDisponible/{IdDepot}/{DateLocation}")]
+        [Route("GetAllVoitureDisponibleInList/{IdDepot}/{DateLocation}")]
         public IEnumerable<SelectListItem> SelectAllVoitureDisponibleInList(int IdDepot, DateTime DateLocation)
         {
             return blvoiture.SelectAllVoitureDisponibleInList(IdDepot, DateLocation);
