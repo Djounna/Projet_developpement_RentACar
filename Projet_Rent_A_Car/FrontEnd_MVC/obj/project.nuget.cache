@@ -1,10 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "UlOuKy+L/lbh5J+fyUjmqp+bp9jhu8eMxInYe6THkgME5oKZbssstsc0vOQ7EGUtjQB8dPqevviPgs+BW2isyw==",
+  "dgSpecHash": "2d18/9I/XIOL9wDa38Y/uEYjgoxdQPRQG5pcWRK4yuCYIbrf3bR1K8WAlMR2Y34p27ZRItzRsBzl+X2i3ZzVGw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Corentin\\Documents\\Ecole\\EPHEC\\Projet SGBD\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\FrontEnd_MVC\\FrontEnd_MVC.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Corentin\\.nuget\\packages\\antlr\\3.4.1.9004\\antlr.3.4.1.9004.nupkg.sha512",
+    "C:\\Users\\Corentin\\.nuget\\packages\\fluentvalidation\\10.4.0\\fluentvalidation.10.4.0.nupkg.sha512",
+    "C:\\Users\\Corentin\\.nuget\\packages\\fluentvalidation.aspnetcore\\10.4.0\\fluentvalidation.aspnetcore.10.4.0.nupkg.sha512",
+    "C:\\Users\\Corentin\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\10.4.0\\fluentvalidation.dependencyinjectionextensions.10.4.0.nupkg.sha512",
     "C:\\Users\\Corentin\\.nuget\\packages\\humanizer.core\\2.2.0\\humanizer.core.2.2.0.nupkg.sha512",
     "C:\\Users\\Corentin\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
     "C:\\Users\\Corentin\\.nuget\\packages\\messagepack.annotations\\2.1.152\\messagepack.annotations.2.1.152.nupkg.sha512",

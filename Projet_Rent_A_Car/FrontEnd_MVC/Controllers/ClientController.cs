@@ -186,6 +186,19 @@ namespace FrontEnd_MVC.Controllers
         [HttpPost]
         public async Task<IActionResult> PostReservation(Reservation Reservation)
         {
+            // Détermination automatique du forfait sur base des dépots.
+
+            // if (Reservation.IddepotRetour == null){
+            //
+            // }
+            // else {Reservation.Idforfait == null}
+
+            Forfait f = await GetRequestUnique<Forfait>("https://localhost:7204/api/Client/GetForfaitReservation/" + Reservation.IddepotDepart + "/" + Reservation.IddepotRetour);
+            Reservation.Idforfait = f.Idforfait;  // Test Corentin. Forfait retrouvé automatiquement. A mettre dans une condition
+            //
+
+
+
             Reservation.IdclientNavigation = await GetRequestUnique<Client>("https://localhost:7204/api/Client/GetClientByID/" + Reservation.Idclient);
 
             Reservation.IddepotDepartNavigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + Reservation.IddepotDepart);
@@ -209,6 +222,9 @@ namespace FrontEnd_MVC.Controllers
             Reservation.IdforfaitNavigation.Iddepot2Navigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + Reservation.IdforfaitNavigation.Iddepot2Navigation.Idville);
             Reservation.IdforfaitNavigation.Iddepot1Navigation.IdvilleNavigation.IdpaysNavigation = await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + Reservation.IdforfaitNavigation.Iddepot1Navigation.IdvilleNavigation.Idpays);
             Reservation.IdforfaitNavigation.Iddepot2Navigation.IdvilleNavigation.IdpaysNavigation = await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + Reservation.IdforfaitNavigation.Iddepot2Navigation.IdvilleNavigation.Idpays);
+
+            //Récupération du CoefficientMultiplicateur
+            Reservation.CoefficientMultiplicateur = (decimal)Reservation.IdvoitureNavigation.IdnotorieteNavigation.CoefficientMultiplicateur;
 
             ModelState.Remove("IdclientNavigation");
             ModelState.Remove("IddepotDepartNavigation");

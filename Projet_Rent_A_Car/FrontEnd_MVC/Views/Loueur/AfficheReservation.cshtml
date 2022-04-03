@@ -18,11 +18,11 @@
             <th>
                 @Html.DisplayNameFor(model => model.Idreservation)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Idvoiture)
+             <th>
+                @Html.DisplayNameFor(model => model.Idclient)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Idclient)
+                @Html.DisplayNameFor(model => model.Idvoiture)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.IddepotDepart)
@@ -58,12 +58,13 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Idreservation)
             </td>
+             <td>
+                @Html.DisplayFor(modelItem => item.IdclientNavigation.Nom) @Html.DisplayFor(modelItem => item.IdclientNavigation.Prenom)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.IdvoitureNavigation.Immatriculation)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdclientNavigation.Nom) 
-            </td>
+           
             <td>
                 @Html.DisplayFor(modelItem => item.IddepotDepartNavigation.IdvilleNavigation.Nom)
             </td>
@@ -88,11 +89,20 @@
             <td>
                 @Html.DisplayFor(modelItem => item.KilometrageRetour)
             </td>
-           
-            <td>     
+            
+                @if(item.KilometrageDepart == null && item.KilometrageRetour== null){
+             <td>
                  <a asp-action="DemarrerLocation" asp-route-id="@item.Idreservation">Demarrer la location</a>
                 <a asp-action="CloturerLocation" asp-route-id="@item.Idreservation">Cloturer la location</a>
-            </td>
+                    </td>
+                }
+                else
+                {
+                    if(item.KilometrageDepart != null && item.KilometrageRetour == null)
+                    {
+                        <td><a asp-action="CloturerLocation" asp-route-id="@item.Idreservation">Cloturer la location</a></td>
+                    }
+                }                
         </tr>
 }
     </tbody>

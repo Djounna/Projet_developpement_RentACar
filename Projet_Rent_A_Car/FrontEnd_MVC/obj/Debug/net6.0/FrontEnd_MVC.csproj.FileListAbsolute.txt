@@ -710,3 +710,7 @@ C:\Users\Corentin\Documents\Ecole\EPHEC\Projet SGBD\Projet_developpement_RentACa
 C:\Users\Corentin\Documents\Ecole\EPHEC\Projet SGBD\Projet_developpement_RentACar\Projet_Rent_A_Car\FrontEnd_MVC\bin\Debug\net6.0\System.Web.WebPages.Deployment.dll
 C:\Users\Corentin\Documents\Ecole\EPHEC\Projet SGBD\Projet_developpement_RentACar\Projet_Rent_A_Car\FrontEnd_MVC\bin\Debug\net6.0\System.Web.WebPages.Razor.dll
 C:\Users\Corentin\Documents\Ecole\EPHEC\Projet SGBD\Projet_developpement_RentACar\Projet_Rent_A_Car\FrontEnd_MVC\bin\Debug\net6.0\System.Web.WebPages.dll
+C:\Users\Corentin\Documents\Ecole\EPHEC\Projet SGBD\Projet_developpement_RentACar\Projet_Rent_A_Car\FrontEnd_MVC\bin\Debug\net6.0\FluentValidation.dll
+C:\Users\Corentin\Documents\Ecole\EPHEC\Projet SGBD\Projet_developpement_RentACar\Projet_Rent_A_Car\FrontEnd_MVC\bin\Debug\net6.0\FluentValidation.AspNetCore.dll
+C:\Users\Corentin\Documents\Ecole\EPHEC\Projet SGBD\Projet_developpement_RentACar\Projet_Rent_A_Car\FrontEnd_MVC\bin\Debug\net6.0\FluentValidation.DependencyInjectionExtensions.dll
+C:\Users\Corentin\Documents\Ecole\EPHEC\Projet SGBD\Projet_developpement_RentACar\Projet_Rent_A_Car\FrontEnd_MVC\obj\Debug\net6.0\FrontEnd_MVC.MvcApplicationPartsAssemblyInfo.cs

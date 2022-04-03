@@ -14,12 +14,6 @@ namespace BusinessLayer
         DalCommun dal = new();
         DALNotoriete dalNotoriete = new();
 
-        //private bool AlreadyExist(string nom,int id)     // Mis dans la DAL, OK COrentin, à valider par Antoine
-        //{
-        //    var notoriete = dal.dbcontext.Notoriete.SingleOrDefault(p => p.Libelle==nom && p.Idnotoriete != id);
-        //    return (notoriete != null);
-        //}
-
         public List<Notoriete> SelectAllNotoriete()
         {
             return dal.SelectAll<Notoriete>();
@@ -28,7 +22,7 @@ namespace BusinessLayer
         {
             return dal.SelectById<Notoriete>(id);
         }
-        public bool InsertOrUpdateNotoriete(Notoriete notoriete) // modifié voir ci-dessus, OK Corentin, à valider par Antoine
+        public bool InsertOrUpdateNotoriete(Notoriete notoriete) // OK
         {
             if (!dalNotoriete.AlreadyExist(notoriete.Libelle,notoriete.Idnotoriete))
             {
@@ -50,7 +44,7 @@ namespace BusinessLayer
             return dalNotoriete.SelectAllDNotorieteActif();
         }
         
-        public IEnumerable<SelectListItem> SelectAllNotorieteInList() // Corentin EN cours
+        public IEnumerable<SelectListItem> SelectAllNotorieteInList() // OK
         {
             return dalNotoriete.SelectAllNotorieteInList();
         }

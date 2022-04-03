@@ -57,10 +57,10 @@
                 @Html.DisplayFor(modelItem => item.Idreservation)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdvoitureNavigation.Immatriculation)
+                @Html.DisplayFor(modelItem => item.IdclientNavigation.Nom) @Html.DisplayFor(modelItem => item.IdclientNavigation.Prenom) 
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdclientNavigation.Nom) 
+                @Html.DisplayFor(modelItem => item.IdvoitureNavigation.Immatriculation)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.IddepotDepartNavigation.IdvilleNavigation.Nom)

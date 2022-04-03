@@ -7,6 +7,7 @@ using ServiceStack;
 using ServiceStack.Text;
 using System.Net.Http.Json;
 using System.Text;
+using System.Windows;
 
 namespace FrontEnd_MVC.Controllers
 {
@@ -842,7 +843,7 @@ namespace FrontEnd_MVC.Controllers
             removeForfait(forfait.Idforfait);
             forfait.Idforfait = 0;
             PostForfait(forfait);
-            Thread.Sleep(5000);
+            Thread.Sleep(2000);
             return RedirectToAction(nameof(AfficheForfait));
         }
         public async Task<IActionResult> UpdateForfait(Forfait forfait)
@@ -897,7 +898,7 @@ namespace FrontEnd_MVC.Controllers
                 List<Reservation> lst = await GetRequest<Reservation>("https://localhost:7204/api/Loueur/GetReservation/");
                 foreach (var item in lst)
                 {
-                    item.IdclientNavigation = await GetRequestUnique<Client>("https://localhost:7204/api/Loueur/GetClientByID/" + item.Idclient);
+                    item.IdclientNavigation = await GetRequestUnique<Client>("https://localhost:7204/api/Client/GetClientByID/" + item.Idclient);
                     item.IddepotDepartNavigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + item.IddepotDepart);
                     item.IddepotRetourNavigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + item.IddepotRetour);
                     item.IdvoitureNavigation = await GetRequestUnique<Voiture>("https://localhost:7204/api/Loueur/GetVoitureByID/" + item.Idvoiture);
@@ -919,7 +920,7 @@ namespace FrontEnd_MVC.Controllers
                 List<Reservation> lst = await GetRequest<Reservation>("https://localhost:7204/api/Loueur/GetAllReservationNotYetStarted/");
                 foreach (var item in lst)
                 {
-                    item.IdclientNavigation = await GetRequestUnique<Client>("https://localhost:7204/api/Loueur/GetClientByID/" + item.Idclient);
+                    item.IdclientNavigation = await GetRequestUnique<Client>("https://localhost:7204/api/Client/GetClientByID/" + item.Idclient);
                     item.IddepotDepartNavigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + item.IddepotDepart);
                     item.IddepotRetourNavigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + item.IddepotRetour);
                     item.IdvoitureNavigation = await GetRequestUnique<Voiture>("https://localhost:7204/api/Loueur/GetVoitureByID/" + item.Idvoiture);
@@ -941,7 +942,7 @@ namespace FrontEnd_MVC.Controllers
                 List<Reservation> lst = await GetRequest<Reservation>("https://localhost:7204/api/Loueur/GetAllReservationCloturees/");
                 foreach (var item in lst)
                 {
-                    item.IdclientNavigation = await GetRequestUnique<Client>("https://localhost:7204/api/Loueur/GetClientByID/" + item.Idclient);
+                    item.IdclientNavigation = await GetRequestUnique<Client>("https://localhost:7204/api/Client/GetClientByID/" + item.Idclient);
                     item.IddepotDepartNavigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + item.IddepotDepart);
                     item.IddepotRetourNavigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + item.IddepotRetour);
                     item.IdvoitureNavigation = await GetRequestUnique<Voiture>("https://localhost:7204/api/Loueur/GetVoitureByID/" + item.Idvoiture);
@@ -963,7 +964,7 @@ namespace FrontEnd_MVC.Controllers
                 List<Reservation> lst = await GetRequest<Reservation>("https://localhost:7204/api/Loueur/GetAllLocationEnCours/");
                 foreach (var item in lst)
                 {
-                    item.IdclientNavigation = await GetRequestUnique<Client>("https://localhost:7204/api/Loueur/GetClientByID/" + item.Idclient);
+                    item.IdclientNavigation = await GetRequestUnique<Client>("https://localhost:7204/api/Client/GetClientByID/" + item.Idclient);
                     item.IddepotDepartNavigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + item.IddepotDepart);
                     item.IddepotRetourNavigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + item.IddepotRetour);
                     item.IdvoitureNavigation = await GetRequestUnique<Voiture>("https://localhost:7204/api/Loueur/GetVoitureByID/" + item.Idvoiture);
@@ -1048,7 +1049,7 @@ namespace FrontEnd_MVC.Controllers
         }
 
 
-        public async Task<ActionResult> UpdateReservation (Reservation Reservation)
+        public async Task<ActionResult> UpdateReservation (Reservation Reservation) // Pas utilisée.
         {
 
             Reservation.IdclientNavigation = await GetRequestUnique<Client>("https://localhost:7204/api/Client/GetClientByID/" + Reservation.Idclient);
@@ -1076,6 +1077,7 @@ namespace FrontEnd_MVC.Controllers
             Reservation.IdforfaitNavigation.Iddepot2Navigation.IdvilleNavigation.IdpaysNavigation = await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + Reservation.IdforfaitNavigation.Iddepot2Navigation.IdvilleNavigation.Idpays);
 
 
+
             ModelState.Remove("IdclientNavigation");
             ModelState.Remove("IddepotDepartNavigation");
             ModelState.Remove("IddepotRetourNavigation");
@@ -1092,6 +1094,8 @@ namespace FrontEnd_MVC.Controllers
                 await PutRequest("https://localhost:7204/api/Loueur/UpdateReservation/", Reservation);
             }
             return RedirectToAction(nameof(AfficheReservation));
+
+
         }
 
 
@@ -1122,23 +1126,25 @@ namespace FrontEnd_MVC.Controllers
             Reservation.IdforfaitNavigation.Iddepot1Navigation.IdvilleNavigation.IdpaysNavigation = await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + Reservation.IdforfaitNavigation.Iddepot1Navigation.IdvilleNavigation.Idpays);
             Reservation.IdforfaitNavigation.Iddepot2Navigation.IdvilleNavigation.IdpaysNavigation = await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + Reservation.IdforfaitNavigation.Iddepot2Navigation.IdvilleNavigation.Idpays);
 
+                     
+                ModelState.Remove("IdclientNavigation");
+                ModelState.Remove("IddepotDepartNavigation");
+                ModelState.Remove("IddepotRetourNavigation");
+                ModelState.Remove("IdforfaitNavigation");
+                ModelState.Remove("IdvoitureNavigation");
+                ModelState.Remove("CoefficientMultiplicateur");
+                ModelState.Remove("ListPays");
+                ModelState.Remove("ListDepotDepart");
+                ModelState.Remove("ListDepotRetour");
+                ModelState.Remove("ListVoitureDisponible");
 
-            ModelState.Remove("IdclientNavigation");
-            ModelState.Remove("IddepotDepartNavigation");
-            ModelState.Remove("IddepotRetourNavigation");
-            ModelState.Remove("IdforfaitNavigation");
-            ModelState.Remove("IdvoitureNavigation");
-            ModelState.Remove("CoefficientMultiplicateur");
-            ModelState.Remove("ListPays");
-            ModelState.Remove("ListDepotDepart");
-            ModelState.Remove("ListDepotRetour");
-            ModelState.Remove("ListVoitureDisponible");
+                if (ModelState.IsValid)
+                {
+                    await PutRequest("https://localhost:7204/api/Loueur/StartReservation/", Reservation);
+                }
+                return RedirectToAction(nameof(AfficheReservation));
+          
 
-            if (ModelState.IsValid)
-            {
-                await PutRequest("https://localhost:7204/api/Loueur/StartReservation/", Reservation);
-            }
-            return RedirectToAction(nameof(AfficheReservation));
         }
 
 
@@ -1185,6 +1191,7 @@ namespace FrontEnd_MVC.Controllers
             {
                 await PutRequest("https://localhost:7204/api/Loueur/CloseReservation/", Reservation);
             }
+
             return RedirectToAction(nameof(AfficheReservation));
         }
 
