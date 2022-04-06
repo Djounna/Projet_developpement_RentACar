@@ -219,7 +219,7 @@ namespace FrontEnd_MVC.Controllers
         // ******************************************************** Voiture *************************************************************************
         #region Voiture
         [HttpGet]
-        public async Task<ActionResult> AfficheVoiture() // Corentin ok
+        public async Task<ActionResult> AfficheVoiture() // ok
         {
             try
             {

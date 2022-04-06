@@ -172,7 +172,7 @@
                 }      
             });
 
-             $("#IDDateDepart").change(function () {
+             $("#IDDateDepart").blur(function () {
                 var selectedDepot = $("#IDDepotDepart").val();
                 var selectedDate = $("#IDDateDepart").val();
                 var voitureSelect = $("#IDVoiture");
@@ -212,6 +212,4 @@
                 } );
  *@
 
- @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+ 

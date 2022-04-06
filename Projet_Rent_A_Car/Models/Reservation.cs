@@ -17,6 +17,7 @@ namespace Models
         public int? KilometrageDepart { get; set; }
         public int? KilometrageRetour { get; set; }
         public decimal CoefficientMultiplicateur { get; set; }
+        public bool? Penalite { get; set; }
 
         public virtual Client IdclientNavigation { get; set; } = null!;
         public virtual Depot IddepotDepartNavigation { get; set; } = null!;

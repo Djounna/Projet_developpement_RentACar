@@ -12,6 +12,7 @@ namespace DataAccessLayer
     public class DALVoiture
     {
         private DalCommun dal = new();
+        private DALReservation dalReservation = new();
         public List<Voiture> SelectAllVoitureInactif() // OK 
         {
             try
@@ -34,6 +35,24 @@ namespace DataAccessLayer
             {
                 throw ex;
             }
+        }
+
+
+        // Test Corentin
+
+        public List<Voiture> SelectAllVoitureInLocation()
+        {
+           List<Reservation> listReservation = dalReservation.SelectAllLocationEnCours();
+            List<Voiture> listVoiture = new();
+            foreach(Reservation res in listReservation)
+            {
+                Voiture voit = dal.dbcontext.Voiture.Where(voiture => voiture.Idvoiture == res.Idvoiture).SingleOrDefault();
+                if (!listVoiture.Contains(voit))
+                {
+                    listVoiture.Add(voit);
+                }
+            }
+            return listVoiture;
         }
 
         // Corentin en cours

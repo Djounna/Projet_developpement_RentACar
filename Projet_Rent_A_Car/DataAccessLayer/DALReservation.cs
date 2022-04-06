@@ -141,6 +141,7 @@ namespace DataAccessLayer
                         //oCmd.Parameters.Add(new SqlParameter("@KilometrageDepart", reservation.KilometrageDepart));
                         oCmd.Parameters.Add(new SqlParameter("@KilometrageRetour", reservation.KilometrageRetour));
                         //oCmd.Parameters.Add(new SqlParameter("@Coefficient_Multiplicateur", reservation.CoefficientMultiplicateur));
+                        oCmd.Parameters.Add(new SqlParameter("@Penalite", reservation.Penalite));
                         int result = oCmd.ExecuteNonQuery();
                     }
                     catch (Exception ex)

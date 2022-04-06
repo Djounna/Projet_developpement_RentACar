@@ -34,8 +34,9 @@ namespace FrontEnd_MVC.Models
         [Range(0, Double.PositiveInfinity, ErrorMessage = "This field must be > 0")]
         public int? KilometrageRetour { get; set; }
         public decimal CoefficientMultiplicateur { get; set; }
+       
+        public bool? Penalite { get; set; }
 
-        
         [Display(Name = "Pays de départ")] 
         public int IdpaysDepart { get; set; }  // Nécessaire pour Effectuer Réservation
 
