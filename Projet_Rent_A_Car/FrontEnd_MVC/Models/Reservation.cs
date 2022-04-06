@@ -40,6 +40,8 @@ namespace FrontEnd_MVC.Models
         [Display(Name = "Pays de départ")] 
         public int IdpaysDepart { get; set; }  // Nécessaire pour Effectuer Réservation
 
+        public int? IddeportRetourPrevu; // Test Corentin
+        public DateTime? DateRetourPrevue; // Test Corentin
         
         public IEnumerable<SelectListItem> ListPays { get; set; }
         public IEnumerable<SelectListItem> ListDepotDepart { get; set; }

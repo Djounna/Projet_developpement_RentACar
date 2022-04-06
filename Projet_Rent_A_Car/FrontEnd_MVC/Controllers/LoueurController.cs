@@ -1007,6 +1007,7 @@ namespace FrontEnd_MVC.Controllers
                      Text = " "
                  }  };
 
+            
             if (id == null)
             {
                 return NotFound();
@@ -1040,6 +1041,16 @@ namespace FrontEnd_MVC.Controllers
                      Value = null,
                      Text = " "
                  }  };
+
+            // Test Corentin
+            reservation.DateRetourPrevue = reservation.DateRetour;
+            reservation.IddeportRetourPrevu = reservation.IddepotRetour;
+            reservation.IddepotRetourNavigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + reservation.IddepotRetour);
+            reservation.IddepotRetourNavigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + reservation.IddepotRetourNavigation.Idville);
+            
+             ViewBag.DateRetourPrevue = reservation.DateRetour;  
+             ViewBag.DepotRetourPrevu = reservation.IddepotRetourNavigation.IdvilleNavigation.Nom;
+             
 
             if (id == null)
             {
