@@ -1161,9 +1161,9 @@ namespace FrontEnd_MVC.Controllers
 
         public async Task<ActionResult> CloseReservation(Reservation Reservation)
         {
-            //test corentin
+            //En cours Corentin
             // Assignation du boolén Pénalité
-            if (Reservation.DateRetour/*.Date*/ != Reservation.DateRetourPrevue/*.Date*/ || Reservation.IddepotRetour != Reservation.IddepotRetourPrevu)
+            if (/*Reservation.DateRetour.Date != Reservation.DateRetourPrevue.Date  ||*/ Reservation.IddepotRetour != Reservation.IddepotRetourPrevu)
             {
                 Reservation.Penalite = true;
             }
@@ -1171,20 +1171,21 @@ namespace FrontEnd_MVC.Controllers
             {
                 Reservation.Penalite = false;
             }
-            
-            
 
-            // Détermination du nouveau forfait si dépot retour différent
+            // Détermination du nouveau forfait si dépot retour différent et prix du dépot > supérieur au dépot prévu .
             if (Reservation.IddepotRetour != Reservation.IddepotRetourPrevu)
             {
                 Forfait f = await GetRequestUnique<Forfait>("https://localhost:7204/api/Client/GetForfaitReservation/" + Reservation.IddepotDepart + "/" + Reservation.IddepotRetour);
-                Reservation.Idforfait = f.Idforfait;
+                int newforfaitId = f.Idforfait;
+
+                Reservation.IdforfaitNavigation = await GetRequestUnique<Forfait>("https://localhost:7204/api/Loueur/GetForfaitByID/" + Reservation.Idforfait);
+               
+                if (f.Prix > Reservation.IdforfaitNavigation.Prix) // Sauvegarde du forfait le plus cher, pour calcul du prix si pénalité 
+                {
+                    Reservation.Idforfait = newforfaitId;
+                }
+
             }
-
-            // Sauvegarde du forfait le plus cher, pour calcul du prix si pénalité.
-
-
-
 
             Reservation.IdclientNavigation = await GetRequestUnique<Client>("https://localhost:7204/api/Client/GetClientByID/" + Reservation.Idclient);
 

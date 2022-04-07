@@ -257,7 +257,8 @@ namespace FrontEnd_MVC.Controllers
         [HttpGet] // Corentin Test en cours
         public async Task<ActionResult> GetAllVoitureDisponibleInList(int IdDepot, DateTime DateLocation)
         {
-            var voits = await GetEnumerableList("https://localhost:7204/api/Client/GetAllVoitureDisponibleInList/"+IdDepot+"/"+DateLocation);
+            string date = DateLocation.ToString("dd.MM.yyyy");
+            var voits = await GetEnumerableList("https://localhost:7204/api/Client/GetAllVoitureDisponibleInList/"+IdDepot+"/"+date);
             return Json(voits);
         }
 

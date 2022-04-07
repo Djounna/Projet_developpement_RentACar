@@ -20,7 +20,7 @@ namespace BusinessLayer
             
             if (reservation.Idforfait == null)
             {
-                total = PrixTotalAuKm(reservation) - (PrixTotalAuKm(reservation) * reduction);              
+                total = PrixTotalAuKm(reservation) - (PrixTotalAuKm(reservation) * reduction/100);              
             }
             else
             {
