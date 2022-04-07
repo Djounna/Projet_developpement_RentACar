@@ -195,9 +195,7 @@ namespace FrontEnd_MVC.Controllers
 
             Forfait f = await GetRequestUnique<Forfait>("https://localhost:7204/api/Client/GetForfaitReservation/" + Reservation.IddepotDepart + "/" + Reservation.IddepotRetour);
             Reservation.Idforfait = f.Idforfait;  // Test Corentin. Forfait retrouvé automatiquement. A mettre dans une condition
-            //
-
-
+            
 
             Reservation.IdclientNavigation = await GetRequestUnique<Client>("https://localhost:7204/api/Client/GetClientByID/" + Reservation.Idclient);
 

@@ -1044,7 +1044,7 @@ namespace FrontEnd_MVC.Controllers
 
             // Test Corentin
             reservation.DateRetourPrevue = reservation.DateRetour;
-            reservation.IddeportRetourPrevu = reservation.IddepotRetour;
+            reservation.IddepotRetourPrevu = reservation.IddepotRetour;
             reservation.IddepotRetourNavigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + reservation.IddepotRetour);
             reservation.IddepotRetourNavigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + reservation.IddepotRetourNavigation.Idville);
             
@@ -1161,6 +1161,30 @@ namespace FrontEnd_MVC.Controllers
 
         public async Task<ActionResult> CloseReservation(Reservation Reservation)
         {
+            //test corentin
+            // Assignation du boolén Pénalité
+            if (Reservation.DateRetour/*.Date*/ != Reservation.DateRetourPrevue/*.Date*/ || Reservation.IddepotRetour != Reservation.IddepotRetourPrevu)
+            {
+                Reservation.Penalite = true;
+            }
+            else
+            {
+                Reservation.Penalite = false;
+            }
+            
+            
+
+            // Détermination du nouveau forfait si dépot retour différent
+            if (Reservation.IddepotRetour != Reservation.IddepotRetourPrevu)
+            {
+                Forfait f = await GetRequestUnique<Forfait>("https://localhost:7204/api/Client/GetForfaitReservation/" + Reservation.IddepotDepart + "/" + Reservation.IddepotRetour);
+                Reservation.Idforfait = f.Idforfait;
+            }
+
+            // Sauvegarde du forfait le plus cher, pour calcul du prix si pénalité.
+
+
+
 
             Reservation.IdclientNavigation = await GetRequestUnique<Client>("https://localhost:7204/api/Client/GetClientByID/" + Reservation.Idclient);
 

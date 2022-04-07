@@ -8,6 +8,8 @@
 
 <h4>Reservation</h4>
 <hr />
+
+<p>Kilometrage au départ : @Model.KilometrageDepart</p>
 <p>Date de retour prévue : @ViewBag.DateRetourPrevue </p>
 <p>Dépot de retour prévu : @ViewBag.DepotRetourPrevu </p>
 
@@ -15,22 +17,22 @@
     <div class="col-md-4">
         <form asp-action="CloseReservation">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
+            <div hidden="hidden" class="form-group">
                 <label asp-for="Idreservation" class="control-label"></label>
                 <input asp-for="Idreservation" class="form-control" />
                 <span asp-validation-for="Idreservation" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div hidden="hidden" class="form-group">
                 <label asp-for="Idclient" class="control-label"></label>
                 <input asp-for="Idclient" class="form-control" />
                 <span asp-validation-for="Idclient" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div hidden="hidden" class="form-group">
                 <label asp-for="Idvoiture" class="control-label"></label>
                 <input asp-for="Idvoiture" class="form-control" />
                 <span asp-validation-for="Idvoiture" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div hidden="hidden" class="form-group">
                 <label asp-for="IddepotDepart" class="control-label"></label>
                 <input asp-for="IddepotDepart" class="form-control" />
                 <span asp-validation-for="IddepotDepart" class="text-danger"></span>
@@ -40,17 +42,17 @@
                 <input asp-for="IddepotRetour" class="form-control" />
                 <span asp-validation-for="IddepotRetour" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div hidden="hidden" class="form-group">
                 <label asp-for="Idforfait" class="control-label"></label>
                 <input asp-for="Idforfait" class="form-control" />
                 <span asp-validation-for="Idforfait" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div hidden="hidden" class="form-group">
                 <label asp-for="DateReservation" class="control-label"></label>
                 <input asp-for="DateReservation" class="form-control" />
                 <span asp-validation-for="DateReservation" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div hidden="hidden" class="form-group">
                 <label asp-for="DateDepart" class="control-label"></label>
                 <input asp-for="DateDepart" class="form-control" />
                 <span asp-validation-for="DateDepart" class="text-danger"></span>
@@ -60,7 +62,7 @@
                 <input asp-for="DateRetour" class="form-control" />
                 <span asp-validation-for="DateRetour" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div hidden="hidden" class="form-group">
                 <label asp-for="KilometrageDepart" class="control-label"></label>
                 <input asp-for="KilometrageDepart" class="form-control" />
                 <span asp-validation-for="KilometrageDepart" class="text-danger"></span>
@@ -70,12 +72,12 @@
                 <input asp-for="KilometrageRetour" class="form-control" />
                 <span asp-validation-for="KilometrageRetour" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div hidden="hidden" class="form-group">
                 <label asp-for="CoefficientMultiplicateur" class="control-label"></label>
                 <input asp-for="CoefficientMultiplicateur" class="form-control" />
                 <span asp-validation-for="CoefficientMultiplicateur" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div hidden="hidden" class="form-group">
                 <label asp-for="IdpaysDepart" class="control-label"></label>
                 <input asp-for="IdpaysDepart" class="form-control" />
                 <span asp-validation-for="IdpaysDepart" class="text-danger"></span>
