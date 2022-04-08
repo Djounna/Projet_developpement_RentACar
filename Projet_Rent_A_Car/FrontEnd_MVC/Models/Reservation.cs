@@ -39,6 +39,8 @@ namespace FrontEnd_MVC.Models
 
         [Display(Name = "Pays de départ")] 
         public int IdpaysDepart { get; set; }  // Nécessaire pour Effectuer Réservation
+        [Display(Name ="Pays de retour")]
+        public int? IdpaysRetour { get; set; }  // Nécessaire pour cloturer réservation
 
         public int? IddepotRetourPrevu; // Test Corentin
         public DateTime? DateRetourPrevue; // Test Corentin

@@ -1162,7 +1162,7 @@ namespace FrontEnd_MVC.Controllers
         public async Task<ActionResult> CloseReservation(Reservation Reservation)
         {
             //En cours Corentin
-            // Assignation du boolén Pénalité
+            // Assignation du boolén Pénalité // Ok Corentin
             if (/*Reservation.DateRetour.Date != Reservation.DateRetourPrevue.Date  ||*/ Reservation.IddepotRetour != Reservation.IddepotRetourPrevu)
             {
                 Reservation.Penalite = true;
@@ -1173,18 +1173,23 @@ namespace FrontEnd_MVC.Controllers
             }
 
             // Détermination du nouveau forfait si dépot retour différent et prix du dépot > supérieur au dépot prévu .
+            // OK Corentin mais il faut ajouter une condition si pas de forfait correspondant car plantage.
             if (Reservation.IddepotRetour != Reservation.IddepotRetourPrevu)
             {
                 Forfait f = await GetRequestUnique<Forfait>("https://localhost:7204/api/Client/GetForfaitReservation/" + Reservation.IddepotDepart + "/" + Reservation.IddepotRetour);
-                int newforfaitId = f.Idforfait;
+                
+                if (f is not null) { 
 
-                Reservation.IdforfaitNavigation = await GetRequestUnique<Forfait>("https://localhost:7204/api/Loueur/GetForfaitByID/" + Reservation.Idforfait);
+                    int newforfaitId = f.Idforfait;
+
+                    Reservation.IdforfaitNavigation = await GetRequestUnique<Forfait>("https://localhost:7204/api/Loueur/GetForfaitByID/" + Reservation.Idforfait);
                
-                if (f.Prix > Reservation.IdforfaitNavigation.Prix) // Sauvegarde du forfait le plus cher, pour calcul du prix si pénalité 
-                {
-                    Reservation.Idforfait = newforfaitId;
-                }
+                    if (f.Prix > Reservation.IdforfaitNavigation.Prix) // Sauvegarde du forfait le plus cher, pour calcul du prix si pénalité 
+                    {
+                        Reservation.Idforfait = newforfaitId;
+                    }
 
+                }
             }
 
             Reservation.IdclientNavigation = await GetRequestUnique<Client>("https://localhost:7204/api/Client/GetClientByID/" + Reservation.Idclient);
