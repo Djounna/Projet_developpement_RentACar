@@ -61,17 +61,33 @@ namespace DataAccessLayer
 
         public IEnumerable<SelectListItem> SelectAllVoitureDisponibleInList(int IdDepot, DateTime DateLocation)
         {
-            var lstVoit = dal.dbcontext.Voiture.Where(v => v.Inactif != true && v.Iddepot == IdDepot).ToList();
-            
+            //var lstVoit = dal.dbcontext.Voiture.Where(v => v.Inactif != true && v.Iddepot == IdDepot).ToList();
 
-            var lstVoitDispo = from reservation in dal.dbcontext.Reservation join voiture in lstVoit 
-                         on reservation.Idvoiture equals voiture.Idvoiture where reservation.DateRetour < DateLocation select voiture;
+            var lstVoit = from voiture in dal.dbcontext.Voiture where voiture.Inactif != true && voiture.Iddepot == IdDepot select voiture;
+            // var lstVoitDispo = dal.dbcontext.Reservation.Join(lstVoit, r=>r.Idvoiture, v => v.Idvoiture, (r, v) => {r.Idvoiture, v.Marque })
+            List<int> idLstVoit = lstVoit.Select(v => v.Idvoiture).ToList();
+            List<int> idLstVoitRes = dal.dbcontext.Reservation.Select(v => v.Idvoiture).ToList();
+            List<int> idVoitSsRes = (from id in idLstVoit select id).Except(idLstVoitRes).ToList();
+            //from reservation in dal.dbcontext.Reservation join voiture in lstVoit
+            //       on reservation.Idvoiture equals voiture.Idvoiture select voiture; //where reservation.DateRetour < DateLocation select voiture;
 
-            List<SelectListItem> lstVoiture = lstVoitDispo.Select(v => new SelectListItem
-            {
-                Value = v.Idvoiture.ToString(),
-                Text = v.Marque
-            }).ToList();
+            //condition à mettre si pas de voiture
+            List < SelectListItem > lstVoiture = dal.dbcontext.Reservation.Where(r => r.DateRetour < DateLocation && r.KilometrageRetour == null).Join(
+                lstVoit, r => r.Idvoiture, v => v.Idvoiture, (r, v) =>
+                new SelectListItem
+                {
+                    Value = r.Idvoiture.ToString(),
+                    Text = v.Marque
+                }).ToList();
+
+            List<SelectListItem> lstVoitureSsRes = dal.dbcontext.Voiture.Where(v => idVoitSsRes.Contains(v.Idvoiture)).Select(v =>
+                       new SelectListItem
+                       {
+                           Value = v.Idvoiture.ToString(),
+                           Text = v.Marque,
+                       }).ToList();
+
+            lstVoiture.AddRange(lstVoitureSsRes);
 
             return lstVoiture;
 

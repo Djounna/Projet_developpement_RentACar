@@ -195,9 +195,7 @@ namespace FrontEnd_MVC.Controllers
 
             Forfait f = await GetRequestUnique<Forfait>("https://localhost:7204/api/Client/GetForfaitReservation/" + Reservation.IddepotDepart + "/" + Reservation.IddepotRetour);
             Reservation.Idforfait = f.Idforfait;  // Test Corentin. Forfait retrouvé automatiquement. A mettre dans une condition
-            //
-
-
+            
 
             Reservation.IdclientNavigation = await GetRequestUnique<Client>("https://localhost:7204/api/Client/GetClientByID/" + Reservation.Idclient);
 
@@ -257,9 +255,10 @@ namespace FrontEnd_MVC.Controllers
         }
 
         [HttpGet] // Corentin Test en cours
-        public async Task<ActionResult> GetAllVoitureDisponibleInList(int idDepot, DateTime DateLocation)
+        public async Task<ActionResult> GetAllVoitureDisponibleInList(int IdDepot, DateTime DateLocation)
         {
-            var voits = await GetEnumerableList("https://localhost:7204/api/Client/GetAllVoitureDisponibleInList/"+idDepot+"/"+DateLocation);
+            string date = DateLocation.ToString("dd.MM.yyyy");
+            var voits = await GetEnumerableList("https://localhost:7204/api/Client/GetAllVoitureDisponibleInList/"+IdDepot+"/"+date);
             return Json(voits);
         }
 
