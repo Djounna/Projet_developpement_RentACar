@@ -13,11 +13,9 @@ namespace FrontEnd_MVC.Controllers
 {
     public class LoueurController : Controller
     {
-        //var errors = ModelState.Values.SelectMany(v => v.Errors); 
-
         // ******************************************************** Generics ************************************************************************
         #region Generics
-        private async Task<List<T>> GetRequest<T>(string chemin)
+        private async Task<List<T>> GetRequest<T>(string chemin) // et si chemin incorrect ?
         {
             using (var httpClient = new HttpClient())
             {
@@ -27,11 +25,9 @@ namespace FrontEnd_MVC.Controllers
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     return JsonConvert.DeserializeObject<List<T>>(apiResponse);
                 }
-            }
-
-            
+            }          
         }
-        private async Task<T> GetRequestUnique<T>(string chemin)
+        private async Task<T> GetRequestUnique<T>(string chemin)  // et si chemin incorrect ?
         {
             using (var httpClient = new HttpClient())
             {
@@ -44,7 +40,7 @@ namespace FrontEnd_MVC.Controllers
                 }
             }
         }
-        private async Task<IActionResult> PostRequest<T>(string chemin, T postObject)
+        private async Task<IActionResult> PostRequest<T>(string chemin, T postObject) //return badrequest the bestway to handle an error ?
         {
             using (var httpClient = new HttpClient())
             {
@@ -58,7 +54,7 @@ namespace FrontEnd_MVC.Controllers
             }
             return BadRequest();
         }
-        private async Task<ActionResult> PutRequest<T>(string chemin, T putObject)
+        private async Task<IActionResult> PutRequest<T>(string chemin, T putObject)
         {
             using (var httpClient = new HttpClient())
             {
@@ -69,11 +65,10 @@ namespace FrontEnd_MVC.Controllers
                         return Ok();
                     }
                 }
-                return Ok();
+                return BadRequest();
             }
-        }
-        
-        private async Task<ActionResult> DeleteRequest(string chemin)
+        }//return badrequest the bestway to handle an error ?
+        private async Task<IActionResult> DeleteRequest(string chemin)
         {
             using (var httpClient = new HttpClient())
             {
@@ -85,9 +80,9 @@ namespace FrontEnd_MVC.Controllers
                     }
                 }
             }
-            return Ok();
-        }
-        private async Task<IEnumerable<SelectListItem>> GetEnumerableList(string chemin)
+            return BadRequest();
+        } //return badrequest the bestway to handle an error ?
+        private async Task<IEnumerable<SelectListItem>> GetEnumerableList(string chemin) // et si chemin incorrect ?
         {
             using (var httpClient = new HttpClient())
             {
@@ -107,7 +102,7 @@ namespace FrontEnd_MVC.Controllers
         // ******************************************************** Notoriete ***********************************************************************
         #region Notoriete
         [HttpGet]
-        public ActionResult AfficheNotoriete() 
+        public IActionResult AfficheNotoriete() 
         {
             try
             {
@@ -115,11 +110,11 @@ namespace FrontEnd_MVC.Controllers
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception(ex.Message);
             }
         }
         [HttpGet]
-        public ActionResult AfficheNotorieteActive()
+        public IActionResult AfficheNotorieteActive()
         {
             try
             {
@@ -127,11 +122,11 @@ namespace FrontEnd_MVC.Controllers
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception(ex.Message);
             }
         }
         [HttpGet]
-        public ActionResult AfficheNotorieteInactive()
+        public IActionResult AfficheNotorieteInactive()
         {
             try
             {
@@ -139,7 +134,7 @@ namespace FrontEnd_MVC.Controllers
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception(ex.Message);
             }
         }
         public IActionResult CreateNotoriete()
@@ -147,11 +142,11 @@ namespace FrontEnd_MVC.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult PostNotoriete([Bind("Libelle,CoefficientMultiplicateur")] Notoriete notoriete)
+        public IActionResult PostNotoriete([Bind("Libelle,CoefficientMultiplicateur")] Notoriete notoriete) //try catch ici ?
         {
             if (ModelState.IsValid)
             {
-              PostRequest("https://localhost:7204/api/Loueur/PostNotoriete/", notoriete);                                     
+              PostRequest("https://localhost:7204/api/Loueur/PostNotoriete/", notoriete);     // si error retourne badrequest dans le post ?                                
             }
             return RedirectToAction(nameof(AfficheNotorieteActive));
 
@@ -164,11 +159,11 @@ namespace FrontEnd_MVC.Controllers
             }
             return View(GetRequestUnique<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteByID/" + id));
         }
-        public IActionResult UpdateNotoriete([Bind("Idnotoriete,Libelle,CoefficientMultiplicateur,Inactif")] Notoriete notoriete)
+        public IActionResult UpdateNotoriete([Bind("Idnotoriete,Libelle,CoefficientMultiplicateur,Inactif")] Notoriete notoriete) //try catch ici ?
         {
             if (ModelState.IsValid)
             {
-                PutRequest("https://localhost:7204/api/Loueur/UpdateNotoriete/", notoriete);              
+                PutRequest("https://localhost:7204/api/Loueur/UpdateNotoriete/", notoriete);        // le put retourne un badrequest si error      
             }
             return RedirectToAction(nameof(AfficheNotorieteActive));
         }
@@ -181,7 +176,7 @@ namespace FrontEnd_MVC.Controllers
             return View(GetRequestUnique<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteByID/" + id));
         }
         [HttpPost, ActionName("Disable")]
-        public async Task<ActionResult> DesactiverNotoriete(int id)
+        public async Task<IActionResult> DesactiverNotoriete(int id) //try catch ici ?
         {
             Notoriete not = await GetRequestUnique<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteByID/" + id);
             not.Inactif = true;
@@ -190,7 +185,7 @@ namespace FrontEnd_MVC.Controllers
             return RedirectToAction(nameof(AfficheNotorieteActive));
         }
         [HttpPost, ActionName("Activate")]
-        public async Task<ActionResult> ActiverNotoriete(int id)
+        public async Task<IActionResult> ActiverNotoriete(int id) //try catch ici ?
         {
             Notoriete not = await GetRequestUnique<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteByID/" + id);
             not.Inactif = false;
@@ -198,28 +193,28 @@ namespace FrontEnd_MVC.Controllers
             UpdateNotoriete(not);
             return RedirectToAction(nameof(AfficheNotorieteActive));
         }
-        public IActionResult Disable(int? id)
+        public IActionResult Disable(int? id) //try catch ici ?
         { 
             var notoriety = GetRequestUnique<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteByID/" + id);
             return View(notoriety);
         }
-        public IActionResult Activate(int? id)
+        public IActionResult Activate(int? id) //try catch ici ?
         {
             var notoriety = GetRequestUnique<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteByID/" + id);
             return View(notoriety);
         }
 
         [HttpPost, ActionName("deleteNotoriete")]  
-        public ActionResult removeNotoriete(int id)
+        public async Task<IActionResult> removeNotoriete(int id)//try catch ici ?
         {
-            DeleteRequest("https://localhost:7204/api/Loueur/DeleteNotoriete/" + id);
+            await DeleteRequest("https://localhost:7204/api/Loueur/DeleteNotoriete/" + id);
             return RedirectToAction(nameof(AfficheNotorieteActive));
         }
         #endregion
         // ******************************************************** Voiture *************************************************************************
         #region Voiture
         [HttpGet]
-        public async Task<ActionResult> AfficheVoiture() // ok
+        public async Task<IActionResult> AfficheVoiture()
         {
             try
             {
@@ -239,7 +234,7 @@ namespace FrontEnd_MVC.Controllers
             }
         }
         [HttpGet]
-        public async Task<ActionResult> AfficheVoitureActive() // Corentin Ok
+        public async Task<IActionResult> AfficheVoitureActive()
         {
             try
             {
@@ -259,7 +254,7 @@ namespace FrontEnd_MVC.Controllers
             }
         }
         [HttpGet]
-        public async Task<ActionResult> AfficheVoitureInactive() // Corentin Ok
+        public async Task<IActionResult> AfficheVoitureInactive()
         {
             try
             {
@@ -276,20 +271,17 @@ namespace FrontEnd_MVC.Controllers
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception(ex.Message);
             }
         }
-        public async Task<IActionResult> CreateVoiture() // OK
-        {
-            
+        public async Task<IActionResult> CreateVoiture()
+        {            
             Voiture voiture = new();
             voiture.ListNotoriete = await GetEnumerableList("https://localhost:7204/api/Loueur/GetAllNotorieteInList/");
-            voiture.ListDepot = await GetEnumerableList("https://localhost:7204/api/Loueur/GetAllDepotInList/");
-            
-            
+            voiture.ListDepot = await GetEnumerableList("https://localhost:7204/api/Loueur/GetAllDepotInList/");         
             return View(voiture);
         }
-        [HttpPost] // OK
+        [HttpPost] 
         public async Task<IActionResult> PostVoiture([Bind("Idnotoriete,Iddepot,Immatriculation,Marque")] Voiture voiture)
         {
             voiture.IddepotNavigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + voiture.Iddepot);
@@ -347,9 +339,9 @@ namespace FrontEnd_MVC.Controllers
             }
             return View(await GetRequestUnique<Voiture>("https://localhost:7204/api/Loueur/GetVoitureByID/" + id));
         }
-        // GET
+        
         [HttpPost, ActionName("DisableVoiture")]
-        public async Task<ActionResult> DesactiverVoiture(int id)
+        public async Task<IActionResult> DesactiverVoiture(int id)
         {
             Voiture voit = await GetRequestUnique<Voiture>("https://localhost:7204/api/Loueur/GetVoitureByID/" + id);
             voit.Inactif = true;
@@ -358,7 +350,7 @@ namespace FrontEnd_MVC.Controllers
             return RedirectToAction(nameof(AfficheVoitureActive));
         }
         [HttpPost, ActionName("ActivateVoiture")]
-        public async Task<ActionResult> ActiverVoiture(int id)
+        public async Task<IActionResult> ActiverVoiture(int id)
         {
             Voiture voit = await GetRequestUnique<Voiture>("https://localhost:7204/api/Loueur/GetVoitureByID/" + id);
             voit.Inactif = false;
@@ -377,10 +369,9 @@ namespace FrontEnd_MVC.Controllers
             var voiture = await GetRequestUnique<Voiture>("https://localhost:7204/api/Loueur/GetVoitureByID/" + id);
             return View(voiture);
         }
-
     
-        [HttpPost, ActionName("deleteVoiture")]  // Corentin, en cours, à voir avec ANtoine
-        public async Task<ActionResult> removeVoiture(int id)
+        [HttpPost, ActionName("deleteVoiture")]
+        public async Task<IActionResult> removeVoiture(int id)
         {
             await DeleteRequest("https://localhost:7204/api/Loueur/DeleteVoiture/" + id);
             return RedirectToAction(nameof(AfficheVoitureActive));
@@ -459,7 +450,7 @@ namespace FrontEnd_MVC.Controllers
             return View(await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + id));
         }
         [HttpPost, ActionName("deletePays")]
-        public async Task<ActionResult> removePays(int id)
+        public async Task<IActionResult> removePays(int id)
         {
             var response = await DeleteRequest("https://localhost:7204/api/Loueur/DeletePays/" + id);
           
@@ -496,7 +487,7 @@ namespace FrontEnd_MVC.Controllers
             {
                 await PostRequest("https://localhost:7204/api/Loueur/PostPrix/", prix);
             }
-            Thread.Sleep(5000);
+            Thread.Sleep(500);
             return RedirectToAction(nameof(AffichePrix));
         }
         public async Task<IActionResult> EditPrix(int? id)
@@ -533,7 +524,7 @@ namespace FrontEnd_MVC.Controllers
             return View(prix);
         }
         [HttpPost, ActionName("deletePrix")]
-        public async Task<ActionResult> removePrix(int id)
+        public async Task<IActionResult> removePrix(int id)
         {
             Prix prix = await GetRequestUnique<Prix>("https://localhost:7204/api/Loueur/GetPrixByID/" + id);
             prix.IdpaysNavigation = await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + prix.Idpays);
@@ -577,7 +568,7 @@ namespace FrontEnd_MVC.Controllers
             {
                 await PostRequest("https://localhost:7204/api/Loueur/PostVille/", ville);
             }
-            Thread.Sleep(5000);
+            Thread.Sleep(500);
             return RedirectToAction(nameof(AfficheVille));     
         }
         public async Task<IActionResult> EditVille(int? id)
@@ -611,7 +602,7 @@ namespace FrontEnd_MVC.Controllers
             return View(ville);
         }
         [HttpPost, ActionName("deleteVille")]
-        public async Task<ActionResult> removeVille(int id)
+        public async Task<IActionResult> removeVille(int id)
         {           
             await DeleteRequest("https://localhost:7204/api/Loueur/DeleteVille/" + id);
             return RedirectToAction(nameof(AfficheVille));
@@ -631,7 +622,7 @@ namespace FrontEnd_MVC.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> AfficheDepotActive()
+        public async Task<IActionResult> AfficheDepotActive()
         {
             try
             {
@@ -655,7 +646,7 @@ namespace FrontEnd_MVC.Controllers
             }
         }
         [HttpGet]
-        public async Task<ActionResult> AfficheDepotInactive()
+        public async Task<IActionResult> AfficheDepotInactive()
         {
             try
             {
@@ -688,11 +679,9 @@ namespace FrontEnd_MVC.Controllers
             {
                 await PostRequest("https://localhost:7204/api/Loueur/PostDepot/", depot);
             }
-            Thread.Sleep(5000);
+            Thread.Sleep(500);
             return RedirectToAction(nameof(AfficheDepotActive));
         }
-
-
         public async Task<IActionResult> UpdateDepot(Depot depot)
         {
             depot.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + depot.Idville);
@@ -706,8 +695,6 @@ namespace FrontEnd_MVC.Controllers
                 return RedirectToAction(nameof(AfficheDepotActive));
             
         }
-
-
         public async Task<IActionResult> deleteDepot(int? id)
         {
             if (id == null)
@@ -719,14 +706,14 @@ namespace FrontEnd_MVC.Controllers
             return View(dep);
         }
         [HttpPost, ActionName("deleteDepot")]
-        public async Task<ActionResult> removeDepot(int id)
+        public async Task<IActionResult> removeDepot(int id)
         {
             await DeleteRequest("https://localhost:7204/api/Loueur/DeleteDepot/" + id);
             return RedirectToAction(nameof(AfficheDepot));
         }
 
         [HttpPost, ActionName("DisableDepot")]
-        public async Task<ActionResult> DesactiverDepot(int id)
+        public async Task<IActionResult> DesactiverDepot(int id)
         {
             Depot dep = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + id);
             dep.Inactif = true;
@@ -736,7 +723,7 @@ namespace FrontEnd_MVC.Controllers
         }
 
         [HttpPost, ActionName("ActivateDepot")]
-        public async Task<ActionResult> ActiverDepot(int id)
+        public async Task<IActionResult> ActiverDepot(int id)
         {
             Depot dep = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + id);
             dep.Inactif = false;
@@ -820,7 +807,7 @@ namespace FrontEnd_MVC.Controllers
                 await PostRequest("https://localhost:7204/api/Loueur/PostForfait/", forfait);
             }
            
-            Thread.Sleep(5000);
+            Thread.Sleep(500);
             return RedirectToAction(nameof(AfficheForfait));
         }
         public async Task<IActionResult> EditForfait(int? id)
@@ -837,7 +824,6 @@ namespace FrontEnd_MVC.Controllers
 
             return View(forfait);
         }
-
         public async Task<IActionResult> DeleteAndPostForfait(Forfait forfait)
         {
             removeForfait(forfait.Idforfait);
@@ -873,7 +859,7 @@ namespace FrontEnd_MVC.Controllers
             return View(forfait);
         }
         [HttpPost, ActionName("deleteForfait")]
-        public async Task<ActionResult> removeForfait(int id)
+        public async Task<IActionResult> removeForfait(int id)
         {
             Forfait forfait = await GetRequestUnique<Forfait>("https://localhost:7204/api/Loueur/GetForfaitByID/" + id);
             forfait.Iddepot1Navigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + forfait.Iddepot1);
@@ -891,7 +877,7 @@ namespace FrontEnd_MVC.Controllers
         // ******************************************************** Réservation *********************************************************************
         #region Reservation
         [HttpGet]
-        public async Task<ActionResult> AfficheReservation() // ok
+        public async Task<IActionResult> AfficheReservation() // ok
         {
             try
             {
@@ -913,7 +899,7 @@ namespace FrontEnd_MVC.Controllers
             }
         }
         [HttpGet]
-        public async Task<ActionResult> AfficheReservationNotYetStarted() // Corentin En cours
+        public async Task<IActionResult> AfficheReservationNotYetStarted() // Corentin En cours
         {
             try
             {
@@ -935,7 +921,7 @@ namespace FrontEnd_MVC.Controllers
             }
         }
         [HttpGet]
-        public async Task<ActionResult> AfficheReservationCloturees() // Corentin En cours
+        public async Task<IActionResult> AfficheReservationCloturees() // Corentin En cours
         {
             try
             {
@@ -957,7 +943,7 @@ namespace FrontEnd_MVC.Controllers
             } 
         }
         [HttpGet]
-        public async Task<ActionResult> AfficheLocationEnCours() // Corentin En cours
+        public async Task<IActionResult> AfficheLocationEnCours() // Corentin En cours
         {
             try
             {
@@ -1060,7 +1046,7 @@ namespace FrontEnd_MVC.Controllers
         }
 
 
-        public async Task<ActionResult> UpdateReservation (Reservation Reservation) // Pas utilisée.
+        public async Task<IActionResult> UpdateReservation (Reservation Reservation) // Pas utilisée.
         {
 
             Reservation.IdclientNavigation = await GetRequestUnique<Client>("https://localhost:7204/api/Client/GetClientByID/" + Reservation.Idclient);
@@ -1110,7 +1096,7 @@ namespace FrontEnd_MVC.Controllers
         }
 
 
-        public async Task<ActionResult> StartReservation(Reservation Reservation)
+        public async Task<IActionResult> StartReservation(Reservation Reservation)
         {
 
             Reservation.IdclientNavigation = await GetRequestUnique<Client>("https://localhost:7204/api/Client/GetClientByID/" + Reservation.Idclient);
@@ -1159,7 +1145,7 @@ namespace FrontEnd_MVC.Controllers
         }
 
 
-        public async Task<ActionResult> CloseReservation(Reservation Reservation)
+        public async Task<IActionResult> CloseReservation(Reservation Reservation)
         {
             //En cours Corentin
             // Assignation du boolén Pénalité // Ok Corentin

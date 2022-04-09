@@ -9,7 +9,7 @@ namespace Models
         public int Idvoiture { get; set; }
         public int Idclient { get; set; }
         public int IddepotDepart { get; set; }
-        public int IddepotRetour { get; set; }
+        public int? IddepotRetour { get; set; }
         public int? Idforfait { get; set; }
         public DateTime DateReservation { get; set; }
         public DateTime DateDepart { get; set; }

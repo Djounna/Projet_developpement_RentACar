@@ -67,12 +67,12 @@ namespace DataAccessLayer
             }
         }  
 
-        public async void InsertOrUpdate(object o)   // Ok 
+        public void InsertOrUpdate(object o)   // Ok 
         {
             try
             {
                 dbcontext.Update(o);
-                await dbcontext.SaveChangesAsync();
+                dbcontext.SaveChanges();
             }
             catch (Exception ex)
             {

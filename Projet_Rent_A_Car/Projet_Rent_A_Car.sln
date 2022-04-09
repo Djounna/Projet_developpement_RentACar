@@ -3,17 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API_RAC", "API_RAC\API_RAC.csproj", "{CD69A84D-F3FA-41EF-BD93-113ECA7EFAA7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API_RAC", "API_RAC\API_RAC.csproj", "{CD69A84D-F3FA-41EF-BD93-113ECA7EFAA7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{26F3E3E4-13E6-456C-BA4A-CF39220C7035}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csproj", "{26F3E3E4-13E6-456C-BA4A-CF39220C7035}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{CDA262BF-831E-4B52-B871-8CF141E6A06C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{CDA262BF-831E-4B52-B871-8CF141E6A06C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLayer", "BusinessLayer\BusinessLayer.csproj", "{9943F954-A3C9-496D-8B1C-E48BD7F18214}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLayer", "BusinessLayer\BusinessLayer.csproj", "{9943F954-A3C9-496D-8B1C-E48BD7F18214}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErrorManagement", "ErrorManagement\ErrorManagement.csproj", "{98561176-96D3-4E9E-9DBE-5D7084DF3722}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ErrorManagement", "ErrorManagement\ErrorManagement.csproj", "{98561176-96D3-4E9E-9DBE-5D7084DF3722}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrontEnd_MVC", "FrontEnd_MVC\FrontEnd_MVC.csproj", "{4A357ABD-C41E-4CA2-BE10-A82C57D8002E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FrontEnd_MVC", "FrontEnd_MVC\FrontEnd_MVC.csproj", "{4A357ABD-C41E-4CA2-BE10-A82C57D8002E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinFormsApp1", "WinFormsApp1\WinFormsApp1.csproj", "{AC96D0B9-E882-4C33-8715-9BB071E73007}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{4A357ABD-C41E-4CA2-BE10-A82C57D8002E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A357ABD-C41E-4CA2-BE10-A82C57D8002E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4A357ABD-C41E-4CA2-BE10-A82C57D8002E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC96D0B9-E882-4C33-8715-9BB071E73007}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC96D0B9-E882-4C33-8715-9BB071E73007}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC96D0B9-E882-4C33-8715-9BB071E73007}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC96D0B9-E882-4C33-8715-9BB071E73007}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
