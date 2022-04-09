@@ -8,253 +8,253 @@ build_property.PlatformNeutralAssembly =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = FrontEnd_MVC
 build_property.RootNamespace = FrontEnd_MVC
-build_property.ProjectDir = C:\Users\Hallet Antoine\OneDrive\Documents\EPHEC\3ème\SGDB\ProjetRAC\Projet_developpement_RentACar\Projet_Rent_A_Car\FrontEnd_MVC\
+build_property.ProjectDir = C:\Users\Corentin\Documents\Ecole\EPHEC\Projet SGBD\Projet_developpement_RentACar\Projet_Rent_A_Car\FrontEnd_MVC\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\Hallet Antoine\OneDrive\Documents\EPHEC\3ème\SGDB\ProjetRAC\Projet_developpement_RentACar\Projet_Rent_A_Car\FrontEnd_MVC
+build_property.MSBuildProjectDirectory = C:\Users\Corentin\Documents\Ecole\EPHEC\Projet SGBD\Projet_developpement_RentACar\Projet_Rent_A_Car\FrontEnd_MVC
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Client/AfficheReservationClient.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Client/AfficheReservationClient.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XEFmZmljaGVSZXNlcnZhdGlvbkNsaWVudC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Client/CheckLogin.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Client/CheckLogin.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XENoZWNrTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Client/ClientConnection.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Client/ClientConnection.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XENsaWVudENvbm5lY3Rpb24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Client/CreateClient.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Client/CreateClient.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XENyZWF0ZUNsaWVudC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Client/EffectuerReservation.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Client/EffectuerReservation.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XEVmZmVjdHVlclJlc2VydmF0aW9uLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Client/HomeCLient.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Client/HomeCLient.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XEhvbWVDTGllbnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Home/Index.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Home/Privacy.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/Activate.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/Activate.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXEFjdGl2YXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/ActivateDepot.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/ActivateDepot.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXEFjdGl2YXRlRGVwb3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/ActivateVoiture.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/ActivateVoiture.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXEFjdGl2YXRlVm9pdHVyZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/AfficheDepot.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/AfficheDepot.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXEFmZmljaGVEZXBvdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/AfficheDepotActive.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/AfficheDepotActive.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXEFmZmljaGVEZXBvdEFjdGl2ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/AfficheDepotInactive.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/AfficheDepotInactive.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXEFmZmljaGVEZXBvdEluYWN0aXZlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/AfficheForfait.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/AfficheForfait.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXEFmZmljaGVGb3JmYWl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/AfficheLocationEnCours.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/AfficheLocationEnCours.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXEFmZmljaGVMb2NhdGlvbkVuQ291cnMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/AfficheNotoriete.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/AfficheNotoriete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXEFmZmljaGVOb3RvcmlldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/AfficheNotorieteActive.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/AfficheNotorieteActive.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXEFmZmljaGVOb3RvcmlldGVBY3RpdmUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/AfficheNotorieteInactive.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/AfficheNotorieteInactive.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXEFmZmljaGVOb3RvcmlldGVJbmFjdGl2ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/AffichePays.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/AffichePays.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXEFmZmljaGVQYXlzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/AffichePrix.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/AffichePrix.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXEFmZmljaGVQcml4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/AfficheReservation.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/AfficheReservation.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXEFmZmljaGVSZXNlcnZhdGlvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/AfficheReservationCloturees.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/AfficheReservationCloturees.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXEFmZmljaGVSZXNlcnZhdGlvbkNsb3R1cmVlcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/AfficheReservationNotYetStarted.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/AfficheReservationNotYetStarted.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXEFmZmljaGVSZXNlcnZhdGlvbk5vdFlldFN0YXJ0ZWQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/AfficheVille.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/AfficheVille.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXEFmZmljaGVWaWxsZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/AfficheVoiture.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/AfficheVoiture.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXEFmZmljaGVWb2l0dXJlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/AfficheVoitureActive.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/AfficheVoitureActive.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXEFmZmljaGVWb2l0dXJlQWN0aXZlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/AfficheVoitureInactive.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/AfficheVoitureInactive.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXEFmZmljaGVWb2l0dXJlSW5hY3RpdmUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/CloturerLocation.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/CloturerLocation.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXENsb3R1cmVyTG9jYXRpb24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/CreateDepot.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/CreateDepot.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXENyZWF0ZURlcG90LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/CreateForfait.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/CreateForfait.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXENyZWF0ZUZvcmZhaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/CreateNotoriete.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/CreateNotoriete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXENyZWF0ZU5vdG9yaWV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/CreatePays.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/CreatePays.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXENyZWF0ZVBheXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/CreatePrix.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/CreatePrix.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXENyZWF0ZVByaXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/CreateVille.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/CreateVille.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXENyZWF0ZVZpbGxlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/CreateVoiture.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/CreateVoiture.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXENyZWF0ZVZvaXR1cmUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/deleteDepot.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/deleteDepot.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXGRlbGV0ZURlcG90LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/deleteForfait.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/deleteForfait.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXGRlbGV0ZUZvcmZhaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/deleteNotoriete.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/deleteNotoriete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXGRlbGV0ZU5vdG9yaWV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/deletePays.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/deletePays.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXGRlbGV0ZVBheXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/deletePrix.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/deletePrix.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXGRlbGV0ZVByaXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/deleteVille.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/deleteVille.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXGRlbGV0ZVZpbGxlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/deleteVoiture.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/deleteVoiture.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXGRlbGV0ZVZvaXR1cmUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/DemarrerLocation.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/DemarrerLocation.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXERlbWFycmVyTG9jYXRpb24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/Disable.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/Disable.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXERpc2FibGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/DisableDepot.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/DisableDepot.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXERpc2FibGVEZXBvdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/DisableVoiture.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/DisableVoiture.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXERpc2FibGVWb2l0dXJlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/EditDepot.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/EditDepot.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXEVkaXREZXBvdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/EditForfait.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/EditForfait.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXEVkaXRGb3JmYWl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/EditNotoriete.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/EditNotoriete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXEVkaXROb3RvcmlldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/EditPays.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/EditPays.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXEVkaXRQYXlzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/EditPrix.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/EditPrix.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXEVkaXRQcml4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/EditVille.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/EditVille.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXEVkaXRWaWxsZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/EditVoiture.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/EditVoiture.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXEVkaXRWb2l0dXJlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/HomeLoueur.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/HomeLoueur.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXEhvbWVMb3VldXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/PostPays.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/PostPays.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXFBvc3RQYXlzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Shared/Error.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/_ViewImports.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/_ViewStart.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Shared/_Layout.cshtml]
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-101eu3hcwu

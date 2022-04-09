@@ -21,7 +21,7 @@ namespace FrontEnd_MVC.Models
         public int IddepotDepart { get; set; }
 
         [Display(Name = "Ville de retour")]
-        public int IddepotRetour { get; set; }
+        public int? IddepotRetour { get; set; }
 
         public int? Idforfait { get; set; }
         public DateTime DateReservation { get; set; }

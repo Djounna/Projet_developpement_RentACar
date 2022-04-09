@@ -102,11 +102,11 @@ namespace FrontEnd_MVC.Controllers
         // ******************************************************** Notoriete ***********************************************************************
         #region Notoriete
         [HttpGet]
-        public IActionResult AfficheNotoriete() 
+        public async Task<IActionResult> AfficheNotoriete() 
         {
             try
             {
-                return View(GetRequest<Notoriete>("https://localhost:7204/api/Loueur/GetNotoriete/"));
+                return View(await GetRequest<Notoriete>("https://localhost:7204/api/Loueur/GetNotoriete/"));
             }
             catch (Exception ex)
             {
@@ -114,11 +114,11 @@ namespace FrontEnd_MVC.Controllers
             }
         }
         [HttpGet]
-        public IActionResult AfficheNotorieteActive()
+        public async Task<IActionResult> AfficheNotorieteActive()
         {
             try
             {
-                return View(GetRequest<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteActif/"));
+                return View(await GetRequest<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteActif/"));
             }
             catch (Exception ex)
             {
@@ -126,11 +126,11 @@ namespace FrontEnd_MVC.Controllers
             }
         }
         [HttpGet]
-        public IActionResult AfficheNotorieteInactive()
+        public async Task<IActionResult> AfficheNotorieteInactive()
         {
             try
             {
-                return View(GetRequest<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteInactif/"));
+                return View(await GetRequest<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteInactif/"));
             }
             catch (Exception ex)
             {
@@ -889,6 +889,7 @@ namespace FrontEnd_MVC.Controllers
                     item.IddepotRetourNavigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + item.IddepotRetour);
                     item.IdvoitureNavigation = await GetRequestUnique<Voiture>("https://localhost:7204/api/Loueur/GetVoitureByID/" + item.Idvoiture);
                     item.IddepotDepartNavigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + item.IddepotDepartNavigation.Idville);
+                    if (item.IddepotRetourNavigation != null)
                     item.IddepotRetourNavigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + item.IddepotRetourNavigation.Idville);
                 }
                 return View(lst);              
@@ -899,7 +900,7 @@ namespace FrontEnd_MVC.Controllers
             }
         }
         [HttpGet]
-        public async Task<IActionResult> AfficheReservationNotYetStarted() // Corentin En cours
+        public async Task<IActionResult> AfficheReservationNotYetStarted() 
         {
             try
             {
@@ -921,7 +922,7 @@ namespace FrontEnd_MVC.Controllers
             }
         }
         [HttpGet]
-        public async Task<IActionResult> AfficheReservationCloturees() // Corentin En cours
+        public async Task<IActionResult> AfficheReservationCloturees() 
         {
             try
             {
@@ -943,7 +944,7 @@ namespace FrontEnd_MVC.Controllers
             } 
         }
         [HttpGet]
-        public async Task<IActionResult> AfficheLocationEnCours() // Corentin En cours
+        public async Task<IActionResult> AfficheLocationEnCours() 
         {
             try
             {

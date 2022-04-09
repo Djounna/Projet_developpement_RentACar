@@ -12,8 +12,8 @@ namespace WinFormsApp1
         private void button1_Click(object sender, EventArgs e)
         {
             GenerateData g = new GenerateData();
-            //g.generatefirstpart();
-           // g.generateSecondpart();
+           // g.generatefirstpart();
+            g.generateSecondpart();
             g.generatethirdpart();
         }
     }
