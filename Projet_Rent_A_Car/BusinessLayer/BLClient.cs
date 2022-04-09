@@ -19,7 +19,6 @@ namespace BusinessLayer
                 return dal.SelectById<Client>(id);
             }
         }
-
         public Client SelectClientByMail(string mail)
         {
             return dalclient.SelectClientByMail(mail);

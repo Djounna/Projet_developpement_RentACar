@@ -1,0 +1,105 @@
+﻿@model IEnumerable<FrontEnd_MVC.Models.Reservation>
+
+@{
+    ViewData["Title"] = "AfficheReservationNotYetStarted";
+}
+
+<link href="~/lib/datatables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+
+<h1>Liste des réservations en attente</h1>
+    
+     <a class="btn btn-success" asp-action="HomeLoueur">Back to main Menu</a>
+     <a class="btn btn-success" asp-action="AfficheReservationCloturees">AfficherReservationCloturees</a>
+     <a class="btn btn-success" asp-action="AfficheLocationEnCours">AfficherLocationEnCours</a>
+
+<table id="datatable" class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Idreservation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Idclient)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Idvoiture)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IddepotDepart)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IddepotRetour)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Idforfait)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateReservation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateDepart)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateRetour)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KilometrageDepart)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KilometrageRetour)
+            </th>         
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Idreservation)
+            </td>  
+            <td>
+                @Html.DisplayFor(modelItem => item.IdclientNavigation.Nom) @Html.DisplayFor(modelItem => item.IdclientNavigation.Prenom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdvoitureNavigation.Immatriculation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IddepotDepartNavigation.IdvilleNavigation.Nom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IddepotRetourNavigation.IdvilleNavigation.Nom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Idforfait)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateReservation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateDepart)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateRetour)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KilometrageDepart)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KilometrageRetour)
+            </td>
+           
+            <td>     
+                 <a asp-action="DemarrerLocation" asp-route-id="@item.Idreservation">Demarrer la location</a>
+                
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+@section Scripts
+{
+<script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
+<script src="~/lib/datatables/js/dataTables.bootstrap4.min.js"></script>
+<script src="~/js/datatable.js"></script>
+}

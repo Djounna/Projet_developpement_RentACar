@@ -96,74 +96,56 @@ namespace DataAccessLayer
                        }).OrderBy(x => x.Text)
                     .ToList();
 
-                var depotIntro = new SelectListItem()
-                {
-                    Value = null,
-                    Text = "--- select Dépot Départ ---"
-                };
-                lstDepot.Insert(0, depotIntro);
+
 
                 return new SelectList(lstDepot, "Value", "Text");
             }
         }
 
-
-
-        /* // Test Corentin en cours
+         // En cours
+         
         public IEnumerable<SelectListItem> SelectAllDepotRetourByDepotDepartInList(int idDepotDepart)
         {
-            using (dal.dbcontext)
-            {
+            
                 var lstForfait1 = from forfait in dal.dbcontext.Forfait where forfait.Iddepot1 == idDepotDepart select forfait;
                 var lstForfait2 = from forfait in dal.dbcontext.Forfait where forfait.Iddepot2 == idDepotDepart select forfait;
-                var lstForfaits = lstForfait1.Union(lstForfait2); // Union method removes duplicates
+                 List<Forfait> lstForfaits = new List<Forfait>();
+                    lstForfaits.AddRange(lstForfait1.Union(lstForfait2).ToList()); // Union method removes duplicates
+            SortedSet<int> lstDepots = new();
+            foreach(Forfait forfait in lstForfaits)
+            {
+                if (forfait.Iddepot1 != idDepotDepart)
+                lstDepots.Add(forfait.Iddepot1);
+                if(forfait.Iddepot1 == idDepotDepart )
+                lstDepots.Add(forfait.Iddepot2);
+            }
 
-                var listIdDepotsPossible = new List<int>();
-                foreach(var forfait in lstForfaits)
-                {
-                    if(forfait.Iddepot1 != idDepotDepart && !listIdDepotsPossible.Contains(forfait.Iddepot1)){
-                        listIdDepotsPossible.Add(forfait.Iddepot1);
-                    }
-                    if (forfait.Iddepot2 != idDepotDepart && !listIdDepotsPossible.Contains(forfait.Iddepot2))
-                    {
-                        listIdDepotsPossible.Add(forfait.Iddepot2);
-                    }
-                }
-                var listDepotsRetourPossible = new List<Depot>();   
-                foreach (var IdDepot in listIdDepotsPossible)
-                {
-                    var depotRetourPossible = from depot in dal.dbcontext.Depot   // Erreur Swagger à cet endroit. Cast impossible
-                                                        where depot.Iddepot == IdDepot select depot;
-                    listDepotsRetourPossible.Add(depotRetourPossible);
-                }             
-                List<SelectListItem> lstDepot = listDepotsRetourPossible
-                    .Join(dal.dbcontext.Ville,
-                    dep => dep.Idville,
-                    vil => vil.Idville,
-                    (dep, vil) =>
-                       new SelectListItem
-                       {
-                           Value = dep.Iddepot.ToString(),
-                           Text = vil.Nom,
-                       }).OrderBy(x => x.Text)
-                    .ToList();
-                var depotIntro = new SelectListItem()
-                {
-                    Value = null,
-                    Text = "--- select Dépot Retour ---"
-                };
-                lstDepot.Insert(0, depotIntro);
+                var listIdVilleForfaitDepot = new List<int>();
+                var listIdVilleDepotsPossible = dal.dbcontext.Depot.Where(depot => lstDepots.Contains(depot.Iddepot));
 
+            List<SelectListItem> lstville = listIdVilleDepotsPossible
+            .Join(dal.dbcontext.Ville,
+                dep => dep.Idville,
+                vil => vil.Idville,
+                (dep, vil) =>
+                   new SelectListItem
+                   {
+                       Value = dep.Iddepot.ToString(),
+                       Text = vil.Nom,
+                   })
+                   .OrderBy(x => x.Text)
+                   .ToList();
+                    
                 var choixNoForfait = new SelectListItem()
                 {
-                    Value = null,
+                    Value = "999",
                     Text = "--- Prix au Km/Pas de forfait ---"
                 };
-                lstDepot.Insert(1, choixNoForfait);
-                return new SelectList(lstDepot, "Value", "Text");
-            }
+
+                lstville.Insert(0, choixNoForfait);
+                return new SelectList(lstville, "Value", "Text");
+            
         }
-        */
 
     }
 }

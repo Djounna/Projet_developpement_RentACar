@@ -17,7 +17,7 @@ namespace API_RAC.Controllers
         private BLDepot bldepot = new();
         private BLForfait blforfait = new();
         private BLReservation blReservation = new();
-
+        private BLVoiture blvoiture = new();
 
         [Route("GetClientById/{Id}")]
         [HttpGet]
@@ -27,8 +27,6 @@ namespace API_RAC.Controllers
             return Ok(blclient.SelectClientById(Id));
         }
 
-
-
         [Route("GetClientByMail/{Mail}")]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -36,7 +34,6 @@ namespace API_RAC.Controllers
         {
             return Ok(blclient.SelectClientByMail(mail));
         }
-
         [Route("PostClient/")]
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
@@ -46,7 +43,6 @@ namespace API_RAC.Controllers
             blclient.CreateClient(client);
             return Ok();
         }
-
 
         // Insert avec une méthode ADO de la DAL. A cause de l'erreur générée par EF sur le double accès dans les dépots.
         [Route("PostReservation/")] // OK
@@ -71,33 +67,35 @@ namespace API_RAC.Controllers
         }
         */
 
-
-
-        [Route("GetAllDepotByPaysInList/{id}")] // OK, testé avec swagger
+        [Route("GetAllDepotByPaysInList/{idPays}")] // OK, testé avec swagger
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public IEnumerable<SelectListItem> GetAllDepotByPaysInList(int idPays)
         {
             return bldepot.SelectAllDepotByPaysInList(idPays);
         }
-
-        /*
-        [Route("GetAllDepotRetourByDepotDepartInList/{id}")] // En cours Corentin, ne fonctionne pas actuellement, voir DalDepot
+        
+        [Route("GetAllDepotRetourByDepotDepartInList/{idDepotDepart}")] // En cours 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public IEnumerable<SelectListItem> SelectAllDepotRetourByDepotDepartInList(int idDepotDepart)
         {
             return bldepot.SelectAllDepotRetourByDepotDepartInList(idDepotDepart);
         }
-        */
-
+        
         [HttpGet]
-        [Route("GetForfaitReservation/{id1}/{id2}")]
+        [Route("GetForfaitReservation/{idDepot1}/{idDepot2}")]
         public ActionResult<Forfait> SelectForfaitReservation(int idDepot1, int idDepot2)
         {
             return Ok(blforfait.SelectForfaitReservation(idDepot1, idDepot2));
         }
 
+        [HttpGet] // Corentin Test en cours
+        [Route("GetAllVoitureDisponibleInList/{IdDepot}/{DateLocation}")]
+        public IEnumerable<SelectListItem> SelectAllVoitureDisponibleInList(int IdDepot, DateTime DateLocation)
+        {
+            return blvoiture.SelectAllVoitureDisponibleInList(IdDepot, DateLocation);
+        }
 
     }
 }

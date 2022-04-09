@@ -75,7 +75,15 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXEFmZmljaGVGb3JmYWl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+<<<<<<< HEAD
 [C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/AfficheNotoriete.cshtml]
+=======
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/AfficheLocationEnCours.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXEFmZmljaGVMb2NhdGlvbkVuQ291cnMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/AfficheNotoriete.cshtml]
+>>>>>>> c8c6bedf715e82af243cef39f02611ddaff789a8
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXEFmZmljaGVOb3RvcmlldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
@@ -99,7 +107,19 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXEFmZmljaGVSZXNlcnZhdGlvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+<<<<<<< HEAD
 [C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/AfficheVille.cshtml]
+=======
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/AfficheReservationCloturees.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXEFmZmljaGVSZXNlcnZhdGlvbkNsb3R1cmVlcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/AfficheReservationNotYetStarted.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXEFmZmljaGVSZXNlcnZhdGlvbk5vdFlldFN0YXJ0ZWQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/AfficheVille.cshtml]
+>>>>>>> c8c6bedf715e82af243cef39f02611ddaff789a8
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXEFmZmljaGVWaWxsZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
@@ -115,7 +135,15 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXEFmZmljaGVWb2l0dXJlSW5hY3RpdmUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+<<<<<<< HEAD
 [C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/CreateDepot.cshtml]
+=======
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/CloturerLocation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXENsb3R1cmVyTG9jYXRpb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/CreateDepot.cshtml]
+>>>>>>> c8c6bedf715e82af243cef39f02611ddaff789a8
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXENyZWF0ZURlcG90LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
@@ -171,7 +199,15 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXGRlbGV0ZVZvaXR1cmUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+<<<<<<< HEAD
 [C:/Users/Hallet Antoine/OneDrive/Documents/EPHEC/3ème/SGDB/ProjetRAC/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/Disable.cshtml]
+=======
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/DemarrerLocation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXERlbWFycmVyTG9jYXRpb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Loueur/Disable.cshtml]
+>>>>>>> c8c6bedf715e82af243cef39f02611ddaff789a8
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG91ZXVyXERpc2FibGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 

@@ -16,13 +16,7 @@
                 <input asp-for="Idvoiture" class="form-control" />
                 <span asp-validation-for="Idvoiture" class="text-danger"></span>
             </div>
-            <!--
-            <div class="form-group">
-                <label asp-for="Idnotoriete" class="control-label"></label>
-                <input asp-for="Idnotoriete" class="form-control" />
-                <span asp-validation-for="Idnotoriete" class="text-danger"></span>
-            </div>
-            -->
+           
             <div class="form-group">
              @Html.LabelFor(x => Model.Idnotoriete, htmlAttributes: new { @class = "control-label col-md-15" })
              <div class="col-md-35">
@@ -38,13 +32,7 @@
                 @Html.ValidationMessageFor(x => x.Iddepot, "", new { @class = "text-danger" })
                 </div>
             </div>
-            <!--
-            <div class="form-group">
-                <label asp-for="Iddepot" class="control-label"></label>
-                <input asp-for="Iddepot" class="form-control" />
-                <span asp-validation-for="Iddepot" class="text-danger"></span>
-            </div>
-            -->
+           
             <div class="form-group">
                 <label asp-for="Immatriculation" class="control-label"></label>
                 <input asp-for="Immatriculation" class="form-control" />

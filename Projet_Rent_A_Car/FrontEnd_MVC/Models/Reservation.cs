@@ -9,6 +9,7 @@ namespace FrontEnd_MVC.Models
     {
         public int Idreservation { get; set; }
 
+        [Display(Name ="Client")]
         public int Idclient { get; set; }
 
         [Display (Name = "Voiture") ]
@@ -27,20 +28,23 @@ namespace FrontEnd_MVC.Models
         public DateTime DateDepart { get; set; }
         public DateTime? DateRetour { get; set; }
         [Display(Name = "Km au depart")]
+        [Range(0, Double.PositiveInfinity, ErrorMessage ="This field must be > 0")] // OK
         public int? KilometrageDepart { get; set; }
         [Display(Name = "Km au retour")]
+        [Range(0, Double.PositiveInfinity, ErrorMessage = "This field must be > 0")]
         public int? KilometrageRetour { get; set; }
         public decimal CoefficientMultiplicateur { get; set; }
+       
+        public bool? Penalite { get; set; }
 
-        // Test Corentin, nécessaire pour la dropdownlist conditionnelle ?
-        [Display(Name = "Pays de départ")]
-        public int IdpaysDepart { get; set; }
+        [Display(Name = "Pays de départ")] 
+        public int IdpaysDepart { get; set; }  // Nécessaire pour Effectuer Réservation
+
         
-        // En cours Corentin
         public IEnumerable<SelectListItem> ListPays { get; set; }
         public IEnumerable<SelectListItem> ListDepotDepart { get; set; }
         public IEnumerable<SelectListItem> ListDepotRetour { get; set; }
-        public IEnumerable<SelectListItem> ListDepotForfait { get; set; }
+        //public IEnumerable<SelectListItem> ListDepotForfait { get; set; }  // Pas nécessaire
         public IEnumerable<SelectListItem> ListVoitureDisponible { get; set; }
 
 

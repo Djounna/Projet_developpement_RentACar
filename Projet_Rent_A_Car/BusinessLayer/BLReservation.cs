@@ -22,44 +22,81 @@ namespace BusinessLayer
         public Reservation SelectReservationByID(int id)
         {
             return dal.SelectById<Reservation>(id);
-        }
-        public void InsertOrUpdateReservation(Reservation Reservation)
-        {
-            dal.InsertOrUpdate(Reservation);
-        }
-        public void DeleteReservation(int id)
-        {
-            dal.Delete(SelectReservationByID(id));
-        }
-
+        }  
         // Passage par les méthodes DAL ADO
+
 
         public void Insert(Reservation reservation)
         {
+
+            reservation.DateReservation = DateTime.Now;
+            
             dalReservation.Insert(reservation);
         }
+
+
+
         public void Update(Reservation reservation)
         {
             dalReservation.Update(reservation);
         }
+        public void StartReservation(Reservation reservation)
+        {
+            dalReservation.StartReservation(reservation);
+        }
+        public void CloseReservation(Reservation reservation)
+        {
+            dalReservation.CloseReservation(reservation);
+        }
 
 
 
-
-        /*
-            public List<Reservation> SelectAllReservationEnCours() 
+        public List<Reservation> SelectAllReservationNotYetStarted()// Ok
+        {
+            try
             {
-                return dalReservation.SelectAllReservationEnCours();
+                return dalReservation.SelectAllReservationNotYetStarted();
             }
-            public List<Reservation> SelectAllReservationCloturees() 
+            catch (Exception ex)
             {
-                return dalReservation.SelectAllDReservationCloturees();
+                throw ex;
             }
+        }
+        public List<Reservation> SelectAllReservationCloturees() // Ok
+        {
+            try
+            {
+                return dalReservation.SelectAllReservationCloturees();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public List<Reservation> SelectAllLocationEnCours() // Ok
+        {
+            try
+            {
+               return dalReservation.SelectAllLocationEnCours();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void DeleteReservation(int id) // Pas validée
+        {
+            dal.Delete(SelectReservationByID(id));
+        }
 
 
+        /* A supprimer, pas utilisée.
+        public void InsertOrUpdateReservation(Reservation Reservation)
+        {
+            dal.InsertOrUpdate(Reservation);
+        }
         */
-
-        
 
     }
 }
