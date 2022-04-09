@@ -9,9 +9,12 @@
 <h4>Reservation</h4>
 <hr />
 
-<p>Kilometrage au départ : @Model.KilometrageDepart</p>
+<div>
+<p>Kilometrage au départ : @Model.KilometrageDepart km</p>
 <p>Date de retour prévue : @ViewBag.DateRetourPrevue </p>
 <p>Dépot de retour prévu : @ViewBag.DepotRetourPrevu </p>
+</div>
+
 
 <div class="row">
     <div class="col-md-4">
@@ -30,17 +33,17 @@
                 @Html.ValidationMessageFor(x => x.IddepotRetour, "", new { @class = "text-danger" })
                 </div>
             </div>
-             <div class="form-group">
-                <label asp-for="DateRetour" class="control-label"></label>
-                <input asp-for="DateRetour" class="form-control" />
-                <span asp-validation-for="DateRetour" class="text-danger"></span>
-            </div>
+             
              <div class="form-group">
                 <label asp-for="KilometrageRetour" class="control-label"></label>
                 <input asp-for="KilometrageRetour" class="form-control" />
                 <span asp-validation-for="KilometrageRetour" class="text-danger"></span>
             </div>
-
+            <div hidden="hidden" class="form-group">
+                <label asp-for="DateRetour" class="control-label"></label>
+                <input asp-for="DateRetour" value="@DateTime.Now" class="form-control" />
+                <span asp-validation-for="DateRetour" class="text-danger"></span>
+            </div>
 
 
 

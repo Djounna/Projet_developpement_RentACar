@@ -1235,37 +1235,7 @@ namespace FrontEnd_MVC.Controllers
 
             return RedirectToAction(nameof(AfficheReservation));
         }
-
         /*
-        public async Task<IActionResult> EditReservation(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-            return View(await GetRequestUnique<Reservation>("https://localhost:7204/api/Loueur/GetReservationByID/" + id));
-        }
-        public async Task<IActionResult> UpdateReservation([Bind("IdReservation,Idnotoriete,Iddepot,Immatriculation,Marque")] Reservation Reservation)
-        {
-            Reservation.IddepotNavigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + Reservation.Iddepot);
-            Reservation.IdnotorieteNavigation = await GetRequestUnique<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteByID/" + Reservation.Idnotoriete);
-            Reservation.IddepotNavigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + Reservation.IddepotNavigation.Idville);
-            Reservation.IddepotNavigation.IdvilleNavigation.IdpaysNavigation = await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + Reservation.IddepotNavigation.IdvilleNavigation.Idpays);
-            ModelState.Remove("IddepotNavigation");
-            ModelState.Remove("IdnotorieteNavigation");
-            if (ModelState.IsValid)
-            {
-                await PutRequest("https://localhost:7204/api/Loueur/UpdateReservation/", Reservation);
-            }
-            return RedirectToAction(nameof(AfficheReservationActive));
-        }
-
-
-
-
-
-
-
         public async Task<IActionResult> deleteReservation(int? id)
         {
             if (id == null)
@@ -1274,15 +1244,7 @@ namespace FrontEnd_MVC.Controllers
             }
             return View(await GetRequestUnique<Reservation>("https://localhost:7204/api/Loueur/GetReservationByID/" + id));
         }
-        
-      
         */
-
-
-
-
-
         #endregion
-
     }
 }

@@ -6,6 +6,11 @@
 
 <h1>Demarrer une location</h1>
 
+<div>
+    <p> </p>
+    <p> </p>
+
+</div>
 
 <hr />
 <div class="row">
@@ -18,6 +23,14 @@
                 <input asp-for="KilometrageDepart" class="form-control" />
                 <span asp-validation-for="KilometrageDepart" class="text-danger"></span>
             </div>
+
+
+             <div hidden="hidden" class="form-group">
+                <label asp-for="DateDepart" class="control-label"></label>
+                <input asp-for="DateDepart" class="form-control" />
+                <span asp-validation-for="DateDepart" class="text-danger"></span>
+            </div>
+
 
 
             <div hidden="hidden" class="form-group">
@@ -55,11 +68,7 @@
                 <input asp-for="DateReservation" class="form-control" />
                 <span asp-validation-for="DateReservation" class="text-danger"></span>
             </div>
-            <div hidden="hidden" class="form-group">
-                <label asp-for="DateDepart" class="control-label"></label>
-                <input asp-for="DateDepart" class="form-control" />
-                <span asp-validation-for="DateDepart" class="text-danger"></span>
-            </div>
+           
             <div hidden="hidden" class="form-group">
                 <label asp-for="DateRetour" class="control-label"></label>
                 <input asp-for="DateRetour" class="form-control" />
