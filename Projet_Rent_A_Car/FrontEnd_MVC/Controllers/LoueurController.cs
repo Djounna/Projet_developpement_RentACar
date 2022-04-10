@@ -114,11 +114,12 @@ namespace FrontEnd_MVC.Controllers
             }
         }
         [HttpGet]
-        public IActionResult AfficheNotorieteActive()
+        public async Task<IActionResult> AfficheNotorieteActive()
         {
             try
             {
-                return View(GetRequest<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteActif/"));
+                               
+                return View(await GetRequest<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteActif/"));
             }
             catch (Exception ex)
             {
@@ -889,7 +890,8 @@ namespace FrontEnd_MVC.Controllers
                     item.IddepotRetourNavigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + item.IddepotRetour);
                     item.IdvoitureNavigation = await GetRequestUnique<Voiture>("https://localhost:7204/api/Loueur/GetVoitureByID/" + item.Idvoiture);
                     item.IddepotDepartNavigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + item.IddepotDepartNavigation.Idville);
-                    item.IddepotRetourNavigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + item.IddepotRetourNavigation.Idville);
+                    if (item.IddepotRetourNavigation != null)
+                        item.IddepotRetourNavigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + item.IddepotRetourNavigation.Idville);
                 }
                 return View(lst);              
             }
