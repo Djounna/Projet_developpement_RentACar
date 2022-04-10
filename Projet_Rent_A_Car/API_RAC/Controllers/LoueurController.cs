@@ -612,15 +612,7 @@ namespace API_RAC.Controllers
 
 
 
-        /*
-        [Route("DeleteReservation/{id}")]
-        [HttpDelete]
-        public ActionResult DeleteReservation(int id)
-        {
-            blReservation.DeleteReservation(id);
-            return Ok();
-        }
-        */
+        
 
 
         #endregion

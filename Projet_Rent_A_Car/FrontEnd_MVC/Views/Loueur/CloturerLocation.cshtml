@@ -39,14 +39,13 @@
                 <input asp-for="KilometrageRetour" class="form-control" />
                 <span asp-validation-for="KilometrageRetour" class="text-danger"></span>
             </div>
+
+
             <div hidden="hidden" class="form-group">
                 <label asp-for="DateRetour" class="control-label"></label>
-                <input asp-for="DateRetour" value="@DateTime.Now" class="form-control" />
+                <input asp-for="DateRetour" class="form-control" />
                 <span asp-validation-for="DateRetour" class="text-danger"></span>
             </div>
-
-
-
             <div hidden="hidden" class="form-group">
                 <label asp-for="Idreservation" class="control-label"></label>
                 <input asp-for="Idreservation" class="form-control" />

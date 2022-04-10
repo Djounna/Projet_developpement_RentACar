@@ -1,27 +1,27 @@
 ﻿@model IEnumerable<FrontEnd_MVC.Models.Reservation>
 
 @{
-    ViewData["Title"] = "AfficheReservationClient";
+    ViewData["Title"] = "AfficheReservationByClient";
 }
 
-<!-- Vue de test, à recommencer pour les vues du client -->
+<link href="~/lib/datatables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
 
-<h1>AfficheReservationClient</h1>
+<h1>Mon historique de réservations</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="EffectuerReservation">Effectuer une nouvelle réservation</a>
 </p>
-<table class="table">
+<table id="datatable" class="table">
     <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Idreservation)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Idvoiture)
+                @Html.DisplayNameFor(model => model.Idclient)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Idclient)
+                @Html.DisplayNameFor(model => model.Idvoiture)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.IddepotDepart)
@@ -50,6 +50,15 @@
             <th>
                 @Html.DisplayNameFor(model => model.CoefficientMultiplicateur)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Penalite)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdpaysDepart)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdpaysRetour)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -60,10 +69,10 @@
                 @Html.DisplayFor(modelItem => item.Idreservation)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Idvoiture)
+                @Html.DisplayFor(modelItem => item.Idclient)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Idclient)
+                @Html.DisplayFor(modelItem => item.Idvoiture)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.IddepotDepart)
@@ -93,11 +102,35 @@
                 @Html.DisplayFor(modelItem => item.CoefficientMultiplicateur)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.DisplayFor(modelItem => item.Penalite)
             </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdpaysDepart)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdpaysRetour)
+            </td>
+
+                @if (item.KilometrageDepart == null)
+                {
+                     <td>
+                <a asp-action="AnnulerReservation" asp-route-id="@item.Idreservation">Annuler reservation</a>
+                    </td>
+                }
+                else
+                {
+                    <td></td>
+                }
+               
         </tr>
 }
     </tbody>
 </table>
+
+
+@section Scripts
+{
+<script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
+<script src="~/lib/datatables/js/dataTables.bootstrap4.min.js"></script>
+<script src="~/js/datatable.js"></script>
+}

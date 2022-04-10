@@ -15,8 +15,12 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\Corentin\Documents\Ecole\EPHEC\Projet SGBD\Projet_developpement_RentACar\Projet_Rent_A_Car\FrontEnd_MVC
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Client/AfficheReservationClient.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XEFmZmljaGVSZXNlcnZhdGlvbkNsaWVudC5jc2h0bWw=
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Client/AfficheReservationByClient.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XEFmZmljaGVSZXNlcnZhdGlvbkJ5Q2xpZW50LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Client/AnnulerReservation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XEFubnVsZXJSZXNlcnZhdGlvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Corentin/Documents/Ecole/EPHEC/Projet SGBD/Projet_developpement_RentACar/Projet_Rent_A_Car/FrontEnd_MVC/Views/Client/CheckLogin.cshtml]

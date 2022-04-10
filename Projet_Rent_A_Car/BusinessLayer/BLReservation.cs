@@ -85,18 +85,13 @@ namespace BusinessLayer
             }
         }
 
-        public void DeleteReservation(int id) // Pas validée
+        public void DeleteReservation(int id) // En cours Corentin
         {
             dal.Delete(SelectReservationByID(id));
         }
 
 
-        /* A supprimer, pas utilisée.
-        public void InsertOrUpdateReservation(Reservation Reservation)
-        {
-            dal.InsertOrUpdate(Reservation);
-        }
-        */
+     
 
     }
 }

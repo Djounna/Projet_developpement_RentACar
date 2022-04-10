@@ -23,5 +23,13 @@ namespace DataAccessLayer
             }
         }
 
+        public List<Reservation> SelectAllReservationByClient(int IdClient)
+        {
+            try
+            {
+                return dal.dbcontext.Reservation.Where(r => r.Idclient == IdClient).ToList();
+            }
+            catch(Exception ex) { throw ex; }
+        }
     }
 }

@@ -55,10 +55,8 @@ namespace DataAccessLayer
             return listVoiture;
         }
 
-        // Corentin en cours
-
        
-
+        // OK
         public IEnumerable<SelectListItem> SelectAllVoitureDisponibleInList(int IdDepot, DateTime DateLocation)
         {
             //var lstVoit = dal.dbcontext.Voiture.Where(v => v.Inactif != true && v.Iddepot == IdDepot).ToList();
