@@ -55,7 +55,7 @@ namespace FrontEnd_MVC.Models
 
         public virtual Client IdclientNavigation { get; set; } = null!;
         public virtual Depot IddepotDepartNavigation { get; set; } = null!;
-        public virtual Depot IddepotRetourNavigation { get; set; } = null!;
+        public virtual Depot? IddepotRetourNavigation { get; set; } = null!;
         public virtual Forfait? IdforfaitNavigation { get; set; }
         public virtual Voiture IdvoitureNavigation { get; set; } = null!;
     }
