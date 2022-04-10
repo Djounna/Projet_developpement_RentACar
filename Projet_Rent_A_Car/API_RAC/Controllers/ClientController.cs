@@ -98,5 +98,12 @@ namespace API_RAC.Controllers
             return blvoiture.SelectAllVoitureDisponibleInList(IdDepot, date);
         }
 
+        [HttpGet]
+        [Route("GetAllReservationByClient/{IdClient}")]
+        public List<Reservation> GtetAllReservationByClient(int IdClient)
+        {
+            return blclient.SelectAllReservationByClient(IdClient);
+        }
+
     }
 }

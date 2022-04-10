@@ -27,5 +27,11 @@ namespace BusinessLayer
         {
             dal.InsertOrUpdate(client);
         }
+
+        public List<Reservation> SelectAllReservationByClient(int IdClient)
+        {
+            return dalclient.SelectAllReservationByClient(IdClient);
+        }
+
     }
 }
