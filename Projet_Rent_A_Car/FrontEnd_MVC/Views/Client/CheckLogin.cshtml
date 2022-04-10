@@ -4,8 +4,14 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Bienvenue @Html.DisplayFor(modelItem => modelItem.Nom) </h1><h1 class="display-4">@Html.DisplayFor(modelItem => modelItem.Prenom) </h1>
+    <h1 class="display-4">Bienvenue @Html.DisplayFor(modelItem => modelItem.Nom) @Html.DisplayFor(modelItem => modelItem.Prenom) </h1>
 
+ <div class="row">
+<div class="col-xs-6 col-md-3">
+<a href="#" class="thumbnail" title="" style="background-color:coral">
+<p>Effectuer une réservation</p>
+</a>
+</div>
 
 <table  class="table">
 <thead>

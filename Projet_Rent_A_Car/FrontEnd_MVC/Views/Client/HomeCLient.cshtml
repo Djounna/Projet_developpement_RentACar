@@ -3,46 +3,7 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Bienvenue sur l'interface du Client</h1>
-    <p>Ci-dessous un tableau de l'ensemble des actions que vous pouvez utiliser :</p>
-    <table  class="table">
-    <thead>
-        <tr>
-            <th>
-                <p>Action</p>                
-            </th>
-            <th>
-                <p>Description</p>                
-            </th>
-
-        </tr>
-        <tr>           
-            <th>
-                <p>Se connecter</p>                
-            </th>
-            <th>
-                <p>Dans ce menu, vous pourrez vous connecter à votre compte client via votre adresse mail</p>
-               
-            </th>
-            <th>
-                <a asp-controller="Client" asp-action="ClientConnection">Se connecter</a>               
-            </th>
-        </tr>
-        <tr>           
-            <th>
-                <p>Créer un compte client</p>                
-            </th>
-            <th>
-                <p>Dans ce menu, vous pourrez crééer votre compte client</p>
-               
-            </th>
-            <th>
-                <a asp-controller="Client" asp-action="CreateClient">Créer un compte</a>               
-            </th>
-        </tr>
-        
-    </thead>
-    <tbody>
-    </table>
+    <h1 class="display-4">Bienvenue sur l'interface du Client</h1>                 
+        <button class="btn btn-light" type="button" id="Client" onclick="location.href='@Url.Action("ClientConnection","Client")'">Se connecter</button><button type="button" style="margin:5px" class="btn btn-light" id="Client" onclick="location.href='@Url.Action("CreateClient","Client")'">Créer un compte</button>   
 </div>
 

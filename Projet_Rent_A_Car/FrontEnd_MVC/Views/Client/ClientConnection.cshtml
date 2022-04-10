@@ -6,19 +6,17 @@
 <div class="text-center">
     <h1 class="display-4">Merci de vous identifier</h1>
     <div class="row">
-    <div class="col-md-4">  
-    <div class="form-group">
+    <div class="col-md-4">    
+        <div class="form-group">
         <form asp-action="CheckLogin">
-                <label asp-for="Mail" class="control-label"></label>
-                <input asp-for="Mail" class="form-control" />
+            
+               <label asp-for="Mail" class="control-label"></label>
+                <input asp-for="Mail" class="form-control" /> 
                 <span asp-validation-for="Mail" class="text-danger"></span>
-             <div class="form-group">
-                <input type="submit" value="Login" class="btn btn-primary" />
+                 <input style="margin-top:5px" type="submit" value="Login" class="btn btn-light" />
+            </form> 
             </div>
-        </form>    
-            
-            
-            </div>
+          
 
  </div>
     </div>
