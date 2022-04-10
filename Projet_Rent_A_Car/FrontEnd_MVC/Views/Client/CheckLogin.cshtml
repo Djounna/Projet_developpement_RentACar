@@ -31,7 +31,7 @@
                 <p>Dans ce menu, vous pourrez afficher l'historique de vos réservations</p>              
             </th>
             <th>
-                <a asp-controller="Client" asp-action="AfficherReservationClient">Mon historique</a>               
+                <a asp-controller="Client" asp-action="AfficheReservationByClient" asp-route-id="@Model.Idclient">Mon historique</a>               
             </th>
         <tr>           
             <th>

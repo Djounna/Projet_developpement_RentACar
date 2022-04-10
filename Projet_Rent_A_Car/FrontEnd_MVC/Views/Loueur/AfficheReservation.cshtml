@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "AfficheReservation";
 }
+
 <link href="~/lib/datatables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
 
 <h1>Liste des réservations</h1>
@@ -49,8 +50,9 @@
                 @Html.DisplayNameFor(model => model.KilometrageRetour)
             </th>
             
-            <th></th>
-        </tr>
+            <th>Action</th>
+
+            
     </thead>
     <tbody>
 @foreach (var item in Model) {
@@ -92,9 +94,9 @@
             
                 @if(item.KilometrageDepart == null && item.KilometrageRetour== null){
              <td>
-                 <a asp-action="DemarrerLocation" asp-route-id="@item.Idreservation">Demarrer la location</a>
+                <a asp-action="DemarrerLocation" asp-route-id="@item.Idreservation">Demarrer la location</a>
                 <a asp-action="CloturerLocation" asp-route-id="@item.Idreservation">Cloturer la location</a>
-                    </td>
+             </td>
                 }
                 else
                 {
@@ -102,7 +104,14 @@
                     {
                         <td><a asp-action="CloturerLocation" asp-route-id="@item.Idreservation">Cloturer la location</a></td>
                     }
-                }                
+                    else
+                    {
+                         <td><a asp-action="AfficheFacturation" asp-route-id="@item.Idreservation">Afficher la facturation</a></td>
+                    }
+                }    
+                
+
+           
         </tr>
 }
     </tbody>
