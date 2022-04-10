@@ -42,9 +42,11 @@ namespace FrontEnd_MVC.Models
         [Display(Name ="Pays de retour")]
         public int? IdpaysRetour { get; set; }  // Nécessaire pour cloturer réservation
 
-        public int? IddepotRetourPrevu; // Test Corentin
-        public DateTime? DateRetourPrevue; // Test Corentin
-        
+        public int? IddepotRetourPrevu; // Nécessaire pour Cloture Location
+        public DateTime? DateRetourPrevue; // Nécessaire pour Cloture Location
+
+        public decimal? PrixTotal { get; set; }
+
         public IEnumerable<SelectListItem> ListPays { get; set; }
         public IEnumerable<SelectListItem> ListDepotDepart { get; set; }
         public IEnumerable<SelectListItem> ListDepotRetour { get; set; }

@@ -186,8 +186,9 @@ namespace FrontEnd_MVC.Controllers
         [HttpPost]
         public async Task<IActionResult> PostReservation(Reservation Reservation)
         {
-            // Détermination automatique du forfait sur base des dépots.
+            Reservation.DateReservation = DateTime.Now;
 
+            // Détermination automatique du forfait sur base des dépots.
             if (Reservation.IddepotRetour == 999){
                 Reservation.Idforfait = null;
              }
@@ -233,7 +234,11 @@ namespace FrontEnd_MVC.Controllers
             ModelState.Remove("IdforfaitNavigation");
             ModelState.Remove("IdvoitureNavigation");
             ModelState.Remove("CoefficientMultiplicateur");
-           
+            ModelState.Remove("ListPays");
+            ModelState.Remove("ListDepotDepart");
+            ModelState.Remove("ListDepotRetour");
+            ModelState.Remove("ListVoitureDisponible");
+
             if (ModelState.IsValid)
             {
                 await PostRequest("https://localhost:7204/api/Client/PostReservation/", Reservation);

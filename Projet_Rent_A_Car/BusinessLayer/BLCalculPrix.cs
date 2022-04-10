@@ -55,6 +55,9 @@ namespace BusinessLayer
 
         private decimal PrixTotalForfait(Reservation reservation)
         {
+            
+            reservation.IdforfaitNavigation = dal.dbcontext.Forfait.Where(f=>f.Idforfait == reservation.Idforfait).FirstOrDefault();
+            
             decimal prixForfait = reservation.IdforfaitNavigation.Prix;
 
             decimal coefficient = reservation.CoefficientMultiplicateur;

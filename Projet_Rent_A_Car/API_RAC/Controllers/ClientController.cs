@@ -57,8 +57,8 @@ namespace API_RAC.Controllers
             return Ok();
         }
 
-        // En cours Corentin
-        [Route("DeleteReservation/{id}")]
+        
+        [Route("DeleteReservation/{id}")] // OK
         [HttpDelete]
         public ActionResult DeleteReservation(int id)
         {
@@ -106,11 +106,12 @@ namespace API_RAC.Controllers
 
         
         [HttpGet]
-        [Route("GetFactureReservation/{IdReservation}")]
+        [Route("GetFactureReservation/{id}")]
         public decimal GetFactureReservation(int id)
         {
             Reservation reservation = blReservation.SelectReservationByID(id);
             
+
             return blCalculPrix.PrixTotal(reservation);
         }
 
