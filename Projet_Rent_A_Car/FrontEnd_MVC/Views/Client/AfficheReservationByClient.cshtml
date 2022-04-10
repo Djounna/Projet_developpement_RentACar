@@ -1,25 +1,23 @@
 ﻿@model IEnumerable<FrontEnd_MVC.Models.Reservation>
 
 @{
-    ViewData["Title"] = "AfficheReservation";
+    ViewData["Title"] = "AfficheReservationByClient";
 }
 
 <link href="~/lib/datatables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
 
-<h1>Liste des réservations</h1>
-    
-     <a class="btn btn-success" asp-action="HomeLoueur">Back to main Menu</a>
-     <a class="btn btn-success" asp-action="AfficheReservationNotYetStarted">AfficherReservationNotYetStarted</a>
-     <a class="btn btn-success" asp-action="AfficheReservationCloturees">AfficherReservationCloturees</a>
-     <a class="btn btn-success" asp-action="AfficheLocationEnCours">AfficherLocationEnCours</a>
+<h1>Mon historique de réservations</h1>
 
+<p>
+    <a asp-action="EffectuerReservation">Effectuer une nouvelle réservation</a>
+</p>
 <table id="datatable" class="table">
     <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Idreservation)
             </th>
-             <th>
+            <th>
                 @Html.DisplayNameFor(model => model.Idclient)
             </th>
             <th>
@@ -49,10 +47,20 @@
             <th>
                 @Html.DisplayNameFor(model => model.KilometrageRetour)
             </th>
-            
-            <th>Action</th>
-
-            
+            <th>
+                @Html.DisplayNameFor(model => model.CoefficientMultiplicateur)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Penalite)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdpaysDepart)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdpaysRetour)
+            </th>
+            <th></th>
+        </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
@@ -60,18 +68,17 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Idreservation)
             </td>
-             <td>
-                @Html.DisplayFor(modelItem => item.IdclientNavigation.Nom) @Html.DisplayFor(modelItem => item.IdclientNavigation.Prenom)
+            <td>
+                @Html.DisplayFor(modelItem => item.Idclient)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdvoitureNavigation.Immatriculation)
-            </td>
-           
-            <td>
-                @Html.DisplayFor(modelItem => item.IddepotDepartNavigation.IdvilleNavigation.Nom)
+                @Html.DisplayFor(modelItem => item.Idvoiture)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IddepotRetourNavigation.IdvilleNavigation.Nom)
+                @Html.DisplayFor(modelItem => item.IddepotDepart)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IddepotRetour)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Idforfait)
@@ -91,31 +98,35 @@
             <td>
                 @Html.DisplayFor(modelItem => item.KilometrageRetour)
             </td>
-            
-                @if(item.KilometrageDepart == null && item.KilometrageRetour== null){
-             <td>
-                <a asp-action="DemarrerLocation" asp-route-id="@item.Idreservation">Demarrer la location</a>
-                <a asp-action="CloturerLocation" asp-route-id="@item.Idreservation">Cloturer la location</a>
-             </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CoefficientMultiplicateur)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Penalite)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdpaysDepart)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdpaysRetour)
+            </td>
+
+                @if (item.KilometrageDepart == null)
+                {
+                     <td>
+                <a asp-action="AnnulerReservation" asp-route-id="@item.Idreservation">Annuler reservation</a>
+                    </td>
                 }
                 else
                 {
-                    if(item.KilometrageDepart != null && item.KilometrageRetour == null)
-                    {
-                        <td><a asp-action="CloturerLocation" asp-route-id="@item.Idreservation">Cloturer la location</a></td>
-                    }
-                    else
-                    {
-                         <td><a asp-action="AfficheFacturation" asp-route-id="@item.Idreservation">Afficher la facturation</a></td>
-                    }
-                }    
-                
-
-           
+                    <td></td>
+                }
+               
         </tr>
 }
     </tbody>
 </table>
+
 
 @section Scripts
 {

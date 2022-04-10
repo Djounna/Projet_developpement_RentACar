@@ -18,6 +18,7 @@ namespace API_RAC.Controllers
         private BLForfait blforfait = new();
         private BLReservation blReservation = new();
         private BLVoiture blvoiture = new();
+        private BLCalculPrix blCalculPrix = new();
 
         [Route("GetClientById/{Id}")]
         [HttpGet]
@@ -56,18 +57,16 @@ namespace API_RAC.Controllers
             return Ok();
         }
 
-        /*
-        // En attente Corentin
-        [Route("DeleteReservation/{id}")] 
+        // En cours Corentin
+        [Route("DeleteReservation/{id}")]
         [HttpDelete]
         public ActionResult DeleteReservation(int id)
         {
             blReservation.DeleteReservation(id);
             return Ok();
         }
-        */
 
-        [Route("GetAllDepotByPaysInList/{idPays}")] // OK, testé avec swagger
+        [Route("GetAllDepotByPaysInList/{idPays}")] // OK
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public IEnumerable<SelectListItem> GetAllDepotByPaysInList(int idPays)
@@ -90,7 +89,7 @@ namespace API_RAC.Controllers
             return Ok(blforfait.SelectForfaitReservation(idDepot1, idDepot2));
         }
 
-        [HttpGet] // Corentin Test en cours
+        [HttpGet] 
         [Route("GetAllVoitureDisponibleInList/{IdDepot}/{DateLocation}")]
         public IEnumerable<SelectListItem> SelectAllVoitureDisponibleInList(int IdDepot, string DateLocation)
         {
@@ -98,12 +97,24 @@ namespace API_RAC.Controllers
             return blvoiture.SelectAllVoitureDisponibleInList(IdDepot, date);
         }
 
-        [HttpGet]
+        [HttpGet] // Corentin Test en cours
         [Route("GetAllReservationByClient/{IdClient}")]
         public List<Reservation> GtetAllReservationByClient(int IdClient)
         {
             return blclient.SelectAllReservationByClient(IdClient);
         }
+
+        
+        [HttpGet]
+        [Route("GetFactureReservation/{IdReservation}")]
+        public decimal GetFactureReservation(int id)
+        {
+            Reservation reservation = blReservation.SelectReservationByID(id);
+            
+            return blCalculPrix.PrixTotal(reservation);
+        }
+
+
 
     }
 }

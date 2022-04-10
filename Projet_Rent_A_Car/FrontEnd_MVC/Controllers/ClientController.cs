@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using System.Web.Mvc;
+using ActionNameAttribute = Microsoft.AspNetCore.Mvc.ActionNameAttribute;
 using ActionResult = Microsoft.AspNetCore.Mvc.ActionResult;
 using BindAttribute = Microsoft.AspNetCore.Mvc.BindAttribute;
 using Controller = Microsoft.AspNetCore.Mvc.Controller;
@@ -136,25 +137,12 @@ namespace FrontEnd_MVC.Controllers
 
         #region Reservation
 
-        [HttpGet]
-        public async Task<ActionResult> AfficheReservationClient() // Corentin En Cours
+        
+        public async Task<ActionResult> AfficheReservationByClient(int Id) // Corentin En Cours
         {
             try
             {
-                return View(await GetRequest<Reservation>("https://localhost:7204/api/Loueur/GetReservation/"));
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        [HttpGet]
-        public async Task<ActionResult> AfficheReservationByClient(int IdClient)
-        {
-            try
-            {
-                return View(await GetRequest<Reservation>("https://localhost:7204/api/Loueur/GetAllReservationByClient/"+IdClient));
+                return View(await GetRequest<Reservation>("https://localhost:7204/api/Client/GetAllReservationByClient/"+Id));
 
             }
             catch(Exception ex) { throw ex; }
@@ -276,6 +264,27 @@ namespace FrontEnd_MVC.Controllers
             var voits = await GetEnumerableList("https://localhost:7204/api/Client/GetAllVoitureDisponibleInList/"+IdDepot+"/"+date);
             return Json(voits);
         }
+
+
+        public async Task<IActionResult> AnnulerReservation(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            return View(await GetRequestUnique<Reservation>("https://localhost:7204/api/Loueur/GetReservationByID/" + id));
+        }
+
+
+        [HttpPost, ActionName("AnnulerReservation")] // Problème
+        public async Task<IActionResult> DeleteReservation(int id) //try catch ici ?
+        {
+            
+            await DeleteRequest("https://localhost:7204/api/Client/DeleteReservation/" + id);
+            return RedirectToAction(nameof(AfficheReservationByClient));
+        }
+
+
 
         #endregion
 
