@@ -48,6 +48,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.KilometrageRetour)
             </th> 
+            <th></th>
             
     </thead>
     <tbody>
@@ -86,7 +87,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.KilometrageRetour)
             </td>        
-            
+            <td><a asp-action="AfficheFacturation" asp-route-id="@item.Idreservation">Afficher la facturation</a></td>
         </tr>
 }
     </tbody>
