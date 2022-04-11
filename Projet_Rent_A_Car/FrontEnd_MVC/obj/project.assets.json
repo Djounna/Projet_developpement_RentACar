@@ -8839,24 +8839,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Corentin\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Hallet Antoine\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Corentin\\Documents\\Ecole\\EPHEC\\Projet SGBD\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\FrontEnd_MVC\\FrontEnd_MVC.csproj",
+      "projectUniqueName": "C:\\Users\\Hallet Antoine\\OneDrive\\Documents\\EPHEC\\3ème\\SGDB\\ProjetRAC\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\FrontEnd_MVC\\FrontEnd_MVC.csproj",
       "projectName": "FrontEnd_MVC",
-      "projectPath": "C:\\Users\\Corentin\\Documents\\Ecole\\EPHEC\\Projet SGBD\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\FrontEnd_MVC\\FrontEnd_MVC.csproj",
-      "packagesPath": "C:\\Users\\Corentin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Corentin\\Documents\\Ecole\\EPHEC\\Projet SGBD\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\FrontEnd_MVC\\obj\\",
+      "projectPath": "C:\\Users\\Hallet Antoine\\OneDrive\\Documents\\EPHEC\\3ème\\SGDB\\ProjetRAC\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\FrontEnd_MVC\\FrontEnd_MVC.csproj",
+      "packagesPath": "C:\\Users\\Hallet Antoine\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Hallet Antoine\\OneDrive\\Documents\\EPHEC\\3ème\\SGDB\\ProjetRAC\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\FrontEnd_MVC\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Corentin\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\Hallet Antoine\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -8925,7 +8920,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
       }
     }
   },

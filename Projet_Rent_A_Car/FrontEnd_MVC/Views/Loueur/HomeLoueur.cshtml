@@ -2,119 +2,161 @@
 @{
     ViewData["Title"] = "Home Page";
 }
+<style>
+
+    p{
+        color:white;
+    }
+
+
+</style>
 
 <div class="text-center">
     <h1 class="display-4">Bienvenue sur l'interface du loueur</h1>
-    <p>Ci-dessous un tableau de l'ensemble des actions que vous pouvez utiliser :</p>
-    <table class="table">
+    <table>
     <thead>
         <tr>
             <th>
-                <p>Action</p>                
+                <p>Notoriétés</p>                
             </th>
             <th>
-                <p>Description</p>                
+                <p>Véhicules</p>                
+            </th>
+            <th>
+                <p>Prix</p>                
+            </th>
+            <th>
+                <p>Pays</p>                
             </th>
 
         </tr>
         <tr>           
             <th>
-                <p>Gestion des notoriétés</p>                
+               <div class="flip-card">
+                <div class="flip-card-inner">
+                <div class="flip-card-front">
+                <img src="../Images/Notoriete.jpg" alt="Notoriete" style="width:300px;height:300px;">
+                </div>
+                <div class="flip-card-back">
+                    <p> Dans ce menu, vous pouvez gérer l'ensemble des notoriétés </p>                   
+                    <button class="btn btn-light" type="button" onclick="location.href='@Url.Action("AfficheNotorieteActive","Loueur")'">Gérer les notoriétés</button>
+                </div>
+                 </div>
+                </div>              
             </th>
             <th>
-                <p>Dans ce menu, vous pourrez visualiser l'ensemble des notoriétés. Vous pouvez en créer, en modifier et en supprimer</p>
+                <div class="flip-card">
+                <div class="flip-card-inner">
+                <div class="flip-card-front">
+                <img src="../Images/Vehicule.jpg" alt="Véhicule" style="width:300px;height:300px;">
+                </div>
+                <div class="flip-card-back">
+                    <p> Dans ce menu, vous pouvez gérer l'ensemble des véhicules de votre flotte </p>                   
+                    <button class="btn btn-light" type="button" onclick="location.href='@Url.Action("AfficheVoiture","Loueur")'">Gérer la flotte de véhicules</button>                 
+                </div>
+                 </div>
+                </div> 
                
             </th>
             <th>
-                <a asp-controller="Loueur" asp-action="AfficheNotorieteActive">Voir</a>               
+               <div class="flip-card">
+                <div class="flip-card-inner">
+                <div class="flip-card-front">
+                <img src="../Images/Prix.jpg" alt="Prix" style="width:300px;height:300px;">
+                </div>
+                <div class="flip-card-back">
+                     <p> Dans ce menu, vous pouvez gérer l'ensemble des prix au km de vos pays </p>                   
+                    <button class="btn btn-light" type="button" onclick="location.href='@Url.Action("AffichePrix","Loueur")'">Gérer les prix au km par pays</button>  
+                </div>
+                 </div>
+                </div>              
+            </th>
+            <th>
+                <div class="flip-card">
+                <div class="flip-card-inner">
+                <div class="flip-card-front">
+                <img src="../Images/Pays.jpg" alt="Pays" style="width:300px;height:300px;">
+                </div>
+                <div class="flip-card-back">
+                    <p> Dans ce menu, vous pouvez gérer l'ensemble des pays </p>                   
+                    <button class="btn btn-light" type="button" onclick="location.href='@Url.Action("AffichePays","Loueur")'">Gérer l'ensemble des pays</button> 
+                </div>
+                 </div>
+                </div> 
             </th>
         </tr>
-        <tr>           
-            <th>
-                <p>Gestion des véhicules</p>                
-            </th>
-            <th>
-                <p>Dans ce menu, vous pourrez visualiser l'ensemble des véhicules. Vous pouvez en créer, en modifier et en supprimer</p>
-               
-            </th>
-            <th>
-                <a asp-controller="Loueur" asp-action="AfficheVoiture">Voir</a>               
-            </th>
-        </tr>
-         <tr>           
-            <th>
-                <p>Gestion des prix </p>                
-            </th>
-            <th>
-                <p>Dans ce menu, vous pourrez visualiser l'ensemble des Prix. Vous pouvez en créer, en modifier et en supprimer</p>
-               
-            </th>
-            <th>
-                <a asp-controller="Loueur" asp-action="AffichePrix">Voir</a>               
-            </th>
-        </tr>
-         <tr>           
-            <th>
-                <p>Gestion des pays </p>                
-            </th>
-            <th>
-                <p>Dans ce menu, vous pourrez visualiser l'ensemble des Pays. Vous pouvez en créer, en modifier et en supprimer</p>
-               
-            </th>
-            <th>
-                <a asp-controller="Loueur" asp-action="AffichePays">Voir</a>               
-            </th>
-        </tr>
-        <tr>           
-            <th>
-                <p>Gestion des Villes </p>                
-            </th>
-            <th>
-                <p>Dans ce menu, vous pourrez visualiser l'ensemble des Villes. Vous pouvez en créer, en modifier et en supprimer</p>
-               
-            </th>
-            <th>
-                <a asp-controller="Loueur" asp-action="AfficheVille">Voir</a>               
-            </th>
-        </tr>
-        <tr>           
-            <th>
-                <p>Gestion des dépôts </p>                
-            </th>
-            <th>
-                <p>Dans ce menu, vous pourrez visualiser l'ensemble des dépôts. Vous pouvez en créer, en modifier et en supprimer</p>
-               
-            </th>
-            <th>
-                <a asp-controller="Loueur" asp-action="AfficheDepotActive">Voir</a>               
-            </th>
-        </tr>
-        <tr>           
-            <th>
-                <p>Gestion des forfaits </p>                
-            </th>
-            <th>
-                <p>Dans ce menu, vous pourrez visualiser l'ensemble des forfaits. Vous pouvez en créer, en modifier et en supprimer</p>
-               
-            </th>
-            <th>
-                <a asp-controller="Loueur" asp-action="AfficheForfait">Voir</a>               
-            </th>
-        </tr>
-         <tr>           
-            <th>
-                <p>Gestion des réservations </p>                
-            </th>
-            <th>
-                <p>Dans ce menu, vous pourrez visualiser l'ensemble des réservations. Vous pouvez les modifier </p>
-               
-            </th>
-            <th>
-                <a asp-controller="Loueur" asp-action="AfficheReservation">Voir</a>               
-            </th>
-        </tr>
-     
 
+        <tr>           
+            <th>
+                <p> Villes </p>              
+            </th>
+            <th>
+                <p>Dépôts</p>
+               
+            </th>
+            <th>
+                 <p>Forfaits</p>        
+            </th>
+            <th>
+                <p>Réservations</p>
+            </th>
+        </tr>
+        <tr>           
+            <th>
+                <div class="flip-card">
+                <div class="flip-card-inner">
+                <div class="flip-card-front">
+                <img src="../Images/Ville.jpg" alt="Ville" style="width:300px;height:300px;">
+                </div>
+                <div class="flip-card-back">
+                     <p> Dans ce menu, vous pouvez gérer l'ensemble des villes </p>                   
+                    <button class="btn btn-light" type="button" onclick="location.href='@Url.Action("AfficheVille","Loueur")'">Gérer l'ensemble des villes</button> 
+                </div>
+                 </div>
+                </div>              
+            </th>
+            <th>
+                <div class="flip-card">
+                <div class="flip-card-inner">
+                <div class="flip-card-front">
+                <img src="../Images/Depots.jpg" alt="Dépôts" style="width:300px;height:300px;">
+                </div>
+                <div class="flip-card-back">
+                    <p> Dans ce menu, vous pouvez gérer l'ensemble des dépôts </p>                   
+                    <button class="btn btn-light" type="button" onclick="location.href='@Url.Action("AfficheDepotActive","Loueur")'">Gérer l'ensemble des dépôts</button>  
+                </div>
+                 </div>
+                </div> 
+               
+            </th>
+            <th>
+                <div class="flip-card">
+                <div class="flip-card-inner">
+                <div class="flip-card-front">
+                <img src="../Images/Formulaire.jpg" alt="Dépôts" style="width:300px;height:300px;">
+                </div>
+                <div class="flip-card-back">
+                    <p> Dans ce menu, vous pouvez gérer l'ensemble des forfaits </p>                   
+                    <button class="btn btn-light" type="button" onclick="location.href='@Url.Action("AfficheForfait","Loueur")'">Gérer l'ensemble des forfaits</button>     
+                </div>
+                 </div>
+                </div>   
+            </th>
+            <th>
+                 <div class="flip-card">
+                <div class="flip-card-inner">
+                <div class="flip-card-front">
+                <img src="../Images/ReservationLoueur.jpg" alt="Dépôts" style="width:300px;height:300px;">
+                </div>
+                <div class="flip-card-back">
+                     <p> Dans ce menu, vous pouvez gérer l'ensemble des réservations </p>                   
+                    <button class="btn btn-light" type="button" onclick="location.href='@Url.Action("AfficheReservation","Loueur")'">Gérer l'ensemble des réservations</button>   
+                </div>
+                 </div>
+                </div> 
+            </th>
+        </tr>
+                    
     </thead>
     <tbody>
     </table>

@@ -193,7 +193,7 @@ namespace DataAccessLayer
             string[] lstnom = new string[] { "LECOMTE", "GUILLAUME", "LECLERCQ", "ROLLAND", "PAYET", "LECLERC", "REY", "BENOIT", "PIERRE", "BOURGEOIS", "PHILIPPE", "OLIVIER", "LACROIX", "DUMAS", "RENAUD", "LEMOINE", "AUBERT", "FABRE", "ROGER", "PICARD", "CARON", "VIDAL", "COLIN", "LEROUX", "ROY", "SCHMITT", "RENARD", "ROCHE", "GERARD", "MARTINEZ", "ARNAUD", "BARBIER", "GAILLARD", "BRUNET", "LUCAS", "RIVIERE", "JOLY", "GIRAUD", "BLANCHARD", "BRUN", "MEUNIER", "DUFOUR", "MEYER", "NOEL", "LEMAIRE", "MARIE", "DUMONT", "DENIS", "DUVAL", "MARCHAND", "MASSON", "GAUTIER", "MATHIEU", "ROUSSEL", "HENRY", "NICOLAS", "MORIN", "CLEMENT", "ROBIN", "PERRIN", "GARCIA", "GAUTHIER", "LEGRAND", "FRANCOIS", "CHEVALIER", "GARNIER", "BOYER", "GUERIN", "BLANC", "MERCIER", "ANDRE", "FAURE", "LEFEVRE", "MULLER", "VINCENT", "ROUSSEAU", "FONTAINE", "LAMBERT", "DUPONT", "BONNET", "GIRARD", "FOURNIER", "MOREL", "BERTRAND", "DAVID", "ROUX", "LEROY", "LEFEBVRE", "MICHEL", "SIMON", "LAURENT", "MOREAU", "DUBOIS", "DURAND", "RICHARD", "ROBERT", "PETIT", "THOMAS", "BERNARD", "MARTIN" };
 
 
-            for (int i = 0; i < 401; i++)
+            for (int i = 0; i < 100; i++)
             {
                 int nb1 = 0;
                 int nb2 = 0;
@@ -268,7 +268,7 @@ namespace DataAccessLayer
             List<int> listIDForfait = dal.dbcontext.Forfait.Select(s => s.Idforfait).ToList();
 
 
-            for (int i = 0; i < 1000; i++)
+            for (int i = 0; i < 200; i++)
             {
                 Reservation reservation = new Reservation();
                 int forfait = 0;

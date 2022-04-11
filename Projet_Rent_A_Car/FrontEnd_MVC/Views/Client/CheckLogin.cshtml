@@ -6,41 +6,26 @@
 <div class="text-center">
     <h1 class="display-4">Bienvenue @Html.DisplayFor(modelItem => modelItem.Nom) @Html.DisplayFor(modelItem => modelItem.Prenom) </h1>
 
- <div class="row">
-<div class="col-xs-6 col-md-3">
-<a href="#" class="thumbnail" title="" style="background-color:coral">
-<p>Effectuer une réservation</p>
-</a>
-</div>
 
-<table  class="table">
-<thead>
-        <tr>
-            <th>
-                <p>Action</p>                
-            </th>
-            <th>
-                <p>Description</p>                
-            </th>
-        </tr>
-         <tr>           
-            <th>
-                <p>Historique de mes réservation</p>                
-            </th>
-            <th>
-                <p>Dans ce menu, vous pourrez afficher l'historique de vos réservations</p>              
-            </th>
-            <th>
-                <a asp-controller="Client" asp-action="AfficheReservationByClient" asp-route-id="@Model.Idclient">Mon historique</a>               
-            </th>
-        <tr>           
-            <th>
-                <p>Nouvelle réservation</p>                
-            </th>
-            <th>
-                <p>Dans ce menu, vous pourrez effectuer une nouvelle réservation</p>             
-            </th>
-            <th>
+<table style="margin-left:50px ; margin-top:20px">
+<tr>
+    <th>
+        Réservation
+    </th>
+    <th>
+        Historique
+    </th>
+</tr>
+<tr>
+<th>
+ <div class="flip-card">
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+      <img src="../Images/ReservationClient.jpg" alt="Reservation" style="width:300px;height:300px;">
+    </div>
+    <div class="flip-card-back">
+
+       <p>
                 <form asp-action="EffectuerReservation">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group"> <!-- Passage de l'Idclient à la vue effectuerReservation -->
@@ -48,12 +33,31 @@
                     <input hidden="hidden" asp-for="Idclient" value=@Model.Idclient class="form-control" /> 
                     <span asp-validation-for="Nom" class="text-danger" hidden="hidden"></span>
                         <div class="form-group">
-                        <input type="submit" value="Effectuer une réservation" class="btn btn-primary" />
+                        <input type="submit" value="Effectuer une réservation" class="btn btn-light" />
                         </div>
                 </div>
-            </form>                           
-            </th>
-        </tr>       
-    </thead>
-    </table>
+            </form> 
+       </p>
+    </div>
+  </div>
+</div>
+</th>
+<th>
+ <div class="flip-card">
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+      <img src="../Images/Historique.jpg" alt="Historique" style="width:300px;height:300px;">
+    </div>
+    <div class="flip-card-back">
+
+            <p>
+                <a asp-controller="Client" asp-action="AfficheReservationByClient" asp-route-id="@Model.Idclient">Mon historique</a>               
+            </p>
+        
+        </div>
+  </div>
+</div>   
+</th>
+</tr>
+</table>
     </div>
