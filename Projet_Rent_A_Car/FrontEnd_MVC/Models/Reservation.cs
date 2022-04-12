@@ -17,7 +17,7 @@ namespace FrontEnd_MVC.Models
         
 
         [Display(Name = "Ville de départ")]
-        [Required(ErrorMessage = "This field is mandatory")]
+        [Required(ErrorMessage = "Ce champ est obligatoire")]
         public int IddepotDepart { get; set; }
 
         [Display(Name = "Ville de retour")]
@@ -28,10 +28,10 @@ namespace FrontEnd_MVC.Models
         public DateTime DateDepart { get; set; }
         public DateTime? DateRetour { get; set; }
         [Display(Name = "Km au depart")]
-        [Range(0, Double.PositiveInfinity, ErrorMessage ="This field must be > 0")] // OK
+        [Range(0, Double.PositiveInfinity, ErrorMessage ="Ce champ doit être > 0")] // OK
         public int? KilometrageDepart { get; set; }
         [Display(Name = "Km au retour")]
-        [Range(0, Double.PositiveInfinity, ErrorMessage = "This field must be > 0")]
+        [Range(0, Double.PositiveInfinity, ErrorMessage = "Ce champ doit être > 0")]
         public int? KilometrageRetour { get; set; }
         public decimal CoefficientMultiplicateur { get; set; }
        

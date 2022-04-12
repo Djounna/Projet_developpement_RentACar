@@ -38,8 +38,7 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CoefficientMultiplicateur)
-            </td>
-            <td>
+            </td>    
                  @if (item.Inactif == true)
                 {
                     <td>@Html.CheckBox("isChecked",true,new { @disabled = "disabled" })</td>
@@ -48,7 +47,6 @@
                 {
                      <td>@Html.CheckBox("isUnchecked",new { @disabled = "disabled" })</td>
                 }
-            </td>
             
                 @if(item.Inactif != true)
                 {

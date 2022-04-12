@@ -14,8 +14,8 @@ namespace FrontEnd_MVC.Models
         [Display(Name = "Numéro du pays")]
         public int Idpays { get; set; }
 
-        [Required(ErrorMessage = "This field is mandatory")]
-        [MaxLength(50, ErrorMessage = "this field shouldn'thave more than 50 character")]
+        [Required(ErrorMessage = "Ce champ est obligatoire")]
+        [MaxLength(50, ErrorMessage = "Ce champ doit contenir maximum 50 caractères")]
 
         [Display(Name = "Libellé du pays")]
         public string Nom { get; set; } = null!;

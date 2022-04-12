@@ -15,10 +15,10 @@ namespace FrontEnd_MVC.Models
         [Display(Name = "Numéro du forfait")]
         public int Idforfait { get; set; }
 
-        [Display(Name = "Ville du 1er dépôt")]
+        [Display(Name = "Ville du premier dépôt")]
         public int Iddepot1 { get; set; }
 
-        [Display(Name = "Ville du 2ème dépôt")]
+        [Display(Name = "Ville du second dépôt")]
         public int Iddepot2 { get; set; }
 
         [Display(Name = "Prix du forfait")]

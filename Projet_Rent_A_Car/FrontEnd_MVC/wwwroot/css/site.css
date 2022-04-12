@@ -87,3 +87,8 @@ footer {
         line-height: 75px;
         font-size: 30px;
     }
+
+
+.ErrorMessage{
+    color: red;
+}

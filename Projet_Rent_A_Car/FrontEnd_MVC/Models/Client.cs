@@ -12,16 +12,16 @@ namespace FrontEnd_MVC.Models
         }
 
         public int Idclient { get; set; }
-        [Required(ErrorMessage = "This field is mandatory")]
-        [MaxLength(50, ErrorMessage = "this field shouldn'thave more than 50 character")]
+        [Required(ErrorMessage = "Ce champ est obligatoire")]
+        [MaxLength(50, ErrorMessage = "Ce champ doit contenir maximum 50 caractères")]
         public string Nom { get; set; } = null!;
-        [Required(ErrorMessage = "This field is mandatory")]
-        [MaxLength(50, ErrorMessage = "this field shouldn'thave more than 50 character")]
+        [Required(ErrorMessage = "Ce champ est obligatoire")]
+        [MaxLength(50, ErrorMessage = "Ce champ doit contenir maximum 50 caractères")]
         public string Prenom { get; set; } = null!;
-        [Required(ErrorMessage = "This field is mandatory")]
-        [MaxLength(50, ErrorMessage = "this field shouldn'thave more than 50 character")]
-        [EmailAddress(ErrorMessage ="This field should contain an e-mail address")]
-        [Display(Name = "E-mail Address")]
+        [Required(ErrorMessage = "Ce champ est obligatoire")]
+        [MaxLength(50, ErrorMessage = "Ce champ doit contenir maximum 50 caractères")]
+        [EmailAddress(ErrorMessage ="Ce champ doit contenir une adresse courriel")]
+        [Display(Name = "Addresse courriel")]
         public string Mail { get; set; } = null!;
 
         public virtual ICollection<Reservation> Reservation { get; set; }

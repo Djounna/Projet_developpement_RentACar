@@ -168,11 +168,18 @@ namespace FrontEnd_MVC.Controllers
         [HttpPost]
         public async Task<IActionResult> PostNotoriete([Bind("Libelle,CoefficientMultiplicateur")] Notoriete notoriete) //try catch ici ?
         {
+            if(notoriete.CoefficientMultiplicateur <0 || notoriete.CoefficientMultiplicateur == 0)
+            {
+                CustomError oError = new CustomError(1);  // Exception si le coefficient multiplicateur n'est pas un décimal.
+                ViewBag.Error = " Le coefficient multiplicateur doit être un décimal et supérieur à 0"; // = oError.Message.
+            }
             if (ModelState.IsValid)
             {
-                await PostRequest("https://localhost:7204/api/Loueur/PostNotoriete/", notoriete);     // si error retourne badrequest dans le post ?                                
+                await PostRequest("https://localhost:7204/api/Loueur/PostNotoriete/", notoriete);
+                return RedirectToAction(nameof(AfficheNotorieteActive));// si error retourne badrequest dans le post ?                                
             }
-            return RedirectToAction(nameof(AfficheNotorieteActive));
+            
+            return View("CreateNotoriete",notoriete);
 
         }
         public async Task<IActionResult> EditNotoriete(int? id)

@@ -17,10 +17,10 @@
                 <input asp-for="Libelle" class="form-control" />
                 <span asp-validation-for="Libelle" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="CoefficientMultiplicateur" class="control-label"></label>
-                <input asp-for="CoefficientMultiplicateur" class="form-control" />
-                <span asp-validation-for="CoefficientMultiplicateur" class="text-danger"></span>
+            <div class="form-group" >
+                <label asp-for="CoefficientMultiplicateur" class="control-label" ></label>
+                <input asp-for="CoefficientMultiplicateur" class="form-control"/>
+                <!--<span asp-validation-for="CoefficientMultiplicateur" class="text-danger"  ></span>-->
             </div>
             <div hidden="hidden" class="form-group">
                 <label asp-for="Inactif" class="control-label"></label>
@@ -34,10 +34,14 @@
     </div>
 </div>
 
+<div class="ErrorMessage"> @ViewBag.Error </div>
+
 <div>
     <a asp-action="AfficheNotoriete">Back to List</a>
 </div>
 
-@section Scripts {
+@*section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+
+    
+}*@

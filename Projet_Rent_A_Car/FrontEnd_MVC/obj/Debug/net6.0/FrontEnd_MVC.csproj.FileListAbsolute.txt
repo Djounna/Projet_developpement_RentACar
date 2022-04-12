@@ -728,3 +728,5 @@ C:\Users\Corentin\Documents\Ecole\EPHEC\Projet SGBD\Projet_developpement_RentACa
 C:\Users\Corentin\Documents\Ecole\EPHEC\Projet SGBD\Projet_developpement_RentACar\Projet_Rent_A_Car\FrontEnd_MVC\obj\Debug\net6.0\FrontEnd_MVC.pdb
 C:\Users\Corentin\Documents\Ecole\EPHEC\Projet SGBD\Projet_developpement_RentACar\Projet_Rent_A_Car\FrontEnd_MVC\obj\Debug\net6.0\FrontEnd_MVC.genruntimeconfig.cache
 C:\Users\Corentin\Documents\Ecole\EPHEC\Projet SGBD\Projet_developpement_RentACar\Projet_Rent_A_Car\FrontEnd_MVC\obj\Debug\net6.0\ref\FrontEnd_MVC.dll
+C:\Users\Corentin\Documents\Ecole\EPHEC\Projet SGBD\Projet_developpement_RentACar\Projet_Rent_A_Car\FrontEnd_MVC\bin\Debug\net6.0\Microsoft.DotNet.PlatformAbstractions.dll
+C:\Users\Corentin\Documents\Ecole\EPHEC\Projet SGBD\Projet_developpement_RentACar\Projet_Rent_A_Car\FrontEnd_MVC\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
