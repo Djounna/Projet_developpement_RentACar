@@ -1231,23 +1231,29 @@ namespace FrontEnd_MVC.Controllers
             return RedirectToAction(nameof(AfficheReservation));
         }
         
-        /*
+        
         public async Task<IActionResult> AfficheFacturation (int id)  // En cours Corentin
         {
             Reservation reservation = await GetRequestUnique<Reservation>("https://localhost:7204/api/Loueur/GetReservationByID/" + id);
 
+
+
             var result = (decimal)0;
             using (var httpClient = new HttpClient())
             {
-                using (var response = await (httpClient.GetAsync("https://localhost:7204/api/Loueur/GetFactureReservation/" + id))
+                using (var response = await (httpClient.GetAsync("https://localhost:7204/api/Client/GetFactureReservation/" + id)))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    return JsonConvert.DeserializeObject<T>(apiResponse);
+                    result = JsonConvert.DeserializeObject<decimal>(apiResponse);
                 }
             }
-            ViewBag.Total = await 
+            reservation.PrixTotal = result;
+            
+
+            return View(reservation);
+
         }
-        */
+        
         #endregion
 
     }

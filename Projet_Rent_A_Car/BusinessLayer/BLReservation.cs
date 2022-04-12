@@ -28,9 +28,7 @@ namespace BusinessLayer
 
         public void Insert(Reservation reservation)
         {
-
-            reservation.DateReservation = DateTime.Now;
-            
+          
             dalReservation.Insert(reservation);
         }
 

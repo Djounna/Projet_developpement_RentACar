@@ -39,7 +39,10 @@ namespace BusinessLayer
         
         private decimal PrixTotalAuKm(Reservation reservation)
         {
-            Prix prix = dal.dbcontext.Prix.Where(prix => prix.Idpays == reservation.IddepotDepartNavigation.IdvilleNavigation.IdpaysNavigation.Idpays && prix.DateFin ==null).SingleOrDefault();
+            reservation.IddepotDepartNavigation = dal.dbcontext.Depot.Where(d => d.Iddepot == reservation.IddepotDepart).SingleOrDefault();
+            reservation.IddepotDepartNavigation.IdvilleNavigation = dal.dbcontext.Ville.Where(v => v.Idville == reservation.IddepotDepartNavigation.Idville).SingleOrDefault();
+            reservation.IddepotDepartNavigation.IdvilleNavigation.IdpaysNavigation = dal.dbcontext.Pays.Where(p => p.Idpays == reservation.IddepotDepartNavigation.IdvilleNavigation.Idpays).SingleOrDefault();
+           Prix prix = dal.dbcontext.Prix.Where(prix => prix.Idpays == reservation.IddepotDepartNavigation.IdvilleNavigation.IdpaysNavigation.Idpays && prix.DateFin ==null).SingleOrDefault();
 
             decimal prixAuKm = prix.PrixKm;
 
@@ -55,6 +58,9 @@ namespace BusinessLayer
 
         private decimal PrixTotalForfait(Reservation reservation)
         {
+            
+            reservation.IdforfaitNavigation = dal.dbcontext.Forfait.Where(f=>f.Idforfait == reservation.Idforfait).FirstOrDefault();
+            
             decimal prixForfait = reservation.IdforfaitNavigation.Prix;
 
             decimal coefficient = reservation.CoefficientMultiplicateur;
