@@ -209,6 +209,12 @@ namespace FrontEnd_MVC.Controllers
                 Reservation.IddepotRetourNavigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + Reservation.IddepotRetourNavigation.Idville);
                 Reservation.IddepotRetourNavigation.IdvilleNavigation.IdpaysNavigation = await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + Reservation.IddepotRetourNavigation.IdvilleNavigation.Idpays);
             }
+
+            if(Reservation.IddepotRetour == 999)
+            {
+                Reservation.IddepotRetour = null;
+            }
+
             Reservation.IdvoitureNavigation = await GetRequestUnique<Voiture>("https://localhost:7204/api/Loueur/GetVoitureByID/" + Reservation.Idvoiture);
             Reservation.IdvoitureNavigation.IdnotorieteNavigation = await GetRequestUnique<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteByID/" + Reservation.IdvoitureNavigation.Idnotoriete);
             Reservation.IdvoitureNavigation.IddepotNavigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + Reservation.IdvoitureNavigation.Iddepot);
@@ -233,7 +239,6 @@ namespace FrontEnd_MVC.Controllers
             ModelState.Remove("IddepotRetourNavigation");
             ModelState.Remove("IdforfaitNavigation");
             ModelState.Remove("IdvoitureNavigation");
-            // ModelState.Remove("CoefficientMultiplicateur"); // normalement inutile
             ModelState.Remove("ListPays");
             ModelState.Remove("ListDepotDepart");
             ModelState.Remove("ListDepotRetour");

@@ -1,10 +1,6 @@
 {
   "Version": 1,
-<<<<<<< HEAD
   "Hash": "OTe7bN7t+SEY2SpHfMiOSXR3kddja7HAmhhSeVJ6bwo=",
-=======
-  "Hash": "5evPWCDUyJ6j/LuvDKRb4s/mJGBshbGLqUIY2+pcUgg=",
->>>>>>> facturation
   "Source": "FrontEnd_MVC",
   "BasePath": "_content/FrontEnd_MVC",
   "Mode": "Default",
@@ -89,7 +85,6 @@
       "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
-<<<<<<< HEAD
       "Identity": "C:\\Users\\Corentin\\Documents\\Ecole\\EPHEC\\Projet SGBD\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\FrontEnd_MVC\\wwwroot\\Images\\Depots.jpg",
       "SourceId": "FrontEnd_MVC",
       "SourceType": "Discovered",
@@ -281,12 +276,6 @@
       "SourceId": "FrontEnd_MVC",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\Corentin\\Documents\\Ecole\\EPHEC\\Projet SGBD\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\FrontEnd_MVC\\wwwroot\\",
-=======
-      "Identity": "C:\\Users\\Corentin\\Documents\\Ecole\\EPHEC\\Projet SGBD\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\FrontEnd_MVC\\wwwroot\\js\\datatable.js",
-      "SourceId": "FrontEnd_MVC",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Corentin\\Documents\\Ecole\\EPHEC\\Projet SGBD\\Projet_developpement_RentACar\\Projet_Rent_A_Car\\FrontEnd_MVC\\wwwroot\\",
->>>>>>> facturation
       "BasePath": "_content/FrontEnd_MVC",
       "RelativePath": "js/datatable.js",
       "AssetKind": "All",
