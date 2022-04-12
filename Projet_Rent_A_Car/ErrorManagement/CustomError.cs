@@ -6,12 +6,7 @@ namespace ErrorManagement
 {
     public class CustomError:ApplicationException
     {
-        public CustomError(DbUpdateConcurrencyException o)
-        {
-
-              
-        }
-
+       
 
     }
 }

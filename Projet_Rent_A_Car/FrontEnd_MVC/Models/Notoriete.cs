@@ -13,14 +13,15 @@ namespace FrontEnd_MVC.Models
 
         public int Idnotoriete { get; set; }
 
-        [Display(Name ="Libelle de la notoriété")]
-        [Required(ErrorMessage = "This field is mandatory")]
-        [MaxLength(50, ErrorMessage = "this field shouldn'thave more than 50 character")]
+        [Display(Name ="Libellé de la notoriété")]
+        [Required(ErrorMessage = "Ce champ est obligatoire")]
+        [MaxLength(50, ErrorMessage = "Ce champ doit contenir maximum 50 caractères")]
         public string Libelle { get; set; }
 
-        [Range(0,100,ErrorMessage ="This field should be between 0 and 100")]
+        [Range(0, 5, ErrorMessage = "Ce champ doit contenir un chiffre entre 0 et 5")]
+        [Required(ErrorMessage = "Ce champ est obligatoire")]
         [Display(Name = "Coefficient multplicateur du prix")]
-        public double CoefficientMultiplicateur { get; set; }
+        public decimal CoefficientMultiplicateur { get; set; }
 
         [Display(Name = "Est Inactif")]
         public bool? Inactif { get; set; }
