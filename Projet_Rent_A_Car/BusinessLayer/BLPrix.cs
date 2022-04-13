@@ -28,11 +28,21 @@ namespace BusinessLayer
         }
         public void InsertOrUpdatePrix(Prix Prix)
         {
+            Prix p = SelectPrixByPays(Prix.Idpays);
+
+            if (p != null)
+            {     
+                Prix prixACloturer = SelectPrixByID(p.Idprix);
+                prixACloturer.DateFin = DateTime.Now;
+                dal.InsertOrUpdate(prixACloturer);
+                Prix.Idprix = 0;
+            }
+
             dal.InsertOrUpdate(Prix);
         }
         public void UpdatePrix(Prix prix)
         {
-            prix.DateFin = DateTime.Now;
+            
             dalPrix.UpdatePrix(prix);
         }
     }

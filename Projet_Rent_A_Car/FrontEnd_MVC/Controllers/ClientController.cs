@@ -108,6 +108,8 @@ namespace FrontEnd_MVC.Controllers
         {
             return View();
         }
+
+        [HttpPost]
         public async Task<IActionResult> PostClient([Bind("Nom,Prenom,Mail")] Client client)//OK 
         {
             if (ModelState.IsValid)
@@ -117,10 +119,13 @@ namespace FrontEnd_MVC.Controllers
 
             return View("CheckLogin", client);
         }
+
         public IActionResult ClientConnection()//OK 
         {
             return View();
         }
+
+        [HttpGet]
         public async Task<IActionResult> CheckLogin([Bind("Mail")] Client client)//OK 
         {
             try
@@ -129,23 +134,30 @@ namespace FrontEnd_MVC.Controllers
             }
             catch (Exception ex)
             {
-                throw ex;
+                CustomError oError = new CustomError(4);
+                ViewBag.Error = oError.ErrorMessage;
+                return View("HomeClient");
             }
-            return Ok();
+
         }
         #endregion
 
         #region Reservation
 
-        
-        public async Task<ActionResult> AfficheReservationByClient(int Id) // Corentin En Cours
+        [HttpGet]
+        public async Task<ActionResult> AfficheReservationByClient(int Id) 
         {
             try
             {
                 return View(await GetRequest<Reservation>("https://localhost:7204/api/Client/GetAllReservationByClient/"+Id));
 
             }
-            catch(Exception ex) { throw ex; }
+            catch (Exception ex)
+            {
+                CustomError oError = new CustomError(4);
+                ViewBag.Error = oError.ErrorMessage;
+                return View("HomeClient");
+            }
         }
 
 
@@ -249,7 +261,6 @@ namespace FrontEnd_MVC.Controllers
                 await PostRequest("https://localhost:7204/api/Client/PostReservation/", Reservation);
             }
             return RedirectToAction(nameof(HomeClient));
-
         }
 
 
@@ -286,7 +297,7 @@ namespace FrontEnd_MVC.Controllers
         }
 
 
-        [HttpPost, ActionName("AnnulerReservation")] // Problème
+        [HttpPost, ActionName("AnnulerReservation")] 
         public async Task<IActionResult> DeleteReservation(int id) //try catch ici ?
         {
             

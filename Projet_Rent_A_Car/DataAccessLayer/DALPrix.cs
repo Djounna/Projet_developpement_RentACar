@@ -19,14 +19,17 @@ namespace DataAccessLayer
 
         public Prix SelectPrixByPays(int id)
         {
-            return dal.dbcontext.Prix.Where(p=>p.Idpays==id && p.DateFin == null).SingleOrDefault();
+            return dal.dbcontext.Prix.Where(p=>p.Idpays==id && p.DateFin == null).FirstOrDefault();
         }
 
         public void UpdatePrix(Prix prix)
         {
             var p = dal.dbcontext.Prix.Where(p=>p.Idprix==prix.Idprix && p.DateFin==null).FirstOrDefault();
             p.DateFin = DateTime.Now;
-            dal.dbcontext.SaveChanges();
+            dal.InsertOrUpdate(p);
+            prix.Idprix = 0;
+            dal.InsertOrUpdate(prix);
+            
         }
     }
 }

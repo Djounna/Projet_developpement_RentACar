@@ -132,9 +132,9 @@ namespace FrontEnd_MVC.Controllers
             }
             catch (Exception ex)
             {
-
-
-                throw ex;
+                CustomError oError = new CustomError(4);
+                ViewBag.Error = oError.ErrorMessage;
+                return View("HomeLoueur");
             }
         }
         [HttpGet]
@@ -146,7 +146,9 @@ namespace FrontEnd_MVC.Controllers
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                CustomError oError = new CustomError(4);
+                ViewBag.Error = oError.ErrorMessage;
+                return View("HomeLoueur");
             }
         }
         [HttpGet]
@@ -158,7 +160,9 @@ namespace FrontEnd_MVC.Controllers
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                CustomError oError = new CustomError(4);
+                ViewBag.Error = oError.ErrorMessage;
+                return View("HomeLoueur");
             }
         }
         public IActionResult CreateNotoriete()
@@ -166,38 +170,113 @@ namespace FrontEnd_MVC.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> PostNotoriete([Bind("Libelle,CoefficientMultiplicateur")] Notoriete notoriete) //try catch ici ?
+        public async Task<IActionResult> PostNotoriete([Bind("Libelle,CoefficientMultiplicateur")] Notoriete notoriete) 
         {
-            if(notoriete.CoefficientMultiplicateur <= 0)
+            try
             {
-                CustomError oError = new CustomError(1);  // Exception si le coefficient multiplicateur n'est pas un décimal.
-                ViewBag.Error = " Le coefficient multiplicateur doit être un décimal et supérieur à 0"; // = oError.Message.
+                if (notoriete.CoefficientMultiplicateur <= 0 || notoriete.CoefficientMultiplicateur > 5)
+                {
+                    CustomError oError = new CustomError(1);  // Exception si le coefficient multiplicateur n'est pas un décimal.
+                    throw oError;
+                }
+
+                if (ModelState.IsValid)
+                {
+                    var result = await PostRequest("https://localhost:7204/api/Loueur/PostNotoriete/", notoriete);
+                    if (result is BadRequestResult)
+                    {
+                        CustomError oError = new CustomError(3);
+                        throw oError;
+                    }
+                    return RedirectToAction(nameof(AfficheNotorieteActive)); 
+                }
+                else
+                {
+                    CustomError oError = new CustomError(2);
+                    throw oError;
+                }
+
             }
-            if (ModelState.IsValid)
+            catch (CustomError oError)
             {
-                await PostRequest("https://localhost:7204/api/Loueur/PostNotoriete/", notoriete);
-                return RedirectToAction(nameof(AfficheNotorieteActive));// si error retourne badrequest dans le post ?                                
+                ViewBag.Error = oError.ErrorMessage; 
+                return View("CreateNotoriete", notoriete);
+            }
+            catch (Exception ex)
+            {
+                CustomError oError = new CustomError(ex.Message);
+                ViewBag.Error = oError.ErrorMessage;
+                return View("CreateNotoriete", notoriete);
             }
             
-            return View("CreateNotoriete",notoriete);
 
         }
         public async Task<IActionResult> EditNotoriete(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
+            try {
+                
+                Notoriete not = await GetRequestUnique<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteByID/" + id);
+                if (not == null)
+                {
+                    CustomError oError = new CustomError(5);
+                    throw oError;
+                }
+                return View(not);
             }
-            return View(await GetRequestUnique<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteByID/" + id));
+            catch (CustomError oError)
+            {
+                ViewBag.Error = oError.ErrorMessage;
+                return View("HomeLoueur");
+            }
+
+            
         }
-        public async Task<IActionResult> UpdateNotoriete([Bind("Idnotoriete,Libelle,CoefficientMultiplicateur,Inactif")] Notoriete notoriete) //try catch ici ?
+
+
+        public async Task<IActionResult> UpdateNotoriete([Bind("Idnotoriete,Libelle,CoefficientMultiplicateur,Inactif")] Notoriete notoriete) 
         {
-            if (ModelState.IsValid)
-            {
-               await PutRequest("https://localhost:7204/api/Loueur/UpdateNotoriete/", notoriete);        // le put retourne un badrequest si error      
+            try {
+
+                if (notoriete.CoefficientMultiplicateur <= 0 || notoriete.CoefficientMultiplicateur > 5)
+                {
+                    CustomError oError = new CustomError(1);  // Exception si le coefficient multiplicateur n'est pas un décimal.
+                    throw oError;
+                }
+
+                if (ModelState.IsValid)
+                {
+                   var result = await PutRequest("https://localhost:7204/api/Loueur/UpdateNotoriete/", notoriete);
+                    if (result is BadRequestResult)
+                    {
+                        CustomError oError = new CustomError(3);
+                        throw oError;
+                    }
+                    return RedirectToAction(nameof(AfficheNotorieteActive));
+                }
+                else
+                {
+                    CustomError oError = new CustomError(2);
+                    throw oError;
+                }
             }
-            return RedirectToAction(nameof(AfficheNotorieteActive));
+
+            catch (CustomError oError)
+            {
+                ViewBag.Error = oError.ErrorMessage;
+                return View("EditNotoriete", notoriete);
+            }
+
+            catch (Exception ex)
+            {
+                CustomError oError = new CustomError(ex.Message);
+                ViewBag.Error = oError.ErrorMessage;
+                return View("EditNotoriete", notoriete);
+            }
+
         }
+
+
+
         public async Task<IActionResult> deleteNotoriete(int? id)
         {
             if (id == null)
@@ -261,7 +340,9 @@ namespace FrontEnd_MVC.Controllers
             }
             catch (Exception ex)
             {
-                throw ex;
+                CustomError oError = new CustomError(4);
+                ViewBag.Error = oError.ErrorMessage;
+                return View("HomeLoueur");
             }
         }
         [HttpGet]
@@ -281,7 +362,9 @@ namespace FrontEnd_MVC.Controllers
             }
             catch (Exception ex)
             {
-                throw ex;
+                CustomError oError = new CustomError(4);
+                ViewBag.Error = oError.ErrorMessage;
+                return View("HomeLoueur");
             }
         }
         [HttpGet]
@@ -302,7 +385,9 @@ namespace FrontEnd_MVC.Controllers
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                CustomError oError = new CustomError(4);
+                ViewBag.Error = oError.ErrorMessage;
+                return View("HomeLoueur");
             }
         }
         public async Task<IActionResult> CreateVoiture()
@@ -334,16 +419,26 @@ namespace FrontEnd_MVC.Controllers
 
         public async Task<IActionResult> EditVoiture(int? id)
         {
+            try
+            {
             Voiture voiture = new();
             voiture = await GetRequestUnique<Voiture>("https://localhost:7204/api/Loueur/GetVoitureByID/" + id);
-            voiture.ListNotoriete = await GetEnumerableList("https://localhost:7204/api/Loueur/GetAllNotorieteInList/");
-            voiture.ListDepot = await GetEnumerableList("https://localhost:7204/api/Loueur/GetAllDepotInList/");
-
-            if (id == null)
-            {
-                return NotFound();
+    
+                if (voiture == null)
+                {
+                    CustomError oError = new CustomError(5);
+                    throw oError;
+                }
+                voiture.ListNotoriete = await GetEnumerableList("https://localhost:7204/api/Loueur/GetAllNotorieteInList/");
+                voiture.ListDepot = await GetEnumerableList("https://localhost:7204/api/Loueur/GetAllDepotInList/");
+                return View(voiture);
             }
-            return View(voiture);
+            catch (CustomError oError)
+            {
+                ViewBag.Error = oError.ErrorMessage;
+                return View("HomeLoueur");
+            }
+
         }
 
         public async Task<IActionResult> UpdateVoiture([Bind("Idvoiture,Idnotoriete,Iddepot,Immatriculation,Marque")] Voiture voiture)
@@ -423,6 +518,8 @@ namespace FrontEnd_MVC.Controllers
                 throw ex;
             }
         }
+
+        [HttpGet]
         public async Task<IActionResult> AffichePays()
         {
             try
@@ -437,9 +534,13 @@ namespace FrontEnd_MVC.Controllers
             }
             catch (Exception ex)
             {
-                throw ex;
+                CustomError oError = new CustomError(4);
+                ViewBag.Error = oError.ErrorMessage;
+                return View("HomeLoueur");
             }
         }
+
+
         public IActionResult CreatePays()
         {
             return View();
@@ -458,12 +559,26 @@ namespace FrontEnd_MVC.Controllers
 
         public async Task<IActionResult> EditPays(int? id)
         {
-            if (id == null)
+            try
             {
-                return NotFound();
+                Pays pays = await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + id);
+                if (pays == null)
+                {
+                    CustomError oError = new CustomError(5);
+                    throw oError;
+                }
+                return View(pays);
             }
-            return View(await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + id));
+            catch (CustomError oError)
+            {
+                ViewBag.Error = oError.ErrorMessage;
+                return View("HomeLoueur");
+            }
+            
+
         }
+
+        [HttpPost]
         public async Task<IActionResult> UpdatePays([Bind("Idpays,Nom")] Pays pays)
         {
             {
@@ -474,6 +589,7 @@ namespace FrontEnd_MVC.Controllers
                 return RedirectToAction(nameof(AffichePays));
             }
         }
+
         public async Task<IActionResult> deletePays(int? id)
         {
             if (id == null)
@@ -482,6 +598,7 @@ namespace FrontEnd_MVC.Controllers
             }
             return View(await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + id));
         }
+
         [HttpPost, ActionName("deletePays")]
         public async Task<IActionResult> removePays(int id)
         {
@@ -496,19 +613,33 @@ namespace FrontEnd_MVC.Controllers
         [HttpGet]
         public async Task<IActionResult> AffichePrix()
         {
-            List<Prix> lst = await GetRequest<Prix>("https://localhost:7204/api/Loueur/GetPrix/");
-            foreach (var item in lst)
+            try
             {
-                item.IdpaysNavigation = await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + item.Idpays);
+
+                List<Prix> lst = await GetRequest<Prix>("https://localhost:7204/api/Loueur/GetPrix/");
+                foreach (var item in lst)
+                {
+                    item.IdpaysNavigation = await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + item.Idpays);
+                }
+                return View(lst);
+
             }
-            return View(lst);
+            catch (Exception ex)
+            {
+                CustomError oError = new CustomError(4);
+                ViewBag.Error = oError.ErrorMessage;
+                return View("HomeLoueur");
+            }
         }
+
+
         public async Task<IActionResult> CreatePrix()
         {
             Prix prix = new();
             prix.ListPays = await GetEnumerableList("https://localhost:7204/api/Loueur/GetAllPaysInList/");
             return View(prix);
         }
+
         [HttpPost]
         public async Task<IActionResult> PostPrix(Prix prix)
         {
@@ -525,27 +656,25 @@ namespace FrontEnd_MVC.Controllers
         }
         public async Task<IActionResult> EditPrix(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
+            try
+            {                
+                Prix prix = await GetRequestUnique<Prix>("https://localhost:7204/api/Loueur/GetPrixByID/" + id);
+                
+                if (prix == null)
+                {
+                    CustomError oError = new CustomError(5);
+                    throw oError;
+                }
+                return View(prix);
             }
-            return View(await GetRequestUnique<Prix>("https://localhost:7204/api/Loueur/GetPrixByID/" + id));
-        }
-        public async Task<IActionResult> UpdatePrix(Prix prix)
-        {
-
-            prix.IdpaysNavigation = await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + prix.Idpays);
-            ModelState.Remove("IdpaysNavigation");
-            ModelState.Remove("ListPays");
-
-            if (ModelState.IsValid)
+            catch (CustomError oError)
             {
-                await PutRequest("https://localhost:7204/api/Loueur/UpdatePrix/", prix);
-                await PostPrix(prix);
+                ViewBag.Error = oError.ErrorMessage;
+                return View("HomeLoueur");
             }
 
-            return RedirectToAction(nameof(AffichePrix));
         }
+        
         public async Task<IActionResult> deletePrix(int? id)
         {
             if (id == null)
@@ -577,20 +706,31 @@ namespace FrontEnd_MVC.Controllers
         [HttpGet]
         public async Task<IActionResult> AfficheVille()
         {
-            List<Ville> lst = await GetRequest<Ville>("https://localhost:7204/api/Loueur/GetVille/");
-            foreach (var item in lst)
+            try
             {
-                item.IdpaysNavigation = await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + item.Idpays);
-                item.Depot.Add(await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByIDVille/" + item.Idville));
+                List<Ville> lst = await GetRequest<Ville>("https://localhost:7204/api/Loueur/GetVille/");
+                foreach (var item in lst)
+                {
+                    item.IdpaysNavigation = await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + item.Idpays);
+                    item.Depot.Add(await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByIDVille/" + item.Idville));
+                }
+                return View(lst);
             }
-            return View(lst);
+            catch (Exception ex)
+            {
+                CustomError oError = new CustomError(4);
+                ViewBag.Error = oError.ErrorMessage;
+                return View("HomeLoueur");
+            }
         }
+
         public async Task<IActionResult> CreateVille()
         {
             Ville ville = new();
             ville.ListPays = await GetEnumerableList("https://localhost:7204/api/Loueur/GetAllPaysInList/");
             return View(ville);
         }
+
         [HttpPost]
         public async Task<IActionResult> PostVille([Bind("Idpays,Nom")] Ville ville)
         {
@@ -604,13 +744,28 @@ namespace FrontEnd_MVC.Controllers
             Thread.Sleep(500);
             return RedirectToAction(nameof(AfficheVille));
         }
+
+
         public async Task<IActionResult> EditVille(int? id)
         {
-            if (id == null)
+            try
             {
-                return NotFound();
+                Ville ville = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + id);
+
+                if (ville == null)
+                {
+                    CustomError oError = new CustomError(5);
+                    throw oError;
+                }
+
+                return View(ville);
             }
-            return View(await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + id));
+            catch (CustomError oError)
+            {
+                ViewBag.Error = oError.ErrorMessage;
+                return View("HomeLoueur");
+            }
+
         }
         public async Task<IActionResult> UpdateVille([Bind("Idville, Idpays, Nom")] Ville ville)
         {
@@ -646,12 +801,21 @@ namespace FrontEnd_MVC.Controllers
         [HttpGet]
         public async Task<IActionResult> AfficheDepot()
         {
-            List<Depot> lst = await GetRequest<Depot>("https://localhost:7204/api/Loueur/GetDepot/");
-            foreach (var item in lst)
+            try
             {
-                item.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + item.Idville);
+                List<Depot> lst = await GetRequest<Depot>("https://localhost:7204/api/Loueur/GetDepot/");
+                foreach (var item in lst)
+                {
+                    item.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + item.Idville);
+                }
+                return View(lst);
             }
-            return View(lst);
+            catch (Exception ex)
+            {
+                CustomError oError = new CustomError(4);
+                ViewBag.Error = oError.ErrorMessage;
+                return View("HomeLoueur");
+            }
         }
 
         [HttpGet]
@@ -675,9 +839,12 @@ namespace FrontEnd_MVC.Controllers
             }
             catch (Exception ex)
             {
-                throw ex;
+                CustomError oError = new CustomError(4);
+                ViewBag.Error = oError.ErrorMessage;
+                return View("HomeLoueur");
             }
         }
+
         [HttpGet]
         public async Task<IActionResult> AfficheDepotInactive()
         {
@@ -692,7 +859,9 @@ namespace FrontEnd_MVC.Controllers
             }
             catch (Exception ex)
             {
-                throw ex;
+                CustomError oError = new CustomError(4);
+                ViewBag.Error = oError.ErrorMessage;
+                return View("HomeLoueur");
             }
         }
         public async Task<IActionResult> CreateDepot()
@@ -790,36 +959,41 @@ namespace FrontEnd_MVC.Controllers
         [HttpGet]
         public async Task<IActionResult> AfficheForfait()
         {
-            List<Forfait> lst = await GetRequest<Forfait>("https://localhost:7204/api/Loueur/GetForfait/");
-            if (lst != null)
+            try
             {
-                foreach (var item in lst)
+                List<Forfait> lst = await GetRequest<Forfait>("https://localhost:7204/api/Loueur/GetForfait/");
+                if (lst != null)
                 {
-                    item.Iddepot1Navigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + item.Iddepot1);
-                    item.Iddepot2Navigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + item.Iddepot2);
+                    foreach (var item in lst)
+                    {
+                        item.Iddepot1Navigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + item.Iddepot1);
+                        item.Iddepot2Navigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + item.Iddepot2);
 
-                    item.Iddepot1Navigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + item.Iddepot1Navigation.Idville);
-                    item.Iddepot2Navigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + item.Iddepot2Navigation.Idville);
+                        item.Iddepot1Navigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + item.Iddepot1Navigation.Idville);
+                        item.Iddepot2Navigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + item.Iddepot2Navigation.Idville);
+                    }
                 }
-
+                else
+                {
+                    lst = new();
+                }
+                return View(lst);
             }
-            else
+            catch (Exception ex)
             {
-                lst = new();
-
+                CustomError oError = new CustomError(4);
+                ViewBag.Error = oError.ErrorMessage;
+                return View("HomeLoueur");
             }
-            return View(lst);
         }
         public async Task<IActionResult> CreateForfait()
         {
             Forfait forfait = new();
-
-
             forfait.ListDepot = await GetEnumerableList("https://localhost:7204/api/Loueur/GetAllDepotInList/");
-
-
             return View(forfait);
         }
+
+
         [HttpPost]
         public async Task<IActionResult> PostForfait(Forfait forfait)
         {
@@ -836,26 +1010,35 @@ namespace FrontEnd_MVC.Controllers
             ModelState.Remove("ListDepot");
             if (ModelState.IsValid)
             {
-
                 await PostRequest("https://localhost:7204/api/Loueur/PostForfait/", forfait);
             }
-
             Thread.Sleep(500);
             return RedirectToAction(nameof(AfficheForfait));
         }
+
         public async Task<IActionResult> EditForfait(int? id)
         {
-            if (id == null)
+            try
             {
-                return NotFound();
-            }
-            Forfait forfait = await GetRequestUnique<Forfait>("https://localhost:7204/api/Loueur/GetForfaitByID/" + id);
-            forfait.Iddepot1Navigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + forfait.Iddepot1);
-            forfait.Iddepot2Navigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + forfait.Iddepot2);
-            forfait.Iddepot1Navigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + forfait.Iddepot1Navigation.Idville);
-            forfait.Iddepot2Navigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + forfait.Iddepot2Navigation.Idville);
+                Forfait forfait = await GetRequestUnique<Forfait>("https://localhost:7204/api/Loueur/GetForfaitByID/" + id);
 
-            return View(forfait);
+                if (forfait == null)
+                {
+                    CustomError oError = new CustomError(5);
+                    throw oError;
+                }
+                forfait.Iddepot1Navigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + forfait.Iddepot1);
+                forfait.Iddepot2Navigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + forfait.Iddepot2);
+                forfait.Iddepot1Navigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + forfait.Iddepot1Navigation.Idville);
+                forfait.Iddepot2Navigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + forfait.Iddepot2Navigation.Idville);
+                return View(forfait);
+            }
+            catch (CustomError oError)
+            {
+                ViewBag.Error = oError.ErrorMessage;
+                return View("HomeLoueur");
+            }
+
         }
         public async Task<IActionResult> DeleteAndPostForfait(Forfait forfait)
         {
@@ -929,7 +1112,9 @@ namespace FrontEnd_MVC.Controllers
             }
             catch (Exception ex)
             {
-                throw ex;
+                CustomError oError = new CustomError(4);
+                ViewBag.Error = oError.ErrorMessage;
+                return View("HomeLoueur");
             }
         }
         [HttpGet]
@@ -951,7 +1136,9 @@ namespace FrontEnd_MVC.Controllers
             }
             catch (Exception ex)
             {
-                throw ex;
+                CustomError oError = new CustomError(4);
+                ViewBag.Error = oError.ErrorMessage;
+                return View("HomeLoueur");
             }
         }
         [HttpGet]
@@ -974,7 +1161,9 @@ namespace FrontEnd_MVC.Controllers
             }
             catch (Exception ex)
             {
-                throw ex;
+                CustomError oError = new CustomError(4);
+                ViewBag.Error = oError.ErrorMessage;
+                return View("HomeLoueur");
             }
         }
         [HttpGet]
@@ -997,11 +1186,13 @@ namespace FrontEnd_MVC.Controllers
             }
             catch (Exception ex)
             {
-                throw ex;
+                CustomError oError = new CustomError(4);
+                ViewBag.Error = oError.ErrorMessage;
+                return View("HomeLoueur");
             }
         }
 
-
+        
         public async Task<IActionResult> DemarrerLocation(int? id)
         {
             Reservation reservation = new Reservation();
@@ -1037,6 +1228,7 @@ namespace FrontEnd_MVC.Controllers
             return View(reservation);
         }
 
+        
         public async Task<IActionResult> CloturerLocation(int? id)
         {
             Reservation reservation = new Reservation();
@@ -1081,7 +1273,7 @@ namespace FrontEnd_MVC.Controllers
             return View(reservation);
         }
 
-
+        [HttpPut]
         public async Task<IActionResult> UpdateReservation(Reservation Reservation) // Pas utilisée.
         {
 
@@ -1127,7 +1319,7 @@ namespace FrontEnd_MVC.Controllers
             return RedirectToAction(nameof(AfficheReservation));
         }
 
-
+        [HttpPut]
         public async Task<IActionResult> StartReservation(Reservation Reservation)
         {
 
@@ -1179,7 +1371,7 @@ namespace FrontEnd_MVC.Controllers
             return RedirectToAction(nameof(AfficheReservation));
         }
 
-
+        [HttpPut]
         public async Task<IActionResult> CloseReservation(Reservation Reservation)
         {
 
@@ -1262,26 +1454,32 @@ namespace FrontEnd_MVC.Controllers
             return RedirectToAction(nameof(AfficheReservation));
         }
 
-
+        [HttpGet]
         public async Task<IActionResult> AfficheFacturation(int id)  // En cours Corentin
         {
-            Reservation reservation = await GetRequestUnique<Reservation>("https://localhost:7204/api/Loueur/GetReservationByID/" + id);
-
-
-
-            var result = (decimal)0;
-            using (var httpClient = new HttpClient())
+            try
             {
-                using (var response = await (httpClient.GetAsync("https://localhost:7204/api/Client/GetFactureReservation/" + id)))
+                Reservation reservation = await GetRequestUnique<Reservation>("https://localhost:7204/api/Loueur/GetReservationByID/" + id);
+                var result = (decimal)0;
+                using (var httpClient = new HttpClient())
                 {
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-                    result = JsonConvert.DeserializeObject<decimal>(apiResponse);
+                    using (var response = await (httpClient.GetAsync("https://localhost:7204/api/Client/GetFactureReservation/" + id)))
+                    {
+                        string apiResponse = await response.Content.ReadAsStringAsync();
+                        result = JsonConvert.DeserializeObject<decimal>(apiResponse);
+                    }
                 }
+                reservation.PrixTotal = result;
+
+                return View(reservation);
+
             }
-            reservation.PrixTotal = result;
-
-
-            return View(reservation);
+            catch (Exception ex)
+            {
+                CustomError oError = new CustomError(4);
+                ViewBag.Error = oError.ErrorMessage;
+                return View("HomeLoueur");
+            }
 
         }
 

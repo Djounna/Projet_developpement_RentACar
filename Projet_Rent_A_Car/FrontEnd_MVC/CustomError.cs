@@ -11,21 +11,43 @@
             switch (pErrorId)
             {
                 case 1:  // Erreur encodage CoefficientMult;
-                    _ErrorId = 1;
-                    _ErrorMessage = "le prix doit être un nombre et plus grand que 0";
+                    ErrorId = 1;
+                    ErrorMessage = " Le coefficient multiplicateur doit être un décimal, supérieur à 0 et inférieur à 5";
                     break;
 
+                case 2:  // Erreur si ModelState invalide;
+                    ErrorId = 2;
+                    ErrorMessage = "(2) Un problème s'est produit avec l'envoi des données";
+                    break;
 
+                case 3:  // Erreur BadRequest;
+                    ErrorId = 3;
+                    ErrorMessage = "(3) Un problème s'est produit avec l'enregistrement des données";
+                    break;
 
+                case 4:  // Erreur Get;
+                    ErrorId = 4;
+                    ErrorMessage = "(4) Un problème s'est produit lors de la récupération des données dans la base de données";
+                    break;
 
-
+                case 5:  // Erreur Get id null;
+                    ErrorId = 5;
+                    ErrorMessage = "(5) Forçage id";
+                    break;
 
                 default:
-                    _ErrorId = 999;
-                    _ErrorMessage = sMessage;
+                    ErrorId = 999;
+                    ErrorMessage = sMessage;
                     break;
             }
         }
 
+        public CustomError(string message)
+        {
+            ErrorMessage = "le problème suivant s'est produit : " + message;
+        }
+
+        public string ErrorMessage { get => _ErrorMessage; set => _ErrorMessage = value; }
+        public int ErrorId { get => _ErrorId; set => _ErrorId = value; }
     }
 }
