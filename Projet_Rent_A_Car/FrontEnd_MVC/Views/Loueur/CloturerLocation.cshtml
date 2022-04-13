@@ -5,10 +5,7 @@
 }
 
 <h1>Cloturer une location</h1>
-
-<h4>Reservation</h4>
 <hr />
-
 <div>
 <p>Kilometrage au départ : @Model.KilometrageDepart km</p>
 <p>Date de retour prévue : @ViewBag.DateRetourPrevue </p>
@@ -104,14 +101,14 @@
 
 
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Sauver" class="btn btn-success" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a class="btn btn-dark" asp-action="Index">Retour à la Liste</a>
 </div>
 
 

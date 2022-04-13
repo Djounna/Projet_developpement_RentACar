@@ -7,8 +7,9 @@
 <h1>Supprimer un dépôt</h1>
 
 <h3>Etes-vous sur de vouloir supprimer ce dépôt ?</h3>
+<hr />
 <div>
-    <hr />
+
     <dl class="row">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Iddepot)
@@ -31,7 +32,7 @@
     </dl>
     
     <form asp-action="deleteDepot">
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="AfficheDepotActive">Back to List</a>
+        <input type="submit" value="Supprimer" class="btn btn-danger" /> | <a class="btn btn-dark" asp-action="AfficheDepotActive">Retour à la liste</a>
+        
     </form>
 </div>

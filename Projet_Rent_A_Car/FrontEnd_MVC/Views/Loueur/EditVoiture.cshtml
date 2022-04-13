@@ -4,7 +4,7 @@
     ViewData["Title"] = "EditVoiture";
 }
 
-<h1>Modifier une voiture</h1>
+<h1>Modifier la voiture</h1>
 
 <hr />
 <div class="row">
@@ -49,15 +49,12 @@
                 <span asp-validation-for="Inactif" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Sauver" class="btn btn-success" /> | <a class="btn btn-dark" asp-action="AfficheVoiture">Retour à la liste</a>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="AfficheVoiture">Back to List</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

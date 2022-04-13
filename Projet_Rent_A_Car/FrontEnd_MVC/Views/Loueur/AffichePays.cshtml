@@ -9,8 +9,9 @@
 <h1>Liste des pays</h1>
 
 <p>
-    <a class=" btn btn-primary" asp-controller="Loueur" asp-action="CreatePays">Create New</a> <a class="btn btn-success" asp-action="HomeLoueur">Back to main Menu</a>
+    <a class=" btn btn-light" asp-controller="Loueur" asp-action="CreatePays">Créer un nouveau pays</a> <a class="btn btn-dark" asp-action="HomeLoueur">Retour au menu</a>
 </p>
+<hr />
 <table id="datatable" class="table">
     <thead>
         <tr>
@@ -49,13 +50,13 @@
             @if (item.Ville.Count == 0)
                 { 
             <td>                         
-                <a asp-action="EditPays" asp-route-id="@item.Idpays">Edit</a>
-                <a asp-action="deletePays" asp-route-id="@item.Idpays">Delete</a>           
+                <a class="btn btn-primary" asp-action="EditPays" asp-route-id="@item.Idpays">Editer</a>
+                <a class="btn btn-danger" asp-action="deletePays" asp-route-id="@item.Idpays">Supprimer</a>           
             </td>
             } 
             else
             { 
-            <td><i>Can't modify or delete a country with towns</i></td>
+            <td><i>Impossible de modifier ou supprimer un pays possédant des villes/i></td>
             }
            
         </tr>

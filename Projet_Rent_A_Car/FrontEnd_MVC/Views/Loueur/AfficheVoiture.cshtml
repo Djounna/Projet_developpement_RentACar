@@ -8,11 +8,12 @@
 
 <h1>Liste des véhicules</h1>
     
-    <a class="btn btn-primary" asp-action="CreateVoiture">Create New</a>    
-    <a class="btn btn-info" asp-action="AfficheVoitureActive">Voir tous les véhicules actifs</a>
-     <a class="btn btn-warning" asp-action="AfficheVoitureInactive">Voir tous les véhicules inactifs</a>
-     <a class="btn btn-success" asp-action="HomeLoueur">Back to main Menu</a>
+    <a class="btn btn-light" asp-action="CreateVoiture">Créer une nouvelle voiture</a>    
+    <a class="btn btn-light" asp-action="AfficheVoitureActive">Voir tous les véhicules actifs</a>
+     <a class="btn btn-light" asp-action="AfficheVoitureInactive">Voir tous les véhicules inactifs</a>
+     <a class="btn btn-dark" asp-action="HomeLoueur">Retour au menu</a>
 
+     <hr />
 <table id="datatable" class="table">
     <thead>
         <tr>
@@ -64,9 +65,9 @@
                      <td>@Html.CheckBox("isUnchecked",new { @disabled = "disabled" })</td>
                 }
             <td>
-                <a asp-action="ActivateVoiture" asp-route-id="@item.Idvoiture">Activer</a>
-                <a asp-action="DisableVoiture" asp-route-id="@item.Idvoiture">Désactiver</a>
-                 <a asp-action="EditVoiture" asp-route-id="@item.Idvoiture">Edit</a>
+                <a class="btn btn-success" asp-action="ActivateVoiture" asp-route-id="@item.Idvoiture">Activer</a>
+                <a class="btn btn-danger" asp-action="DisableVoiture" asp-route-id="@item.Idvoiture">Désactiver</a>
+                 <a class="btn btn-primary" asp-action="EditVoiture" asp-route-id="@item.Idvoiture">Editer</a>
                 
             </td>
         </tr>

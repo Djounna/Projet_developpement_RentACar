@@ -6,9 +6,10 @@
 
 <h1>Désactiver une notoriété</h1>
 
-<h3>Etes vous sûre de vouloir désactiver ceci ? </h3>
+<h3>Etes-vous sûre de vouloir désactiver cette notoriété ? </h3>
+<hr />
 <div>
-    <hr />
+
     <dl class="row">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Idnotoriete)
@@ -37,7 +38,7 @@
     </dl>
     
     <form asp-action="Disable">
-        <input type="submit" value="Désactiver" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <input type="submit" value="Désactiver" class="btn btn-danger" /> | <a class="btn btn-dark" asp-action="Index">Retour à la liste</a>
+        
     </form>
 </div>

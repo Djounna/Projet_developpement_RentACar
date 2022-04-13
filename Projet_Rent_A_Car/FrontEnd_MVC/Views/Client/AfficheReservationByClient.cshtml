@@ -16,7 +16,7 @@ table{
 <h1>Mon historique de réservations</h1>
 
 <p>
-    <a asp-action="EffectuerReservation">Effectuer une nouvelle réservation</a>
+    <a class="btn btn-light" asp-action="EffectuerReservation">Effectuer une nouvelle réservation</a>
 </p>
 <table id="datatable" class="table">
     <thead>
@@ -121,7 +121,7 @@ table{
                 @if (item.KilometrageDepart == null)
                 {
                      <td>
-                <a asp-action="AnnulerReservation" asp-route-id="@item.Idreservation">Annuler reservation</a>
+                <a class="btn btn-danger" asp-action="AnnulerReservation" asp-route-id="@item.Idreservation">Annuler reservation</a>
                     </td>
                 }
                 else

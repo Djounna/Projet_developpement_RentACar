@@ -8,11 +8,11 @@
 <h1>Liste des notoriétés</h1>
 
 
-    <a class="btn btn-primary" asp-action="CreateNotoriete">Créer nouvelle notoriété</a>    
-    <a class="btn btn-info" asp-action="AfficheNotorieteActive">Voir toutes les notoriétés actives</a>
-     <a class="btn btn-warning" asp-action="AfficheNotorieteInactive">Voir toutes les notoriétés inactives</a>
-     <a class="btn btn-success" asp-action="HomeLoueur">Retour au menu</a>
-
+    <a class="btn btn-light" asp-action="CreateNotoriete">Créer nouvelle notoriété</a>    
+    <a class="btn btn-light" asp-action="AfficheNotorieteActive">Voir toutes les notoriétés actives</a>
+     <a class="btn btn-light" asp-action="AfficheNotorieteInactive">Voir toutes les notoriétés inactives</a>
+     <a class="btn btn-dark" asp-action="HomeLoueur">Retour au menu</a>
+     <hr />
 <table id="datatable" class="table">
     <thead>
         <tr>
@@ -48,18 +48,18 @@
                      <td>@Html.CheckBox("isUnchecked",new { @disabled = "disabled" })</td>
                 }
             
-                @if(item.Inactif != true)
+                @if(item.Inactif == true)
                 {
                     <td>
-                <a asp-action="Activate" asp-route-id="@item.Idnotoriete">Activer</a>      
-                <a asp-action="EditNotoriete" asp-route-id="@item.Idnotoriete">Editer</a>            
+                    <a class="btn btn-success" asp-action="Activate" asp-route-id="@item.Idnotoriete">Activer</a>      
+                    <a class="btn btn-primary" asp-action="EditNotoriete" asp-route-id="@item.Idnotoriete">Editer</a>            
                    </td>
                 }
                 else
                 {
                     <td>
-                    <a asp-action="Disable" asp-route-id="@item.Idnotoriete">Désactiver</a>
-                    <a asp-action="EditNotoriete" asp-route-id="@item.Idnotoriete">Editer</a>
+                     <a class="btn btn-danger" asp-action="Disable" asp-route-id="@item.Idnotoriete">Désactiver</a>
+                     <a class="btn btn-primary" asp-action="EditNotoriete" asp-route-id="@item.Idnotoriete">Editer</a>
                     </td>
                 }     
         </tr>

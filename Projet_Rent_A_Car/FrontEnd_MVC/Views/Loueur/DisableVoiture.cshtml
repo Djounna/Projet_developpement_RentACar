@@ -6,10 +6,10 @@
 
 <h1>Désactiver une voiture</h1>
 
-<h3>Etes vous sûre de vouloir désactiver ceci ?</h3>
+<h3>Etes-vous sûre de vouloir désactiver cette voiture ?</h3>
+<hr />
 <div>
-    
-    <hr />
+
     <dl class="row">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Idvoiture)
@@ -50,7 +50,7 @@
     </dl>
     
     <form asp-action="DisableVoiture">
-        <input type="submit" value="Désactiver" class="btn btn-danger" /> |
-        <a asp-action="AfficeVoitureActive">Back to List</a>
+        <input type="submit" value="Désactiver" class="btn btn-danger" /> | <a class="btn btn-dark" asp-action="AfficeVoitureActive">Retour à la liste</a>
+        
     </form>
 </div>

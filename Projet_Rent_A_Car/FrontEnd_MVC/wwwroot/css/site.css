@@ -88,6 +88,13 @@ footer {
         font-size: 30px;
     }
 
+th {
+    color:black;
+}
+
+td {
+    color:floralwhite;
+}
 
 .ErrorMessage{
     color: red;

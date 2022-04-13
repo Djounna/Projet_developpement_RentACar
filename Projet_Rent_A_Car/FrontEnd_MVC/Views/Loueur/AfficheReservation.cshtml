@@ -8,11 +8,12 @@
 
 <h1>Liste des réservations</h1>
     
-     <a class="btn btn-success" asp-action="HomeLoueur">Back to main Menu</a>
-     <a class="btn btn-success" asp-action="AfficheReservationNotYetStarted">AfficherReservationNotYetStarted</a>
-     <a class="btn btn-success" asp-action="AfficheReservationCloturees">AfficherReservationCloturees</a>
-     <a class="btn btn-success" asp-action="AfficheLocationEnCours">AfficherLocationEnCours</a>
-
+     
+     <a class="btn btn-light" asp-action="AfficheReservationNotYetStarted">Afficher les réservations qui n'ont pas encore commencées</a>
+     <a class="btn btn-light" asp-action="AfficheReservationCloturees">Afficher les réservations clôturées</a>
+     <a class="btn btn-light" asp-action="AfficheLocationEnCours">Afficher les locations en cours</a>
+     <a class="btn btn-dark" asp-action="HomeLoueur">Retour au menu</a>
+     <hr />
 <table id="datatable" class="table">
     <thead>
         <tr>
@@ -94,19 +95,19 @@
             
                 @if(item.KilometrageDepart == null && item.KilometrageRetour== null){
              <td>
-                <a asp-action="DemarrerLocation" asp-route-id="@item.Idreservation">Demarrer la location</a>
-                <a asp-action="CloturerLocation" asp-route-id="@item.Idreservation">Cloturer la location</a>
+                <a class="btn btn-success" asp-action="DemarrerLocation" asp-route-id="@item.Idreservation">Demarrer la location</a>
+                <a class="btn btn-success" asp-action="CloturerLocation" asp-route-id="@item.Idreservation">Cloturer la location</a>
              </td>
                 }
                 else
                 {
                     if(item.KilometrageDepart != null && item.KilometrageRetour == null)
                     {
-                        <td><a asp-action="CloturerLocation" asp-route-id="@item.Idreservation">Cloturer la location</a></td>
+                        <td><a class="btn btn-primary asp-action="CloturerLocation" asp-route-id="@item.Idreservation">Clôturer la location</a></td>
                     }
                     else
                     {
-                         <td><a asp-action="AfficheFacturation" asp-route-id="@item.Idreservation">Afficher la facturation</a></td>
+                         <td><a class="btn btn-primary" asp-action="AfficheFacturation" asp-route-id="@item.Idreservation">Afficher la facturation</a></td>
                     }
                 }    
                 

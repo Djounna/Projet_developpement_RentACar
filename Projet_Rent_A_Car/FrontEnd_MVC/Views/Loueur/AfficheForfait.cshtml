@@ -8,9 +8,9 @@
 
 <h1>Liste des forfaits</h1>
 
- <a class="btn btn-primary" asp-action="CreateForfait">Create New</a>    
- <a class="btn btn-success" asp-action="HomeLoueur">Back to main Menu</a>
-
+ <a class="btn btn-light" asp-action="CreateForfait">Créer un nouveau forfait</a>    
+ <a class="btn btn-dark" asp-action="HomeLoueur">Retour au menu</a>
+ <hr />
 <table id="datatable" class="table">
     <thead>
         <tr>
@@ -43,8 +43,8 @@
                 @Html.DisplayFor(modelItem => item.Prix)
             </td>           
             <td>
-               <a asp-action="EditForfait" asp-route-id="@item.Idforfait">Edit</a>
-               <a asp-action="deleteForfait" asp-route-id="@item.Idforfait">Delete</a>
+               <a class="btn btn-primary" asp-action="EditForfait" asp-route-id="@item.Idforfait">Editer</a>
+               <a class="btn btn-danger" asp-action="deleteForfait" asp-route-id="@item.Idforfait">Supprimer</a>
             </td>
         </tr>
 }

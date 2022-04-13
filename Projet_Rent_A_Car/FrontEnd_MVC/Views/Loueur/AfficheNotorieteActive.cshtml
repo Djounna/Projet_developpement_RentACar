@@ -8,12 +8,13 @@
 <h1>liste des notoriétés actives</h1>
 
 
-    <a class=" btn btn-primary" asp-action="CreateNotoriete">Créer une nouvelle notoriété</a>
-   <a class="btn btn-warning" asp-action="AfficheNotorieteInactive">Voir toutes les notoriétés inactives</a>
-    <a class="btn btn-info" asp-action="AfficheNotoriete">Voir toutes les notoriétés</a>
-    <a class="btn btn-success" asp-action="HomeLoueur">Retour au menu</a>
 
-<table id="datatable" class="table">
+    <a class="btn btn-light" asp-action="CreateNotoriete">Créer une nouvelle notoriété</a>
+   <a class="btn btn-light" asp-action="AfficheNotorieteInactive">Voir toutes les notoriétés inactives</a>
+    <a class="btn btn-light" asp-action="AfficheNotoriete">Voir toutes les notoriétés</a>
+    <a class="btn btn-dark" asp-action="HomeLoueur">Retour au menu</a>
+    <hr />
+<table class="table" id="datatable" >
     <thead>
         <tr>
           
@@ -39,8 +40,8 @@
                 @Html.DisplayFor(modelItem => item.CoefficientMultiplicateur)
             </td>
             <td>
-               <a asp-action="Disable" asp-route-id="@item.Idnotoriete">Désactiver</a>
-                <a asp-action="EditNotoriete" asp-route-id="@item.Idnotoriete">Editer</a>
+               <a class="btn btn-danger" asp-action="Disable" asp-route-id="@item.Idnotoriete">Désactiver</a>
+                <a class="btn btn-primary" asp-action="EditNotoriete" asp-route-id="@item.Idnotoriete">Editer</a>
                 
             </td>
         </tr>

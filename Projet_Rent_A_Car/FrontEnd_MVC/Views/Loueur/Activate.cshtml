@@ -6,9 +6,9 @@
 
 <h1>Activer une notoriété</h1>
 
-<h3>Are you sure you want to activate this?</h3>
+
+<h3>Etes-vous sûre de vouloir activer cette notoriété ?</h3>
 <div>
-    <h4>Notoriete</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -38,7 +38,7 @@
     </dl>
     
     <form asp-action="Activate">
-        <input type="submit" value="Activer" class="btn btn-success" /> |
-        <a asp-action="AfficheNotorieteInactive">Back to List</a>
+        <input type="submit" value="Activer" class="btn btn-success" /> | <a class="btn btn-dark" asp-action="AfficheNotorieteInactive">Retour à la liste</a>
+        
     </form>
 </div>

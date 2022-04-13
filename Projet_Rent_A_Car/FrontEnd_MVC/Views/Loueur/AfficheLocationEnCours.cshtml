@@ -8,11 +8,12 @@
 
 <h1>Liste des locations en cours</h1>
     
-     <a class="btn btn-success" asp-action="HomeLoueur">Back to main Menu</a>
-     <a class="btn btn-success" asp-action="AfficheReservationNotYetStarted">AfficherReservationNotYetStarted</a>
-     <a class="btn btn-success" asp-action="AfficheReservationCloturees">AfficherReservationCloturees</a>
      
-
+     <a class="btn btn-light" asp-action="AfficheReservationNotYetStarted">Afficher les réservations qui n'ont pas encore commencées</a>
+     <a class="btn btn-light" asp-action="AfficheReservationCloturees">Afficher les réservations clôturées</a>
+     <a class="btn btn-dark" asp-action="HomeLoueur">Retour au menu</a>
+     
+     <hr />
 <table id="datatable" class="table">
     <thead>
         <tr>
@@ -91,7 +92,7 @@
             </td>
             <td>     
                  
-                <a asp-action="CloturerLocation" asp-route-id="@item.Idreservation">Cloturer la location</a>
+                <a class="btn btn-success" asp-action="CloturerLocation" asp-route-id="@item.Idreservation">Cloturer la location</a>
             </td>
         </tr>
 }

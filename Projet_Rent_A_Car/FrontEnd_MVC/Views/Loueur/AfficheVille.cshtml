@@ -8,8 +8,9 @@
 <h1>Liste des villes</h1>
 
 <p>
-    <a class="btn btn-primary" asp-action="CreateVille">Create New</a><a class="btn btn-success" asp-action="HomeLoueur">Back to main Menu</a>
+    <a class="btn btn-light" asp-action="CreateVille">Créer une nouvelle ville</a><a class="btn btn-dark" asp-action="HomeLoueur">Retour au menu</a>
 </p>
+<hr />
 <table id="datatable" class="table">
     <thead>
         <tr>
@@ -38,14 +39,14 @@
                 {
                   <td>@Html.CheckBox("isUnchecked",new { @disabled = "disabled" })</td>
                     <td>                         
-                    <a asp-action="EditVille" asp-route-id="@item.Idville">Edit</a>
-                    <a asp-action="deleteVille" asp-route-id="@item.Idville">Delete</a>          
+                    <a class="btn btn-primary" asp-action="EditVille" asp-route-id="@item.Idville">Editer</a>
+                    <a class="btn btn-danger" asp-action="deleteVille" asp-route-id="@item.Idville">Supprimer</a>          
                      </td>
                 }
                 else
                 {
                    <td> @Html.CheckBox("isChecked",true,new { @disabled = "disabled" })</td>
-                   <td><i>Can't modify or delete a town with deposit</i></td>                 
+                   <td><i>Impossible de modifier ou de supprimer une ville qui posséde un dépôt</i></td>                 
                 } 
             
         </tr>

@@ -9,12 +9,12 @@
 <h1>Liste des voitues inactives</h1>
 
 <p>
-    <a class=" btn btn-primary" asp-action="CreateVoiture">Create New</a>
-   <a class="btn btn-warning" asp-action="AfficheVoitureActive">Voir toutes les voitures actives</a>
-    <a class="btn btn-info" asp-action="AfficheVoiture">Voir toures les voitures</a>
-    <a class="btn btn-success" asp-action="HomeLoueur">Back to main Menu</a>
+    <a class=" btn btn-light" asp-action="CreateVoiture">Créer une nouvelle voiture</a>
+   <a class="btn btn-light" asp-action="AfficheVoitureActive">Voir toutes les voitures actives</a>
+    <a class="btn btn-light" asp-action="AfficheVoiture">Voir toures les voitures</a>
+    <a class="btn btn-dark" asp-action="HomeLoueur">Retour au menu</a>
 </p>
-
+<hr />
 <table id="datatable" class="table">
     <thead>
         <tr>
@@ -57,8 +57,8 @@
             </td>
            
             <td>
-                <a asp-action="ActivateVoiture" asp-route-id="@item.Idvoiture">Activer</a>
-                <a asp-action="EditNotoriete" asp-route-id="@item.Idvoiture">Edit</a>
+                <a class="btn btn-success" asp-action="ActivateVoiture" asp-route-id="@item.Idvoiture">Activer</a>
+                <a class="btn btn-primary" asp-action="EditNotoriete" asp-route-id="@item.Idvoiture">Editer</a>
                
             </td>
         </tr>

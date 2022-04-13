@@ -4,11 +4,14 @@ table.dataTable {
   margin-bottom: 6px !important;
   max-width: none !important;
   border-collapse: separate !important;
+  border-block-color:white;
+  color:white;
 }
 table.dataTable td,
 table.dataTable th {
   -webkit-box-sizing: content-box;
   box-sizing: content-box;
+  color:white;
 }
 table.dataTable td.dataTables_empty,
 table.dataTable th.dataTables_empty {
@@ -17,6 +20,7 @@ table.dataTable th.dataTables_empty {
 table.dataTable.nowrap th,
 table.dataTable.nowrap td {
   white-space: nowrap;
+  color:white;
 }
 
 div.dataTables_wrapper div.dataTables_length label {

@@ -4,7 +4,7 @@
     ViewData["Title"] = "EditNotoriete";
 }
 
-<h1>Modifier une notoriété</h1>
+<h1>Modifier la notoriété</h1>
 
 <hr />
 <div class="row">
@@ -31,14 +31,10 @@
                 <span asp-validation-for="Inactif" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Sauver" class="btn btn-success" /> | <a class="btn btn-dark" asp-action="AfficheNotoriete">Retour à la liste</a>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="AfficheNotoriete">Back to List</a>
 </div>
 
 @*section Scripts {

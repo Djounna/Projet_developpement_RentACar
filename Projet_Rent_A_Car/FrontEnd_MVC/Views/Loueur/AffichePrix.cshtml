@@ -7,8 +7,9 @@
 <h1>Liste des prix</h1>
 
 <p>
-      <a class="btn btn-primary" asp-action="CreatePrix">Create New</a><a class="btn btn-success" asp-action="HomeLoueur">Back to main Menu</a>
+      <a class="btn btn-light" asp-action="CreatePrix">Créer un nouveau prix</a><a class="btn btn-dark" asp-action="HomeLoueur">Retour au menu</a>
 </p>
+<hr />
 <table id="datatable" class="table">
     <thead>
         <tr>          
@@ -31,8 +32,8 @@
                 @Html.DisplayFor(modelItem => item.PrixKm)
             </td>
             <td>
-               <a asp-action="EditPrix" asp-route-id="@item.Idprix">Edit</a>
-               <a asp-action="deletePrix" asp-route-id="@item.Idprix">Delete</a>   
+               <a class="btn btn-primary" asp-action="EditPrix" asp-route-id="@item.Idprix">Editer</a>
+               <a class="btn btn-danger" asp-action="deletePrix" asp-route-id="@item.Idprix">Supprimer</a>   
             </td>
         </tr>
 }
