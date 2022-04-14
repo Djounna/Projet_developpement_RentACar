@@ -24,7 +24,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Inactif)
             </th>
-            
+            <th>
+                Action
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -36,6 +38,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.IdvilleNavigation.Nom)
             </td>
+
                 @if (item.Inactif == true)
                 {
                     <td>@Html.CheckBox("isChecked",true,new { @disabled = "disabled" })</td>
@@ -45,6 +48,25 @@
                      <td>@Html.CheckBox("isUnchecked",new { @disabled = "disabled" })</td>
                 }
          
+                @if (item.ForfaitIddepot1Navigation.Contains(null) && item.Inactif != true)
+                {
+                    <td> <a class="btn btn-danger" asp-action="DisableDepot" asp-route-id="@item.Iddepot">Désactiver</a></td>
+                }
+                else{
+                    if (item.ForfaitIddepot1Navigation.Contains(null) && item.Inactif == true)
+                    {
+                        <td>
+                            <a class="btn btn-success" asp-action="ActivateDepot" asp-route-id="@item.Iddepot">Activer</a>               
+                        </td>
+                    }             
+                    else
+                    {
+                        <td>
+                            <i>Impossible de désactiver ou de supprimer un forfait qui est utilisé</i>
+                        </td>
+                    }
+                    }
+
         </tr>
 }
     </tbody>

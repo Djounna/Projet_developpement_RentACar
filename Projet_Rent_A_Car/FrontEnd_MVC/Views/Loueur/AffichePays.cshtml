@@ -47,7 +47,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Price.PrixKm)
             </td>
-            @if (item.Ville.Count == 0)
+            @if (item.Ville.Count == 0 && item.Price.PrixKm == 0)
                 { 
             <td>                         
                 <a class="btn btn-primary" asp-action="EditPays" asp-route-id="@item.Idpays">Editer</a>

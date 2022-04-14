@@ -25,9 +25,20 @@ namespace BusinessLayer
         {
             return dalForfait.SelectForfaitByIDDepot(id);
         }
-        public bool Insert(Forfait forfait)
+        public bool Insert(Forfait forfait)  // EN cours controle doublon, pas au point
         {
-            return dalForfait.Insert(forfait);
+            Forfait f = SelectForfaitReservation(forfait.Iddepot1, forfait.Iddepot2);
+            if (f == null || f.DateFin != null) 
+            {
+                return dalForfait.Insert(forfait);
+
+            }
+            else
+            {
+                return false;
+            }
+
+            
         }
 
         public bool Update(Forfait forfait)

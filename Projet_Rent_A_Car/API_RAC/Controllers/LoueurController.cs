@@ -542,6 +542,8 @@ namespace API_RAC.Controllers
 
         public ActionResult PostForfait(Forfait forfait)
         {
+
+
             if(blforfait.Insert(forfait) == true)
                 return Ok();
             else

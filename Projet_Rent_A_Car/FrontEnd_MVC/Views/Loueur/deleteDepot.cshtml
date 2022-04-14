@@ -23,16 +23,13 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.IdvilleNavigation.Nom)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Inactif)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Inactif)
-        </dd>
+       
     </dl>
     
     <form asp-action="deleteDepot">
-        <input type="submit" value="Supprimer" class="btn btn-danger" /> | <a class="btn btn-dark" asp-action="AfficheDepotActive">Retour à la liste</a>
+        <input type="submit" value="Supprimer" class="btn btn-danger" /> | <a class="btn btn-dark" asp-action="AfficheDepotInactive">Retour à la liste</a>
         
     </form>
 </div>
+
+<div class="ErrorMessage"> @ViewBag.Error </div>

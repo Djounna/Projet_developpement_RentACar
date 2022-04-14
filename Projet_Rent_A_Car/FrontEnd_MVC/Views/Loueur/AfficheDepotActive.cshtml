@@ -35,20 +35,17 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.IdvilleNavigation.Nom)
-            </td>
-            @if(item.ForfaitIddepot1Navigation.Contains(null))
-            {
-            <td>
-               <a class="btn btn-danger" asp-action="DisableDepot" asp-route-id="@item.Iddepot">Désactiver</a>
-               <a class="btn btn-danger" asp-action="deleteDepot" asp-route-id="@item.Iddepot">Supprimer</a>
-                    </td>
-                }
-                else
+            </td>       
+                @if (item.ForfaitIddepot1Navigation.Contains(null) && item.Inactif != true)
                 {
-                    <td>
-                        <i>Impossible de désactiver ou de supprimer un forfait qui est utilisé</i>
-                    </td>
-                }
+                    <td> <a class="btn btn-danger" asp-action="DisableDepot" asp-route-id="@item.Iddepot">Désactiver</a></td>
+                }                      
+                    else
+                    {
+                        <td>
+                            <i>Impossible de désactiver ou de supprimer un forfait qui est utilisé</i>
+                        </td>
+                    }                
             </tr>
 }
     </tbody>
