@@ -20,8 +20,8 @@ namespace FrontEnd_MVC.Models
         [Display(Name = "Ville du dépot")]
         public int Iddepot { get; set; }
 
-        [MaxLength(8, ErrorMessage = "Ce champ doit contenir maximum 8 caractères")]
-        [MinLength(8, ErrorMessage = "Ce champ doit contenir au minimum 8 caractères")]
+        [MaxLength(9, ErrorMessage = "Ce champ doit contenir maximum 9 caractères")]
+        [MinLength(9, ErrorMessage = "Ce champ doit contenir au minimum 9 caractères")]
         [Required(ErrorMessage = "This field is mandatory")]
         public string Immatriculation { get; set; } = null!;
         [MaxLength(50, ErrorMessage = "Ce champ doit contenir maximum 50 caractères")]

@@ -21,13 +21,13 @@ namespace BusinessLayer
         {
             return dal.SelectById<Pays>(id);
         }
-        public void InsertOrUpdatePays(Pays pays)
+        public bool InsertOrUpdatePays(Pays pays)
         {
-            dal.InsertOrUpdate(pays);
+            return dal.InsertOrUpdate(pays);
         }
-        public void DeletePays(int id)
+        public bool DeletePays(int id)
         {
-            dal.Delete(SelectPaysByID(id));
+           return dal.Delete(SelectPaysByID(id));
         }
         public List<Ville> SelectVilleByPays(int idpays)
         {

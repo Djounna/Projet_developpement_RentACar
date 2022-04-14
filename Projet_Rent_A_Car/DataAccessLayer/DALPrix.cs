@@ -22,13 +22,13 @@ namespace DataAccessLayer
             return dal.dbcontext.Prix.Where(p=>p.Idpays==id && p.DateFin == null).FirstOrDefault();
         }
 
-        public void UpdatePrix(Prix prix)
+        public bool UpdatePrix(Prix prix)
         {
             var p = dal.dbcontext.Prix.Where(p=>p.Idprix==prix.Idprix && p.DateFin==null).FirstOrDefault();
             p.DateFin = DateTime.Now;
             dal.InsertOrUpdate(p);
             prix.Idprix = 0;
-            dal.InsertOrUpdate(prix);
+           return dal.InsertOrUpdate(prix);
             
         }
     }

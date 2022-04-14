@@ -59,17 +59,22 @@
              @if (item.Inactif == true)
                 {
                     <td>@Html.CheckBox("isChecked",true,new { @disabled = "disabled" })</td>
+                    <td>
+                        <a class="btn btn-success" asp-action="ActivateVoiture" asp-route-id="@item.Idvoiture">Activer</a>
+                         <a class="btn btn-primary" asp-action="EditVoiture" asp-route-id="@item.Idvoiture">Editer</a>
+                        </td>
                 }
                 else
                 {
                      <td>@Html.CheckBox("isUnchecked",new { @disabled = "disabled" })</td>
-                }
-            <td>
-                <a class="btn btn-success" asp-action="ActivateVoiture" asp-route-id="@item.Idvoiture">Activer</a>
+                     <td>
+                
                 <a class="btn btn-danger" asp-action="DisableVoiture" asp-route-id="@item.Idvoiture">Désactiver</a>
                  <a class="btn btn-primary" asp-action="EditVoiture" asp-route-id="@item.Idvoiture">Editer</a>
                 
-            </td>
+                    </td>
+                }
+            
         </tr>
 }
     </tbody>

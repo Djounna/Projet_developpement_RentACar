@@ -21,13 +21,13 @@ namespace BusinessLayer
         {
             return dal.SelectById<Depot>(id);
         }
-        public void InsertOrUpdateDepot(Depot depot)
+        public bool InsertOrUpdateDepot(Depot depot)
         {
-            dal.InsertOrUpdate(depot);
+           return dal.InsertOrUpdate(depot);
         }
-        public void DeleteDepot(int id)
+        public bool DeleteDepot(int id)
         {
-            dal.Delete(SelectDepotByID(id));
+            return dal.Delete(SelectDepotByID(id));
         }
         public List<Depot> SelectAllDepotInactif()  
         {

@@ -43,12 +43,14 @@
                 <span asp-validation-for="Inactif" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Créer" class="btn btn-success" /> | <a class="btn btn-dark" asp-action="AfficheVoiture">Retour à la liste</a>
+                <input type="submit" value="Créer" class="btn btn-success" /> | <a class="btn btn-dark" asp-action="AfficheVoitureActive">Retour à la liste</a>
             </div>
         </form>
     </div>
 </div>
 
+
+<div class="ErrorMessage"> @ViewBag.Error </div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

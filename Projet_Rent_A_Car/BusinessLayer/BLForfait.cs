@@ -25,14 +25,14 @@ namespace BusinessLayer
         {
             return dalForfait.SelectForfaitByIDDepot(id);
         }
-    public void Insert(Forfait forfait)
+        public bool Insert(Forfait forfait)
         {
-            dalForfait.Insert(forfait);
+            return dalForfait.Insert(forfait);
         }
 
-        public void Update(Forfait forfait)
+        public bool Update(Forfait forfait)
         {
-            dalForfait.Update(forfait);
+           return dalForfait.Update(forfait);
         }
 
         

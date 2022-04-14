@@ -26,25 +26,25 @@ namespace BusinessLayer
         // Passage par les méthodes DAL ADO
 
 
-        public void Insert(Reservation reservation)
+        public bool Insert(Reservation reservation)
         {
           
-            dalReservation.Insert(reservation);
+            return dalReservation.Insert(reservation);
         }
 
 
 
-        public void Update(Reservation reservation)
+        public bool Update(Reservation reservation)
         {
-            dalReservation.Update(reservation);
+            return dalReservation.Update(reservation);
         }
-        public void StartReservation(Reservation reservation)
+        public bool StartReservation(Reservation reservation)
         {
-            dalReservation.StartReservation(reservation);
+            return dalReservation.StartReservation(reservation);
         }
-        public void CloseReservation(Reservation reservation)
+        public bool CloseReservation(Reservation reservation)
         {
-            dalReservation.CloseReservation(reservation);
+            return dalReservation.CloseReservation(reservation);
         }
 
 

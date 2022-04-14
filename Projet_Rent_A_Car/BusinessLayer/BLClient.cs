@@ -23,9 +23,9 @@ namespace BusinessLayer
         {
             return dalclient.SelectClientByMail(mail);
         }
-        public void CreateClient(Client client)
+        public bool CreateClient(Client client)
         {
-            dal.InsertOrUpdate(client);
+            return dal.InsertOrUpdate(client);
         }
 
         public List<Reservation> SelectAllReservationByClient(int IdClient)

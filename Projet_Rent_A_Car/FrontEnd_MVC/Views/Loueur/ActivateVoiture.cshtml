@@ -6,7 +6,7 @@
 
 <h1>Activer une voiture</h1>
 
-<h3>Etes-vous sur de vouloir activer cette voiture ?</h3>
+<h3>Etes-vous sûre de vouloir activer cette voiture ?</h3>
 <div>
    
     <hr />
@@ -21,13 +21,13 @@
             @Html.DisplayNameFor(model => model.Idnotoriete)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Idnotoriete)
+            @Html.DisplayFor(model => model.IdnotorieteNavigation.Libelle)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Iddepot)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Iddepot)
+            @Html.DisplayFor(model => model.IddepotNavigation.IdvilleNavigation.Nom)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Immatriculation)
@@ -41,16 +41,10 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Marque)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Inactif)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Inactif)
-        </dd>
     </dl>
     
     <form asp-action="ActivateVoiture">
-        <input type="submit" value="Activer" class="btn btn-danger" /> | <a class="btn btn-dark" asp-action="Index">Retour à la liste</a>
+        <input type="submit" value="Activer" class="btn btn-success" /> | <a class="btn btn-dark" asp-action="AfficheVoitureInactive">Retour à la liste</a>
         
     </form>
 </div>

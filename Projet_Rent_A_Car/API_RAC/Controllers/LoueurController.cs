@@ -71,9 +71,11 @@ namespace API_RAC.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult UpdateNotoriete(Notoriete notoriete) 
         {
-            if (blNotoriete.InsertOrUpdateNotoriete(notoriete))
+            if (blNotoriete.InsertOrUpdateNotoriete(notoriete) == true)
                 return Ok();
-            return BadRequest();
+            else
+                return BadRequest();
+
         }
 
         [Route("PostNotoriete/")]
@@ -83,16 +85,19 @@ namespace API_RAC.Controllers
 
         public ActionResult PostNotoriete(Notoriete notoriete)
         {
-            if (blNotoriete.InsertOrUpdateNotoriete(notoriete))
+            if (blNotoriete.InsertOrUpdateNotoriete(notoriete) == true)
                 return Ok();
-            return BadRequest();
+            else
+                return BadRequest();
         }
         [Route("DeleteNotoriete/{id}")]
         [HttpDelete]
         public ActionResult DeleteNotoriete(int id)
         {
-            blNotoriete.DeleteNotoriete(id);
-            return Ok();
+           if (blNotoriete.DeleteNotoriete(id) == true)
+                return Ok();
+            else
+                return BadRequest();
         }
         #endregion
         // *********************************************************************** Voiture **********************************************************************
@@ -136,8 +141,10 @@ namespace API_RAC.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult UpdateVoiture(Voiture Voiture)
         {
-            blVoiture.InsertOrUpdateVoiture(Voiture);
-            return Ok();     
+           if (blVoiture.InsertOrUpdateVoiture(Voiture) == true)
+                return Ok();
+            else
+                return BadRequest();
         }
 
         [Route("PostVoiture/")]
@@ -147,15 +154,19 @@ namespace API_RAC.Controllers
 
         public ActionResult PostVoiture(Voiture Voiture)
         {
-            blVoiture.InsertOrUpdateVoiture(Voiture);
-            return Ok();
+            if (blVoiture.InsertOrUpdateVoiture(Voiture) == true)
+                return Ok();
+            else
+                return BadRequest();
         }
         [Route("DeleteVoiture/{id}")]
         [HttpDelete]
         public ActionResult DeleteVoiture(int id)
         {
-            blVoiture.DeleteVoiture(id);
-            return Ok();
+            if(blVoiture.DeleteVoiture(id) == true)
+                return Ok();
+            else
+                return BadRequest();
         }
         #endregion
         // *********************************************************************** Pays *************************************************************************
@@ -210,8 +221,11 @@ namespace API_RAC.Controllers
 
             if (estLie == false)
             {
-                blpays.InsertOrUpdatePays(pays);
-                return Ok();
+                if (blpays.InsertOrUpdatePays(pays) == true)
+                    return Ok();
+                else
+                    return BadRequest();
+                
             }
             return BadRequest();
 
@@ -223,8 +237,11 @@ namespace API_RAC.Controllers
 
         public ActionResult PostPays(Pays pays)
         {
-            blpays.InsertOrUpdatePays(pays);
-            return Ok();
+            if(blpays.InsertOrUpdatePays(pays) == true)
+                return Ok();
+            else
+                return BadRequest();
+           
         }
 
         [Route("DeletePays/{id}")]
@@ -240,8 +257,10 @@ namespace API_RAC.Controllers
             }
 
             if (estLie == false) {
-                blpays.DeletePays(id);
+               if (blpays.DeletePays(id) == true)
                 return Ok();
+                else
+                    return BadRequest();
             }
             return BadRequest();
         }
@@ -277,8 +296,10 @@ namespace API_RAC.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult UpdatePrix(Prix prix)
         {
-           blPrix.UpdatePrix(prix);
-           return Ok();                      
+           if (blPrix.UpdatePrix(prix) == true)
+                return Ok();
+            else
+                return BadRequest();
 
         }
 
@@ -288,8 +309,10 @@ namespace API_RAC.Controllers
 
         public ActionResult PostPrix(Prix Prix)
         {
-            blPrix.InsertOrUpdatePrix(Prix);
-            return Ok();
+            if(blPrix.InsertOrUpdatePrix(Prix) == true)
+                return Ok();
+            else
+                return BadRequest();
         }
         #endregion
         // *********************************************************************** Ville ************************************************************************
@@ -344,8 +367,10 @@ namespace API_RAC.Controllers
 
             if (estLie == false)
             {
-                blville.InsertOrUpdateVille(ville);
+               if(blville.InsertOrUpdateVille(ville) == true)
                 return Ok();
+                else
+                    return BadRequest();
             }
             return BadRequest();
 
@@ -357,8 +382,10 @@ namespace API_RAC.Controllers
 
         public ActionResult PostVille(Ville ville)
         {
-            blville.InsertOrUpdateVille(ville);
-            return Ok();
+           if (blville.InsertOrUpdateVille(ville) == true)
+                return Ok();
+            else
+                return BadRequest();
         }
 
         [Route("DeleteVille/{id}")]
@@ -375,8 +402,10 @@ namespace API_RAC.Controllers
 
             if (estLie == false)
             {
-                blville.DeleteVille(id);
+                if (blville.DeleteVille(id) == true)
                 return Ok();
+                else
+                    return BadRequest();
             }
             return BadRequest();
 
@@ -440,8 +469,10 @@ namespace API_RAC.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult UpdateDepot(Depot depot)
         {          
-            bldepot.InsertOrUpdateDepot(depot);
-            return Ok();
+            if(bldepot.InsertOrUpdateDepot(depot) == true)
+                return Ok();
+            else
+                return BadRequest();
         }
 
         [Route("PostDepot/")]
@@ -450,16 +481,20 @@ namespace API_RAC.Controllers
 
         public ActionResult PostDepot(Depot Depot)
         {
-            bldepot.InsertOrUpdateDepot(Depot);
-            return Ok();
+            if(bldepot.InsertOrUpdateDepot(Depot) == true)
+                return Ok();
+            else
+                return BadRequest();
         }
 
         [Route("DeleteDepot/{id}")]
         [HttpDelete]
         public ActionResult DeleteDepot(int id)
         {
-            bldepot.DeleteDepot(id);
-            return Ok();
+           if( bldepot.DeleteDepot(id) == true)
+                return Ok();
+            else
+                return BadRequest();
         }
         #endregion
         // *********************************************************************** Forfait **********************************************************************
@@ -495,8 +530,10 @@ namespace API_RAC.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult UpdateForfait(Forfait forfait)
         {
-            blforfait.Update(forfait);
-            return Ok();
+            if(blforfait.Update(forfait) == true)
+                return Ok();
+            else
+                return BadRequest();
         }
 
         [Route("PostForfait/")]
@@ -505,8 +542,10 @@ namespace API_RAC.Controllers
 
         public ActionResult PostForfait(Forfait forfait)
         {
-            blforfait.Insert(forfait);
-            return Ok();
+            if(blforfait.Insert(forfait) == true)
+                return Ok();
+            else
+                return BadRequest();
         }
         #endregion
         // *********************************************************************** Reservation ******************************************************************
@@ -584,8 +623,10 @@ namespace API_RAC.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult UpdateReservation(Reservation reservation)
         {
-            blReservation.Update(reservation);
-            return Ok();
+            if (blReservation.Update(reservation) == true)
+                return Ok();
+            else
+                return BadRequest();
         }
 
         [Route("StartReservation/")]
@@ -595,8 +636,10 @@ namespace API_RAC.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult StartReservation(Reservation reservation)
         {
-            blReservation.StartReservation(reservation);
-            return Ok();
+           if( blReservation.StartReservation(reservation) == true)
+                return Ok();
+            else
+                return BadRequest();
         }
 
         [Route("CloseReservation/")]
@@ -606,8 +649,10 @@ namespace API_RAC.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult CloseReservation(Reservation reservation)
         {
-            blReservation.CloseReservation(reservation);
-            return Ok();
+            if(blReservation.CloseReservation(reservation) == true)
+                return Ok();
+            else
+                return BadRequest();
         }
 
 

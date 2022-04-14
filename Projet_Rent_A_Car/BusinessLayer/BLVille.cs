@@ -26,13 +26,13 @@ namespace BusinessLayer
         {            
             return dal.SelectById<Ville>(id);
         }
-        public void InsertOrUpdateVille(Ville ville)
+        public bool InsertOrUpdateVille(Ville ville)
         {
-            dal.InsertOrUpdate(ville);
+            return dal.InsertOrUpdate(ville);
         }
-        public void DeleteVille(int id)
+        public bool DeleteVille(int id)
         {
-            dal.Delete(SelectVilleByID(id));
+           return dal.Delete(SelectVilleByID(id));
         }
         
     }

@@ -67,29 +67,31 @@ namespace DataAccessLayer
             }
         }  
 
-        public void InsertOrUpdate(object o)   // Ok 
+        public bool InsertOrUpdate(object o)   // Ok 
         {
             try
             {
                 dbcontext.Update(o);
                 dbcontext.SaveChanges();
+                return true;
             }
             catch (Exception ex)
             {
-                throw ex;
+                return false;
             }
         }
         
-        public async void Delete(object o) // Ok 
+        public bool Delete(object o) // Ok 
         {
             try
             {
                 dbcontext.Remove(o);
-                await dbcontext.SaveChangesAsync();
+                dbcontext.SaveChanges();
+                return true;
             }
             catch (Exception ex)
             {
-                throw ex;
+                return false;
             }
         }
     }

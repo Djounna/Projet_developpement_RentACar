@@ -24,16 +24,14 @@ namespace BusinessLayer
         }
         public bool InsertOrUpdateNotoriete(Notoriete notoriete) // OK
         {
-            if (!dalNotoriete.AlreadyExist(notoriete.Libelle,notoriete.Idnotoriete))
-            {
-                dal.InsertOrUpdate(notoriete);
-                return true;
-            }
-            return false;          
+
+                return dal.InsertOrUpdate(notoriete);
+                
+                     
         }
-        public void DeleteNotoriete(int id)
+        public bool DeleteNotoriete(int id)
         {
-            dal.Delete(SelectNotorieteByID(id));
+           return dal.Delete(SelectNotorieteByID(id));
         }
         public List<Notoriete> SelectAllNotorieteInactif() // OK 
         {

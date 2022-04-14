@@ -22,13 +22,13 @@ namespace BusinessLayer
         {
             return dal.SelectById<Voiture>(id);
         }
-        public void InsertOrUpdateVoiture(Voiture Voiture)
+        public bool InsertOrUpdateVoiture(Voiture Voiture)
         {
-                dal.InsertOrUpdate(Voiture);
+                return dal.InsertOrUpdate(Voiture);
         }
-        public void DeleteVoiture(int id)
+        public bool DeleteVoiture(int id)
         {
-            dal.Delete(SelectVoitureByID(id));
+           return dal.Delete(SelectVoitureByID(id));
         }
         public List<Voiture> SelectAllVoitureInactif() 
         {

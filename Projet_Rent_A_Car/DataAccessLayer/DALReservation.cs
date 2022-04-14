@@ -15,7 +15,7 @@ namespace DataAccessLayer
 
 
         // Méthodes ADO
-        public void Insert(Reservation reservation)
+        public bool Insert(Reservation reservation)
         {
 
             string sql = "InsertReservation";
@@ -53,17 +53,18 @@ namespace DataAccessLayer
                         oCmd.Parameters.Add(new SqlParameter("@Coefficient_Multiplicateur", reservation.CoefficientMultiplicateur));
 
                         int result = oCmd.ExecuteNonQuery();
+                        return true;
                     }
                     catch (Exception ex)
                     {
-                        throw new Exception(ex.Message);
+                        return false;
                     }
 
                 }
             }
         }
 
-        public void Update(Reservation reservation) // Nope
+        public bool Update(Reservation reservation) // Nope
         {
             string sql = "UpdateReservation";
             using (SqlConnection oCon = new SqlConnection(DALConnexion.Connexion))
@@ -87,17 +88,18 @@ namespace DataAccessLayer
                         oCmd.Parameters.Add(new SqlParameter("@KilometrageRetour", reservation.KilometrageRetour));
                         //oCmd.Parameters.Add(new SqlParameter("@Coefficient_Multiplicateur", reservation.CoefficientMultiplicateur));
                         int result = oCmd.ExecuteNonQuery();
+                        return true;
                     }
                     catch (Exception ex)
                     {
-                        throw new Exception(ex.Message);
+                        return false;
                     }
 
                 }
             }
         }
 
-        public void StartReservation(Reservation reservation) // ADO
+        public bool StartReservation(Reservation reservation) // ADO
         {
             string sql = "StartReservation";
             using (SqlConnection oCon = new SqlConnection(DALConnexion.Connexion))
@@ -121,17 +123,18 @@ namespace DataAccessLayer
                         //oCmd.Parameters.Add(new SqlParameter("@KilometrageRetour", reservation.KilometrageRetour));
                         //oCmd.Parameters.Add(new SqlParameter("@Coefficient_Multiplicateur", reservation.CoefficientMultiplicateur));
                         int result = oCmd.ExecuteNonQuery();
+                        return true;
                     }
                     catch (Exception ex)
                     {
-                        throw new Exception(ex.Message);
+                        return false;
                     }
 
                 }
             }
         }
 
-        public void CloseReservation(Reservation reservation)
+        public bool CloseReservation(Reservation reservation)
         {
             string sql = "CloseReservation";
             using (SqlConnection oCon = new SqlConnection(DALConnexion.Connexion))
@@ -157,10 +160,11 @@ namespace DataAccessLayer
                         oCmd.Parameters.Add(new SqlParameter("@IdForfait", reservation.Idforfait));
                         oCmd.Parameters.Add(new SqlParameter("@Penalite", reservation.Penalite));
                         int result = oCmd.ExecuteNonQuery();
+                        return true;
                     }
                     catch (Exception ex)
                     {
-                        throw new Exception(ex.Message);
+                        return false;
                     }
 
                 }

@@ -28,7 +28,7 @@ namespace DataAccessLayer
             return dal.dbcontext.Forfait.Where(forfait => forfait.Iddepot1 == id || forfait.Iddepot2 == id).FirstOrDefault();
         }
 
-        public void Insert(Forfait forfait)
+        public bool Insert(Forfait forfait)
         {
             string sql = "InsertForfait";
             using (SqlConnection oCon = new SqlConnection(DALConnexion.Connexion))
@@ -47,17 +47,18 @@ namespace DataAccessLayer
                        
 
                         int result = oCmd.ExecuteNonQuery();
+                        return true;
                     }
                     catch (Exception ex)
                     {
-                        throw new Exception(ex.Message);
+                        return false;
                     }
 
                 }
             }
         }
 
-        public void Update(Forfait forfait)
+        public bool Update(Forfait forfait)
         {
             string sql = "UpdateForfait";
             using (SqlConnection oCon = new SqlConnection(DALConnexion.Connexion))
@@ -77,10 +78,11 @@ namespace DataAccessLayer
                         oCmd.Parameters.Add(new SqlParameter("@id", forfait.Idforfait));
 
                         int result = oCmd.ExecuteNonQuery();
+                        return true;
                     }
                     catch (Exception ex)
                     {
-                        throw new Exception(ex.Message);
+                        return false;
                     }
 
                 }

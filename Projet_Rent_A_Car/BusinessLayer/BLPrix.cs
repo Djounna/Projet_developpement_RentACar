@@ -26,7 +26,7 @@ namespace BusinessLayer
         {
             return dal.SelectById<Prix>(id);
         }
-        public void InsertOrUpdatePrix(Prix Prix)
+        public bool InsertOrUpdatePrix(Prix Prix)
         {
             Prix p = SelectPrixByPays(Prix.Idpays);
 
@@ -38,12 +38,12 @@ namespace BusinessLayer
                 Prix.Idprix = 0;
             }
 
-            dal.InsertOrUpdate(Prix);
+            return dal.InsertOrUpdate(Prix);
         }
-        public void UpdatePrix(Prix prix)
+        public bool UpdatePrix(Prix prix)
         {
             
-            dalPrix.UpdatePrix(prix);
+            return dalPrix.UpdatePrix(prix);
         }
     }
 }

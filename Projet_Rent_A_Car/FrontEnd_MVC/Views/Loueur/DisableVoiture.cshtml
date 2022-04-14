@@ -21,14 +21,13 @@
             @Html.DisplayNameFor(model => model.Idnotoriete)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Idnotoriete)
+            @Html.DisplayFor(model => model.IdnotorieteNavigation.Libelle)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Iddepot)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Iddepot)
-        </dd>
+            @Html.DisplayFor(model => model.IddepotNavigation.IdvilleNavigation.Nom)
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Immatriculation)
         </dt>
@@ -41,16 +40,10 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Marque)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Inactif)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Inactif)
-        </dd>
     </dl>
     
     <form asp-action="DisableVoiture">
-        <input type="submit" value="Désactiver" class="btn btn-danger" /> | <a class="btn btn-dark" asp-action="AfficeVoitureActive">Retour à la liste</a>
+        <input type="submit" value="Désactiver" class="btn btn-danger" /> | <a class="btn btn-dark" asp-action="AfficheVoitureActive">Retour à la liste</a>
         
     </form>
 </div>
