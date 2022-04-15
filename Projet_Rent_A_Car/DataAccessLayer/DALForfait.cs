@@ -28,6 +28,7 @@ namespace DataAccessLayer
             return dal.dbcontext.Forfait.Where(forfait => forfait.Iddepot1 == id || forfait.Iddepot2 == id).FirstOrDefault();
         }
 
+
         public bool Insert(Forfait forfait)
         {
             string sql = "InsertForfait";

@@ -92,6 +92,12 @@ namespace DataAccessLayer
 
         }
 
+        public bool AlreadyExist(string nom, int id)
+        {
+            var voiture = dal.dbcontext.Voiture.SingleOrDefault(p => p.Immatriculation == nom && p.Idvoiture != id);
+            return (voiture != null);
+        }
+
         /*
         public List<Voiture> SelectAllVoitureActiveByDepot(int IdDepot)
         {
@@ -106,6 +112,6 @@ namespace DataAccessLayer
             return lstRes;
         }
         */
-     
+
     }
 }

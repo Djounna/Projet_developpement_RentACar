@@ -34,8 +34,6 @@ namespace FrontEnd_MVC.Controllers
 
             }
         }
-
-
         private async Task<T> GetRequestUnique<T>(string chemin)  // Review ok
         {
             using (var httpClient = new HttpClient())
@@ -114,6 +112,22 @@ namespace FrontEnd_MVC.Controllers
                 }
             }
         }
+
+        private async Task<IActionResult> AlreadyExist<T>(string chemin, T getObject)  // En test sur notoriete
+        {
+            using (var httpClient = new HttpClient())
+            {
+                    using (var response = await httpClient.PutAsJsonAsync(chemin ,getObject))
+                    {
+
+                        if (response.IsSuccessStatusCode)
+                        {
+                            return Ok();
+                        }
+                    }
+                    return BadRequest();                
+            }                      
+        }
         #endregion
         #region HomeLoueur
         public IActionResult HomeLoueur()
@@ -183,6 +197,12 @@ namespace FrontEnd_MVC.Controllers
                     throw oError;
                 }
 
+                var result1 = await AlreadyExist<Notoriete>("https://localhost:7204/api/Loueur/AlreadyExistNotoriete/", notoriete);
+                if ( result1 is BadRequestResult) 
+                {
+                    CustomError oError = new CustomError(6);
+                    throw oError;
+                }
                 if (ModelState.IsValid)
                 {
                     var result = await PostRequest("https://localhost:7204/api/Loueur/PostNotoriete/", notoriete);
@@ -235,7 +255,6 @@ namespace FrontEnd_MVC.Controllers
             
         }
 
-
         public async Task<IActionResult> UpdateNotoriete([Bind("Idnotoriete,Libelle,CoefficientMultiplicateur,Inactif")] Notoriete notoriete) 
         {
             try {
@@ -243,6 +262,12 @@ namespace FrontEnd_MVC.Controllers
                 if (notoriete.CoefficientMultiplicateur <= 0 || notoriete.CoefficientMultiplicateur > 5)
                 {
                     CustomError oError = new CustomError(1);  // Exception si le coefficient multiplicateur n'est pas un décimal.
+                    throw oError;
+                }
+                var result1 = await AlreadyExist<Notoriete>("https://localhost:7204/api/Loueur/AlreadyExistNotoriete/", notoriete);
+                if (result1 is BadRequestResult)
+                {
+                    CustomError oError = new CustomError(6);
                     throw oError;
                 }
 
@@ -514,6 +539,13 @@ namespace FrontEnd_MVC.Controllers
                 ModelState.Remove("ListDepot");
                 ModelState.Remove("ListNotoriete");
 
+                var result1 = await AlreadyExist<Voiture>("https://localhost:7204/api/Loueur/AlreadyExistVoiture/", voiture);
+                if (result1 is BadRequestResult)
+                {
+                    CustomError oError = new CustomError(6);
+                    throw oError;
+                }
+
                 if (ModelState.IsValid)
                 {
                     var result = await PostRequest("https://localhost:7204/api/Loueur/PostVoiture/", voiture);
@@ -584,7 +616,14 @@ namespace FrontEnd_MVC.Controllers
                 ModelState.Remove("IdnotorieteNavigation");
                 ModelState.Remove("ListDepot");
                 ModelState.Remove("ListNotoriete");
-                    if (ModelState.IsValid)
+
+                var result1 = await AlreadyExist<Voiture>("https://localhost:7204/api/Loueur/AlreadyExistVoiture/", voiture);
+                if (result1 is BadRequestResult)
+                {
+                    CustomError oError = new CustomError(6);
+                    throw oError;
+                }
+                if (ModelState.IsValid)
                     {
                         var result = await PutRequest("https://localhost:7204/api/Loueur/UpdateVoiture/", voiture);
                         if (result is BadRequestResult)
@@ -788,6 +827,12 @@ namespace FrontEnd_MVC.Controllers
             try
             {
                 ModelState.Remove("Price");
+                var result1 = await AlreadyExist<Pays>("https://localhost:7204/api/Loueur/AlreadyExistPays/", pays);
+                if (result1 is BadRequestResult)
+                {
+                    CustomError oError = new CustomError(6);
+                    throw oError;
+                }
                 if (ModelState.IsValid)
                 {
                     var result = await PostRequest("https://localhost:7204/api/Loueur/PostPays/", pays);
@@ -845,6 +890,12 @@ namespace FrontEnd_MVC.Controllers
         {
             try{
                 ModelState.Remove("Price");
+                var result1 = await AlreadyExist<Pays>("https://localhost:7204/api/Loueur/AlreadyExistPays/", pays);
+                if (result1 is BadRequestResult)
+                {
+                    CustomError oError = new CustomError(6);
+                    throw oError;
+                }
                 if (ModelState.IsValid)
                 {
                     var result= await PutRequest("https://localhost:7204/api/Loueur/UpdatePays/", pays);
@@ -1115,6 +1166,12 @@ namespace FrontEnd_MVC.Controllers
                 ville.IdpaysNavigation = await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + ville.Idpays);
                 ModelState.Remove("IdpaysNavigation");
                 ModelState.Remove("ListPays");
+                var result1 = await AlreadyExist<Ville>("https://localhost:7204/api/Loueur/AlreadyExistVille/", ville);
+                if (result1 is BadRequestResult)
+                {
+                    CustomError oError = new CustomError(6);
+                    throw oError;
+                }
 
                 if (ModelState.IsValid)
                 {
@@ -1150,8 +1207,6 @@ namespace FrontEnd_MVC.Controllers
             }
 
         }
-
-
         public async Task<IActionResult> EditVille(int? id)
         {
             try
@@ -1179,7 +1234,13 @@ namespace FrontEnd_MVC.Controllers
             ville.IdpaysNavigation = await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + ville.Idpays);
             ModelState.Remove("IdpaysNavigation");
             ModelState.Remove("ListPays");
-            if (ModelState.IsValid)
+                var result1 = await AlreadyExist<Ville>("https://localhost:7204/api/Loueur/AlreadyExistVille/", ville);
+                if (result1 is BadRequestResult)
+                {
+                    CustomError oError = new CustomError(6);
+                    throw oError;
+                }
+                if (ModelState.IsValid)
             {
                 var result = await PutRequest("https://localhost:7204/api/Loueur/UpdateVille/", ville);
                 if (result is BadRequestResult)

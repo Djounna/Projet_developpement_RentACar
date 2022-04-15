@@ -35,6 +35,11 @@
                     ErrorMessage = "(5) Forçage id";
                     break;
 
+                case 6:  // Erreur dupplicate;
+                    ErrorId = 6;
+                    ErrorMessage = "(6) Il semblerait que vous essayer de créer un doublon";
+                    break;
+
                 default:
                     ErrorId = 999;
                     ErrorMessage = sMessage;

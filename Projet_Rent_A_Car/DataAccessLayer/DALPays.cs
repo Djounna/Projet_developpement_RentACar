@@ -14,6 +14,12 @@ namespace DataAccessLayer
     public class DALPays
     {
         private DalCommun dal = new();
+
+        public bool AlreadyExist(string nom, int id)
+        {
+            var pays = dal.dbcontext.Pays.SingleOrDefault(p => p.Nom == nom && p.Idpays != id);
+            return (pays != null);
+        }
         public IEnumerable<SelectListItem> SelectAllPaysInList()
         {
             using (dal.dbcontext)

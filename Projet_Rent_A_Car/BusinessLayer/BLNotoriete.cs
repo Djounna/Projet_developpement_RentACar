@@ -22,12 +22,16 @@ namespace BusinessLayer
         {
             return dal.SelectById<Notoriete>(id);
         }
+
+        public bool AlreadyExist(Notoriete not)
+        {
+           return  dalNotoriete.AlreadyExist(not.Libelle,not.Idnotoriete);
+        }
         public bool InsertOrUpdateNotoriete(Notoriete notoriete) // OK
         {
 
                 return dal.InsertOrUpdate(notoriete);
-                
-                     
+                                    
         }
         public bool DeleteNotoriete(int id)
         {

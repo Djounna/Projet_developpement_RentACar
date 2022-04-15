@@ -21,6 +21,10 @@ namespace BusinessLayer
         {
             return dal.SelectById<Pays>(id);
         }
+        public bool AlreadyExist(Pays p)
+        {
+            return dalpays.AlreadyExist(p.Nom, p.Idpays);
+        }
         public bool InsertOrUpdatePays(Pays pays)
         {
             return dal.InsertOrUpdate(pays);

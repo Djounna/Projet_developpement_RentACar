@@ -22,6 +22,11 @@ namespace BusinessLayer
         {
             return dal.SelectById<Voiture>(id);
         }
+
+        public bool AlreadyExist(Voiture v)
+        {
+            return dalVoiture.AlreadyExist(v.Immatriculation, v.Idvoiture);
+        }
         public bool InsertOrUpdateVoiture(Voiture Voiture)
         {
                 return dal.InsertOrUpdate(Voiture);

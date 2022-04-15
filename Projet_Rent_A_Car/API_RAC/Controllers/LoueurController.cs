@@ -21,6 +21,7 @@ namespace API_RAC.Controllers
         private BLPrix blPrix = new();
         private BLReservation blReservation = new();
 
+
         // *********************************************************************** Notoriete ********************************************************************
         # region Notoriete 
         [Route("GetNotoriete/")]
@@ -63,7 +64,18 @@ namespace API_RAC.Controllers
         {
             return blNotoriete.SelectAllNotorieteInList();
         }
-        
+
+        [Route("AlreadyExistNotoriete/")]
+        [HttpPut]
+        public ActionResult AlreadyExistNotoriete(Notoriete not)
+        {
+            if (blNotoriete.AlreadyExist(not) == true)
+                return BadRequest();
+            else return Ok();
+           
+
+        }
+
         [Route("UpdateNotoriete/")]
         [HttpPut]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -134,6 +146,15 @@ namespace API_RAC.Controllers
             return Ok(blVoiture.SelectVoitureByID(id));
         }
 
+        [Route("AlreadyExistVoiture/")]
+        [HttpPut]
+        public ActionResult AlreadyExistVoiture(Voiture voit)
+        {
+            if (blVoiture.AlreadyExist(voit) == true)
+                return BadRequest();
+            else return Ok();
+        }
+
         [Route("UpdateVoiture/")]
         [HttpPut]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -202,6 +223,15 @@ namespace API_RAC.Controllers
         {
             return blPrix.SelectPrixByPays(id);
 
+        }
+
+        [Route("AlreadyExistPays/")]
+        [HttpPut]
+        public ActionResult AlreadyExistPays(Pays pays)
+        {
+            if (blpays.AlreadyExist(pays) == true)
+                return BadRequest();
+            else return Ok();           
         }
 
         [Route("UpdatePays/")]
@@ -348,6 +378,15 @@ namespace API_RAC.Controllers
         public ActionResult<List<Ville>> GetAllVilleByPays(int id)
         {
             return Ok(blpays.SelectVilleByPays(id));
+        }
+
+        [Route("AlreadyExistVille/")]
+        [HttpPut]
+        public ActionResult AlreadyExistVille(Ville ville)
+        {
+            if (blville.AlreadyExist(ville) == true)
+                return BadRequest();
+            else return Ok();
         }
 
         [Route("UpdateVille/")]

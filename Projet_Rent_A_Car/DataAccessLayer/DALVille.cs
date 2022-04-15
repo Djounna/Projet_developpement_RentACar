@@ -20,6 +20,12 @@ namespace DataAccessLayer
                 return lstville;                      
             }
         }
+
+        public bool AlreadyExist(string nom, int id)
+        {
+            var ville = dal.dbcontext.Ville.SingleOrDefault(p => p.Nom == nom && p.Idpays == id);
+            return (ville != null);
+        }
         public IEnumerable<SelectListItem> SelectAllVilleInList()
         {
             using (dal.dbcontext)
