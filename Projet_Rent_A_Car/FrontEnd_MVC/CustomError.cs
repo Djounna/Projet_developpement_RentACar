@@ -40,6 +40,11 @@
                     ErrorMessage = "(6) Il semblerait que vous essayer de créer un doublon";
                     break;
 
+                case 7:  // Erreur client inexistant;
+                    ErrorId = 7;
+                    ErrorMessage = "(7) Oups adresse mail incorrecte";
+                    break;
+
                 default:
                     ErrorId = 999;
                     ErrorMessage = sMessage;

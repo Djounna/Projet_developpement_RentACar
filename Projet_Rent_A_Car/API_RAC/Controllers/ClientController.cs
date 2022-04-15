@@ -35,6 +35,16 @@ namespace API_RAC.Controllers
         {
             return Ok(blclient.SelectClientByMail(mail));
         }
+
+        [Route("AlreadyExistClient/")]
+        [HttpPut]
+        public ActionResult AlreadyExistClient(Client client)
+        {
+            if (blclient.AlreadyExist(client) == true)
+                return BadRequest();
+            else return Ok();
+        }
+
         [Route("PostClient/")]
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]

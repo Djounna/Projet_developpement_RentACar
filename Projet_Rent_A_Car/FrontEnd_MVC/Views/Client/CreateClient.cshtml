@@ -26,16 +26,16 @@
                 <input asp-for="Mail" class="form-control" />
                 <span asp-validation-for="Mail" class="text-danger"></span>
             </div>
+           
             <div class="form-group">
-                <input type="submit" value="Créer" class="btn btn-success" />
+                <input type="submit" value="Créer" class="btn btn-success" /> | <a class="btn btn-dark" asp-action="HomeCLient">Retour au menu</a>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="HomeCLient">Back to List</a>
-</div>
+ <div class="ErrorMessage"> @ViewBag.Error </div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

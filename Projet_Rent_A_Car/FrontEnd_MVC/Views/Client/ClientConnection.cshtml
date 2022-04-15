@@ -14,13 +14,11 @@
                <label asp-for="Mail" class="control-label"></label>
                 <input asp-for="Mail" class="form-control" /> 
                 <span asp-validation-for="Mail" class="text-danger"></span>
-                 <input style="margin-top:5px" type="submit" value="Se connecter" class="btn btn-success" />
+                 <div class="ErrorMessage"> @ViewBag.Error </div> 
+                 <input style="margin-top:5px" type="submit" value="Se connecter" class="btn btn-success" /> | <a style="margin-top:5px" class="btn btn-dark" asp-action="HomeCLient">Retour au menu</a>
             </form> 
-            </div>
-
-          
-
- </div>
-
         </div>
     </div>
+   
+    </div>
+</div>
