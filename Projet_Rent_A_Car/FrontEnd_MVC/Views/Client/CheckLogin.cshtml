@@ -3,9 +3,14 @@
     ViewData["Title"] = "Home Page";
 }
 
+<script>
+    Let data= @Html.DisplayFor(modelItem => modelItem.Idclient)
+    sessionStorage.setItem('Idclient', 'data')
+    console.log(sessionStorage.getItem('Idclient'))
+</script>
 <div class="text-center">
     <h1 class="display-4">Bienvenue @Html.DisplayFor(modelItem => modelItem.Nom) @Html.DisplayFor(modelItem => modelItem.Prenom) </h1>
-
+    
 
 <table style="margin-left:50px ; margin-top:20px">
 <tr>

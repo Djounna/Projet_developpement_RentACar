@@ -42,6 +42,21 @@ namespace FrontEnd_MVC.Controllers
                 }
             }
         }
+        private async Task<IActionResult> AlreadyExist<T>(string chemin, T getObject)  // En test sur notoriete
+        {
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.PutAsJsonAsync(chemin, getObject))
+                {
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        return Ok();
+                    }
+                }
+                return BadRequest();
+            }
+        }
         private async Task<ActionResult> PostRequest<T>(string chemin, T postObject)
         {
             using (var httpClient = new HttpClient())
@@ -104,33 +119,85 @@ namespace FrontEnd_MVC.Controllers
             return View();
         }
 
-        public IActionResult CreateClient()//OK 
+        public IActionResult CreateClient()
         {
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostClient([Bind("Nom,Prenom,Mail")] Client client)//OK 
+        public async Task<IActionResult> PostClient([Bind("Nom,Prenom,Mail")] Client client)
         {
-            if (ModelState.IsValid)
+            try
             {
-                await PostRequest("https://localhost:7204/api/Client/PostClient/", client);
+
+                var result1 = await AlreadyExist<Client>("https://localhost:7204/api/Client/AlreadyExistClient/", client);
+                if (result1 is BadRequestResult)
+                {
+                    CustomError oError = new CustomError(6);
+                    throw oError;
+                }
+
+                if (ModelState.IsValid)
+            {
+                var result = await PostRequest("https://localhost:7204/api/Client/PostClient/", client);
+                if (result is BadRequestResult)
+                {
+                    CustomError oError = new CustomError(3);
+                    throw oError;
+                }
+                Thread.Sleep(500);
+                return View("CheckLogin", client);
+            }
+            else
+            {
+                 CustomError oError = new CustomError(2);
+                 throw oError;
             }
 
-            return View("CheckLogin", client);
+            }
+            catch (CustomError oError)
+            {
+                ViewBag.Error = oError.ErrorMessage;
+                return View("CreateClient", client);
+            }
+            catch (Exception ex)
+            {
+                CustomError oError = new CustomError(ex.Message);
+                ViewBag.Error = oError.ErrorMessage;
+                return View("CreateClient", client);
+            }
+
+
+            
         }
 
-        public IActionResult ClientConnection()//OK 
+        public IActionResult ClientConnection() 
         {
             return View();
         }
 
-        [HttpGet]
-        public async Task<IActionResult> CheckLogin([Bind("Mail")] Client client)//OK 
+
+        public async Task<IActionResult> CheckLogin([Bind("Mail")] Client client)
         {
             try
             {
-                return View(await GetRequestUnique<Client>("https://localhost:7204/api/Client/GetClientByMail/" + client.Mail));
+                if (client.Idclient == 0) 
+                { 
+                    Client c = await GetRequestUnique<Client>("https://localhost:7204/api/Client/GetClientByMail/" + client.Mail);
+                    if (c == null)
+                    {
+                        CustomError oError = new CustomError(7);
+                        throw oError;
+                    }
+                    return View(c);
+                }
+                else
+                    return View(client);
+            }
+            catch (CustomError oError)
+            {
+                ViewBag.Error = oError.ErrorMessage;
+                return View("ClientConnection");
             }
             catch (Exception ex)
             {

@@ -31,5 +31,11 @@ namespace DataAccessLayer
             }
             catch(Exception ex) { throw ex; }
         }
+        public bool AlreadyExist(string nom, int id)
+        {
+            var client = dal.dbcontext.Client.SingleOrDefault(p => p.Mail == nom && p.Idclient != id);
+            return (client != null);
+        }
+
     }
 }

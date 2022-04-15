@@ -2,6 +2,13 @@
     ViewData["Title"] = "Home Page";
 }
 
+<script>
+
+    sessionStorage.clear();
+
+</script>
+
+
 <div class="text-center">
     <h1 class="display-4">Bienvenue sur l'interface du Client</h1>                 
         <button class="btn btn-light" type="button" id="Client" onclick="location.href='@Url.Action("ClientConnection","Client")'">Se connecter</button><button type="button" style="margin:5px" class="btn btn-light" id="Client" onclick="location.href='@Url.Action("CreateClient","Client")'">Créer un compte</button>   

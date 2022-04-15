@@ -23,6 +23,11 @@ namespace BusinessLayer
         {
             return dalclient.SelectClientByMail(mail);
         }
+
+        public bool AlreadyExist(Client c)
+        {
+            return dalclient.AlreadyExist(c.Mail, c.Idclient);
+        }
         public bool CreateClient(Client client)
         {
             return dal.InsertOrUpdate(client);
