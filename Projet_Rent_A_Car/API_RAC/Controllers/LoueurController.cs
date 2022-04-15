@@ -581,17 +581,25 @@ namespace API_RAC.Controllers
 
         public ActionResult PostForfait(Forfait forfait)
         {
-
-
             if(blforfait.Insert(forfait) == true)
                 return Ok();
             else
                 return BadRequest();
         }
+
+        [Route("AlreadyExistForfait/")] // EN test
+        [HttpPut]
+        public ActionResult AlreadyExistForfait(Forfait forfait)
+        {
+            if (blforfait.AlreadyExist(forfait))
+                return BadRequest();
+            else return Ok();
+        }
+
         #endregion
         // *********************************************************************** Reservation ******************************************************************
         #region Reservation 
-        
+
         [Route("GetReservation/")]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]

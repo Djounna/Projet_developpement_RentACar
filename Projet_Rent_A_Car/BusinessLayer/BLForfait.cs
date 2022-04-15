@@ -27,8 +27,7 @@ namespace BusinessLayer
         }
         public bool Insert(Forfait forfait)  // EN cours controle doublon, pas au point
         {
-            Forfait f = SelectForfaitReservation(forfait.Iddepot1, forfait.Iddepot2);
-            if (f == null || f.DateFin != null) 
+           if(!dalForfait.AlreadyExist(forfait)) 
             {
                 return dalForfait.Insert(forfait);
 
@@ -36,9 +35,12 @@ namespace BusinessLayer
             else
             {
                 return false;
-            }
+            } 
+        }
 
-            
+        public bool AlreadyExist(Forfait forfait)
+        {
+            return dalForfait.AlreadyExist(forfait);
         }
 
         public bool Update(Forfait forfait)

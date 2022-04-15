@@ -102,21 +102,21 @@ namespace DataAccessLayer
             }
         }
 
-         // En cours
          
-        public IEnumerable<SelectListItem> SelectAllDepotRetourByDepotDepartInList(int idDepotDepart)
+         
+        public IEnumerable<SelectListItem> SelectAllDepotRetourByDepotDepartInList(int idDepotDepart) // En cours de correction
         {
             
-                var lstForfait1 = from forfait in dal.dbcontext.Forfait where forfait.Iddepot1 == idDepotDepart select forfait;
+                var lstForfait1 = from forfait in dal.dbcontext.Forfait where forfait.Iddepot1 == idDepotDepart select forfait ;
                 var lstForfait2 = from forfait in dal.dbcontext.Forfait where forfait.Iddepot2 == idDepotDepart select forfait;
                  List<Forfait> lstForfaits = new List<Forfait>();
                     lstForfaits.AddRange(lstForfait1.Union(lstForfait2).ToList()); // Union method removes duplicates
             SortedSet<int> lstDepots = new();
             foreach(Forfait forfait in lstForfaits)
             {
-                if (forfait.Iddepot1 != idDepotDepart)
-                lstDepots.Add(forfait.Iddepot1);
-                if(forfait.Iddepot1 == idDepotDepart )
+                if (forfait.Iddepot1 != idDepotDepart && forfait.DateFin == null)
+                lstDepots.Add(forfait.Iddepot1 );
+                if(forfait.Iddepot1 == idDepotDepart && forfait.DateFin == null)
                 lstDepots.Add(forfait.Iddepot2);
             }
 

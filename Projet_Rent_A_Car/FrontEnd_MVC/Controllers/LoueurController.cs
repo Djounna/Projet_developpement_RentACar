@@ -1680,7 +1680,17 @@ namespace FrontEnd_MVC.Controllers
             ModelState.Remove("Iddepot2Navigation");
             ModelState.Remove("Reservation");
             ModelState.Remove("ListDepot");
-            if (ModelState.IsValid)
+
+
+                var result1 = await AlreadyExist<Forfait>("https://localhost:7204/api/Loueur/AlreadyExistForfait/", forfait);
+                if (result1 is BadRequestResult)
+                {
+                    CustomError oError = new CustomError(6);
+                    throw oError;
+                }
+
+
+                if (ModelState.IsValid)
             {
                 var result = await PostRequest("https://localhost:7204/api/Loueur/PostForfait/", forfait);
                 if (result is BadRequestResult)
