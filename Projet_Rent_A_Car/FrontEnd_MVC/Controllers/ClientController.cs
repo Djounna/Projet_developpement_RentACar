@@ -129,7 +129,6 @@ namespace FrontEnd_MVC.Controllers
         {
             try
             {
-
                 var result1 = await AlreadyExist<Client>("https://localhost:7204/api/Client/AlreadyExistClient/", client);
                 if (result1 is BadRequestResult)
                 {
@@ -166,9 +165,6 @@ namespace FrontEnd_MVC.Controllers
                 ViewBag.Error = oError.ErrorMessage;
                 return View("CreateClient", client);
             }
-
-
-            
         }
 
         public IActionResult ClientConnection() 
@@ -265,6 +261,8 @@ namespace FrontEnd_MVC.Controllers
         [HttpPost]
         public async Task<IActionResult> PostReservation(Reservation Reservation)
         {
+            try {
+
             Reservation.DateReservation = DateTime.Now;
 
             // Détermination automatique du forfait sur base des dépots.
@@ -323,11 +321,34 @@ namespace FrontEnd_MVC.Controllers
             ModelState.Remove("ListDepotRetour");
             ModelState.Remove("ListVoitureDisponible");
 
+            if (!ModelState.IsValid)
+            {
+                CustomError oError = new CustomError(8);
+                throw oError;
+            }
+
             if (ModelState.IsValid)
             {
                 await PostRequest("https://localhost:7204/api/Client/PostReservation/", Reservation);
             }
             return RedirectToAction(nameof(HomeClient));
+
+            }
+
+            catch(CustomError oError) // Test en cours
+            {
+                ViewBag.Error = oError.ErrorMessage;
+                //ViewBag.Idclient = Reservation.Idclient;
+                return View("HomeClient");            //"EffectuerReservation",Reservation);
+            }
+            catch (Exception ex) // Test en cours
+            {
+                CustomError oError = new CustomError(4);
+                ViewBag.Error = oError.ErrorMessage;
+                return View("HomeClient");
+
+            }
+
         }
 
 

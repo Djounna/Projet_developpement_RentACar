@@ -24,9 +24,6 @@
                 <input asp-for="DateDepart" class="form-control" />
                 <span asp-validation-for="DateDepart" class="text-danger"></span>
             </div>
-
-
-
             <div hidden="hidden" class="form-group">
                 <label asp-for="Idreservation" class="control-label"></label>
                 <input asp-for="Idreservation" class="form-control" />
@@ -85,7 +82,7 @@
                 <span asp-validation-for="IdpaysDepart" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Sauver" class="btn btn-success" /> | <a class="btn btn-dark" asp-action="Index">Retour à la liste</a>
+                <input type="submit" value="Sauver" class="btn btn-success" /> | <a class="btn btn-dark" asp-action="AfficheReservation">Retour à la liste</a>
             </div>
         </form>
     </div>

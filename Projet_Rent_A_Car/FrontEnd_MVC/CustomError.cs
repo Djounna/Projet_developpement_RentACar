@@ -42,7 +42,12 @@
 
                 case 7:  // Erreur client inexistant;
                     ErrorId = 7;
-                    ErrorMessage = "(7) Oups adresse mail incorrecte";
+                    ErrorMessage = "(7) Oups, adresse mail incorrecte";
+                    break;
+
+                case 8:  // Erreur client inexistant;
+                    ErrorId = 8;
+                    ErrorMessage = "(8) Les dates mentionnées ne sont pas correctes, nous vous prions de recommencer votre réservation";
                     break;
 
                 default:

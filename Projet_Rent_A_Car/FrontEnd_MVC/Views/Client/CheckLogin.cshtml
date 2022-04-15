@@ -4,9 +4,9 @@
 }
 
 <script>
-    Let data= @Html.DisplayFor(modelItem => modelItem.Idclient)
-    sessionStorage.setItem('Idclient', 'data')
-    console.log(sessionStorage.getItem('Idclient'))
+    Let data= @Model.Idclient;
+    sessionStorage.setItem('Idclient', data);
+    console.log(sessionStorage.getItem('Idclient'));
 </script>
 <div class="text-center">
     <h1 class="display-4">Bienvenue @Html.DisplayFor(modelItem => modelItem.Nom) @Html.DisplayFor(modelItem => modelItem.Prenom) </h1>

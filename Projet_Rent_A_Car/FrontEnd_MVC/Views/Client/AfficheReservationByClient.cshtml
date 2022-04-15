@@ -15,9 +15,10 @@ table{
 
 <h1>Mon historique de réservations</h1>
 
-<p>
+@*<p>
     <a class="btn btn-light" asp-action="EffectuerReservation">Effectuer une nouvelle réservation</a>
-</p>
+</p>*@
+
 <table id="datatable" class="table">
     <thead>
         <tr>
@@ -133,6 +134,8 @@ table{
 }
     </tbody>
 </table>
+
+<div><a style="margin-top:5px" class="btn btn-dark" asp-action="HomeCLient">Retour au menu</a></div>
 
 
 @section Scripts
