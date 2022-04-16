@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace FrontEnd_MVC.Models
 {
@@ -22,7 +20,8 @@ namespace FrontEnd_MVC.Models
 
         public virtual ICollection<Ville> Ville { get; set; }
 
+        [Display(Name = "Prix au km")]
         public virtual Prix Price { get; set; }
-      
+
     }
 }

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Models;
+﻿using Models;
 
 namespace DataAccessLayer
 {
@@ -14,16 +9,16 @@ namespace DataAccessLayer
         string[] tabVilleBE = new string[] { "Louvain", "Namur", "Bruges", "Anderlecht", "Schaerbeek", "Ville de Bruxelles", "Liège", "Charleroi", "Gand" };
         string[] tabVilleFR = new string[] { "Lille", "Bordeaux", "Strasbourg", "Montpellier", "Nantes", "Nice", "Toulouse", "Lyon", "Marseille", "Paris" };
         string[] tabVilleIT = new string[] { "Catane", "Bari", "Florence", "Bologne", "Gênes", "Palerme", "Turin", "Naples", "Milan", "Rome" };
-        string[] tabVilleAL = new string[] { "Leipzig", "Essen","Dortmund","Düsseldorf","Stuttgart","Francfort-sur-le-Main","Cologne","Munich","Hambourg","Berlin"};
-        string[] tabVilleES = new string[] { "Palma de Majorque", "Murcie","Las Palmas de Gran Canaria","Saragosse","Malaga","Bilbao","Valence","Séville","Barcelone","Madrid"};
-        string[] tabNot = new string[] {"Luxe","Poubelle","SUV","Familiale","Citadine","Campagnarde","Roule-a-peine","Sport","Tank","Fullspeed" };
+        string[] tabVilleAL = new string[] { "Leipzig", "Essen", "Dortmund", "Düsseldorf", "Stuttgart", "Francfort-sur-le-Main", "Cologne", "Munich", "Hambourg", "Berlin" };
+        string[] tabVilleES = new string[] { "Palma de Majorque", "Murcie", "Las Palmas de Gran Canaria", "Saragosse", "Malaga", "Bilbao", "Valence", "Séville", "Barcelone", "Madrid" };
+        string[] tabNot = new string[] { "Luxe", "Poubelle", "SUV", "Familiale", "Citadine", "Campagnarde", "Roule-a-peine", "Sport", "Tank", "Fullspeed" };
         List<string> listdep = new List<string>();
-        string[] tabMarque = new string[] {"Peugeot","Audi","BMW","Volvo","Ford","Volkswagen","Renault","MINI","Skoda","Fiat","Tesla"};
+        string[] tabMarque = new string[] { "Peugeot", "Audi", "BMW", "Volvo", "Ford", "Volkswagen", "Renault", "MINI", "Skoda", "Fiat", "Tesla" };
 
         public void generatefirstpart()
         {
-                       
-           
+
+
 
             listdep.AddRange(tabVilleBE);
             listdep.AddRange(tabVilleFR);
@@ -37,22 +32,22 @@ namespace DataAccessLayer
                 Pays p = new Pays();
                 p.Nom = pays;
                 dal.InsertOrUpdate(p);
-                
+
             }
             #endregion
 
             #region Ville
             // Data pour ville
-            
+
             foreach (string ville in tabVilleBE)
             {
                 Ville v = new Ville();
                 v.Idpays = dal.dbcontext.Pays.Where(r => r.Nom == "Belgique").Select(s => s.Idpays).FirstOrDefault();
-                v.Nom = ville;              
+                v.Nom = ville;
                 dal.InsertOrUpdate(v);
             }
 
-            
+
             foreach (string ville in tabVilleFR)
             {
                 Ville v = new Ville();
@@ -61,7 +56,7 @@ namespace DataAccessLayer
                 dal.InsertOrUpdate(v);
             }
 
-            
+
             foreach (string ville in tabVilleIT)
             {
                 Ville v = new Ville();
@@ -70,7 +65,7 @@ namespace DataAccessLayer
                 dal.InsertOrUpdate(v);
             }
 
-            
+
             foreach (string ville in tabVilleAL)
             {
                 Ville v = new Ville();
@@ -79,7 +74,7 @@ namespace DataAccessLayer
                 dal.InsertOrUpdate(v);
             }
 
-            
+
             foreach (string ville in tabVilleES)
             {
                 Ville v = new Ville();
@@ -91,24 +86,24 @@ namespace DataAccessLayer
             #endregion
 
             #region Notoriété
-            
-            double nb1=0;
-            int nb2=0;
+
+            double nb1 = 0;
+            int nb2 = 0;
             List<double> lstcoef = new();
             for (int j = 0; j < 60; j++)
             {
                 Random rnd = new Random();
-                nb1 =rnd.NextDouble();
-                nb2 = rnd.Next(1,3);
-                lstcoef.Add(Math.Round(nb2 + nb1,2));
-            }         
+                nb1 = rnd.NextDouble();
+                nb2 = rnd.Next(1, 3);
+                lstcoef.Add(Math.Round(nb2 + nb1, 2));
+            }
 
             foreach (string not in tabNot)
             {
                 Random rnd = new Random();
                 Notoriete n = new();
                 n.Libelle = not;
-                nb2= rnd.Next(0, 60);
+                nb2 = rnd.Next(0, 60);
                 n.CoefficientMultiplicateur = (decimal)lstcoef[nb2];
                 dal.InsertOrUpdate(n);
             }
@@ -140,15 +135,15 @@ namespace DataAccessLayer
             foreach (string dep in listdep)
             {
                 Depot d = new();
-                d.Idville = dal.dbcontext.Ville.Where(r => r.Nom == dep).Select(s => s.Idville).FirstOrDefault();              
+                d.Idville = dal.dbcontext.Ville.Where(r => r.Nom == dep).Select(s => s.Idville).FirstOrDefault();
                 dal.InsertOrUpdate(d);
             }
 
             #endregion
 
             #region Voiture
-            
-            for (int j = 0; j < 5001; j++)
+
+            for (int j = 0; j < 200; j++)
             {
                 int id = 0;
                 int nb3 = 0;
@@ -162,15 +157,15 @@ namespace DataAccessLayer
                 voiture.Marque = tabMarque[nb2];
                 nb2 = rnd.Next(0, 49);
 
-                id = dal.dbcontext.Ville.Where(r => r.Nom == listdep[nb2]).Select(s => s.Idville).FirstOrDefault(); 
-                voiture.Iddepot=dal.dbcontext.Depot.Where(r=>r.Idville==id).Select(s => s.Iddepot).FirstOrDefault();
+                id = dal.dbcontext.Ville.Where(r => r.Nom == listdep[nb2]).Select(s => s.Idville).FirstOrDefault();
+                voiture.Iddepot = dal.dbcontext.Depot.Where(r => r.Idville == id).Select(s => s.Iddepot).FirstOrDefault();
                 nb2 = rnd.Next(0, 10);
-                voiture.Idnotoriete= dal.dbcontext.Notoriete.Where(r => r.Libelle == tabNot[nb2]).Select(s => s.Idnotoriete).FirstOrDefault();
-                nb3 = rnd.Next(65,91);
-                nb4 = rnd.Next(65,91);
-                nb5 = rnd.Next(65,91);
-                nb6 = rnd.Next(1,3);
-                nb7 = rnd.Next(100,1000);
+                voiture.Idnotoriete = dal.dbcontext.Notoriete.Where(r => r.Libelle == tabNot[nb2]).Select(s => s.Idnotoriete).FirstOrDefault();
+                nb3 = rnd.Next(65, 91);
+                nb4 = rnd.Next(65, 91);
+                nb5 = rnd.Next(65, 91);
+                nb6 = rnd.Next(1, 3);
+                nb7 = rnd.Next(100, 1000);
 
                 char a = (char)nb3;
                 char b = (char)nb4;
@@ -181,7 +176,7 @@ namespace DataAccessLayer
             }
             #endregion
 
-            
+
         }
 
         public void generateSecondpart()
@@ -197,20 +192,20 @@ namespace DataAccessLayer
             {
                 int nb1 = 0;
                 int nb2 = 0;
-                int nb3=0;
+                int nb3 = 0;
                 Client c = new();
 
                 Random rnd = new Random();
-                nb1=rnd.Next(0,5);
+                nb1 = rnd.Next(0, 5);
                 nb2 = rnd.Next(0, 200);
                 nb3 = rnd.Next(0, 100);
 
                 c.Prenom = lstprenom[nb2];
                 c.Nom = lstnom[nb3];
-                c.Mail = c.Prenom +"."+c.Nom + lstendmail[nb1];
+                c.Mail = c.Prenom + "." + c.Nom + lstendmail[nb1];
 
-                    dal.InsertOrUpdate(c);
-              
+                dal.InsertOrUpdate(c);
+
 
             }
 
@@ -219,7 +214,7 @@ namespace DataAccessLayer
 
             #region forfait
 
-            
+
             List<int> listIdDep = dal.dbcontext.Depot.Select(s => s.Iddepot).ToList();
             for (int i = 0; i < 50; i++)
             {
@@ -230,18 +225,18 @@ namespace DataAccessLayer
                 int mois = 0;
                 int jour = 0;
                 Forfait f = new();
-                
+
                 Random rnd = new Random();
-                nb1 = rnd.Next(0, listIdDep.Count()-1);
-                nb2 = rnd.Next(0, listIdDep.Count()-1);
-                prix = rnd.Next(100,1000);
+                nb1 = rnd.Next(0, listIdDep.Count() - 1);
+                nb2 = rnd.Next(0, listIdDep.Count() - 1);
+                prix = rnd.Next(100, 1000);
                 f.Iddepot1 = listIdDep[nb1];
                 f.Iddepot2 = listIdDep[nb2];
-                annee = rnd.Next(2010,2023);
+                annee = rnd.Next(2010, 2023);
                 mois = rnd.Next(1, 13);
                 jour = rnd.Next(1, 30);
 
-                if (mois==2 && jour >28)
+                if (mois == 2 && jour > 28)
                     jour = 27;
 
                 string date = jour.ToString() + "/" + mois.ToString() + "/" + annee.ToString();
@@ -261,14 +256,14 @@ namespace DataAccessLayer
         {
             #region reservation
 
-            
+
             List<int> listIdClient = dal.dbcontext.Client.Select(s => s.Idclient).ToList();
             List<int> listIdvoit = dal.dbcontext.Voiture.Select(s => s.Idvoiture).ToList();
             List<int> listIdDepdeb = dal.dbcontext.Depot.Select(s => s.Iddepot).ToList();
             List<int> listIDForfait = dal.dbcontext.Forfait.Select(s => s.Idforfait).ToList();
 
 
-            for (int i = 0; i < 200; i++)
+            for (int i = 0; i < 100; i++)
             {
                 Reservation reservation = new Reservation();
                 int forfait = 0;
@@ -283,13 +278,13 @@ namespace DataAccessLayer
                     reservation.Idforfait = idforfait;
                     int iddepot1 = dal.dbcontext.Forfait.Where(r => r.Idforfait == idforfait).Select(s => s.Iddepot1).SingleOrDefault();
                     int iddepot2 = dal.dbcontext.Forfait.Where(r => r.Idforfait == idforfait).Select(s => s.Iddepot2).SingleOrDefault();
-                    reservation.IddepotDepart=iddepot1;
-                    reservation.IddepotRetour=iddepot2;
+                    reservation.IddepotDepart = iddepot1;
+                    reservation.IddepotRetour = iddepot2;
 
                 }
                 else
                 {
-                    
+
                     reservation.IddepotDepart = listIdDepdeb[rnd.Next(0, listIdDepdeb.Count())];
                     if (reservation.IddepotDepart % 5 != 0)
                         reservation.IddepotRetour = listIdDepdeb[rnd.Next(0, listIdDepdeb.Count())];
@@ -305,19 +300,19 @@ namespace DataAccessLayer
 
                 string date = jour.ToString() + "/" + mois.ToString() + "/" + annee.ToString();
                 reservation.DateDepart = Convert.ToDateTime(date);
-                if (mois - 1 != 0 && mois-1 !=2) 
+                if (mois - 1 != 0 && mois - 1 != 2)
                 {
                     string date2 = jour.ToString() + "/" + (mois - 1).ToString() + "/" + annee.ToString();
                     reservation.DateReservation = Convert.ToDateTime(date2);
                 }
                 else if (jour - 1 != 0)
                 {
-                    string date2 = (jour-1).ToString() + "/" + (mois).ToString() + "/" + annee.ToString();
+                    string date2 = (jour - 1).ToString() + "/" + (mois).ToString() + "/" + annee.ToString();
                     reservation.DateReservation = Convert.ToDateTime(date2);
                 }
                 else
                 {
-                    string date2 = (jour).ToString() + "/" + (mois).ToString() + "/" + (annee-1).ToString();
+                    string date2 = (jour).ToString() + "/" + (mois).ToString() + "/" + (annee - 1).ToString();
                     reservation.DateReservation = Convert.ToDateTime(date2);
                 }
 
@@ -333,12 +328,12 @@ namespace DataAccessLayer
                 }
                 else
                 {
-                    string date3 = (jour).ToString() + "/" + (mois).ToString() + "/" + (annee+1).ToString();
+                    string date3 = (jour).ToString() + "/" + (mois).ToString() + "/" + (annee + 1).ToString();
                     reservation.DateRetour = Convert.ToDateTime(date3);
                 }
                 int kmdep = 0;
                 int kmret = 0;
-                
+
                 kmdep = rnd.Next(2534, 65001);
                 reservation.KilometrageDepart = kmdep;
                 if (kmdep % 5 != 0)
@@ -351,7 +346,7 @@ namespace DataAccessLayer
                 decimal coef = dal.dbcontext.Notoriete.Where(r => r.Idnotoriete == idNot).Select(s => s.CoefficientMultiplicateur).SingleOrDefault();
                 reservation.CoefficientMultiplicateur = coef;
 
-                if(reservation.KilometrageRetour%10 == 0 && reservation.Idforfait != null)
+                if (reservation.KilometrageRetour % 10 == 0 && reservation.Idforfait != null)
                 {
                     reservation.Penalite = true;
                 }

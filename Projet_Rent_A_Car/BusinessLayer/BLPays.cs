@@ -5,7 +5,7 @@ using Models;
 namespace BusinessLayer
 {
     public class BLPays
-    {     
+    {
         private DalCommun dal = new();
         private DALPays dalpays = new();
         private DALVille dalVille = new();
@@ -14,9 +14,9 @@ namespace BusinessLayer
             return dal.SelectAll<Pays>();
         }
         public IEnumerable<SelectListItem> SelectAllPaysInList()
-        {          
+        {
             return dalpays.SelectAllPaysInList();
-        }       
+        }
         public Pays SelectPaysByID(int id)
         {
             return dal.SelectById<Pays>(id);
@@ -31,7 +31,7 @@ namespace BusinessLayer
         }
         public bool DeletePays(int id)
         {
-           return dal.Delete(SelectPaysByID(id));
+            return dal.Delete(SelectPaysByID(id));
         }
         public List<Ville> SelectVilleByPays(int idpays)
         {

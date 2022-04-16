@@ -1,12 +1,4 @@
-﻿using Models;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity.Core.Objects.DataClasses;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DataAccessLayer
+﻿namespace DataAccessLayer
 {
     public class DalCommun
     {
@@ -16,7 +8,7 @@ namespace DataAccessLayer
             dbcontext = new ProjetSGDBContext();
         }
 
-        public List<T> SelectAll <T>() where T : class // OK // Mettre des using ?
+        public List<T> SelectAll<T>() where T : class // OK // Mettre des using ?
         {
             try
             {
@@ -26,7 +18,7 @@ namespace DataAccessLayer
             catch (Exception ex)
             {
                 throw ex;
-            }        
+            }
         }
 
         //private static bool isActif(EntityObject o)  // Test Corentin, ne fonctionne pas actuellement. Problème avec la propriété qui n'est pas généralisable
@@ -53,19 +45,19 @@ namespace DataAccessLayer
         //    List<T> lstActif = dbcontext.Set<T>().Where(o => o.Inactif == true).ToList<T>();
         //    return lstActif;
         //}
-    
+
 
         public T SelectById<T>(int id) where T : class   // OK 
-        {        
-             try
+        {
+            try
             {
                 return dbcontext.Set<T>().Find(id);
-             }
+            }
             catch (Exception ex)
             {
                 throw ex;
             }
-        }  
+        }
 
         public bool InsertOrUpdate(object o)   // Ok 
         {
@@ -80,7 +72,7 @@ namespace DataAccessLayer
                 return false;
             }
         }
-        
+
         public bool Delete(object o) // Ok 
         {
             try

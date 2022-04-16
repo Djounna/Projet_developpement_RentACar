@@ -1,11 +1,6 @@
 ﻿using DataAccessLayer;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BusinessLayer
 {
@@ -23,19 +18,19 @@ namespace BusinessLayer
         }
         public bool InsertOrUpdateDepot(Depot depot)
         {
-           return dal.InsertOrUpdate(depot);
+            return dal.InsertOrUpdate(depot);
         }
         public bool DeleteDepot(int id)
         {
             return dal.Delete(SelectDepotByID(id));
         }
-        public List<Depot> SelectAllDepotInactif()  
+        public List<Depot> SelectAllDepotInactif()
         {
             return dalDepot.SelectAllDepotInactif();
         }
-        public List<Depot> SelectAllDepotActif()  
+        public List<Depot> SelectAllDepotActif()
         {
-           return dalDepot.SelectAllDepotActif();
+            return dalDepot.SelectAllDepotActif();
         }
         public Depot SelectDepotByIDVille(int id)
         {
@@ -53,12 +48,12 @@ namespace BusinessLayer
         }
 
 
-        
+
         public IEnumerable<SelectListItem> SelectAllDepotRetourByDepotDepartInList(int idDepotDepart)
         {
             return dalDepot.SelectAllDepotRetourByDepotDepartInList(idDepotDepart);
         }
-        
+
 
     }
 }

@@ -1,16 +1,11 @@
 ﻿using DataAccessLayer;
 using Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BusinessLayer
 {
     public class BLClient
     {
-        DALClient dalclient= new();
+        DALClient dalclient = new();
         DalCommun dal = new();
 
         public Client SelectClientById(int id)

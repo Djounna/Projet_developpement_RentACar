@@ -19,31 +19,25 @@
             @Html.DisplayNameFor(model => model.Idclient)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Idclient)
+            @Html.DisplayFor(model => model.IdclientNavigation.Nom) @Html.DisplayFor(model => model.IdclientNavigation.Prenom) 
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Idvoiture)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Idvoiture)
+            @Html.DisplayFor(model => model.IdvoitureNavigation.Marque)  @Html.DisplayFor(model => model.IdvoitureNavigation.Immatriculation)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.IddepotDepart)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IddepotDepart)
+            @Html.DisplayFor(model => model.IddepotDepartNavigation.IdvilleNavigation.Nom)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.IddepotRetour)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IddepotRetour)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Idforfait)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Idforfait)
+            @Html.DisplayFor(model => model.IddepotRetourNavigation.IdvilleNavigation.Nom)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.DateReservation)
@@ -75,6 +69,22 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.KilometrageRetour)
         </dd>
+        @if(Model.Idforfait ==null){
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.IddepotDepartNavigation.IdvilleNavigation.IdpaysNavigation.Price)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.IddepotDepartNavigation.IdvilleNavigation.IdpaysNavigation.Price.PrixKm)
+            </dd>
+        }else
+        {
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Idforfait)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.IdforfaitNavigation.Prix)
+            </dd>
+        }
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.CoefficientMultiplicateur)
         </dt>
@@ -91,13 +101,13 @@
             @Html.DisplayNameFor(model => model.IdpaysDepart)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdpaysDepart)
+            @Html.DisplayFor(model => model.IddepotDepartNavigation.IdvilleNavigation.IdpaysNavigation.Nom)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.IdpaysRetour)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdpaysRetour)
+            @Html.DisplayFor(model => model.IddepotRetourNavigation.IdvilleNavigation.IdpaysNavigation.Nom)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.PrixTotal)
@@ -109,5 +119,5 @@
 </div>
 <div>
     
-    <a class="btn btn-dark" asp-action="Index">Retour à la liste</a>
+    <a class="btn btn-dark" asp-action="AfficheReservationCloturees">Retour à la liste</a>
 </div>

@@ -1,9 +1,4 @@
 ﻿using Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccessLayer
 {
@@ -11,11 +6,11 @@ namespace DataAccessLayer
     {
         private DalCommun dal = new();
         public Client SelectClientByMail(string mail)
-        {          
+        {
             try
             {
-               return dal.dbcontext.Client.Where(x => x.Mail == mail).FirstOrDefault();
-                          
+                return dal.dbcontext.Client.Where(x => x.Mail == mail).FirstOrDefault();
+
             }
             catch (Exception ex)
             {
@@ -29,7 +24,7 @@ namespace DataAccessLayer
             {
                 return dal.dbcontext.Reservation.Where(r => r.Idclient == IdClient).ToList();
             }
-            catch(Exception ex) { throw ex; }
+            catch (Exception ex) { throw ex; }
         }
         public bool AlreadyExist(string nom, int id)
         {

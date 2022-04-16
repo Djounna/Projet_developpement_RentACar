@@ -16,6 +16,12 @@
         <form asp-action="CloseReservation">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
+            <div hidden="hidden" class="form-group">
+                <label asp-for="IdpaysDepart" class="control-label"></label>
+                <input asp-for="IdpaysDepart" value=@Model.IdpaysDepart class="form-control" />
+                <span asp-validation-for="IdpaysDepart" class="text-danger"></span>
+            </div>
+
              <div  class="form-group">
              @Html.LabelFor(x => Model.IdpaysRetour, htmlAttributes: new { @class = "control-label col-md-15" })
              <div class="col-md-35">

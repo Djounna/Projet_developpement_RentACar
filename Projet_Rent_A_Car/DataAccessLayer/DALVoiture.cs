@@ -1,10 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 
 namespace DataAccessLayer
@@ -42,9 +37,9 @@ namespace DataAccessLayer
 
         public List<Voiture> SelectAllVoitureInLocation()
         {
-           List<Reservation> listReservation = dalReservation.SelectAllLocationEnCours();
+            List<Reservation> listReservation = dalReservation.SelectAllLocationEnCours();
             List<Voiture> listVoiture = new();
-            foreach(Reservation res in listReservation)
+            foreach (Reservation res in listReservation)
             {
                 Voiture voit = dal.dbcontext.Voiture.Where(voiture => voiture.Idvoiture == res.Idvoiture).SingleOrDefault();
                 if (!listVoiture.Contains(voit))
@@ -55,7 +50,7 @@ namespace DataAccessLayer
             return listVoiture;
         }
 
-       
+
         // OK
         public IEnumerable<SelectListItem> SelectAllVoitureDisponibleInList(int IdDepot, DateTime DateLocation)
         {
@@ -70,7 +65,7 @@ namespace DataAccessLayer
             //       on reservation.Idvoiture equals voiture.Idvoiture select voiture; //where reservation.DateRetour < DateLocation select voiture;
 
             //condition à mettre si pas de voiture
-            List < SelectListItem > lstVoiture = dal.dbcontext.Reservation.Where(r => r.DateRetour < DateLocation && r.KilometrageRetour == null).Join(
+            List<SelectListItem> lstVoiture = dal.dbcontext.Reservation.Where(r => r.DateRetour < DateLocation && r.KilometrageRetour == null).Join(
                 lstVoit, r => r.Idvoiture, v => v.Idvoiture, (r, v) =>
                 new SelectListItem
                 {

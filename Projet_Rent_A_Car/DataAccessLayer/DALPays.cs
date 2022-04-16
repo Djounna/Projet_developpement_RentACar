@@ -1,12 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
 
 
 namespace DataAccessLayer
@@ -32,11 +24,11 @@ namespace DataAccessLayer
                            Value = n.Idpays.ToString(),
                            Text = n.Nom,
                        }).ToList();
-                var paysIntro= new SelectListItem()
-                        {
-                            Value = null,
-                            Text = "--- select pays ---"
-                        };
+                var paysIntro = new SelectListItem()
+                {
+                    Value = null,
+                    Text = "--- select pays ---"
+                };
                 lstpays.Insert(0, paysIntro);
                 return new SelectList(lstpays, "Value", "Text");
             }

@@ -1,10 +1,6 @@
-﻿
-using Models;
-using System.Data.Entity.Infrastructure;
-
-namespace ErrorManagement
+﻿namespace ErrorManagement
 {
-    public class CustomError:ApplicationException
+    public class CustomError : ApplicationException
     {
         private int _ErrorId;
         private string _ErrorMessage;
@@ -18,6 +14,6 @@ namespace ErrorManagement
             }
         }
 
-        
+
     }
 }

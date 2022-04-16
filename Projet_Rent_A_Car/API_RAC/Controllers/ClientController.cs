@@ -1,5 +1,4 @@
 ﻿using BusinessLayer;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Models;
@@ -67,7 +66,7 @@ namespace API_RAC.Controllers
             return Ok();
         }
 
-        
+
         [Route("DeleteReservation/{id}")] // OK
         [HttpDelete]
         public ActionResult DeleteReservation(int id)
@@ -83,7 +82,7 @@ namespace API_RAC.Controllers
         {
             return bldepot.SelectAllDepotByPaysInList(idPays);
         }
-        
+
         [Route("GetAllDepotRetourByDepotDepartInList/{idDepotDepart}")] // En cours 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -91,7 +90,7 @@ namespace API_RAC.Controllers
         {
             return bldepot.SelectAllDepotRetourByDepotDepartInList(idDepotDepart);
         }
-        
+
         [HttpGet]
         [Route("GetForfaitReservation/{idDepot1}/{idDepot2}")]
         public ActionResult<Forfait> SelectForfaitReservation(int idDepot1, int idDepot2)
@@ -99,7 +98,7 @@ namespace API_RAC.Controllers
             return Ok(blforfait.SelectForfaitReservation(idDepot1, idDepot2));
         }
 
-        [HttpGet] 
+        [HttpGet]
         [Route("GetAllVoitureDisponibleInList/{IdDepot}/{DateLocation}")]
         public IEnumerable<SelectListItem> SelectAllVoitureDisponibleInList(int IdDepot, string DateLocation)
         {
@@ -114,13 +113,13 @@ namespace API_RAC.Controllers
             return blclient.SelectAllReservationByClient(IdClient);
         }
 
-        
+
         [HttpGet]
         [Route("GetFactureReservation/{id}")]
         public decimal GetFactureReservation(int id)
         {
             Reservation reservation = blReservation.SelectReservationByID(id);
-            
+
 
             return blCalculPrix.PrixTotal(reservation);
         }

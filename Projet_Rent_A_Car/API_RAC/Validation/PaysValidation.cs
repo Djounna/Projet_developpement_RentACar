@@ -1,5 +1,4 @@
-﻿using DataAccessLayer;
-using FluentValidation;
+﻿using FluentValidation;
 using Models;
 using ProjetSGDBContext = DataAccessLayer.ProjetSGDBContext;
 

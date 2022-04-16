@@ -3,11 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
-using ServiceStack;
-using ServiceStack.Text;
-using System.Net.Http.Json;
-using System.Text;
-using System.Windows;
 
 namespace FrontEnd_MVC.Controllers
 {
@@ -19,7 +14,8 @@ namespace FrontEnd_MVC.Controllers
         {
             using (var httpClient = new HttpClient())
             {
-                try {
+                try
+                {
                     using (var response = await (httpClient.GetAsync(chemin)))
                     {
                         List<T> lst = new();
@@ -38,7 +34,8 @@ namespace FrontEnd_MVC.Controllers
         {
             using (var httpClient = new HttpClient())
             {
-                try {
+                try
+                {
                     using (var response = await (httpClient.GetAsync(chemin)))
                     {
 
@@ -99,7 +96,8 @@ namespace FrontEnd_MVC.Controllers
         {
             using (var httpClient = new HttpClient())
             {
-                try {
+                try
+                {
                     using (var response = await (httpClient.GetAsync(chemin)))
                     {
                         string apiResponse = await response.Content.ReadAsStringAsync();
@@ -117,19 +115,19 @@ namespace FrontEnd_MVC.Controllers
         {
             using (var httpClient = new HttpClient())
             {
-                    using (var response = await httpClient.PutAsJsonAsync(chemin ,getObject))
-                    {
+                using (var response = await httpClient.PutAsJsonAsync(chemin, getObject))
+                {
 
-                        if (response.IsSuccessStatusCode)
-                        {
-                            return Ok();
-                        }
+                    if (response.IsSuccessStatusCode)
+                    {
+                        return Ok();
                     }
-                    return BadRequest();                
-            }                      
+                }
+                return BadRequest();
+            }
         }
 
-        private async  Task<Reservation> GenererListe(Reservation reservation)
+        private async Task<Reservation> GenererListe(Reservation reservation)
         {
             reservation.ListPays = await GetEnumerableList("https://localhost:7204/api/Loueur/GetAllPaysInList/");
             reservation.ListDepotDepart = new List<SelectListItem>()
@@ -216,7 +214,7 @@ namespace FrontEnd_MVC.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> PostNotoriete([Bind("Libelle,CoefficientMultiplicateur")] Notoriete notoriete) 
+        public async Task<IActionResult> PostNotoriete([Bind("Libelle,CoefficientMultiplicateur")] Notoriete notoriete)
         {
             try
             {
@@ -227,7 +225,7 @@ namespace FrontEnd_MVC.Controllers
                 }
 
                 var result1 = await AlreadyExist<Notoriete>("https://localhost:7204/api/Loueur/AlreadyExistNotoriete/", notoriete);
-                if ( result1 is BadRequestResult) 
+                if (result1 is BadRequestResult)
                 {
                     CustomError oError = new CustomError(6);
                     throw oError;
@@ -240,7 +238,7 @@ namespace FrontEnd_MVC.Controllers
                         CustomError oError = new CustomError(3);
                         throw oError;
                     }
-                    return RedirectToAction(nameof(AfficheNotorieteActive)); 
+                    return RedirectToAction(nameof(AfficheNotorieteActive));
                 }
                 else
                 {
@@ -251,7 +249,7 @@ namespace FrontEnd_MVC.Controllers
             }
             catch (CustomError oError)
             {
-                ViewBag.Error = oError.ErrorMessage; 
+                ViewBag.Error = oError.ErrorMessage;
                 return View("CreateNotoriete", notoriete);
             }
             catch (Exception ex)
@@ -260,13 +258,14 @@ namespace FrontEnd_MVC.Controllers
                 ViewBag.Error = oError.ErrorMessage;
                 return View("CreateNotoriete", notoriete);
             }
-            
+
 
         }
         public async Task<IActionResult> EditNotoriete(int? id)
         {
-            try {
-                
+            try
+            {
+
                 Notoriete not = await GetRequestUnique<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteByID/" + id);
                 if (not == null)
                 {
@@ -281,12 +280,13 @@ namespace FrontEnd_MVC.Controllers
                 return View("HomeLoueur");
             }
 
-            
+
         }
 
-        public async Task<IActionResult> UpdateNotoriete([Bind("Idnotoriete,Libelle,CoefficientMultiplicateur,Inactif")] Notoriete notoriete) 
+        public async Task<IActionResult> UpdateNotoriete([Bind("Idnotoriete,Libelle,CoefficientMultiplicateur,Inactif")] Notoriete notoriete)
         {
-            try {
+            try
+            {
 
                 if (notoriete.CoefficientMultiplicateur <= 0 || notoriete.CoefficientMultiplicateur > 5)
                 {
@@ -302,7 +302,7 @@ namespace FrontEnd_MVC.Controllers
 
                 if (ModelState.IsValid)
                 {
-                   var result = await PutRequest("https://localhost:7204/api/Loueur/UpdateNotoriete/", notoriete);
+                    var result = await PutRequest("https://localhost:7204/api/Loueur/UpdateNotoriete/", notoriete);
                     if (result is BadRequestResult)
                     {
                         CustomError oError = new CustomError(3);
@@ -334,29 +334,29 @@ namespace FrontEnd_MVC.Controllers
 
 
 
-   /*     public async Task<IActionResult> deleteNotoriete(int? id)
-        {
-            try
-            {
+        /*     public async Task<IActionResult> deleteNotoriete(int? id)
+             {
+                 try
+                 {
 
-                Notoriete not = await GetRequestUnique<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteByID/" + id);
-                if (not == null)
-                {
-                    CustomError oError = new CustomError(5);
-                    throw oError;
-                }
-                return View(not);
-            }
-            catch (CustomError oError)
-            {
-                ViewBag.Error = oError.ErrorMessage;
-                return View("HomeLoueur");
-            }
+                     Notoriete not = await GetRequestUnique<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteByID/" + id);
+                     if (not == null)
+                     {
+                         CustomError oError = new CustomError(5);
+                         throw oError;
+                     }
+                     return View(not);
+                 }
+                 catch (CustomError oError)
+                 {
+                     ViewBag.Error = oError.ErrorMessage;
+                     return View("HomeLoueur");
+                 }
 
-        }*/
+             }*/
         [HttpPost, ActionName("Disable")]
         public async Task<IActionResult> DesactiverNotoriete(int id) //try catch ici ?
-        {          
+        {
             try
             {
 
@@ -379,8 +379,8 @@ namespace FrontEnd_MVC.Controllers
             {
                 ViewBag.Error = oError.ErrorMessage;
                 return View("HomeLoueur");
-            }                      
-            
+            }
+
         }
         [HttpPost, ActionName("Activate")]
         public async Task<IActionResult> ActiverNotoriete(int id) //try catch ici ?
@@ -431,7 +431,7 @@ namespace FrontEnd_MVC.Controllers
                 ViewBag.Error = oError.ErrorMessage;
                 return View("HomeLoueur");
             }
-            
+
         }
         public async Task<IActionResult> Activate(int? id) //try catch ici ?
         {
@@ -458,12 +458,12 @@ namespace FrontEnd_MVC.Controllers
             }
         }
 
-      /*  [HttpPost, ActionName("deleteNotoriete")]
-        public async Task<IActionResult> removeNotoriete(int id)//try catch ici ?
-        {
-            await DeleteRequest("https://localhost:7204/api/Loueur/DeleteNotoriete/" + id);
-            return RedirectToAction(nameof(AfficheNotorieteActive));
-        }*/
+        /*  [HttpPost, ActionName("deleteNotoriete")]
+          public async Task<IActionResult> removeNotoriete(int id)//try catch ici ?
+          {
+              await DeleteRequest("https://localhost:7204/api/Loueur/DeleteNotoriete/" + id);
+              return RedirectToAction(nameof(AfficheNotorieteActive));
+          }*/
         #endregion
         // ******************************************************** Voiture *************************************************************************
         #region Voiture
@@ -473,7 +473,8 @@ namespace FrontEnd_MVC.Controllers
             try
             {
                 List<Voiture> lst = await GetRequest<Voiture>("https://localhost:7204/api/Loueur/GetVoiture/");
-                if (lst != null) { 
+                if (lst != null)
+                {
 
                     foreach (var item in lst)
                     {
@@ -519,7 +520,7 @@ namespace FrontEnd_MVC.Controllers
                 ViewBag.Error = oError.ErrorMessage;
                 return View("HomeLoueur");
             }
-            
+
         }
         [HttpGet]
         public async Task<IActionResult> AfficheVoitureInactive()
@@ -535,7 +536,7 @@ namespace FrontEnd_MVC.Controllers
                         item.IdnotorieteNavigation = await GetRequestUnique<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteByID/" + item.Idnotoriete);
                         item.IddepotNavigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + item.Iddepot);
                         item.IddepotNavigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + item.IddepotNavigation.Idville);
-                    }                 
+                    }
                 }
                 return View(lst);
             }
@@ -616,7 +617,7 @@ namespace FrontEnd_MVC.Controllers
             {
 
                 Voiture voiture = await GetRequestUnique<Voiture>("https://localhost:7204/api/Loueur/GetVoitureByID/" + id);
-    
+
                 if (voiture == null)
                 {
                     CustomError oError = new CustomError(5);
@@ -636,7 +637,8 @@ namespace FrontEnd_MVC.Controllers
 
         public async Task<IActionResult> UpdateVoiture([Bind("Idvoiture,Idnotoriete,Iddepot,Immatriculation,Marque")] Voiture voiture)
         {
-            try { 
+            try
+            {
                 voiture.IddepotNavigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + voiture.Iddepot);
                 voiture.IdnotorieteNavigation = await GetRequestUnique<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteByID/" + voiture.Idnotoriete);
                 voiture.IddepotNavigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + voiture.IddepotNavigation.Idville);
@@ -653,46 +655,46 @@ namespace FrontEnd_MVC.Controllers
                     throw oError;
                 }
                 if (ModelState.IsValid)
+                {
+                    var result = await PutRequest("https://localhost:7204/api/Loueur/UpdateVoiture/", voiture);
+                    if (result is BadRequestResult)
                     {
-                        var result = await PutRequest("https://localhost:7204/api/Loueur/UpdateVoiture/", voiture);
-                        if (result is BadRequestResult)
-                        {
-                            CustomError oError = new CustomError(3);
-                            throw oError;
-                        }
-                        return RedirectToAction(nameof(AfficheVoitureActive));
-                    }
-                    else
-                    {
-                        CustomError oError = new CustomError(2);
+                        CustomError oError = new CustomError(3);
                         throw oError;
                     }
+                    return RedirectToAction(nameof(AfficheVoitureActive));
                 }
-                catch (CustomError oError)
+                else
                 {
-                    ViewBag.Error = oError.ErrorMessage;
-                    voiture.ListNotoriete = await GetEnumerableList("https://localhost:7204/api/Loueur/GetAllNotorieteInList/");
-                    voiture.ListDepot = await GetEnumerableList("https://localhost:7204/api/Loueur/GetAllDepotInList/");
-                    return View("EditVoiture", voiture);
-                }
-
-                catch (Exception ex)
-                {
-                    CustomError oError = new CustomError(ex.Message);
-                    ViewBag.Error = oError.ErrorMessage;
-                    voiture.ListNotoriete = await GetEnumerableList("https://localhost:7204/api/Loueur/GetAllNotorieteInList/");
-                    voiture.ListDepot = await GetEnumerableList("https://localhost:7204/api/Loueur/GetAllDepotInList/");
-                    return View("EditVoiture", voiture);
+                    CustomError oError = new CustomError(2);
+                    throw oError;
                 }
             }
-      /*  public async Task<IActionResult> deleteVoiture(int? id)
-        {
-            if (id == null)
+            catch (CustomError oError)
             {
-                return NotFound();
+                ViewBag.Error = oError.ErrorMessage;
+                voiture.ListNotoriete = await GetEnumerableList("https://localhost:7204/api/Loueur/GetAllNotorieteInList/");
+                voiture.ListDepot = await GetEnumerableList("https://localhost:7204/api/Loueur/GetAllDepotInList/");
+                return View("EditVoiture", voiture);
             }
-            return View(await GetRequestUnique<Voiture>("https://localhost:7204/api/Loueur/GetVoitureByID/" + id));
-        }*/
+
+            catch (Exception ex)
+            {
+                CustomError oError = new CustomError(ex.Message);
+                ViewBag.Error = oError.ErrorMessage;
+                voiture.ListNotoriete = await GetEnumerableList("https://localhost:7204/api/Loueur/GetAllNotorieteInList/");
+                voiture.ListDepot = await GetEnumerableList("https://localhost:7204/api/Loueur/GetAllDepotInList/");
+                return View("EditVoiture", voiture);
+            }
+        }
+        /*  public async Task<IActionResult> deleteVoiture(int? id)
+          {
+              if (id == null)
+              {
+                  return NotFound();
+              }
+              return View(await GetRequestUnique<Voiture>("https://localhost:7204/api/Loueur/GetVoitureByID/" + id));
+          }*/
 
         [HttpPost, ActionName("DisableVoiture")]
         public async Task<IActionResult> DesactiverVoiture(int id)
@@ -749,9 +751,10 @@ namespace FrontEnd_MVC.Controllers
 
         public async Task<IActionResult> DisableVoiture(int? id)
         {
-            try {             
+            try
+            {
                 var voiture = await GetRequestUnique<Voiture>("https://localhost:7204/api/Loueur/GetVoitureByID/" + id);
-                
+
                 if (voiture == null)
                 {
                     CustomError oError = new CustomError(5);
@@ -761,18 +764,18 @@ namespace FrontEnd_MVC.Controllers
                 voiture.IddepotNavigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + voiture.IddepotNavigation.Idville);
                 voiture.IdnotorieteNavigation = await GetRequestUnique<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteByID/" + voiture.Idnotoriete);
                 return View(voiture);
-                }
-                catch (CustomError oError)
-                {
-                    ViewBag.Error = oError.ErrorMessage;
-                    return View("HomeLoueur");
-                }
-                catch (Exception ex)
-                {
-                    CustomError oError = new CustomError(4);
-                    ViewBag.Error = oError.ErrorMessage;
-                    return View("HomeLoueur");
-                }
+            }
+            catch (CustomError oError)
+            {
+                ViewBag.Error = oError.ErrorMessage;
+                return View("HomeLoueur");
+            }
+            catch (Exception ex)
+            {
+                CustomError oError = new CustomError(4);
+                ViewBag.Error = oError.ErrorMessage;
+                return View("HomeLoueur");
+            }
         }
         public async Task<IActionResult> ActivateVoiture(int? id)
         {
@@ -801,14 +804,14 @@ namespace FrontEnd_MVC.Controllers
                 ViewBag.Error = oError.ErrorMessage;
                 return View("HomeLoueur");
             }
-        }   
+        }
 
-     /*   [HttpPost, ActionName("deleteVoiture")]
-        public async Task<IActionResult> removeVoiture(int id)
-        {
-            await DeleteRequest("https://localhost:7204/api/Loueur/DeleteVoiture/" + id);
-            return RedirectToAction(nameof(AfficheVoitureActive));
-        }*/
+        /*   [HttpPost, ActionName("deleteVoiture")]
+           public async Task<IActionResult> removeVoiture(int id)
+           {
+               await DeleteRequest("https://localhost:7204/api/Loueur/DeleteVoiture/" + id);
+               return RedirectToAction(nameof(AfficheVoitureActive));
+           }*/
 
         #endregion
         // ******************************************************** Pays ****************************************************************************
@@ -871,7 +874,7 @@ namespace FrontEnd_MVC.Controllers
                         throw oError;
                     }
                     return RedirectToAction(nameof(AffichePays));
-                }                
+                }
                 else
                 {
                     CustomError oError = new CustomError(2);
@@ -910,14 +913,15 @@ namespace FrontEnd_MVC.Controllers
                 ViewBag.Error = oError.ErrorMessage;
                 return View("HomeLoueur");
             }
-            
+
 
         }
 
         [HttpPost]
         public async Task<IActionResult> UpdatePays([Bind("Idpays,Nom")] Pays pays)
         {
-            try{
+            try
+            {
                 ModelState.Remove("Price");
                 var result1 = await AlreadyExist<Pays>("https://localhost:7204/api/Loueur/AlreadyExistPays/", pays);
                 if (result1 is BadRequestResult)
@@ -927,7 +931,7 @@ namespace FrontEnd_MVC.Controllers
                 }
                 if (ModelState.IsValid)
                 {
-                    var result= await PutRequest("https://localhost:7204/api/Loueur/UpdatePays/", pays);
+                    var result = await PutRequest("https://localhost:7204/api/Loueur/UpdatePays/", pays);
                     if (result is BadRequestResult)
                     {
                         CustomError oError = new CustomError(3);
@@ -953,19 +957,20 @@ namespace FrontEnd_MVC.Controllers
                 ViewBag.Error = oError.ErrorMessage;
                 return View("EditPays", pays);
             }
-        
+
         }
 
         public async Task<IActionResult> deletePays(int? id)
         {
-            try {
+            try
+            {
                 if (id == null)
                 {
                     CustomError oError = new CustomError(5);
                     throw oError;
-                }       
-               return View(await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + id));
-            }               
+                }
+                return View(await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + id));
+            }
             catch (CustomError oError)
             {
                 ViewBag.Error = oError.ErrorMessage;
@@ -991,9 +996,9 @@ namespace FrontEnd_MVC.Controllers
             {
                 ViewBag.Error = oError.ErrorMessage;
                 Pays p = await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + id);
-                return View("deletePays",p);
+                return View("deletePays", p);
             }
-            
+
         }
         #endregion
         // ******************************************************** Prix ****************************************************************************
@@ -1073,9 +1078,9 @@ namespace FrontEnd_MVC.Controllers
         public async Task<IActionResult> EditPrix(int? id)
         {
             try
-            {                
+            {
                 Prix prix = await GetRequestUnique<Prix>("https://localhost:7204/api/Loueur/GetPrixByID/" + id);
-                
+
                 if (prix == null)
                 {
                     CustomError oError = new CustomError(5);
@@ -1091,15 +1096,15 @@ namespace FrontEnd_MVC.Controllers
             }
 
         }
-        
+
         public async Task<IActionResult> deletePrix(int? id)
         {
-            try 
-            { 
+            try
+            {
                 if (id == null)
                 {
-                CustomError oError = new CustomError(5);
-                throw oError;
+                    CustomError oError = new CustomError(5);
+                    throw oError;
                 }
                 Prix prix = await GetRequestUnique<Prix>("https://localhost:7204/api/Loueur/GetPrixByID/" + id);
                 prix.IdpaysNavigation = await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + prix.Idpays);
@@ -1107,16 +1112,16 @@ namespace FrontEnd_MVC.Controllers
             }
             catch (CustomError oError)
             {
-                    ViewBag.Error = oError.ErrorMessage;
-                    return View("HomeLoueur");
+                ViewBag.Error = oError.ErrorMessage;
+                return View("HomeLoueur");
             }
 
         }
         [HttpPost, ActionName("deletePrix")]
         public async Task<IActionResult> removePrix(int id)
         {
-            try 
-            { 
+            try
+            {
 
                 Prix prix = await GetRequestUnique<Prix>("https://localhost:7204/api/Loueur/GetPrixByID/" + id);
                 prix.IdpaysNavigation = await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + prix.Idpays);
@@ -1150,7 +1155,7 @@ namespace FrontEnd_MVC.Controllers
                 CustomError oError = new CustomError(ex.Message);
                 ViewBag.Error = oError.ErrorMessage;
                 return View("deletePrix", id);
-                
+
             }
         }
         #endregion
@@ -1168,7 +1173,7 @@ namespace FrontEnd_MVC.Controllers
                     {
                         item.IdpaysNavigation = await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + item.Idpays);
                         item.Depot.Add(await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByIDVille/" + item.Idville));
-                    }                 
+                    }
                 }
                 return View(lst);
             }
@@ -1259,10 +1264,11 @@ namespace FrontEnd_MVC.Controllers
         }
         public async Task<IActionResult> UpdateVille([Bind("Idville, Idpays, Nom")] Ville ville)
         {
-            try { 
-            ville.IdpaysNavigation = await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + ville.Idpays);
-            ModelState.Remove("IdpaysNavigation");
-            ModelState.Remove("ListPays");
+            try
+            {
+                ville.IdpaysNavigation = await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + ville.Idpays);
+                ModelState.Remove("IdpaysNavigation");
+                ModelState.Remove("ListPays");
                 var result1 = await AlreadyExist<Ville>("https://localhost:7204/api/Loueur/AlreadyExistVille/", ville);
                 if (result1 is BadRequestResult)
                 {
@@ -1270,15 +1276,15 @@ namespace FrontEnd_MVC.Controllers
                     throw oError;
                 }
                 if (ModelState.IsValid)
-            {
-                var result = await PutRequest("https://localhost:7204/api/Loueur/UpdateVille/", ville);
-                if (result is BadRequestResult)
                 {
-                    CustomError oError = new CustomError(3);
-                    throw oError;
+                    var result = await PutRequest("https://localhost:7204/api/Loueur/UpdateVille/", ville);
+                    if (result is BadRequestResult)
+                    {
+                        CustomError oError = new CustomError(3);
+                        throw oError;
+                    }
+                    return RedirectToAction(nameof(AfficheVille));
                 }
-                return RedirectToAction(nameof(AfficheVille));
-            }
                 else
                 {
                     CustomError oError = new CustomError(2);
@@ -1379,7 +1385,7 @@ namespace FrontEnd_MVC.Controllers
                     foreach (var item in lst)
                     {
                         item.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + item.Idville);
-                        item.ForfaitIddepot1Navigation.Add(await GetRequestUnique<Forfait>("https://localhost:7204/api/Loueur/GetForfaitByIDDepot/" + item.Iddepot));                       
+                        item.ForfaitIddepot1Navigation.Add(await GetRequestUnique<Forfait>("https://localhost:7204/api/Loueur/GetForfaitByIDDepot/" + item.Iddepot));
                     }
                     return View(lst);
                 }
@@ -1463,8 +1469,8 @@ namespace FrontEnd_MVC.Controllers
             }
 
         }
-        
-      public async Task<IActionResult> UpdateDepot(Depot depot, bool Inactif)
+
+        public async Task<IActionResult> UpdateDepot(Depot depot, bool Inactif)
         {
             try
             {
@@ -1492,9 +1498,9 @@ namespace FrontEnd_MVC.Controllers
             {
                 ViewBag.Error = oError.ErrorMessage;
                 depot.ListVille = await GetEnumerableList("https://localhost:7204/api/Loueur/GetAllVilleInList/");
-                if (Inactif==true)
+                if (Inactif == true)
                     return View("DisableDepot", depot);
-                else 
+                else
                     return View("ActivateDepot", depot);
             }
 
@@ -1510,27 +1516,27 @@ namespace FrontEnd_MVC.Controllers
             }
         }
 
-      //public async Task<IActionResult> deleteDepot(int? id)
-      //  {
-      //      try
-      //      {
-      //          if (id == null)
-      //          {
-      //              CustomError oError = new CustomError(5);
-      //              throw oError;
-      //          }
-      //          Depot dep = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + id);
-      //          dep.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + dep.Idville);
-      //          return View(dep);
-      //      }
-      //      catch (CustomError oError)
-      //      {
-      //          ViewBag.Error = oError.ErrorMessage;
-      //          return View("HomeLoueur");
-      //      }
-      //  }
-        
-        
+        //public async Task<IActionResult> deleteDepot(int? id)
+        //  {
+        //      try
+        //      {
+        //          if (id == null)
+        //          {
+        //              CustomError oError = new CustomError(5);
+        //              throw oError;
+        //          }
+        //          Depot dep = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + id);
+        //          dep.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + dep.Idville);
+        //          return View(dep);
+        //      }
+        //      catch (CustomError oError)
+        //      {
+        //          ViewBag.Error = oError.ErrorMessage;
+        //          return View("HomeLoueur");
+        //      }
+        //  }
+
+
         //[HttpPost, ActionName("deleteDepot")]
         //public async Task<IActionResult> removeDepot(int id)
         //{
@@ -1676,7 +1682,7 @@ namespace FrontEnd_MVC.Controllers
                         item.Iddepot1Navigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + item.Iddepot1Navigation.Idville);
                         item.Iddepot2Navigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + item.Iddepot2Navigation.Idville);
                     }
-                }              
+                }
                 return View(lst);
             }
             catch (Exception ex)
@@ -1697,18 +1703,19 @@ namespace FrontEnd_MVC.Controllers
         [HttpPost]
         public async Task<IActionResult> PostForfait(Forfait forfait)
         {
-            try { 
-            forfait.Iddepot1Navigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + forfait.Iddepot1);
-            forfait.Iddepot2Navigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + forfait.Iddepot2);
-            forfait.Iddepot1Navigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + forfait.Iddepot1Navigation.Idville);
-            forfait.Iddepot2Navigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + forfait.Iddepot2Navigation.Idville);
-            forfait.Iddepot1Navigation.IdvilleNavigation.IdpaysNavigation = await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + forfait.Iddepot1Navigation.IdvilleNavigation.Idpays);
-            forfait.Iddepot2Navigation.IdvilleNavigation.IdpaysNavigation = await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + forfait.Iddepot2Navigation.IdvilleNavigation.Idpays);
-            forfait.DateDebut = DateTime.Now;
-            ModelState.Remove("Iddepot1Navigation");
-            ModelState.Remove("Iddepot2Navigation");
-            ModelState.Remove("Reservation");
-            ModelState.Remove("ListDepot");
+            try
+            {
+                forfait.Iddepot1Navigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + forfait.Iddepot1);
+                forfait.Iddepot2Navigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + forfait.Iddepot2);
+                forfait.Iddepot1Navigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + forfait.Iddepot1Navigation.Idville);
+                forfait.Iddepot2Navigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + forfait.Iddepot2Navigation.Idville);
+                forfait.Iddepot1Navigation.IdvilleNavigation.IdpaysNavigation = await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + forfait.Iddepot1Navigation.IdvilleNavigation.Idpays);
+                forfait.Iddepot2Navigation.IdvilleNavigation.IdpaysNavigation = await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + forfait.Iddepot2Navigation.IdvilleNavigation.Idpays);
+                forfait.DateDebut = DateTime.Now;
+                ModelState.Remove("Iddepot1Navigation");
+                ModelState.Remove("Iddepot2Navigation");
+                ModelState.Remove("Reservation");
+                ModelState.Remove("ListDepot");
 
 
                 var result1 = await AlreadyExist<Forfait>("https://localhost:7204/api/Loueur/AlreadyExistForfait/", forfait);
@@ -1720,16 +1727,16 @@ namespace FrontEnd_MVC.Controllers
 
 
                 if (ModelState.IsValid)
-            {
-                var result = await PostRequest("https://localhost:7204/api/Loueur/PostForfait/", forfait);
-                if (result is BadRequestResult)
                 {
-                    CustomError oError = new CustomError(3);
-                    throw oError;
-                }
+                    var result = await PostRequest("https://localhost:7204/api/Loueur/PostForfait/", forfait);
+                    if (result is BadRequestResult)
+                    {
+                        CustomError oError = new CustomError(3);
+                        throw oError;
+                    }
                     Thread.Sleep(500);
                     return RedirectToAction(nameof(AfficheForfait));
-            }
+                }
                 else
                 {
                     CustomError oError = new CustomError(2);
@@ -1791,9 +1798,9 @@ namespace FrontEnd_MVC.Controllers
             try
             {
 
-            ModelState.Remove("Iddepot1Navigation");
-            ModelState.Remove("Iddepot2Navigation");
-            ModelState.Remove("Reservation");
+                ModelState.Remove("Iddepot1Navigation");
+                ModelState.Remove("Iddepot2Navigation");
+                ModelState.Remove("Reservation");
                 if (ModelState.IsValid)
                 {
                     var result = await PutRequest("https://localhost:7204/api/Loueur/UpdateForfait/", forfait);
@@ -1812,7 +1819,7 @@ namespace FrontEnd_MVC.Controllers
             }
             catch (CustomError oError)
             {
-                ViewBag.Error = oError.ErrorMessage;           
+                ViewBag.Error = oError.ErrorMessage;
                 return View("EditForfait", forfait);
 
             }
@@ -2001,7 +2008,7 @@ namespace FrontEnd_MVC.Controllers
                 return View("HomeLoueur");
             }
         }
- 
+
         public async Task<IActionResult> DemarrerLocation(int? id)
         {
             Reservation reservation = new Reservation();
@@ -2017,7 +2024,7 @@ namespace FrontEnd_MVC.Controllers
             return View(reservation);
         }
 
-        
+
         public async Task<IActionResult> CloturerLocation(int? id)
         {
             Reservation reservation = new Reservation();
@@ -2029,7 +2036,11 @@ namespace FrontEnd_MVC.Controllers
             reservation.IddepotRetourPrevu = reservation.IddepotRetour;
             reservation.IddepotRetourNavigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + reservation.IddepotRetour);
             reservation.IddepotRetourNavigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + reservation.IddepotRetourNavigation.Idville);
-          
+            reservation.IddepotDepartNavigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + reservation.IddepotDepart);
+            reservation.IddepotDepartNavigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + reservation.IddepotDepartNavigation.Idville);
+            reservation.IddepotDepartNavigation.IdvilleNavigation.IdpaysNavigation = await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + reservation.IddepotDepartNavigation.IdvilleNavigation.Idpays);
+            reservation.IdpaysDepart = reservation.IddepotDepartNavigation.IdvilleNavigation.IdpaysNavigation.Idpays;
+
             if (id == null)
             {
                 return NotFound();
@@ -2037,7 +2048,7 @@ namespace FrontEnd_MVC.Controllers
             return View(reservation);
         }
 
-        
+
         public async Task<IActionResult> UpdateReservation(Reservation Reservation) // Pas utilisée.
         {
 
@@ -2083,72 +2094,73 @@ namespace FrontEnd_MVC.Controllers
             return RedirectToAction(nameof(AfficheReservation));
         }
 
-        
+
         public async Task<IActionResult> StartReservation(Reservation Reservation)
         {
 
-            try { 
-
-            Reservation.DateDepart = DateTime.Now;
-
-            Reservation.IdclientNavigation = await GetRequestUnique<Client>("https://localhost:7204/api/Client/GetClientByID/" + Reservation.Idclient);
-
-            Reservation.IddepotDepartNavigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + Reservation.IddepotDepart);
-            Reservation.IddepotDepartNavigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + Reservation.IddepotDepartNavigation.Idville);
-            Reservation.IddepotDepartNavigation.IdvilleNavigation.IdpaysNavigation = await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + Reservation.IddepotDepartNavigation.IdvilleNavigation.Idpays);
-
-            if (Reservation.IddepotRetour != null)
+            try
             {
-                Reservation.IddepotRetourNavigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + Reservation.IddepotRetour);
-                Reservation.IddepotRetourNavigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + Reservation.IddepotRetourNavigation.Idville);
-                Reservation.IddepotRetourNavigation.IdvilleNavigation.IdpaysNavigation = await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + Reservation.IddepotRetourNavigation.IdvilleNavigation.Idpays);
+
+                Reservation.DateDepart = DateTime.Now;
+
+                Reservation.IdclientNavigation = await GetRequestUnique<Client>("https://localhost:7204/api/Client/GetClientByID/" + Reservation.Idclient);
+
+                Reservation.IddepotDepartNavigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + Reservation.IddepotDepart);
+                Reservation.IddepotDepartNavigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + Reservation.IddepotDepartNavigation.Idville);
+                Reservation.IddepotDepartNavigation.IdvilleNavigation.IdpaysNavigation = await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + Reservation.IddepotDepartNavigation.IdvilleNavigation.Idpays);
+
+                if (Reservation.IddepotRetour != null)
+                {
+                    Reservation.IddepotRetourNavigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + Reservation.IddepotRetour);
+                    Reservation.IddepotRetourNavigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + Reservation.IddepotRetourNavigation.Idville);
+                    Reservation.IddepotRetourNavigation.IdvilleNavigation.IdpaysNavigation = await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + Reservation.IddepotRetourNavigation.IdvilleNavigation.Idpays);
+                }
+
+                Reservation.IdvoitureNavigation = await GetRequestUnique<Voiture>("https://localhost:7204/api/Loueur/GetVoitureByID/" + Reservation.Idvoiture);
+                Reservation.IdvoitureNavigation.IdnotorieteNavigation = await GetRequestUnique<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteByID/" + Reservation.IdvoitureNavigation.Idnotoriete);
+                Reservation.IdvoitureNavigation.IddepotNavigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + Reservation.IdvoitureNavigation.Iddepot);
+                Reservation.IdvoitureNavigation.IddepotNavigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + Reservation.IdvoitureNavigation.IddepotNavigation.Idville);
+                Reservation.IdvoitureNavigation.IddepotNavigation.IdvilleNavigation.IdpaysNavigation = await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + Reservation.IdvoitureNavigation.IddepotNavigation.IdvilleNavigation.Idpays);
+
+                if (Reservation.Idforfait != null)
+                {
+                    Reservation.IdforfaitNavigation = await GetRequestUnique<Forfait>("https://localhost:7204/api/Loueur/GetForfaitByID/" + Reservation.Idforfait);
+                    Reservation.IdforfaitNavigation.Iddepot1Navigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + Reservation.IdforfaitNavigation.Iddepot1);
+                    Reservation.IdforfaitNavigation.Iddepot2Navigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + Reservation.IdforfaitNavigation.Iddepot2);
+                    Reservation.IdforfaitNavigation.Iddepot1Navigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + Reservation.IdforfaitNavigation.Iddepot1Navigation.Idville);
+                    Reservation.IdforfaitNavigation.Iddepot2Navigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + Reservation.IdforfaitNavigation.Iddepot2Navigation.Idville);
+                    Reservation.IdforfaitNavigation.Iddepot1Navigation.IdvilleNavigation.IdpaysNavigation = await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + Reservation.IdforfaitNavigation.Iddepot1Navigation.IdvilleNavigation.Idpays);
+                    Reservation.IdforfaitNavigation.Iddepot2Navigation.IdvilleNavigation.IdpaysNavigation = await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + Reservation.IdforfaitNavigation.Iddepot2Navigation.IdvilleNavigation.Idpays);
+                }
+
+
+                ModelState.Remove("IdclientNavigation");
+                ModelState.Remove("IddepotDepartNavigation");
+                ModelState.Remove("IddepotRetourNavigation");
+                ModelState.Remove("IdforfaitNavigation");
+                ModelState.Remove("IdvoitureNavigation");
+                ModelState.Remove("CoefficientMultiplicateur");
+                ModelState.Remove("ListPays");
+                ModelState.Remove("ListDepotDepart");
+                ModelState.Remove("ListDepotRetour");
+                ModelState.Remove("ListVoitureDisponible");
+
+
+                if (!ModelState.IsValid)
+                {
+                    CustomError oError = new CustomError(11);
+                    throw oError;
+                }
+
+                if (ModelState.IsValid)
+                {
+                    await PutRequest("https://localhost:7204/api/Loueur/StartReservation/", Reservation);
+                }
+                return RedirectToAction(nameof(AfficheReservationNotYetStarted));
+
+
             }
-
-            Reservation.IdvoitureNavigation = await GetRequestUnique<Voiture>("https://localhost:7204/api/Loueur/GetVoitureByID/" + Reservation.Idvoiture);
-            Reservation.IdvoitureNavigation.IdnotorieteNavigation = await GetRequestUnique<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteByID/" + Reservation.IdvoitureNavigation.Idnotoriete);
-            Reservation.IdvoitureNavigation.IddepotNavigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + Reservation.IdvoitureNavigation.Iddepot);
-            Reservation.IdvoitureNavigation.IddepotNavigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + Reservation.IdvoitureNavigation.IddepotNavigation.Idville);
-            Reservation.IdvoitureNavigation.IddepotNavigation.IdvilleNavigation.IdpaysNavigation = await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + Reservation.IdvoitureNavigation.IddepotNavigation.IdvilleNavigation.Idpays);
-
-            if (Reservation.Idforfait != null)
-            {
-                Reservation.IdforfaitNavigation = await GetRequestUnique<Forfait>("https://localhost:7204/api/Loueur/GetForfaitByID/" + Reservation.Idforfait);
-                Reservation.IdforfaitNavigation.Iddepot1Navigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + Reservation.IdforfaitNavigation.Iddepot1);
-                Reservation.IdforfaitNavigation.Iddepot2Navigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + Reservation.IdforfaitNavigation.Iddepot2);
-                Reservation.IdforfaitNavigation.Iddepot1Navigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + Reservation.IdforfaitNavigation.Iddepot1Navigation.Idville);
-                Reservation.IdforfaitNavigation.Iddepot2Navigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + Reservation.IdforfaitNavigation.Iddepot2Navigation.Idville);
-                Reservation.IdforfaitNavigation.Iddepot1Navigation.IdvilleNavigation.IdpaysNavigation = await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + Reservation.IdforfaitNavigation.Iddepot1Navigation.IdvilleNavigation.Idpays);
-                Reservation.IdforfaitNavigation.Iddepot2Navigation.IdvilleNavigation.IdpaysNavigation = await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + Reservation.IdforfaitNavigation.Iddepot2Navigation.IdvilleNavigation.Idpays);
-            }
-
-            
-            ModelState.Remove("IdclientNavigation");
-            ModelState.Remove("IddepotDepartNavigation");
-            ModelState.Remove("IddepotRetourNavigation");
-            ModelState.Remove("IdforfaitNavigation");
-            ModelState.Remove("IdvoitureNavigation");
-            ModelState.Remove("CoefficientMultiplicateur");
-            ModelState.Remove("ListPays");
-            ModelState.Remove("ListDepotDepart");
-            ModelState.Remove("ListDepotRetour");
-            ModelState.Remove("ListVoitureDisponible");
-
-
-            if (!ModelState.IsValid)
-            {
-                CustomError oError = new CustomError(11);
-                throw oError;
-            }
-
-            if (ModelState.IsValid)
-            {
-                await PutRequest("https://localhost:7204/api/Loueur/StartReservation/", Reservation);
-            }
-            return RedirectToAction(nameof(AfficheReservationNotYetStarted));
-
-
-            }
-            catch(CustomError oError)
+            catch (CustomError oError)
             {
 
                 ViewBag.Error = oError.ErrorMessage;
@@ -2163,19 +2175,19 @@ namespace FrontEnd_MVC.Controllers
             }
         }
 
-        
+
         public async Task<IActionResult> CloseReservation(Reservation Reservation)
         {
 
             try
             {
-                   Reservation.DateRetour = DateTime.Now;
+                Reservation.DateRetour = DateTime.Now;
 
                 // if(Reservation.Idforfait != null)
 
 
                 // Assignation du boolén Pénalité // Ok Corentin
-                if ( Reservation.IddepotRetour != Reservation.IddepotRetourPrevu)
+                if (Reservation.IddepotRetour != Reservation.IddepotRetourPrevu)
                 {
                     Reservation.Penalite = true;
                 }
@@ -2186,10 +2198,9 @@ namespace FrontEnd_MVC.Controllers
 
                 // Détermination du nouveau forfait si dépot retour différent et prix du dépot > supérieur au dépot prévu .
                 // OK Corentin mais il faut ajouter une condition si pas de forfait correspondant car plantage.
-                if (Reservation.IddepotRetour != Reservation.IddepotRetourPrevu)
+                if (Reservation.IddepotRetour != Reservation.IddepotRetourPrevu && Reservation.Idforfait != null)
                 {
                     Forfait f = await GetRequestUnique<Forfait>("https://localhost:7204/api/Client/GetForfaitReservation/" + Reservation.IddepotDepart + "/" + Reservation.IddepotRetour);
-
                     if (f is not null)
                     {
                         int newforfaitId = f.Idforfait;
@@ -2243,7 +2254,7 @@ namespace FrontEnd_MVC.Controllers
                 ModelState.Remove("ListDepotDepart");
                 ModelState.Remove("ListDepotRetour");
                 ModelState.Remove("ListVoitureDisponible");
-               
+
                 if (Reservation.KilometrageRetour < Reservation.KilometrageDepart) // Erreur de kilométrage de retour
                 {
                     CustomError oError = new CustomError(9);
@@ -2258,7 +2269,13 @@ namespace FrontEnd_MVC.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    await PutRequest("https://localhost:7204/api/Loueur/CloseReservation/", Reservation);
+                    var result = await PutRequest("https://localhost:7204/api/Loueur/CloseReservation/", Reservation);
+                    if (result is BadRequestResult)
+                    {
+                        CustomError oError = new CustomError(3);
+                        throw oError;
+                    }
+                    return RedirectToAction(nameof(AfficheReservationCloturees));
                 }
 
                 return RedirectToAction(nameof(AfficheReservationCloturees));
@@ -2294,7 +2311,32 @@ namespace FrontEnd_MVC.Controllers
                         result = JsonConvert.DeserializeObject<decimal>(apiResponse);
                     }
                 }
+
                 reservation.PrixTotal = result;
+                reservation.IdclientNavigation = await GetRequestUnique<Client>("https://localhost:7204/api/Client/GetClientByID/" + reservation.Idclient);
+
+                reservation.IddepotDepartNavigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + reservation.IddepotDepart);
+                reservation.IddepotDepartNavigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + reservation.IddepotDepartNavigation.Idville);
+                reservation.IddepotDepartNavigation.IdvilleNavigation.IdpaysNavigation = await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + reservation.IddepotDepartNavigation.IdvilleNavigation.Idpays);
+
+                if (reservation.IddepotRetour != null)
+                {
+                    reservation.IddepotRetourNavigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + reservation.IddepotRetour);
+                    reservation.IddepotRetourNavigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + reservation.IddepotRetourNavigation.Idville);
+                    reservation.IddepotRetourNavigation.IdvilleNavigation.IdpaysNavigation = await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + reservation.IddepotRetourNavigation.IdvilleNavigation.Idpays);
+                }
+                reservation.IdvoitureNavigation = await GetRequestUnique<Voiture>("https://localhost:7204/api/Loueur/GetVoitureByID/" + reservation.Idvoiture);
+                reservation.IdvoitureNavigation.IdnotorieteNavigation = await GetRequestUnique<Notoriete>("https://localhost:7204/api/Loueur/GetNotorieteByID/" + reservation.IdvoitureNavigation.Idnotoriete);
+                reservation.IdvoitureNavigation.IddepotNavigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + reservation.IdvoitureNavigation.Iddepot);
+                reservation.IdvoitureNavigation.IddepotNavigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + reservation.IdvoitureNavigation.IddepotNavigation.Idville);
+                reservation.IdvoitureNavigation.IddepotNavigation.IdvilleNavigation.IdpaysNavigation = await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + reservation.IdvoitureNavigation.IddepotNavigation.IdvilleNavigation.Idpays);
+
+                reservation.IddepotDepartNavigation.IdvilleNavigation.IdpaysNavigation.Price = await GetRequestUnique<Prix>("https://localhost:7204/api/Loueur/GetPriceByPays/" + reservation.IddepotDepartNavigation.IdvilleNavigation.IdpaysNavigation.Idpays);
+                if (reservation.Idforfait != null)
+                {
+                    reservation.IdforfaitNavigation= await GetRequestUnique<Forfait>("https://localhost:7204/api/Loueur/GetForfaitByID/" + reservation.Idforfait);
+
+                }
 
                 return View(reservation);
 
@@ -2310,7 +2352,7 @@ namespace FrontEnd_MVC.Controllers
 
         #endregion
 
-    
+
 
     }
 }

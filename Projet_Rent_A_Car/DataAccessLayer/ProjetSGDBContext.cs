@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
 using Models;
 
 namespace DataAccessLayer
@@ -31,7 +28,6 @@ namespace DataAccessLayer
         {
             if (!optionsBuilder.IsConfigured)
             {
-
                 optionsBuilder.UseSqlServer(DALConnexion.Connexion);
             }
         }

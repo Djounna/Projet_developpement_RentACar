@@ -1,12 +1,5 @@
 ﻿using DataAccessLayer;
 using Models;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BusinessLayer
 {
@@ -22,13 +15,13 @@ namespace BusinessLayer
         public Reservation SelectReservationByID(int id)
         {
             return dal.SelectById<Reservation>(id);
-        }  
+        }
         // Passage par les méthodes DAL ADO
 
 
         public bool Insert(Reservation reservation)
         {
-          
+
             return dalReservation.Insert(reservation);
         }
 
@@ -75,7 +68,7 @@ namespace BusinessLayer
         {
             try
             {
-               return dalReservation.SelectAllLocationEnCours();
+                return dalReservation.SelectAllLocationEnCours();
             }
             catch (Exception ex)
             {
@@ -89,7 +82,7 @@ namespace BusinessLayer
         }
 
 
-     
+
 
     }
 }

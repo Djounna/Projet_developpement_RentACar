@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace FrontEnd_MVC.Models
@@ -9,12 +7,12 @@ namespace FrontEnd_MVC.Models
     {
         public int Idreservation { get; set; }
 
-        [Display(Name ="Client")]
+        [Display(Name = "Client")]
         public int Idclient { get; set; }
 
-        [Display (Name = "Voiture") ]
+        [Display(Name = "Voiture")]
         public int Idvoiture { get; set; }
-        
+
 
         [Display(Name = "Ville de départ")]
         [Required(ErrorMessage = "Ce champ est obligatoire")]
@@ -23,23 +21,24 @@ namespace FrontEnd_MVC.Models
         [Display(Name = "Ville de retour")]
         public int? IddepotRetour { get; set; }
 
+        [Display(Name = "Prix du forfait : ")]
         public int? Idforfait { get; set; }
         public DateTime DateReservation { get; set; }
         public DateTime DateDepart { get; set; }
         public DateTime? DateRetour { get; set; }
         [Display(Name = "Km au depart")]
-        [Range(0, Double.PositiveInfinity, ErrorMessage ="Ce champ doit être > 0")] // OK
+        [Range(0, Double.PositiveInfinity, ErrorMessage = "Ce champ doit être > 0")] // OK
         public int? KilometrageDepart { get; set; }
         [Display(Name = "Km au retour")]
         [Range(0, Double.PositiveInfinity, ErrorMessage = "Ce champ doit être > 0")]
         public int? KilometrageRetour { get; set; }
         public decimal CoefficientMultiplicateur { get; set; }
-       
+
         public bool? Penalite { get; set; }
 
-        [Display(Name = "Pays de départ")] 
+        [Display(Name = "Pays de départ")]
         public int IdpaysDepart { get; set; }  // Nécessaire pour Effectuer Réservation
-        [Display(Name ="Pays de retour")]
+        [Display(Name = "Pays de retour")]
         public int? IdpaysRetour { get; set; }  // Nécessaire pour cloturer réservation
 
         public int? IddepotRetourPrevu { get; set; } // Nécessaire pour Cloture Location

@@ -1,6 +1,6 @@
 ﻿namespace FrontEnd_MVC
 {
-    public class CustomError: ApplicationException
+    public class CustomError : ApplicationException
     {
         private int _ErrorId;
         private string _ErrorMessage;
@@ -65,7 +65,7 @@
                     ErrorMessage = "(11) les données mentionnées ne sont pas valides, nous vous prions de recommencer l'opération";
                     break;
 
-              
+
 
 
                 default:

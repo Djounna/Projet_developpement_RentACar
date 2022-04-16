@@ -1,11 +1,6 @@
 ﻿using DataAccessLayer;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 
 namespace BusinessLayer
@@ -29,13 +24,13 @@ namespace BusinessLayer
         }
         public bool InsertOrUpdateVoiture(Voiture Voiture)
         {
-                return dal.InsertOrUpdate(Voiture);
+            return dal.InsertOrUpdate(Voiture);
         }
         public bool DeleteVoiture(int id)
         {
-           return dal.Delete(SelectVoitureByID(id));
+            return dal.Delete(SelectVoitureByID(id));
         }
-        public List<Voiture> SelectAllVoitureInactif() 
+        public List<Voiture> SelectAllVoitureInactif()
         {
             return dalVoiture.SelectAllVoitureInactif();
         }
@@ -46,7 +41,7 @@ namespace BusinessLayer
 
         public IEnumerable<SelectListItem> SelectAllVoitureDisponibleInList(int IdDepot, DateTime DateLocation)
         {
-           return dalVoiture.SelectAllVoitureDisponibleInList(IdDepot, DateLocation);
+            return dalVoiture.SelectAllVoitureDisponibleInList(IdDepot, DateLocation);
         }
 
     }

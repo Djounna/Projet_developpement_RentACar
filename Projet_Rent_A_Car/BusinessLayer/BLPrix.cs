@@ -1,11 +1,5 @@
 ﻿using DataAccessLayer;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BusinessLayer
 {
@@ -31,7 +25,7 @@ namespace BusinessLayer
             Prix p = SelectPrixByPays(Prix.Idpays);
 
             if (p != null)
-            {     
+            {
                 Prix prixACloturer = SelectPrixByID(p.Idprix);
                 prixACloturer.DateFin = DateTime.Now;
                 dal.InsertOrUpdate(prixACloturer);
@@ -42,7 +36,7 @@ namespace BusinessLayer
         }
         public bool UpdatePrix(Prix prix)
         {
-            
+
             return dalPrix.UpdatePrix(prix);
         }
     }

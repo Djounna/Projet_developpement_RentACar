@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace FrontEnd_MVC.Models
 {
@@ -13,7 +11,7 @@ namespace FrontEnd_MVC.Models
 
         public int Idnotoriete { get; set; }
 
-        [Display(Name ="Libellé de la notoriété")]
+        [Display(Name = "Libellé de la notoriété")]
         [Required(ErrorMessage = "Ce champ est obligatoire")]
         [MaxLength(50, ErrorMessage = "Ce champ doit contenir maximum 50 caractères")]
         public string Libelle { get; set; }

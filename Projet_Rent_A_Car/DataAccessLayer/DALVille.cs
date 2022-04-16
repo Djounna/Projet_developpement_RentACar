@@ -1,10 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccessLayer
 {
@@ -17,7 +12,7 @@ namespace DataAccessLayer
             using (dal.dbcontext)
             {
                 List<Ville> lstville = dal.dbcontext.Ville.Where(ville => ville.Idpays == idPays).ToList();
-                return lstville;                      
+                return lstville;
             }
         }
 
@@ -36,7 +31,7 @@ namespace DataAccessLayer
                 var lst3 = (from id in lst select id).Except(lst2).ToList();
 
                 List<SelectListItem> lstville = dal.dbcontext.Ville
-                   .Where(x=> lst3.Contains(x.Idville))
+                   .Where(x => lst3.Contains(x.Idville))
                    .OrderBy(n => n.Nom)
                    .Select(n =>
                        new SelectListItem

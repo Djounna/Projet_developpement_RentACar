@@ -1,10 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccessLayer
 {
@@ -40,14 +35,14 @@ namespace DataAccessLayer
             return (notoriete != null);
         }
 
-        
+
         public IEnumerable<SelectListItem> SelectAllNotorieteInList()  // EN cours Corentin
         {
             using (dal.dbcontext)
             {
 
                 List<SelectListItem> lstNotoriete = dal.dbcontext.Notoriete
-                    .Where(n=> n.Inactif != true).Select
+                    .Where(n => n.Inactif != true).Select
                     (n =>
                        new SelectListItem
                        {
@@ -67,7 +62,7 @@ namespace DataAccessLayer
 
             }
         }
-        
+
     }
 
 }

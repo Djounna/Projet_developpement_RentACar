@@ -5,12 +5,13 @@ namespace FrontEnd_MVC.Validation
 {
     public class ReservationValidator : AbstractValidator<Reservation>
     {
-        public ReservationValidator(){
+        public ReservationValidator()
+        {
 
-        //RuleFor(reservation => reservation.KilometrageRetour).GreaterThan(reservation => reservation.KilometrageDepart);
-        //RuleFor(reservation => reservation.DateDepart).GreaterThan(DateTime.Now);
-        //RuleFor(reservation => reservation.DateRetour).GreaterThan(reservation => reservation.DateDepart);
+            //RuleFor(reservation => reservation.KilometrageRetour).GreaterThan(reservation => reservation.KilometrageDepart);
+            //RuleFor(reservation => reservation.DateDepart).GreaterThan(DateTime.Now);
+            //RuleFor(reservation => reservation.DateRetour).GreaterThan(reservation => reservation.DateDepart);
 
-            }
+        }
     }
 }

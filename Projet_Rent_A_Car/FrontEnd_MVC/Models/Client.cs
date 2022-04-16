@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace FrontEnd_MVC.Models
 {
@@ -20,7 +18,7 @@ namespace FrontEnd_MVC.Models
         public string Prenom { get; set; } = null!;
         [Required(ErrorMessage = "Ce champ est obligatoire")]
         [MaxLength(50, ErrorMessage = "Ce champ doit contenir maximum 50 caractères")]
-        [EmailAddress(ErrorMessage ="Ce champ doit contenir une adresse courriel")]
+        [EmailAddress(ErrorMessage = "Ce champ doit contenir une adresse courriel")]
         [Display(Name = "Addresse courriel")]
         public string Mail { get; set; } = null!;
 

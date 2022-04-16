@@ -1,9 +1,7 @@
 ﻿using BusinessLayer;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Models;
-using Newtonsoft.Json;
 
 namespace API_RAC.Controllers
 {
@@ -27,7 +25,7 @@ namespace API_RAC.Controllers
         [Route("GetNotoriete/")]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<List<Notoriete>>> GetNotoriete() 
+        public async Task<ActionResult<List<Notoriete>>> GetNotoriete()
         {
             return Ok(blNotoriete.SelectAllNotoriete());
         }
@@ -35,7 +33,7 @@ namespace API_RAC.Controllers
         [Route("GetNotorieteActif/")]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<List<Notoriete>>> GetNotorieteActif() 
+        public async Task<ActionResult<List<Notoriete>>> GetNotorieteActif()
         {
             return Ok(blNotoriete.SelectAllNotorieteActif());
         }
@@ -43,7 +41,7 @@ namespace API_RAC.Controllers
         [Route("GetNotorieteInactif/")]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<List<Notoriete>>> GetNotorieteInactif() 
+        public async Task<ActionResult<List<Notoriete>>> GetNotorieteInactif()
         {
             return Ok(blNotoriete.SelectAllNotorieteInactif());
         }
@@ -56,7 +54,7 @@ namespace API_RAC.Controllers
             return Ok(blNotoriete.SelectNotorieteByID(id));
         }
 
-        
+
         [Route("GetAllNotorieteInList")]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -72,7 +70,7 @@ namespace API_RAC.Controllers
             if (blNotoriete.AlreadyExist(not) == true)
                 return BadRequest();
             else return Ok();
-           
+
 
         }
 
@@ -81,7 +79,7 @@ namespace API_RAC.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult UpdateNotoriete(Notoriete notoriete) 
+        public ActionResult UpdateNotoriete(Notoriete notoriete)
         {
             if (blNotoriete.InsertOrUpdateNotoriete(notoriete) == true)
                 return Ok();
@@ -106,7 +104,7 @@ namespace API_RAC.Controllers
         [HttpDelete]
         public ActionResult DeleteNotoriete(int id)
         {
-           if (blNotoriete.DeleteNotoriete(id) == true)
+            if (blNotoriete.DeleteNotoriete(id) == true)
                 return Ok();
             else
                 return BadRequest();
@@ -162,7 +160,7 @@ namespace API_RAC.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult UpdateVoiture(Voiture Voiture)
         {
-           if (blVoiture.InsertOrUpdateVoiture(Voiture) == true)
+            if (blVoiture.InsertOrUpdateVoiture(Voiture) == true)
                 return Ok();
             else
                 return BadRequest();
@@ -184,7 +182,7 @@ namespace API_RAC.Controllers
         [HttpDelete]
         public ActionResult DeleteVoiture(int id)
         {
-            if(blVoiture.DeleteVoiture(id) == true)
+            if (blVoiture.DeleteVoiture(id) == true)
                 return Ok();
             else
                 return BadRequest();
@@ -231,7 +229,7 @@ namespace API_RAC.Controllers
         {
             if (blpays.AlreadyExist(pays) == true)
                 return BadRequest();
-            else return Ok();           
+            else return Ok();
         }
 
         [Route("UpdatePays/")]
@@ -239,7 +237,7 @@ namespace API_RAC.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult UpdatePays(Pays pays) 
+        public ActionResult UpdatePays(Pays pays)
         {
             bool estLie = false;
             List<Ville> ville = blville.SelectAllVille();
@@ -255,7 +253,7 @@ namespace API_RAC.Controllers
                     return Ok();
                 else
                     return BadRequest();
-                
+
             }
             return BadRequest();
 
@@ -267,11 +265,11 @@ namespace API_RAC.Controllers
 
         public ActionResult PostPays(Pays pays)
         {
-            if(blpays.InsertOrUpdatePays(pays) == true)
+            if (blpays.InsertOrUpdatePays(pays) == true)
                 return Ok();
             else
                 return BadRequest();
-           
+
         }
 
         [Route("DeletePays/{id}")]
@@ -286,9 +284,10 @@ namespace API_RAC.Controllers
                     estLie = true;
             }
 
-            if (estLie == false) {
-               if (blpays.DeletePays(id) == true)
-                return Ok();
+            if (estLie == false)
+            {
+                if (blpays.DeletePays(id) == true)
+                    return Ok();
                 else
                     return BadRequest();
             }
@@ -326,7 +325,7 @@ namespace API_RAC.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult UpdatePrix(Prix prix)
         {
-           if (blPrix.UpdatePrix(prix) == true)
+            if (blPrix.UpdatePrix(prix) == true)
                 return Ok();
             else
                 return BadRequest();
@@ -339,7 +338,7 @@ namespace API_RAC.Controllers
 
         public ActionResult PostPrix(Prix Prix)
         {
-            if(blPrix.InsertOrUpdatePrix(Prix) == true)
+            if (blPrix.InsertOrUpdatePrix(Prix) == true)
                 return Ok();
             else
                 return BadRequest();
@@ -406,8 +405,8 @@ namespace API_RAC.Controllers
 
             if (estLie == false)
             {
-               if(blville.InsertOrUpdateVille(ville) == true)
-                return Ok();
+                if (blville.InsertOrUpdateVille(ville) == true)
+                    return Ok();
                 else
                     return BadRequest();
             }
@@ -421,7 +420,7 @@ namespace API_RAC.Controllers
 
         public ActionResult PostVille(Ville ville)
         {
-           if (blville.InsertOrUpdateVille(ville) == true)
+            if (blville.InsertOrUpdateVille(ville) == true)
                 return Ok();
             else
                 return BadRequest();
@@ -442,7 +441,7 @@ namespace API_RAC.Controllers
             if (estLie == false)
             {
                 if (blville.DeleteVille(id) == true)
-                return Ok();
+                    return Ok();
                 else
                     return BadRequest();
             }
@@ -471,7 +470,7 @@ namespace API_RAC.Controllers
         [Route("GetDepotActif/")]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<List<Depot>>> GetDepotActif() 
+        public async Task<ActionResult<List<Depot>>> GetDepotActif()
         {
             return Ok(bldepot.SelectAllDepotActif());
         }
@@ -479,7 +478,7 @@ namespace API_RAC.Controllers
         [Route("GetDepotInactif/")]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<List<Depot>>> GetDepotInactif() 
+        public async Task<ActionResult<List<Depot>>> GetDepotInactif()
         {
             return Ok(bldepot.SelectAllDepotInactif());
         }
@@ -487,7 +486,7 @@ namespace API_RAC.Controllers
         [Route("GetDepotByIDVille/{id}")]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<Depot>> GetDepotByIDVille(int id) 
+        public async Task<ActionResult<Depot>> GetDepotByIDVille(int id)
         {
             return Ok(bldepot.SelectDepotByIDVille(id));
         }
@@ -498,7 +497,7 @@ namespace API_RAC.Controllers
         public IEnumerable<SelectListItem> GetAllDepotInList()
         {
             return bldepot.SelectAllDepotInList();
-        }       
+        }
 
 
         [Route("UpdateDepot/")]
@@ -507,8 +506,8 @@ namespace API_RAC.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult UpdateDepot(Depot depot)
-        {          
-            if(bldepot.InsertOrUpdateDepot(depot) == true)
+        {
+            if (bldepot.InsertOrUpdateDepot(depot) == true)
                 return Ok();
             else
                 return BadRequest();
@@ -520,7 +519,7 @@ namespace API_RAC.Controllers
 
         public ActionResult PostDepot(Depot Depot)
         {
-            if(bldepot.InsertOrUpdateDepot(Depot) == true)
+            if (bldepot.InsertOrUpdateDepot(Depot) == true)
                 return Ok();
             else
                 return BadRequest();
@@ -530,7 +529,7 @@ namespace API_RAC.Controllers
         [HttpDelete]
         public ActionResult DeleteDepot(int id)
         {
-           if( bldepot.DeleteDepot(id) == true)
+            if (bldepot.DeleteDepot(id) == true)
                 return Ok();
             else
                 return BadRequest();
@@ -569,7 +568,7 @@ namespace API_RAC.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult UpdateForfait(Forfait forfait)
         {
-            if(blforfait.Update(forfait) == true)
+            if (blforfait.Update(forfait) == true)
                 return Ok();
             else
                 return BadRequest();
@@ -581,7 +580,7 @@ namespace API_RAC.Controllers
 
         public ActionResult PostForfait(Forfait forfait)
         {
-            if(blforfait.Insert(forfait) == true)
+            if (blforfait.Insert(forfait) == true)
                 return Ok();
             else
                 return BadRequest();
@@ -607,7 +606,7 @@ namespace API_RAC.Controllers
         {
             return Ok(blReservation.SelectAllReservation());
         }
-       
+
 
         [Route("GetReservationByID/{id}")]
         [HttpGet]
@@ -617,7 +616,7 @@ namespace API_RAC.Controllers
             return Ok(blReservation.SelectReservationByID(id));
         }
 
-    
+
         [HttpGet] // Ok 
         [Route("GetAllReservationNotYetStarted/")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -664,7 +663,7 @@ namespace API_RAC.Controllers
         }
 
         // A faire
-        
+
         [Route("UpdateReservation/")]
         [HttpPut]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -685,7 +684,7 @@ namespace API_RAC.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult StartReservation(Reservation reservation)
         {
-           if( blReservation.StartReservation(reservation) == true)
+            if (blReservation.StartReservation(reservation) == true)
                 return Ok();
             else
                 return BadRequest();
@@ -698,7 +697,7 @@ namespace API_RAC.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult CloseReservation(Reservation reservation)
         {
-            if(blReservation.CloseReservation(reservation) == true)
+            if (blReservation.CloseReservation(reservation) == true)
                 return Ok();
             else
                 return BadRequest();
@@ -706,7 +705,7 @@ namespace API_RAC.Controllers
 
 
 
-        
+
 
 
         #endregion

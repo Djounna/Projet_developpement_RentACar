@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace FrontEnd_MVC.Models
@@ -16,12 +14,12 @@ namespace FrontEnd_MVC.Models
             Voiture = new HashSet<Voiture>();
         }
 
-        [Display(Name="Numéro du dépôt")]
+        [Display(Name = "Numéro du dépôt")]
         public int Iddepot { get; set; }
 
         [Display(Name = "Libellé de la ville")]
         public int Idville { get; set; }
-        
+
         public IEnumerable<SelectListItem> ListVille { get; set; }
 
         [Display(Name = "Est Inactif")]

@@ -1,8 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FrontEnd_MVC.Models
 {
@@ -16,7 +13,7 @@ namespace FrontEnd_MVC.Models
         [Display(Name = "Numéro de la ville")]
         public int Idville { get; set; }
 
-        [Display(Name = "Libellé du pays")] 
+        [Display(Name = "Libellé du pays")]
         public int Idpays { get; set; }
         public IEnumerable<SelectListItem> ListPays { get; set; }
 

@@ -1,10 +1,5 @@
 ﻿using DataAccessLayer;
 using Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BusinessLayer
 {
@@ -27,7 +22,7 @@ namespace BusinessLayer
         }
         public bool Insert(Forfait forfait)  // EN cours controle doublon, pas au point
         {
-           if(!dalForfait.AlreadyExist(forfait)) 
+            if (!dalForfait.AlreadyExist(forfait))
             {
                 return dalForfait.Insert(forfait);
 
@@ -35,7 +30,7 @@ namespace BusinessLayer
             else
             {
                 return false;
-            } 
+            }
         }
 
         public bool AlreadyExist(Forfait forfait)
@@ -45,10 +40,10 @@ namespace BusinessLayer
 
         public bool Update(Forfait forfait)
         {
-           return dalForfait.Update(forfait);
+            return dalForfait.Update(forfait);
         }
 
-        
+
         public Forfait SelectForfaitReservation(int idDepot1, int idDepot2) // OK Corentin, fonctionne
         {
             return dalForfait.SelectForfaitReservation(idDepot1, idDepot2);

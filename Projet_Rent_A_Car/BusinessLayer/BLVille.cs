@@ -1,11 +1,6 @@
-﻿using Models;
-using DataAccessLayer;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DataAccessLayer;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Models;
 
 namespace BusinessLayer
 {
@@ -14,7 +9,7 @@ namespace BusinessLayer
         private DALVille dalville = new();
         private DalCommun dal = new();
         public List<Ville> SelectAllVille()
-        {           
+        {
             return dal.SelectAll<Ville>();
         }
 
@@ -23,7 +18,7 @@ namespace BusinessLayer
             return dalville.SelectAllVilleInList();
         }
         public Ville SelectVilleByID(int id)
-        {            
+        {
             return dal.SelectById<Ville>(id);
         }
         public bool AlreadyExist(Ville v)
@@ -36,8 +31,8 @@ namespace BusinessLayer
         }
         public bool DeleteVille(int id)
         {
-           return dal.Delete(SelectVilleByID(id));
+            return dal.Delete(SelectVilleByID(id));
         }
-        
+
     }
 }

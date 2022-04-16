@@ -1,11 +1,6 @@
 ﻿using Models;
-using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccessLayer
 {
@@ -31,7 +26,7 @@ namespace DataAccessLayer
                         oCmd.Parameters.Add(new SqlParameter("@IdClient", reservation.Idclient));
                         oCmd.Parameters.Add(new SqlParameter("@IdVoiture", reservation.Idvoiture));
                         oCmd.Parameters.Add(new SqlParameter("@IdDepotDepart", reservation.IddepotDepart));
-                        if(reservation.IddepotRetour == null)
+                        if (reservation.IddepotRetour == null)
                         {
                             reservation.IddepotRetour = 0;
                         }
@@ -43,7 +38,7 @@ namespace DataAccessLayer
                         oCmd.Parameters.Add(new SqlParameter("@IdForfait", reservation.Idforfait));
                         oCmd.Parameters.Add(new SqlParameter("@DateReservation", reservation.DateReservation));
                         oCmd.Parameters.Add(new SqlParameter("@DateDepart", reservation.DateDepart));
-                        if(reservation.DateRetour == null)
+                        if (reservation.DateRetour == null)
                         {
                             reservation.DateRetour = Convert.ToDateTime("01/01/1900");
                         }
@@ -136,7 +131,9 @@ namespace DataAccessLayer
 
         public bool CloseReservation(Reservation reservation)
         {
-            string sql = "CloseReservation";
+            string sql = "CloseReservationWithoutForfait";
+            if (reservation.Idforfait != null)
+                sql = "CloseReservationWithForfait";
             using (SqlConnection oCon = new SqlConnection(DALConnexion.Connexion))
             {
                 using (SqlCommand oCmd = new SqlCommand(sql, oCon))
@@ -157,7 +154,8 @@ namespace DataAccessLayer
                         //oCmd.Parameters.Add(new SqlParameter("@KilometrageDepart", reservation.KilometrageDepart));
                         oCmd.Parameters.Add(new SqlParameter("@KilometrageRetour", reservation.KilometrageRetour));
                         //oCmd.Parameters.Add(new SqlParameter("@Coefficient_Multiplicateur", reservation.CoefficientMultiplicateur));
-                        oCmd.Parameters.Add(new SqlParameter("@IdForfait", reservation.Idforfait));
+                        if (reservation.Idforfait != null)
+                            oCmd.Parameters.Add(new SqlParameter("@IdForfait", reservation.Idforfait));
                         oCmd.Parameters.Add(new SqlParameter("@Penalite", reservation.Penalite));
                         int result = oCmd.ExecuteNonQuery();
                         return true;
@@ -203,8 +201,8 @@ namespace DataAccessLayer
         {
             try
             {
-                List<Reservation> lst = dal.dbcontext.Reservation.Where(res=>res.KilometrageDepart != null && res.KilometrageRetour ==null ).ToList();        
-                   return lst;
+                List<Reservation> lst = dal.dbcontext.Reservation.Where(res => res.KilometrageDepart != null && res.KilometrageRetour == null).ToList();
+                return lst;
 
             }
             catch (Exception ex)
