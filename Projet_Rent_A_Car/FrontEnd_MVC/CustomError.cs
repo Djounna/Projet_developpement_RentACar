@@ -45,10 +45,28 @@
                     ErrorMessage = "(7) Oups, adresse mail incorrecte";
                     break;
 
-                case 8:  // Erreur client inexistant;
+                case 8:  // Erreur Date de départ;
                     ErrorId = 8;
-                    ErrorMessage = "(8) Les dates mentionnées ne sont pas correctes, nous vous prions de recommencer votre réservation";
+                    ErrorMessage = "(8) La date de départ votre réservation ne peut pas être dans le passé, nous vous prions de recommencer votre réservation";
                     break;
+
+                case 9:  // Erreur Kilometrage retour;
+                    ErrorId = 9;
+                    ErrorMessage = "(9) Le kilométrage au retour doit être supérieur au kilométrage au départ";
+                    break;
+
+                case 10:  // Erreur Date de Retour;
+                    ErrorId = 10;
+                    ErrorMessage = "(10) La date de retour de votre réservation doit être supérieur à la date de départ, nous vous prions de recommencer";
+                    break;
+
+                case 11:  // Autres Erreurs au niveau des données;
+                    ErrorId = 11;
+                    ErrorMessage = "(11) les données mentionnées ne sont pas valides, nous vous prions de recommencer l'opération";
+                    break;
+
+              
+
 
                 default:
                     ErrorId = 999;

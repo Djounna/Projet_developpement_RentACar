@@ -321,9 +321,22 @@ namespace FrontEnd_MVC.Controllers
             ModelState.Remove("ListDepotRetour");
             ModelState.Remove("ListVoitureDisponible");
 
-            if (!ModelState.IsValid)
+
+            if(Reservation.DateDepart < DateTime.Now) // Erreur de date de départ
             {
-                CustomError oError = new CustomError(8);
+                    CustomError oError = new CustomError(8);
+                    throw oError;
+            }
+
+            if(Reservation.DateRetour != null && Reservation.DateRetour < Reservation.DateDepart) // Erreur de date de retour
+                {
+                    CustomError oError = new CustomError(10);
+                    throw oError;
+                }
+
+            if (!ModelState.IsValid) // Autres erreurs au niveau des données
+            {
+                CustomError oError = new CustomError(11);
                 throw oError;
             }
 

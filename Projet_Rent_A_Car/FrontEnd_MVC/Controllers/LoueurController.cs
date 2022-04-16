@@ -128,6 +128,35 @@ namespace FrontEnd_MVC.Controllers
                     return BadRequest();                
             }                      
         }
+
+        private async  Task<Reservation> GenererListe(Reservation reservation)
+        {
+            reservation.ListPays = await GetEnumerableList("https://localhost:7204/api/Loueur/GetAllPaysInList/");
+            reservation.ListDepotDepart = new List<SelectListItem>()
+            {
+                new SelectListItem
+                {
+                    Value = null,
+                    Text = " "
+                }  };
+            reservation.ListDepotRetour = new List<SelectListItem>()
+            {
+                new SelectListItem
+                {
+                    Value = null,
+                    Text = " "
+                }  };
+            reservation.ListVoitureDisponible = new List<SelectListItem>() {
+                 new SelectListItem
+                 {
+                     Value = null,
+                     Text = " "
+                 }  };
+
+            return reservation;
+        }
+
+
         #endregion
         #region HomeLoueur
         public IActionResult HomeLoueur()
@@ -1978,27 +2007,7 @@ namespace FrontEnd_MVC.Controllers
             Reservation reservation = new Reservation();
             reservation = await GetRequestUnique<Reservation>("https://localhost:7204/api/Loueur/GetReservationByID/" + id);
 
-            reservation.ListPays = await GetEnumerableList("https://localhost:7204/api/Loueur/GetAllPaysInList/");
-            reservation.ListDepotDepart = new List<SelectListItem>()
-            {
-                new SelectListItem
-                {
-                    Value = null,
-                    Text = " "
-                }  };
-            reservation.ListDepotRetour = new List<SelectListItem>()
-            {
-                new SelectListItem
-                {
-                    Value = null,
-                    Text = " "
-                }  };
-            reservation.ListVoitureDisponible = new List<SelectListItem>() {
-                 new SelectListItem
-                 {
-                     Value = null,
-                     Text = " "
-                 }  };
+            reservation = await GenererListe(reservation);
 
 
             if (id == null)
@@ -2014,38 +2023,13 @@ namespace FrontEnd_MVC.Controllers
             Reservation reservation = new Reservation();
             reservation = await GetRequestUnique<Reservation>("https://localhost:7204/api/Loueur/GetReservationByID/" + id);
 
-            reservation.ListPays = await GetEnumerableList("https://localhost:7204/api/Loueur/GetAllPaysInList/");
-            reservation.ListDepotDepart = new List<SelectListItem>()
-            {
-                new SelectListItem
-                {
-                    Value = null,
-                    Text = " "
-                }  };
-            reservation.ListDepotRetour = new List<SelectListItem>()
-            {
-                new SelectListItem
-                {
-                    Value = null,
-                    Text = " "
-                }  };
-            reservation.ListVoitureDisponible = new List<SelectListItem>() {
-                 new SelectListItem
-                 {
-                     Value = null,
-                     Text = " "
-                 }  };
+            reservation = await GenererListe(reservation);
 
 
-            reservation.DateRetourPrevue = reservation.DateRetour;
             reservation.IddepotRetourPrevu = reservation.IddepotRetour;
             reservation.IddepotRetourNavigation = await GetRequestUnique<Depot>("https://localhost:7204/api/Loueur/GetDepotByID/" + reservation.IddepotRetour);
             reservation.IddepotRetourNavigation.IdvilleNavigation = await GetRequestUnique<Ville>("https://localhost:7204/api/Loueur/GetVilleByID/" + reservation.IddepotRetourNavigation.Idville);
-
-            ViewBag.DateRetourPrevue = reservation.DateRetour;
-            ViewBag.DepotRetourPrevu = reservation.IddepotRetourNavigation.IdvilleNavigation.Nom;
-
-
+          
             if (id == null)
             {
                 return NotFound();
@@ -2053,7 +2037,7 @@ namespace FrontEnd_MVC.Controllers
             return View(reservation);
         }
 
-        [HttpPut]
+        
         public async Task<IActionResult> UpdateReservation(Reservation Reservation) // Pas utilisée.
         {
 
@@ -2099,7 +2083,7 @@ namespace FrontEnd_MVC.Controllers
             return RedirectToAction(nameof(AfficheReservation));
         }
 
-        [HttpPut]
+        
         public async Task<IActionResult> StartReservation(Reservation Reservation)
         {
 
@@ -2152,7 +2136,7 @@ namespace FrontEnd_MVC.Controllers
 
             if (!ModelState.IsValid)
             {
-                CustomError oError = new CustomError(9);
+                CustomError oError = new CustomError(11);
                 throw oError;
             }
 
@@ -2160,34 +2144,38 @@ namespace FrontEnd_MVC.Controllers
             {
                 await PutRequest("https://localhost:7204/api/Loueur/StartReservation/", Reservation);
             }
-            return RedirectToAction(nameof(AfficheReservation));
+            return RedirectToAction(nameof(AfficheReservationNotYetStarted));
 
 
             }
             catch(CustomError oError)
             {
+
                 ViewBag.Error = oError.ErrorMessage;
-                return View("StartReservation", Reservation);
+                Reservation = await GenererListe(Reservation);
+                return View("DemarrerLocation", Reservation);
             }
             catch (Exception ex)
             {
                 ViewBag.Error = "Un problème s'est produit";
-                return View("StartReservation", Reservation);
+                Reservation = await GenererListe(Reservation);
+                return View("DemarrerLocation", Reservation);
             }
         }
 
-        [HttpPut]
+        
         public async Task<IActionResult> CloseReservation(Reservation Reservation)
         {
 
             try
             {
+                   Reservation.DateRetour = DateTime.Now;
 
+                // if(Reservation.Idforfait != null)
 
-                Reservation.DateRetour = DateTime.Now;
 
                 // Assignation du boolén Pénalité // Ok Corentin
-                if (/*Reservation.DateRetour.Date != Reservation.DateRetourPrevue.Date  ||*/ Reservation.IddepotRetour != Reservation.IddepotRetourPrevu)
+                if ( Reservation.IddepotRetour != Reservation.IddepotRetourPrevu)
                 {
                     Reservation.Penalite = true;
                 }
@@ -2204,18 +2192,17 @@ namespace FrontEnd_MVC.Controllers
 
                     if (f is not null)
                     {
-
                         int newforfaitId = f.Idforfait;
-
                         Reservation.IdforfaitNavigation = await GetRequestUnique<Forfait>("https://localhost:7204/api/Loueur/GetForfaitByID/" + Reservation.Idforfait);
 
                         if (f.Prix > Reservation.IdforfaitNavigation.Prix) // Sauvegarde du forfait le plus cher, pour calcul du prix si pénalité 
                         {
                             Reservation.Idforfait = newforfaitId;
                         }
-
                     }
                 }
+
+
 
                 Reservation.IdclientNavigation = await GetRequestUnique<Client>("https://localhost:7204/api/Client/GetClientByID/" + Reservation.Idclient);
 
@@ -2256,10 +2243,16 @@ namespace FrontEnd_MVC.Controllers
                 ModelState.Remove("ListDepotDepart");
                 ModelState.Remove("ListDepotRetour");
                 ModelState.Remove("ListVoitureDisponible");
-
-                if (!ModelState.IsValid)
+               
+                if (Reservation.KilometrageRetour < Reservation.KilometrageDepart) // Erreur de kilométrage de retour
                 {
                     CustomError oError = new CustomError(9);
+                    throw oError;
+                }
+
+                if (!ModelState.IsValid) // Autre erreurs au niveau des données
+                {
+                    CustomError oError = new CustomError(11);
                     throw oError;
                 }
 
@@ -2268,17 +2261,19 @@ namespace FrontEnd_MVC.Controllers
                     await PutRequest("https://localhost:7204/api/Loueur/CloseReservation/", Reservation);
                 }
 
-                return RedirectToAction(nameof(AfficheReservation));
+                return RedirectToAction(nameof(AfficheReservationCloturees));
             }
             catch (CustomError oError)
             {
                 ViewBag.Error = oError.ErrorMessage;
-                return View("StartReservation", Reservation);
+                Reservation = await GenererListe(Reservation);
+                return View("CloturerLocation", Reservation);
             }
             catch (Exception ex)
             {
                 ViewBag.Error = "Un problème s'est produit";
-                return View("StartReservation", Reservation);
+                Reservation = await GenererListe(Reservation);
+                return View("CloturerLocation", Reservation);
             }
 
 

@@ -50,16 +50,6 @@
                 <span asp-validation-for="Idforfait" class="text-danger"></span>
             </div>
 
-            
-            <!-- Test Corentin -->
-            <!--
-            <div hidden="hidden" class="form-group">
-                <label asp-for="DateReservation" class="control-label"></label>
-                <input asp-for="DateReservation" value="" class="form-control" />
-                <span asp-validation-for="DateReservation" class="text-danger"></span>
-            </div>
-            -->
-
             <div class="form-group">
                 <label asp-for="DateDepart" class="control-label"></label>
                 <input asp-for="DateDepart" class="form-control" id="IDDateDepart"  />
@@ -78,15 +68,6 @@
                 @Html.ValidationMessageFor(x => x.Idvoiture, "", new { @class = "text-danger" })
                 </div>
             </div>
-
-
-            <!--
-            <div hidden="hidden"  class="form-group">
-                <label asp-for="CoefficientMultiplicateur" class="control-label"></label>
-                <input asp-for="CoefficientMultiplicateur" class="form-control" />
-                <span asp-validation-for="CoefficientMultiplicateur" class="text-danger"></span>
-            </div> 
-            -->   
 
             <div class="form-group">
                 <input type="submit" value="Créer" class="btn btn-success" />

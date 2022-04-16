@@ -7,9 +7,7 @@
 <h1>Cloturer une location</h1>
 <hr />
 <div>
-<p>Kilometrage au départ : @Model.KilometrageDepart km</p>
-<p>Date de retour prévue : @ViewBag.DateRetourPrevue </p>
-<p>Dépot de retour prévu : @ViewBag.DepotRetourPrevu </p>
+<p>Kilometrage au départ : <span class="colorFloralWhite"></>@Model.KilometrageDepart km</span></p>
 </div>
 
 
@@ -37,6 +35,11 @@
                 <span asp-validation-for="KilometrageRetour" class="text-danger"></span>
             </div>
 
+             <div hidden="hidden" class="form-group">
+                <label asp-for="IddepotRetourPrevu" class="control-label"></label>
+                <input asp-for="IddepotRetourPrevu" value=@Model.IddepotRetourPrevu class="form-control" />
+                <span asp-validation-for="IddepotRetourPrevu" class="text-danger"></span>
+            </div>
 
             <div hidden="hidden" class="form-group">
                 <label asp-for="DateRetour" class="control-label"></label>
@@ -101,15 +104,15 @@
 
 
             <div class="form-group">
-                <input type="submit" value="Sauver" class="btn btn-success" />
+                <input type="submit" value="Sauver" class="btn btn-success" /> |  <a class="btn btn-dark" asp-action="AfficheLocationEnCours">Retour à la Liste</a>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a class="btn btn-dark" asp-action="AfficheReservation">Retour à la Liste</a>
-</div>
+
+   <div class="ErrorMessage"> @ViewBag.Error </div>
+
 
 
 @section Scripts{

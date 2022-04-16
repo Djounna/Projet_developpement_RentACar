@@ -42,8 +42,7 @@ namespace FrontEnd_MVC.Models
         [Display(Name ="Pays de retour")]
         public int? IdpaysRetour { get; set; }  // Nécessaire pour cloturer réservation
 
-        public int? IddepotRetourPrevu; // Nécessaire pour Cloture Location
-        public DateTime? DateRetourPrevue; // Nécessaire pour Cloture Location
+        public int? IddepotRetourPrevu { get; set; } // Nécessaire pour Cloture Location
 
         public decimal? PrixTotal { get; set; }
 

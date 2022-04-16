@@ -95,19 +95,18 @@
             
                 @if(item.KilometrageDepart == null && item.KilometrageRetour== null){
              <td>
-                <a class="btn btn-success" asp-action="DemarrerLocation" asp-route-id="@item.Idreservation">Demarrer la location</a>
-                <a class="btn btn-success" asp-action="CloturerLocation" asp-route-id="@item.Idreservation">Cloturer la location</a>
+                <a class="btn btn-success" asp-action="DemarrerLocation" asp-route-id="@item.Idreservation">Démarrer</a>
              </td>
                 }
                 else
                 {
                     if(item.KilometrageDepart != null && item.KilometrageRetour == null)
                     {
-                        <td><a class="btn btn-primary asp-action="CloturerLocation" asp-route-id="@item.Idreservation">Clôturer la location</a></td>
+                        <td><a class="btn btn-primary asp-action="CloturerLocation" asp-route-id="@item.Idreservation">Clôturer</a></td>
                     }
                     else
                     {
-                         <td><a class="btn btn-primary" asp-action="AfficheFacturation" asp-route-id="@item.Idreservation">Afficher la facturation</a></td>
+                         <td><a class="btn btn-primary" asp-action="AfficheFacturation" asp-route-id="@item.Idreservation">Facture</a></td>
                     }
                 }    
                 
