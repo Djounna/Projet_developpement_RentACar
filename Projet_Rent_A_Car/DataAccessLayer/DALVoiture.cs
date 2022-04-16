@@ -31,10 +31,7 @@ namespace DataAccessLayer
                 throw ex;
             }
         }
-
-
-        // Test Corentin
-
+        
         public List<Voiture> SelectAllVoitureInLocation()
         {
             List<Reservation> listReservation = dalReservation.SelectAllLocationEnCours();
@@ -49,23 +46,17 @@ namespace DataAccessLayer
             }
             return listVoiture;
         }
-
-
         // OK
         public IEnumerable<SelectListItem> SelectAllVoitureDisponibleInList(int IdDepot, DateTime DateLocation)
         {
-            //var lstVoit = dal.dbcontext.Voiture.Where(v => v.Inactif != true && v.Iddepot == IdDepot).ToList();
-
+            
             var lstVoit = from voiture in dal.dbcontext.Voiture where voiture.Inactif != true && voiture.Iddepot == IdDepot select voiture;
-            // var lstVoitDispo = dal.dbcontext.Reservation.Join(lstVoit, r=>r.Idvoiture, v => v.Idvoiture, (r, v) => {r.Idvoiture, v.Marque })
+            
             List<int> idLstVoit = lstVoit.Select(v => v.Idvoiture).ToList();
-            List<int> idLstVoitRes = dal.dbcontext.Reservation.Select(v => v.Idvoiture).ToList();
+            List<int> idLstVoitRes = dal.dbcontext.Reservation.Where(r => r.DateRetour == null ).Select(v => v.Idvoiture).ToList();
             List<int> idVoitSsRes = (from id in idLstVoit select id).Except(idLstVoitRes).ToList();
-            //from reservation in dal.dbcontext.Reservation join voiture in lstVoit
-            //       on reservation.Idvoiture equals voiture.Idvoiture select voiture; //where reservation.DateRetour < DateLocation select voiture;
 
-            //condition à mettre si pas de voiture
-            List<SelectListItem> lstVoiture = dal.dbcontext.Reservation.Where(r => r.DateRetour < DateLocation && r.KilometrageRetour == null).Join(
+                List<SelectListItem> lstVoiture = dal.dbcontext.Reservation.Where(r => r.DateRetour < DateLocation && r.KilometrageRetour == null).Join(
                 lstVoit, r => r.Idvoiture, v => v.Idvoiture, (r, v) =>
                 new SelectListItem
                 {
@@ -73,15 +64,24 @@ namespace DataAccessLayer
                     Text = v.Marque
                 }).ToList();
 
-            List<SelectListItem> lstVoitureSsRes = dal.dbcontext.Voiture.Where(v => idVoitSsRes.Contains(v.Idvoiture)).Select(v =>
-                       new SelectListItem
-                       {
-                           Value = v.Idvoiture.ToString(),
-                           Text = v.Marque,
-                       }).ToList();
+                List<SelectListItem> lstVoitureSsRes = dal.dbcontext.Voiture.Where(v => idVoitSsRes.Contains(v.Idvoiture)).Select(v =>
+                           new SelectListItem
+                           {
+                               Value = v.Idvoiture.ToString(),
+                               Text = v.Marque + " / " + v.IdnotorieteNavigation.Libelle.ToString()
+                           }).ToList();
 
-            lstVoiture.AddRange(lstVoitureSsRes);
+                lstVoiture.AddRange(lstVoitureSsRes);
 
+                if (lstVoiture.Count == 0)
+                {
+                    lstVoiture.Add(new SelectListItem
+                    {
+                        Value = "99999",
+                        Text = "Pas de voiture disponible dans ce dépôt à cette date"
+                    });
+                }
+            
             return lstVoiture;
 
 

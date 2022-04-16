@@ -70,7 +70,7 @@
             </div>
 
             <div class="form-group">
-                <input type="submit" value="Créer" class="btn btn-success" />
+                <input type="submit" value="Créer" class="btn btn-success" /> | <a class="btn btn-dark" asp-action="HomeClient" >Retour au menu</a>
             </div>
         </form>
     </div>
@@ -183,14 +183,8 @@
             });
   
     </script>
-   
-}@*
-    depotDepartSelect.append($('<option/>').val(depot.value).text(depot.Text));}
-*@  
- @*
-     $( function() {
-                 $( "#IDDateDepart" ).datepicker();
-                } );
- *@
+ }  
+    <div class="ErrorMessage"> @ViewBag.Error </div>
+
 
  

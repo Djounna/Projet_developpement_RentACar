@@ -6,7 +6,7 @@
         private string _ErrorMessage;
         public CustomError(int pErrorId)
         {
-            string sMessage = "Defaut";
+            string sMessage = "Un problème s'est produit";
 
             switch (pErrorId)
             {
@@ -64,9 +64,10 @@
                     ErrorId = 11;
                     ErrorMessage = "(11) les données mentionnées ne sont pas valides, nous vous prions de recommencer l'opération";
                     break;
-
-
-
+                case 12:  // Erreur si aucun choix pays / dépot départ lors de la réservation.
+                    ErrorId = 12;
+                    ErrorMessage = "(12) Des données obligatoires n'ont pas été remplies";
+                    break ;
 
                 default:
                     ErrorId = 999;

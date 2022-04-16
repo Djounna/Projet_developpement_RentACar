@@ -21,11 +21,11 @@ namespace FrontEnd_MVC.Models
         [Display(Name = "Ville de retour")]
         public int? IddepotRetour { get; set; }
 
-        [Display(Name = "Prix du forfait : ")]
+        [Display(Name = "Prix du forfait ")]
         public int? Idforfait { get; set; }
         public DateTime DateReservation { get; set; }
         public DateTime DateDepart { get; set; }
-        public DateTime? DateRetour { get; set; }
+        public DateTime DateRetour { get; set; }
         [Display(Name = "Km au depart")]
         [Range(0, Double.PositiveInfinity, ErrorMessage = "Ce champ doit être > 0")] // OK
         public int? KilometrageDepart { get; set; }

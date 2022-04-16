@@ -10,7 +10,7 @@
         public int? Idforfait { get; set; }
         public DateTime DateReservation { get; set; }
         public DateTime DateDepart { get; set; }
-        public DateTime? DateRetour { get; set; }
+        public DateTime DateRetour { get; set; }
         public int? KilometrageDepart { get; set; }
         public int? KilometrageRetour { get; set; }
         public decimal CoefficientMultiplicateur { get; set; }

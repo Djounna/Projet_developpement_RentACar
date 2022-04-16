@@ -12,8 +12,10 @@ namespace DataAccessLayer
         // Méthodes ADO
         public bool Insert(Reservation reservation)
         {
+            string sql = sql = "InsertReservationWithoutForfait"; ;
+            if(reservation.Idforfait != null)
+            sql = "InsertReservationWithForfait";
 
-            string sql = "InsertReservation";
             using (SqlConnection oCon = new SqlConnection(DALConnexion.Connexion))
             {
                 using (SqlCommand oCmd = new SqlCommand(sql, oCon))
@@ -26,25 +28,17 @@ namespace DataAccessLayer
                         oCmd.Parameters.Add(new SqlParameter("@IdClient", reservation.Idclient));
                         oCmd.Parameters.Add(new SqlParameter("@IdVoiture", reservation.Idvoiture));
                         oCmd.Parameters.Add(new SqlParameter("@IdDepotDepart", reservation.IddepotDepart));
-                        if (reservation.IddepotRetour == null)
+                        if (reservation.Idforfait != null)
                         {
-                            reservation.IddepotRetour = 0;
+                            oCmd.Parameters.Add(new SqlParameter("@IdDepotRetour", reservation.IddepotRetour));
+                            oCmd.Parameters.Add(new SqlParameter("@IdForfait", reservation.Idforfait));                           
                         }
-                        oCmd.Parameters.Add(new SqlParameter("@IdDepotRetour", reservation.IddepotRetour));
-                        if (reservation.Idforfait == null)
-                        {
-                            reservation.Idforfait = 0;
-                        }
-                        oCmd.Parameters.Add(new SqlParameter("@IdForfait", reservation.Idforfait));
+                        
                         oCmd.Parameters.Add(new SqlParameter("@DateReservation", reservation.DateReservation));
                         oCmd.Parameters.Add(new SqlParameter("@DateDepart", reservation.DateDepart));
-                        if (reservation.DateRetour == null)
-                        {
-                            reservation.DateRetour = Convert.ToDateTime("01/01/1900");
-                        }
+                     
                         oCmd.Parameters.Add(new SqlParameter("@DateRetour", reservation.DateRetour));
-                        //oCmd.Parameters.Add(new SqlParameter("@KilometrageDepart", reservation.KilometrageDepart));
-                        //oCmd.Parameters.Add(new SqlParameter("@KilometrageRetour", reservation.KilometrageRetour));
+                        
                         oCmd.Parameters.Add(new SqlParameter("@Coefficient_Multiplicateur", reservation.CoefficientMultiplicateur));
 
                         int result = oCmd.ExecuteNonQuery();
@@ -71,17 +65,11 @@ namespace DataAccessLayer
                         oCon.Open();
                         oCmd.Connection = oCon;
                         oCmd.CommandType = CommandType.StoredProcedure;
-                        oCmd.Parameters.Add(new SqlParameter("@IdReservation", reservation.Idreservation));
-                        //oCmd.Parameters.Add(new SqlParameter("@IdClient", reservation.Idclient));
-                        //oCmd.Parameters.Add(new SqlParameter("@IdVoiture", reservation.Idvoiture));
-                        //oCmd.Parameters.Add(new SqlParameter("@IdDepotDepart", reservation.IddepotDepart));
-                        oCmd.Parameters.Add(new SqlParameter("@IdDepotRetour", reservation.IddepotRetour));
-                        //oCmd.Parameters.Add(new SqlParameter("@DateReservation", reservation.DateReservation));
-                        //oCmd.Parameters.Add(new SqlParameter("@DateDepart", reservation.DateDepart));
+                        oCmd.Parameters.Add(new SqlParameter("@IdReservation", reservation.Idreservation));    
+                        oCmd.Parameters.Add(new SqlParameter("@IdDepotRetour", reservation.IddepotRetour));                       
                         oCmd.Parameters.Add(new SqlParameter("@DateRetour", reservation.DateRetour));
                         oCmd.Parameters.Add(new SqlParameter("@KilometrageDepart", reservation.KilometrageDepart));
-                        oCmd.Parameters.Add(new SqlParameter("@KilometrageRetour", reservation.KilometrageRetour));
-                        //oCmd.Parameters.Add(new SqlParameter("@Coefficient_Multiplicateur", reservation.CoefficientMultiplicateur));
+                        oCmd.Parameters.Add(new SqlParameter("@KilometrageRetour", reservation.KilometrageRetour));                       
                         int result = oCmd.ExecuteNonQuery();
                         return true;
                     }
@@ -89,7 +77,6 @@ namespace DataAccessLayer
                     {
                         return false;
                     }
-
                 }
             }
         }
@@ -107,16 +94,11 @@ namespace DataAccessLayer
                         oCmd.Connection = oCon;
                         oCmd.CommandType = CommandType.StoredProcedure;
                         oCmd.Parameters.Add(new SqlParameter("@IdReservation", reservation.Idreservation));
-                        //oCmd.Parameters.Add(new SqlParameter("@IdClient", reservation.Idclient));
-                        //oCmd.Parameters.Add(new SqlParameter("@IdVoiture", reservation.Idvoiture));
-                        //oCmd.Parameters.Add(new SqlParameter("@IdDepotDepart", reservation.IddepotDepart));
-                        //oCmd.Parameters.Add(new SqlParameter("@IdDepotRetour", reservation.IddepotRetour));
-                        //oCmd.Parameters.Add(new SqlParameter("@DateReservation", reservation.DateReservation));
-                        //oCmd.Parameters.Add(new SqlParameter("@DateDepart", reservation.DateDepart));
-                        //oCmd.Parameters.Add(new SqlParameter("@DateRetour", reservation.DateRetour));
+                        
+                        oCmd.Parameters.Add(new SqlParameter("@DateDepart", reservation.DateDepart));
+                        
                         oCmd.Parameters.Add(new SqlParameter("@KilometrageDepart", reservation.KilometrageDepart));
-                        //oCmd.Parameters.Add(new SqlParameter("@KilometrageRetour", reservation.KilometrageRetour));
-                        //oCmd.Parameters.Add(new SqlParameter("@Coefficient_Multiplicateur", reservation.CoefficientMultiplicateur));
+                        
                         int result = oCmd.ExecuteNonQuery();
                         return true;
                     }

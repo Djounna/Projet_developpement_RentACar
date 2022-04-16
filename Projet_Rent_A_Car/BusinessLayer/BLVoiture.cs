@@ -41,6 +41,20 @@ namespace BusinessLayer
 
         public IEnumerable<SelectListItem> SelectAllVoitureDisponibleInList(int IdDepot, DateTime DateLocation)
         {
+                
+            if(DateLocation.Year < DateTime.Now.Year)
+            {
+                List<SelectListItem> lstVoit = new List<SelectListItem>();
+
+                lstVoit.Add(new SelectListItem
+                {
+                    Value = "99999",
+                    Text = "Erreur: date de départ invalide"
+                });
+
+                return lstVoit;
+            }
+
             return dalVoiture.SelectAllVoitureDisponibleInList(IdDepot, DateLocation);
         }
 

@@ -24,10 +24,7 @@ table{
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Idreservation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Idclient)
-            </th>
+            </th>           
             <th>
                 @Html.DisplayNameFor(model => model.Idvoiture)
             </th>
@@ -39,6 +36,9 @@ table{
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Idforfait)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IddepotDepartNavigation.IdvilleNavigation.IdpaysNavigation.Price)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.DateReservation)
@@ -54,19 +54,8 @@ table{
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.KilometrageRetour)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CoefficientMultiplicateur)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Penalite)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdpaysDepart)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdpaysRetour)
-            </th>
+            </th>         
+            
             <th></th>
         </tr>
     </thead>
@@ -75,22 +64,26 @@ table{
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Idreservation)
+            </td>   
+            <td>
+                @Html.DisplayFor(modelItem => item.IdvoitureNavigation.Marque) / @Html.DisplayFor(modelItem => item.IdvoitureNavigation.IdnotorieteNavigation.Libelle)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Idclient)
+                @Html.DisplayFor(modelItem => item.IddepotDepartNavigation.IdvilleNavigation.Nom)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Idvoiture)
+                @Html.DisplayFor(modelItem => item.IddepotRetourNavigation.IdvilleNavigation.Nom)
             </td>
+
+             <td>
+                @Html.DisplayFor(model => item.IdforfaitNavigation.Prix)
+            </td>
+        
+            
             <td>
-                @Html.DisplayFor(modelItem => item.IddepotDepart)
+                @Html.DisplayFor(modelItem => item.IddepotDepartNavigation.IdvilleNavigation.IdpaysNavigation.Price.PrixKm)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IddepotRetour)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Idforfait)
-            </td>
+                        
             <td>
                 @Html.DisplayFor(modelItem => item.DateReservation)
             </td>
@@ -106,19 +99,7 @@ table{
             <td>
                 @Html.DisplayFor(modelItem => item.KilometrageRetour)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CoefficientMultiplicateur)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Penalite)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdpaysDepart)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdpaysRetour)
-            </td>
-
+           
                 @if (item.KilometrageDepart == null)
                 {
                      <td>
@@ -127,7 +108,14 @@ table{
                 }
                 else
                 {
-                    <td></td>
+                    if(item.KilometrageRetour != null)
+                    {
+                        <td><a class="btn btn-primary"  asp-action="AfficheFacturation" asp-route-id="@item.Idreservation">Facture</a></td>
+                    }
+                    else
+                    {
+                        <td><span class="btn btn-success"> En cours</span></td>
+                    }
                 }
                
         </tr>
