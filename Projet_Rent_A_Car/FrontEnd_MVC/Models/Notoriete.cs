@@ -16,7 +16,7 @@ namespace FrontEnd_MVC.Models
         [MaxLength(50, ErrorMessage = "Ce champ doit contenir maximum 50 caractères")]
         public string Libelle { get; set; }
 
-        [Range(0, 5, ErrorMessage = "Ce champ doit contenir un chiffre entre 0 et 5")]
+        [Range(1, 5, ErrorMessage = "Ce champ doit contenir un chiffre entre 1 et 5")]
         [Required(ErrorMessage = "Ce champ est obligatoire")]
         [Display(Name = "Coefficient multplicateur du prix")]
         public decimal CoefficientMultiplicateur { get; set; }

@@ -68,6 +68,10 @@
                     ErrorId = 12;
                     ErrorMessage = "(12) Des données obligatoires n'ont pas été remplies";
                     break ;
+                case 13: // Erreur si pas de choix dans la dropdownlist
+                    ErrorId= 13;
+                    ErrorMessage = "(13) Veuillez faire un choix";
+                    break;
 
                 default:
                     ErrorId = 999;
@@ -76,7 +80,7 @@
             }
         }
 
-        public CustomError(string message)
+        public CustomError(string message) // Fonction non-utilisée actuellement. Pour utilisation éventuelle
         {
             ErrorMessage = "le problème suivant s'est produit : " + message;
         }

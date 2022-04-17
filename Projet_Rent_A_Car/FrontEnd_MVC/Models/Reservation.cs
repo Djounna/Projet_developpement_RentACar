@@ -27,7 +27,7 @@ namespace FrontEnd_MVC.Models
         public DateTime DateDepart { get; set; }
         public DateTime DateRetour { get; set; }
         [Display(Name = "Km au depart")]
-        [Range(0, Double.PositiveInfinity, ErrorMessage = "Ce champ doit être > 0")] // OK
+        [Range(0, Double.PositiveInfinity, ErrorMessage = "Ce champ doit être > 0")] 
         public int? KilometrageDepart { get; set; }
         [Display(Name = "Km au retour")]
         [Range(0, Double.PositiveInfinity, ErrorMessage = "Ce champ doit être > 0")]
