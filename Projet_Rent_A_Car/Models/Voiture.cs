@@ -1,4 +1,7 @@
-﻿namespace Models
+﻿using System;
+using System.Collections.Generic;
+
+namespace Models
 {
     public partial class Voiture
     {
@@ -11,7 +14,7 @@
         public int Idnotoriete { get; set; }
         public int Iddepot { get; set; }
         public string Immatriculation { get; set; } = null!;
-        public string? Marque { get; set; }
+        public string Marque { get; set; } = null!;
         public bool? Inactif { get; set; }
 
         public virtual Depot IddepotNavigation { get; set; } = null!;

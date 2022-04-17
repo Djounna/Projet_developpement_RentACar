@@ -1,4 +1,7 @@
-﻿namespace Models
+﻿using System;
+using System.Collections.Generic;
+
+namespace Models
 {
     public partial class Reservation
     {
@@ -18,7 +21,7 @@
 
         public virtual Client IdclientNavigation { get; set; } = null!;
         public virtual Depot IddepotDepartNavigation { get; set; } = null!;
-        public virtual Depot? IddepotRetourNavigation { get; set; } = null!;
+        public virtual Depot? IddepotRetourNavigation { get; set; }
         public virtual Forfait? IdforfaitNavigation { get; set; }
         public virtual Voiture IdvoitureNavigation { get; set; } = null!;
     }

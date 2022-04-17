@@ -1,4 +1,7 @@
-﻿namespace Models
+﻿using System;
+using System.Collections.Generic;
+
+namespace Models
 {
     public partial class Ville
     {

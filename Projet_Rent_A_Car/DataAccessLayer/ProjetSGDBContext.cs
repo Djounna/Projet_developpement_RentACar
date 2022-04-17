@@ -1,4 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Models;
 
 namespace DataAccessLayer
@@ -105,6 +108,9 @@ namespace DataAccessLayer
             {
                 entity.HasKey(e => e.Idnotoriete);
 
+                entity.HasIndex(e => e.Libelle, "UK_Libelle")
+                    .IsUnique();
+
                 entity.Property(e => e.Idnotoriete).HasColumnName("IDNotoriete");
 
                 entity.Property(e => e.CoefficientMultiplicateur)
@@ -117,6 +123,9 @@ namespace DataAccessLayer
             modelBuilder.Entity<Pays>(entity =>
             {
                 entity.HasKey(e => e.Idpays);
+
+                entity.HasIndex(e => e.Nom, "UK_Nom")
+                    .IsUnique();
 
                 entity.Property(e => e.Idpays).HasColumnName("IDPays");
 
@@ -195,7 +204,6 @@ namespace DataAccessLayer
                 entity.HasOne(d => d.IddepotRetourNavigation)
                     .WithMany(p => p.ReservationIddepotRetourNavigation)
                     .HasForeignKey(d => d.IddepotRetour)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Reservation_DepotR");
 
                 entity.HasOne(d => d.IdforfaitNavigation)
@@ -213,6 +221,9 @@ namespace DataAccessLayer
             modelBuilder.Entity<Ville>(entity =>
             {
                 entity.HasKey(e => e.Idville);
+
+                entity.HasIndex(e => new { e.Idpays, e.Nom }, "UK_IDPays_Nom")
+                    .IsUnique();
 
                 entity.Property(e => e.Idville).HasColumnName("IDVille");
 

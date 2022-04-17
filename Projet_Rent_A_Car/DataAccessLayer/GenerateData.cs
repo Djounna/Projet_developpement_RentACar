@@ -5,8 +5,8 @@ namespace DataAccessLayer
     public class GenerateData
     {
         DalCommun dal = new DalCommun();
-        string[] tabPays = new string[] { "Vatican", "Ukraine", "Suisse", "Suède", "Slovénie ", "Slovaquie", "Saint-Marin", "Serbie", "Russie", "Royaume-Uni", "Roumanie", "République ", "Portugal", "Pologne", "Pays-Bas", "Norvège", "Monténégro", "Monaco", "Moldavie", "Malte", "Macédoine", "Luxembourg", "Lituanie", "Liechtenstein", "Lettonie ", "Kasakhstan", "Italie", "Islande", "Irlande", "Hongrie", "Grèce", "Géorgie", "France", "Finlande", "Estonie", "Espagne", "Danemark", "Croatie ", "Chypre ", "Bulgarie ", "Bosnie–Herzégovine ", "Biélorussie ", "Belgique ", "Arménie", "Azerbaïdjan", "Autriche", "Andorre ", "Allemagne", "Albanie" };
-        string[] tabVilleBE = new string[] { "Louvain", "Namur", "Bruges", "Anderlecht", "Schaerbeek", "Ville de Bruxelles", "Liège", "Charleroi", "Gand" };
+        string[] tabPays = new string[] {  "Italie", "Espagne", "Belgique ", "France","Allemagne" };
+        string[] tabVilleBE = new string[] { "Louvain", "Namur", "Bruges", "Anderlecht", "Schaerbeek", "Bruxelles", "Liège", "Charleroi", "Gand" ,"Mons"};
         string[] tabVilleFR = new string[] { "Lille", "Bordeaux", "Strasbourg", "Montpellier", "Nantes", "Nice", "Toulouse", "Lyon", "Marseille", "Paris" };
         string[] tabVilleIT = new string[] { "Catane", "Bari", "Florence", "Bologne", "Gênes", "Palerme", "Turin", "Naples", "Milan", "Rome" };
         string[] tabVilleAL = new string[] { "Leipzig", "Essen", "Dortmund", "Düsseldorf", "Stuttgart", "Francfort-sur-le-Main", "Cologne", "Munich", "Hambourg", "Berlin" };
@@ -143,7 +143,7 @@ namespace DataAccessLayer
 
             #region Voiture
 
-            for (int j = 0; j < 200; j++)
+            for (int j = 0; j < 100; j++)
             {
                 int id = 0;
                 int nb3 = 0;
@@ -188,7 +188,7 @@ namespace DataAccessLayer
             string[] lstnom = new string[] { "LECOMTE", "GUILLAUME", "LECLERCQ", "ROLLAND", "PAYET", "LECLERC", "REY", "BENOIT", "PIERRE", "BOURGEOIS", "PHILIPPE", "OLIVIER", "LACROIX", "DUMAS", "RENAUD", "LEMOINE", "AUBERT", "FABRE", "ROGER", "PICARD", "CARON", "VIDAL", "COLIN", "LEROUX", "ROY", "SCHMITT", "RENARD", "ROCHE", "GERARD", "MARTINEZ", "ARNAUD", "BARBIER", "GAILLARD", "BRUNET", "LUCAS", "RIVIERE", "JOLY", "GIRAUD", "BLANCHARD", "BRUN", "MEUNIER", "DUFOUR", "MEYER", "NOEL", "LEMAIRE", "MARIE", "DUMONT", "DENIS", "DUVAL", "MARCHAND", "MASSON", "GAUTIER", "MATHIEU", "ROUSSEL", "HENRY", "NICOLAS", "MORIN", "CLEMENT", "ROBIN", "PERRIN", "GARCIA", "GAUTHIER", "LEGRAND", "FRANCOIS", "CHEVALIER", "GARNIER", "BOYER", "GUERIN", "BLANC", "MERCIER", "ANDRE", "FAURE", "LEFEVRE", "MULLER", "VINCENT", "ROUSSEAU", "FONTAINE", "LAMBERT", "DUPONT", "BONNET", "GIRARD", "FOURNIER", "MOREL", "BERTRAND", "DAVID", "ROUX", "LEROY", "LEFEBVRE", "MICHEL", "SIMON", "LAURENT", "MOREAU", "DUBOIS", "DURAND", "RICHARD", "ROBERT", "PETIT", "THOMAS", "BERNARD", "MARTIN" };
 
 
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < 20; i++)
             {
                 int nb1 = 0;
                 int nb2 = 0;
@@ -263,7 +263,7 @@ namespace DataAccessLayer
             List<int> listIDForfait = dal.dbcontext.Forfait.Select(s => s.Idforfait).ToList();
 
 
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < 20; i++)
             {
                 Reservation reservation = new Reservation();
                 int forfait = 0;
@@ -291,7 +291,7 @@ namespace DataAccessLayer
                     else
                         reservation.IddepotRetour = null;
                 }
-                int annee = rnd.Next(2010, 2023);
+                int annee = rnd.Next(2021, 2024);
                 int mois = rnd.Next(1, 13);
                 int jour = rnd.Next(1, 30);
 
@@ -336,17 +336,19 @@ namespace DataAccessLayer
 
                 kmdep = rnd.Next(2534, 65001);
                 reservation.KilometrageDepart = kmdep;
+
                 if (kmdep % 5 != 0)
                 {
                     kmret = rnd.Next(5, 2000) + kmdep;
                     reservation.KilometrageRetour = kmret;
+
                 }
 
                 int idNot = dal.dbcontext.Voiture.Where(r => r.Idvoiture == reservation.Idvoiture).Select(s => s.Idnotoriete).SingleOrDefault();
                 decimal coef = dal.dbcontext.Notoriete.Where(r => r.Idnotoriete == idNot).Select(s => s.CoefficientMultiplicateur).SingleOrDefault();
                 reservation.CoefficientMultiplicateur = coef;
 
-                if (reservation.KilometrageRetour % 10 == 0 && reservation.Idforfait != null)
+                if (reservation.KilometrageRetour % 10 == 0 && reservation.Idforfait != null && reservation.KilometrageRetour != null)
                 {
                     reservation.Penalite = true;
                 }
