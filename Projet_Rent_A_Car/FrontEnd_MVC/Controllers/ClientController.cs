@@ -284,11 +284,11 @@ namespace FrontEnd_MVC.Controllers
         }
 
 
-        [HttpPost] // Cette view est un Httppost afin de pouvoir récupérer l'IdClient via un formulaire. Ok Corentin
+        [HttpPost] // Cette view est un Httppost afin de pouvoir récupérer l'IdClient via un formulaire. 
         public async Task<IActionResult> EffectuerReservation([Bind("Idclient")] Client client)
         {
 
-            ViewBag.Idclient = client.Idclient; //  viewbag. Je passe l'idclient à la vue via le viewbag. Ok Corentin
+            ViewBag.Idclient = client.Idclient; // Passage de l'idclient à la vue via ViewBag
 
             Reservation reservation = new();
             reservation = await GenererListe(reservation);
@@ -309,6 +309,12 @@ namespace FrontEnd_MVC.Controllers
                 }
 
                 Reservation.DateReservation = DateTime.Now;
+
+                if(Reservation.IddepotDepart == null || Reservation.IddepotRetour==null)
+                {
+                    CustomError oError = new CustomError(13);
+                    throw oError;
+                }
 
                 // Détermination automatique du forfait sur base des dépots.
                 if (Reservation.IddepotRetour == 999)
@@ -402,24 +408,23 @@ namespace FrontEnd_MVC.Controllers
                     throw oError;
                 }           
             }
-            catch (CustomError oError) // Test en cours
+            catch (CustomError oError) 
             {
                 ViewBag.Error = oError.ErrorMessage;
+                ViewBag.Idclient = Reservation.Idclient;
                 Reservation = await GenererListe(Reservation);
                 Reservation.DateRetour = Convert.ToDateTime("01.01.2022 00:00:00");
                 return View("EffectuerReservation",Reservation);
             }
-            catch (Exception ex) // Test en cours
+            catch (Exception ex) 
             {
                 CustomError oError = new CustomError(999);
                 ViewBag.Error = oError.ErrorMessage;
+                ViewBag.Idclient = Reservation.Idclient;
                 Reservation = await GenererListe(Reservation);
                 return View("EffectuerReservation", Reservation);
-
             }
-
         }
-
 
         [HttpGet]
         public async Task<ActionResult> GetAllDepotByPays(int idPays)
@@ -435,7 +440,7 @@ namespace FrontEnd_MVC.Controllers
             return Json(depots);
         }
 
-        [HttpGet] // Corentin Test en cours
+        [HttpGet] 
         public async Task<ActionResult> GetAllVoitureDisponibleInList(int IdDepot, DateTime DateLocation)
         {
             string date = DateLocation.ToString("dd.MM.yyyy");
@@ -485,10 +490,7 @@ namespace FrontEnd_MVC.Controllers
                 Reservation.IdforfaitNavigation.Iddepot1Navigation.IdvilleNavigation.IdpaysNavigation = await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + Reservation.IdforfaitNavigation.Iddepot1Navigation.IdvilleNavigation.Idpays);
                 Reservation.IdforfaitNavigation.Iddepot2Navigation.IdvilleNavigation.IdpaysNavigation = await GetRequestUnique<Pays>("https://localhost:7204/api/Loueur/GetPaysByID/" + Reservation.IdforfaitNavigation.Iddepot2Navigation.IdvilleNavigation.Idpays);
             }
-
             return View(Reservation);
-
-
             }
             catch (CustomError oError)
             {
@@ -497,11 +499,9 @@ namespace FrontEnd_MVC.Controllers
             }
         }
 
-
         [HttpPost, ActionName("AnnulerReservation")]
-        public async Task<IActionResult> DeleteReservation(int id) //try catch ici ?
+        public async Task<IActionResult> DeleteReservation(int id) 
         {
-
             await DeleteRequest("https://localhost:7204/api/Client/DeleteReservation/" + id);
             return RedirectToAction(nameof(AfficheReservationByClient));
         }

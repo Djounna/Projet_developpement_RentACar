@@ -138,6 +138,7 @@ namespace DataAccessLayer
                         //oCmd.Parameters.Add(new SqlParameter("@Coefficient_Multiplicateur", reservation.CoefficientMultiplicateur));
                         if (reservation.Idforfait != null)
                             oCmd.Parameters.Add(new SqlParameter("@IdForfait", reservation.Idforfait));
+                        
                         oCmd.Parameters.Add(new SqlParameter("@Penalite", reservation.Penalite));
                         int result = oCmd.ExecuteNonQuery();
                         return true;

@@ -14,12 +14,16 @@ namespace FrontEnd_MVC.Models
         public int Idforfait { get; set; }
 
         [Display(Name = "Ville du premier dépôt")]
+        [Required(ErrorMessage = "Ce champ est obligatoire")]
         public int Iddepot1 { get; set; }
 
+        
         [Display(Name = "Ville du second dépôt")]
+        [Required(ErrorMessage = "Ce champ est obligatoire")]
         public int Iddepot2 { get; set; }
 
         [Display(Name = "Prix du forfait")]
+        [Range(0.1, double.MaxValue, ErrorMessage = "Ce champ doit être un nombre supérieur à 0")]
         public decimal Prix { get; set; }
         public DateTime DateDebut { get; set; }
         public DateTime? DateFin { get; set; }
