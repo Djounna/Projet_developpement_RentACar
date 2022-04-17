@@ -85,7 +85,7 @@ namespace DataAccessLayer
             }
         }
 
-        public Forfait SelectForfaitReservation(int idDepot1, int idDepot2) // En test sutie modif
+        public Forfait SelectForfaitReservation(int idDepot1, int idDepot2) 
         {
             Forfait forf = dal.dbcontext.Forfait.Where(forfait => forfait.Iddepot1 == idDepot1 && forfait.Iddepot2 == idDepot2 && forfait.DateFin == null).FirstOrDefault();
             if (forf is null)
@@ -97,7 +97,7 @@ namespace DataAccessLayer
         }
 
 
-        public bool AlreadyExist(Forfait forfait) // En Test
+        public bool AlreadyExist(Forfait forfait) 
         {
             return (SelectForfaitReservation(forfait.Iddepot1, forfait.Iddepot2) != null);
         }

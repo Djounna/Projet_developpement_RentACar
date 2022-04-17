@@ -6,7 +6,7 @@ namespace DataAccessLayer
     public class DALDepot
     {
         private DalCommun dal = new();
-        public List<Depot> SelectAllDepotInactif() //OK
+        public List<Depot> SelectAllDepotInactif() 
         {
             try
             {
@@ -17,7 +17,7 @@ namespace DataAccessLayer
                 throw ex;
             }
         }
-        public List<Depot> SelectAllDepotActif() //OK
+        public List<Depot> SelectAllDepotActif()
         {
             try
             {
@@ -70,14 +70,12 @@ namespace DataAccessLayer
             }
         }
 
-        public IEnumerable<SelectListItem> SelectAllDepotByPaysInList(int idPays) // Ok, testé avec Swagger
+        public IEnumerable<SelectListItem> SelectAllDepotByPaysInList(int idPays) 
         {
             using (dal.dbcontext)
             {
 
-                var lstville = from ville in dal.dbcontext.Ville where ville.Idpays == idPays select ville;
-
-                //  dal.dbcontext.Ville.Where(ville => ville.Idpays == idPays).ToList();
+                var lstville = from ville in dal.dbcontext.Ville where ville.Idpays == idPays select ville;                
 
                 List<SelectListItem> lstDepot = dal.dbcontext.Depot
                     .Join(lstville,
@@ -99,7 +97,7 @@ namespace DataAccessLayer
 
 
 
-        public IEnumerable<SelectListItem> SelectAllDepotRetourByDepotDepartInList(int idDepotDepart) // En cours de correction
+        public IEnumerable<SelectListItem> SelectAllDepotRetourByDepotDepartInList(int idDepotDepart)
         {
 
             var lstForfait1 = from forfait in dal.dbcontext.Forfait where forfait.Iddepot1 == idDepotDepart select forfait;

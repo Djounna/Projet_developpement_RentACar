@@ -22,7 +22,7 @@ namespace BusinessLayer
         {
             return dalNotoriete.AlreadyExist(not.Libelle, not.Idnotoriete);
         }
-        public bool InsertOrUpdateNotoriete(Notoriete notoriete) // OK
+        public bool InsertOrUpdateNotoriete(Notoriete notoriete) 
         {
 
             return dal.InsertOrUpdate(notoriete);
@@ -32,16 +32,16 @@ namespace BusinessLayer
         {
             return dal.Delete(SelectNotorieteByID(id));
         }
-        public List<Notoriete> SelectAllNotorieteInactif() // OK 
+        public List<Notoriete> SelectAllNotorieteInactif()  
         {
             return dalNotoriete.SelectAllNotorieteInactif();
         }
-        public List<Notoriete> SelectAllNotorieteActif() // OK 
+        public List<Notoriete> SelectAllNotorieteActif() 
         {
             return dalNotoriete.SelectAllDNotorieteActif();
         }
 
-        public IEnumerable<SelectListItem> SelectAllNotorieteInList() // OK
+        public IEnumerable<SelectListItem> SelectAllNotorieteInList() 
         {
             return dalNotoriete.SelectAllNotorieteInList();
         }

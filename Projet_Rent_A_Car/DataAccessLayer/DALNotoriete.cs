@@ -6,7 +6,7 @@ namespace DataAccessLayer
     public class DALNotoriete
     {
         private DalCommun dal = new();
-        public List<Notoriete> SelectAllNotorieteInactif() // OK 
+        public List<Notoriete> SelectAllNotorieteInactif() 
         {
             try
             {
@@ -17,7 +17,7 @@ namespace DataAccessLayer
                 throw ex;
             }
         }
-        public List<Notoriete> SelectAllDNotorieteActif() // OK
+        public List<Notoriete> SelectAllDNotorieteActif() 
         {
             try
             {
@@ -36,7 +36,7 @@ namespace DataAccessLayer
         }
 
 
-        public IEnumerable<SelectListItem> SelectAllNotorieteInList()  // EN cours Corentin
+        public IEnumerable<SelectListItem> SelectAllNotorieteInList()  
         {
             using (dal.dbcontext)
             {

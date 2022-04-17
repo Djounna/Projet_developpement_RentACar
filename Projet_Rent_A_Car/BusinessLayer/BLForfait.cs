@@ -20,7 +20,7 @@ namespace BusinessLayer
         {
             return dalForfait.SelectForfaitByIDDepot(id);
         }
-        public bool Insert(Forfait forfait)  // EN cours controle doublon, pas au point
+        public bool Insert(Forfait forfait) 
         {
             if (!dalForfait.AlreadyExist(forfait))
             {
@@ -37,19 +37,14 @@ namespace BusinessLayer
         {
             return dalForfait.AlreadyExist(forfait);
         }
-
         public bool Update(Forfait forfait)
         {
             return dalForfait.Update(forfait);
         }
 
-
         public Forfait SelectForfaitReservation(int idDepot1, int idDepot2) // OK Corentin, fonctionne
         {
             return dalForfait.SelectForfaitReservation(idDepot1, idDepot2);
         }
-
-
-
     }
 }

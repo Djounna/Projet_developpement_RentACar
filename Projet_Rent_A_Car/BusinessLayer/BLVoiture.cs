@@ -5,7 +5,7 @@ using Models;
 
 namespace BusinessLayer
 {
-    public class BLVoiture // OK Corentin, à valider
+    public class BLVoiture 
     {
         DalCommun dal = new();
         DALVoiture dalVoiture = new();

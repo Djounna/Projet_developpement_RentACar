@@ -2,13 +2,13 @@
 {
     public class DalCommun
     {
-        public ProjetSGDBContext dbcontext; // mettre en private et faire un get ? 
+        public ProjetSGDBContext dbcontext; 
         public DalCommun()
         {
             dbcontext = new ProjetSGDBContext();
         }
 
-        public List<T> SelectAll<T>() where T : class // OK // Mettre des using ?
+        public List<T> SelectAll<T>() where T : class 
         {
             try
             {
@@ -21,33 +21,7 @@
             }
         }
 
-        //private static bool isActif(EntityObject o)  // Test Corentin, ne fonctionne pas actuellement. Problème avec la propriété qui n'est pas généralisable
-        //{
-        //    return (o.Inactif == false);
-        //}
-
-        //public List<T> SelectAllActif<T>() where T : Class // Test Corentin, ne fonctionne pas actuellement. voir ci-dessus
-        //{
-        //    List<T> lstAll = SelectAll<T>();
-        //    List<T> lstActif = new List<T>();
-        //    foreach (T element in lstAll)
-        //    {
-        //        if (element.Inactif == null || element.Inactif == false)
-        //        {
-        //            lstActif.Add(element);
-        //        }
-        //    }
-        //    return lstActif;
-        //}
-
-        //public List<T> SelectAllActif<T>() where T : EntityObject // Test Corentin, ne fonctionne pas actuellement. Voir ci-dessus
-        //{
-        //    List<T> lstActif = dbcontext.Set<T>().Where(o => o.Inactif == true).ToList<T>();
-        //    return lstActif;
-        //}
-
-
-        public T SelectById<T>(int id) where T : class   // OK 
+        public T SelectById<T>(int id) where T : class    
         {
             try
             {
@@ -59,7 +33,7 @@
             }
         }
 
-        public bool InsertOrUpdate(object o)   // Ok 
+        public bool InsertOrUpdate(object o)   
         {
             try
             {
@@ -73,7 +47,7 @@
             }
         }
 
-        public bool Delete(object o) // Ok 
+        public bool Delete(object o) 
         {
             try
             {

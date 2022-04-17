@@ -42,7 +42,7 @@ namespace BusinessLayer
             return dalDepot.SelectAllDepotInList();
         }
 
-        public IEnumerable<SelectListItem> SelectAllDepotByPaysInList(int idPays) // Ok
+        public IEnumerable<SelectListItem> SelectAllDepotByPaysInList(int idPays) 
         {
             return dalDepot.SelectAllDepotByPaysInList(idPays);
         }

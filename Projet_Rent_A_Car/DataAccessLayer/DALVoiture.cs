@@ -8,7 +8,7 @@ namespace DataAccessLayer
     {
         private DalCommun dal = new();
         private DALReservation dalReservation = new();
-        public List<Voiture> SelectAllVoitureInactif() // OK 
+        public List<Voiture> SelectAllVoitureInactif() 
         {
             try
             {
@@ -19,7 +19,7 @@ namespace DataAccessLayer
                 throw ex;
             }
         }
-        public List<Voiture> SelectAllVoitureActif() // Ok
+        public List<Voiture> SelectAllVoitureActif() 
         {
             try
             {
@@ -46,10 +46,10 @@ namespace DataAccessLayer
             }
             return listVoiture;
         }
-        // OK
+        
         public IEnumerable<SelectListItem> SelectAllVoitureDisponibleInList(int IdDepot, DateTime DateLocation)
         {
-            
+       
             var lstVoit = from voiture in dal.dbcontext.Voiture where voiture.Inactif != true && voiture.Iddepot == IdDepot select voiture;
             
             List<int> idLstVoit = lstVoit.Select(v => v.Idvoiture).ToList();
@@ -80,11 +80,8 @@ namespace DataAccessLayer
                         Value = "99999",
                         Text = "Pas de voiture disponible dans ce dépôt à cette date"
                     });
-                }
-            
+                }           
             return lstVoiture;
-
-
         }
 
         public bool AlreadyExist(string nom, int id)
@@ -92,21 +89,5 @@ namespace DataAccessLayer
             var voiture = dal.dbcontext.Voiture.SingleOrDefault(p => p.Immatriculation == nom && p.Idvoiture != id);
             return (voiture != null);
         }
-
-        /*
-        public List<Voiture> SelectAllVoitureActiveByDepot(int IdDepot)
-        {
-            var lstVoit = dal.dbcontext.Voiture.Where(v => v.Inactif != true && v.Iddepot == IdDepot).ToList();
-            return lstVoit;
-
-        }
-
-        public List<Reservation> SelectAllReservationByVoiture(int idVoiture, DateTime DateLocation)
-        {
-            var lstRes = dal.dbcontext.Reservation.Where(r => r.Idvoiture == idVoiture && r.DateRetour < DateLocation).ToList();
-            return lstRes;
-        }
-        */
-
     }
 }
